@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        header {
+            background-color: #222;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .toggle-btn {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .post {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .post h2 {
+            margin-top: 0;
+        }
+        .date {
+            color: gray;
+            font-size: 14px;
+        }
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #222;
+            color: white;
+            margin-top: 30px;
+        }
+
+        /* Dark Mode */
+        .dark-mode {
+            background-color: #121212;
+            color: #f0f0f0;
+        }
+        .dark-mode .post {
+            background-color: #1e1e1e;
+            color: #f0f0f0;
+        }
+        .dark-mode nav {
+            background-color: #1a1a1a;
+        }
+        .dark-mode header,
+        .dark-mode footer {
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+
+<button class="toggle-btn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
+<header>
+    <h1>My Blog</h1>
+    <p>Welcome to my personal blog website</p>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+</nav>
+
+<div class="container">
+
+    <div class="post">
+        <h2>My First Blog Post</h2>
+        <p class="date">March 2026</p>
+        <p>This is my first blog post. I am learning HTML and building my own website!</p>
+    </div>
+
+    <div class="post">
+        <h2>My Travel Experience</h2>
+        <p class="date">March 2026</p>
+        <p>I love traveling and exploring new places. Soon I will visit Korea!</p>
+      <p>I love to learn japanese</p><br>
+      N2 grammar　文法　<br>
+
+✨1. N+につき ঘোষণা বুঝালে <br>
+
+1 . せいそうちゅうにつき、おあしもとにごちゅういください。  <br>
+
+2.  かいじょうないはきんえんにつき、おたばこはごえんりょください。<br>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 My Personal Blog | Built with HTML</p>
+</footer>
+
+<script>
+    function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+    }
+</script>
+
+</body>
+</html>
