@@ -1,135 +1,219 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Personal Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            transition: background-color 0.3s, color 0.3s;
+            box-sizing: border-box;
         }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            transition: 0.3s ease;
+        }
+
+        /* HERO SECTION */
         header {
-            background-color: #222;
+            height: 90vh;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
             color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
             padding: 20px;
-            text-align: center;
         }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        header p {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        /* NAVIGATION */
         nav {
-            background-color: #444;
-            padding: 10px;
-            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            z-index: 1000;
         }
+
         nav a {
             color: white;
-            margin: 0 15px;
+            margin: 0 25px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 500;
+            transition: 0.3s ease;
         }
+
+        nav a:hover {
+            color: #38bdf8;
+        }
+
         .toggle-btn {
             position: fixed;
             top: 15px;
-            right: 15px;
-            padding: 8px 12px;
+            right: 20px;
+            background: #38bdf8;
             border: none;
-            border-radius: 6px;
+            padding: 8px 14px;
+            border-radius: 20px;
             cursor: pointer;
-        }
-        .container {
-            width: 90%;
-            max-width: 800px;
-            margin: 20px auto;
-        }
-        .post {
-            background: white;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .post h2 {
-            margin-top: 0;
-        }
-        .date {
-            color: gray;
-            font-size: 14px;
-        }
-        footer {
-            text-align: center;
-            padding: 15px;
-            background-color: #222;
-            color: white;
-            margin-top: 30px;
+            font-weight: 600;
         }
 
-        /* Dark Mode */
+        section {
+            padding: 100px 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* BLOG CARD */
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .date {
+            font-size: 0.9rem;
+            color: gray;
+            margin-bottom: 10px;
+        }
+
+        /* CONTACT FORM */
+        form {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 14px;
+            margin: 12px 0;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        form button {
+            width: 100%;
+            padding: 14px;
+            border-radius: 30px;
+            border: none;
+            background: #0f172a;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        form button:hover {
+            background: #38bdf8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #0f172a;
+            color: white;
+        }
+
+        /* DARK MODE */
         .dark-mode {
-            background-color: #121212;
-            color: #f0f0f0;
+            background: #0f172a;
+            color: #f1f5f9;
         }
-        .dark-mode .post {
-            background-color: #1e1e1e;
-            color: #f0f0f0;
+
+        .dark-mode .card {
+            background: #1e293b;
         }
+
         .dark-mode nav {
-            background-color: #1a1a1a;
+            background: rgba(0,0,0,0.9);
         }
-        .dark-mode header,
-        .dark-mode footer {
-            background-color: #000;
-        }
+
     </style>
 </head>
 <body>
 
-<button class="toggle-btn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
-
-<header>
-    <h1>My Blog</h1>
-    <p>Welcome to my personal blog website</p>
-</header>
+<button class="toggle-btn" onclick="toggleDarkMode()">Dark</button>
 
 <nav>
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
 </nav>
 
-<div class="container">
+<header id="home">
+    <h1>My Personal Blog</h1>
+    <p>Sharing my journey, ideas, and experiences</p>
+</header>
 
-    <div class="post">
-        <h2>My First Blog Post</h2>
+<section>
+    <h2>Latest Post</h2>
+    <div class="card">
         <p class="date">March 2026</p>
-        <p>This is my first blog post. I am learning HTML and building my own website!</p>
+        <h3>My First Blog Post</h3>
+        <p>I am learning web development and building a premium personal blog. This is just the beginning of my journey 🚀</p>
     </div>
+</section>
 
-    <div class="post">
-        <h2>My Travel Experience</h2>
-        <p class="date">March 2026</p>
-        <p>I love traveling and exploring new places. Soon I will visit Korea!</p>
-      <p>I love to learn japanese</p><br>
-      N2 grammar　文法　<br>
-
-        ✨1. N+につき ঘোষণা বুঝালে <br>
-
-1 . せいそうちゅうにつき、おあしもとにごちゅういください。  <br>
-
-2.  かいじょうないはきんえんにつき、おたばこはごえんりょください。<br>
-        ✨2. N+を問わず নির্বিশেষে,সবাই
-
-1.このスポーツセンターはねんれい とわず だれ でも りよう できます。<br>
-
-2.このオンラインショップはこうにゅうすうやこうにゅう きんがく を とわず、 そうりょう むりょう です。<br>
+<section id="about">
+    <h2>About Me</h2>
+    <div class="card">
+        <p>Hello! I live in Japan and enjoy technology, travel, and continuous self‑improvement. This blog documents my progress and experiences.</p>
     </div>
+</section>
 
-</div>
+<section id="contact">
+    <h2>Contact Me</h2>
+    <div class="card">
+        <form action="https://formspree.io/f/yourformid" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        <p style="font-size:12px; margin-top:10px; opacity:0.6;">Activate form via formspree.io</p>
+    </div>
+</section>
 
 <footer>
-    <p>© 2026 My Personal Blog | Built with HTML</p>
+    <p>© 2026 My Personal Blog • Designed with HTML & CSS</p>
 </footer>
 
 <script>
