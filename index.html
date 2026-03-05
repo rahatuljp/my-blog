@@ -3,133 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- SEO META TAGS -->
-<title>My Personal Blog | Japanese Learning & Tech</title>
-<meta name="description" content="Personal blog about Japanese study, JLPT preparation, technology, and life in Japan.">
-<meta name="keywords" content="Japanese learning, JLPT, Kanji, Vocabulary, Grammar, Japan life blog">
-<meta name="author" content="Your Name">
-
-<!-- Open Graph (for social media sharing) -->
-<meta property="og:title" content="My Personal Blog">
-<meta property="og:description" content="Follow my Japanese learning journey and tech progress.">
-<meta property="og:type" content="website">
-
+<title>My Developer Blog</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Poppins',sans-serif;background:#f8fafc;color:#1e293b}
-nav{background:#0f172a;padding:15px;text-align:center}
-nav a{color:white;margin:0 20px;text-decoration:none}
-header{padding:80px 20px;text-align:center;background:linear-gradient(135deg,#0f172a,#1e293b);color:white}
-section{max-width:1000px;margin:60px auto;padding:0 20px}
-.card{background:white;padding:25px;border-radius:15px;box-shadow:0 8px 20px rgba(0,0,0,.08);margin-bottom:20px}
-.category-links a{display:block;padding:12px;margin:10px 0;background:#e2e8f0;border-radius:10px;text-decoration:none;color:#0f172a;font-weight:600;transition:.3s}
-.category-links a:hover{background:#38bdf8;color:white}
-footer{text-align:center;padding:30px;background:#0f172a;color:white;margin-top:60px}
+body{font-family:'Poppins',sans-serif;background:#0f172a;color:#f1f5f9}
+nav{background:#020617;padding:15px;text-align:center;position:sticky;top:0}
+nav a{color:#f1f5f9;margin:0 20px;text-decoration:none;font-weight:500}
+nav a:hover{color:#38bdf8}
+header{padding:100px 20px;text-align:center;background:linear-gradient(135deg,#0f172a,#1e293b)}
+header h1{font-size:2.8rem}
+section{max-width:1100px;margin:80px auto;padding:0 20px}
+.card{background:#1e293b;padding:25px;border-radius:15px;margin-bottom:20px}
+button{padding:10px 18px;border:none;border-radius:8px;background:#38bdf8;color:#0f172a;font-weight:600;cursor:pointer}
+input,textarea{width:100%;padding:10px;margin:10px 0;border-radius:8px;border:none}
+footer{text-align:center;padding:30px;background:#020617;margin-top:60px}
+.admin-panel{display:none}
+.post{background:#334155;padding:15px;border-radius:10px;margin-top:10px}
 </style>
 </head>
 <body>
 
 <nav>
-<a href="index.html">Home</a>
-<a href="#category">Category</a>
-<a href="#about">About</a>
-<a href="#contact">Contact</a>
+<a href="#home">Home</a>
+<a href="#portfolio">Portfolio</a>
+<a href="#blog">Blog</a>
+<a href="#admin">Admin</a>
 </nav>
 
-<header>
-<h1>My Personal Blog</h1>
-<p>Professional Multi‑Page Blog System</p>
+<header id="home">
+<h1>My Developer Portfolio & Blog</h1>
+<p>Japanese Learning • Tech • Personal Growth</p>
 </header>
 
-<section>
-<h2>Latest Post</h2>
+<section id="portfolio">
+<h2>Portfolio</h2>
 <div class="card">
-<p><strong>March 2026</strong></p>
-<p>Welcome to my production‑ready blog 🚀</p>
+<h3>🌐 Personal Blog Website</h3>
+<p>Multi-page SEO blog system with admin panel and database-ready structure.</p>
+</div>
+<div class="card">
+<h3>📘 Japanese Study Tracker</h3>
+<p>Organized JLPT grammar, vocabulary, and kanji system.</p>
+
+<div style="margin-top:15px; display:flex; gap:10px; flex-wrap:wrap;">
+<a href="grammar.html" target="_blank"><button>Grammar</button></a>
+<a href="kanji.html" target="_blank"><button>Kanji</button></a>
+<a href="vocabulary.html" target="_blank"><button>Vocabulary</button></a>
+<a href="listening.html" target="_blank"><button>Listening</button></a>
+<a href="mocktest.html" target="_blank"><button>Mock Test</button></a>
+</div>
+
 </div>
 </section>
 
-<section id="category">
-<h2>Japanese Categories</h2>
-<div class="card category-links">
-<a href="grammar.html">📘 Grammar</a>
-<a href="vocabulary.html">📖 Vocabulary</a>
-<a href="kanji.html">🈶 Kanji</a>
-<a href="jlpt.html">🎯 JLPT Preparation</a>
-<a href="conversation.html">💬 Conversation</a>
-</div>
+<section id="blog">
+<h2>Blog Posts</h2>
+<div id="posts"></div>
 </section>
 
-<section id="about">
-<h2>About Me</h2>
+<section id="admin">
+<h2>Admin Panel</h2>
 <div class="card">
-<p>I live in Japan and enjoy Japanese study, technology, and self‑development.</p>
+<button onclick="toggleAdmin()">Toggle Admin Panel</button>
+<div class="admin-panel" id="adminPanel">
+<h3>Add New Post</h3>
+<input type="text" id="postTitle" placeholder="Post Title">
+<textarea id="postContent" rows="5" placeholder="Post Content"></textarea>
+<button onclick="addPost()">Publish Post</button>
 </div>
-</section>
-
-<section id="contact">
-<h2>Contact</h2>
-<div class="card">
-<form action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="POST">
-<input type="text" name="name" placeholder="Your Name" required style="width:100%;padding:10px;margin:10px 0">
-<input type="email" name="email" placeholder="Your Email" required style="width:100%;padding:10px;margin:10px 0">
-<textarea name="message" rows="5" placeholder="Your Message" required style="width:100%;padding:10px;margin:10px 0"></textarea>
-<button type="submit" style="padding:10px 20px;background:#0f172a;color:white;border:none;border-radius:8px;cursor:pointer">Send</button>
-</form>
 </div>
 </section>
 
 <footer>
-<p>© 2026 My Personal Blog • Production Version</p>
+<p>© 2026 My Developer Blog • Advanced Version</p>
 </footer>
 
-<!-- GOOGLE ANALYTICS (Replace G-XXXXXXXXXX with your ID) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);} 
-gtag('js', new Date());
-gtag('config', 'G-XXXXXXXXXX');
-</script>
+function toggleAdmin(){
+const panel=document.getElementById('adminPanel');
+panel.style.display=panel.style.display==='block'?'none':'block';
+}
 
-<!-- FIREBASE SETUP TEMPLATE (Replace with your config) -->
-<script type="module">
-// Import Firebase
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+function addPost(){
+const title=document.getElementById('postTitle').value;
+const content=document.getElementById('postContent').value;
+if(title && content){
+let posts=JSON.parse(localStorage.getItem('blogPosts'))||[];
+posts.unshift({title,content,date:new Date().toLocaleDateString()});
+localStorage.setItem('blogPosts',JSON.stringify(posts));
+renderPosts();
+document.getElementById('postTitle').value='';
+document.getElementById('postContent').value='';
+}
+}
 
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
-};
+function renderPosts(){
+const container=document.getElementById('posts');
+let posts=JSON.parse(localStorage.getItem('blogPosts'))||[];
+container.innerHTML='';
+posts.forEach(post=>{
+container.innerHTML+=`<div class="post"><h3>${post.title}</h3><small>${post.date}</small><p>${post.content}</p></div>`;
+});
+}
 
-const app = initializeApp(firebaseConfig);
+renderPosts();
 </script>
 
 </body>
 </html>
-
-<!-- =============================== -->
-<!-- CREATE THESE 5 FILES SEPARATELY -->
-<!-- =============================== -->
-
-<!-- grammar.html -->
-<!-- Copy main structure and change title + content to Grammar -->
-
-<!-- vocabulary.html -->
-<!-- Change title to Vocabulary and add vocabulary posts -->
-
-<!-- kanji.html -->
-<!-- Change title to Kanji and add kanji posts -->
-
-<!-- jlpt.html -->
-<!-- Change title to JLPT Preparation -->
-
-<!-- conversation.html -->
-<!-- Change title to Conversation Practice -->
