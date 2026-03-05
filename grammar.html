@@ -12,6 +12,7 @@ body{
     margin: 0;
     padding: 20px;
     line-height: 1.6;
+    transition: background 0.3s, color 0.3s;
 }
 
 .container{
@@ -21,6 +22,7 @@ body{
     padding: 25px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    transition: background 0.3s, color 0.3s;
 }
 
 h1{
@@ -34,6 +36,7 @@ h1{
     background-color: #f9fbff;
     border-left: 5px solid #3498db;
     border-radius: 5px;
+    transition: background 0.3s;
 }
 
 .jp{
@@ -49,75 +52,175 @@ h1{
 .bn{
     color: #0b7a3e;
 }
+
+/* Toggle Button - Top Right */
+.toggle-btn{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: #3498db;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: background 0.3s, transform 0.3s;
+}
+
+.toggle-btn:hover{
+    transform: scale(1.05);
+}
+
+.toggle-icon{
+    display: inline-block;
+    transition: transform 0.5s ease;
+}
+
+/* Rotate animation when dark */
+body.dark .toggle-icon{
+    transform: rotate(180deg);
+}
+
+/* Dark Mode */
+body.dark{
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark .container{
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+body.dark .section{
+    background-color: #2a2a2a;
+    border-left: 5px solid #bb86fc;
+}
+
+body.dark .jp{
+    color: #ffffff;
+}
+
+body.dark .romaji{
+    color: #cccccc;
+}
+
+body.dark .bn{
+    color: #7CFC00;
+}
+
+body.dark h1{
+    color: #ffffff;
+}
+
+body.dark .toggle-btn{
+    background-color: #bb86fc;
+}
+
 </style>
 </head>
 
 <body>
+
+<button class="toggle-btn" onclick="toggleMode()">
+    <span class="toggle-icon">🌙</span>
+    <span class="toggle-text">Dark Mode</span>
+</button>
+
 <div class="container">
 
 <h1>N5 文法 (Japanese Grammar)</h1>
 
+<!-- Rule 1 -->
 <div class="section">
-<h2>1️⃣ N1+はN2 です</h2>
-
+<h2>1️⃣ N1 は N2 です</h2>
 <p class="jp">わたしはバングラデシュじんです。</p>
 <p class="romaji">Watashi wa Banguradeshu-jin desu.</p>
-<p class="bn">আমি বাংলাদেশী।</p>
-
+<p class="bn">আমি বাংলাদেশী。</p>
 <p class="jp">わたしは20さいです。</p>
 <p class="romaji">Watashi wa nijuu-sai desu.</p>
 <p class="bn">আমার বয়স ২০ বছর。</p>
 </div>
 
+<!-- Rule 2 -->
 <div class="section">
-<h2>2️⃣ N1+は+N2 ですか (Question)</h2>
-
+<h2>2️⃣ N1 は N2 ですか (Question)</h2>
 <p class="jp">あなたはだれですか。</p>
 <p class="romaji">Anata wa dare desu ka?</p>
 <p class="bn">তুমি কে?</p>
-
 <p class="jp">あの人はせんせいですか。</p>
 <p class="romaji">Ano hito wa sensei desu ka?</p>
 <p class="bn">সেই ব্যক্তি কি শিক্ষক?</p>
 </div>
 
+<!-- Rule 3 -->
 <div class="section">
-<h2>3️⃣ N1+は+N2 じゃありません / ではありません</h2>
-
+<h2>3️⃣ N1 は N2 じゃありません / ではありません</h2>
 <p class="jp">ナヒドさんはがくせいではありません。</p>
 <p class="romaji">Nahido-san wa gakusei dewa arimasen.</p>
 <p class="bn">জনাব নাহিদ ছাত্র নন。</p>
-
 <p class="jp">たなかさんはいしゃじゃありません。</p>
 <p class="romaji">Tanaka-san wa isha ja arimasen.</p>
 <p class="bn">জনাব তানাকা ডাক্তার নন。</p>
 </div>
 
+<!-- Rule 4 -->
 <div class="section">
-<h2>💬 Example Conversation</h2>
+<h2>4️⃣ N も (Also)</h2>
+<p class="jp">ラジさんはかいしゃいんです。ロビさんもかいしゃいんです。</p>
+<p class="romaji">Raji-san wa kaishain desu. Robi-san mo kaishain desu.</p>
+<p class="bn">জনাব রাজ একজন অফিস কর্মী。 জনাব রবিও একজন অফিস কর্মী。</p>
+<p class="jp">わたしはがくせいです。あなたもがくせいです。</p>
+<p class="romaji">Watashi wa gakusei desu. Anata mo gakusei desu.</p>
+<p class="bn">আমি একজন ছাত্র。 তুমিও একজন ছাত্র。</p>
+</div>
 
-<p class="jp">
-A: あなたはだれですか。<br>
-B: わたしはラヒムです。<br>
-A: がくせいですか。<br>
-B: はい、がくせいです。
-</p>
+<!-- Rule 5 -->
+<div class="section">
+<h2>5️⃣ N1 の N2 (Possession)</h2>
+<p class="jp">はらさんはエコネットのしゃいんです。</p>
+<p class="romaji">Hara-san wa Econet no shain desu.</p>
+<p class="bn">জনাব হারা-সান ইকোনেটের একজন কর্মচারী。</p>
+<p class="jp">これはわたしのパソコンです。</p>
+<p class="romaji">Kore wa watashi no pasokon desu.</p>
+<p class="bn">এটা আমার কম্পিউটার。</p>
+</div>
 
-<p class="romaji">
-A: Anata wa dare desu ka?<br>
-B: Watashi wa Rahim desu.<br>
-A: Gakusei desu ka?<br>
-B: Hai, gakusei desu.
-</p>
-
-<p class="bn">
-A: তুমি কে?<br>
-B: আমি রহিম।<br>
-A: তুমি কি ছাত্র?<br>
-B: হ্যাঁ, আমি ছাত্র。
-</p>
+<!-- Rule 6 -->
+<div class="section">
+<h2>6️⃣ ～さん (Honorific Title)</h2>
+<p class="jp">あの方はとみながさんです。</p>
+<p class="romaji">Ano kata wa Tominaga-san desu.</p>
+<p class="bn">সেই ব্যক্তি হলেন জনাব তোমিনাগা。</p>
+<p class="jp">こちらはまいどさんです。</p>
+<p class="romaji">Kochira wa Maido-san desu.</p>
+<p class="bn">এনি জনাব মাইডো。</p>
 </div>
 
 </div>
+
+<script>
+function toggleMode() {
+    const body = document.body;
+    const icon = document.querySelector('.toggle-icon');
+    const text = document.querySelector('.toggle-text');
+
+    body.classList.toggle('dark');
+
+    if(body.classList.contains('dark')){
+        icon.textContent = '☀️';
+        text.textContent = 'Light Mode';
+    } else {
+        icon.textContent = '🌙';
+        text.textContent = 'Dark Mode';
+    }
+}
+</script>
+
 </body>
 </html>
