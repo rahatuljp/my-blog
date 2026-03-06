@@ -8,117 +8,131 @@
 <style>
 body{
     font-family: Arial, sans-serif;
-    background-color: #f4f6f9;
-    margin: 0;
-    padding: 20px;
-    line-height: 1.6;
-    transition: background 0.3s, color 0.3s;
+    background-color:#f4f6f9;
+    margin:0;
+    padding:20px;
+    line-height:1.6;
+    transition:background .3s,color .3s;
 }
+
+ruby rt{font-size:12px;color:#e74c3c}
 
 .container{
-    max-width: 800px;
-    margin: auto;
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    transition: background 0.3s, color 0.3s;
+    max-width:800px;
+    margin:auto;
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
-h1{
-    text-align: center;
-    color: #2c3e50;
-    margin-bottom: 10px;
-}
+h1{text-align:center;color:#2c3e50;margin-bottom:10px}
 
 .section{
-    margin-bottom: 30px;
-    padding: 15px;
-    background-color: #f9fbff;
-    border-left: 5px solid #3498db;
-    border-radius: 5px;
-    transition: background 0.3s;
+    margin-bottom:30px;
+    padding:15px;
+    background:#f9fbff;
+    border-left:5px solid #3498db;
+    border-radius:5px;
 }
 
-.jp{
-    font-weight: bold;
-    color: #2c3e50;
-}
-
-.romaji{
-    color: #555;
-    font-style: italic;
-}
-
-.bn{
-    color: #0b7a3e;
-}
+.jp{font-weight:bold;color:#2c3e50}
+.romaji{color:#555;font-style:italic}
+.bn{color:#0b7a3e}
 
 .toggle-btn{
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 10px 18px;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 14px;
-    background-color: #3498db;
-    color: white;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    transition: background 0.3s, transform 0.3s;
+ position:fixed;
+ top:20px;
+ right:20px;
+ padding:10px 18px;
+ border:none;
+ border-radius:30px;
+ background:#3498db;
+ color:white;
+ cursor:pointer;
 }
 
-.toggle-btn:hover{
-    transform: scale(1.05);
+.furigana-btn{
+ position:fixed;
+ top:60px;
+ right:20px;
+ padding:10px 18px;
+ border:none;
+ border-radius:30px;
+ background:#27ae60;
+ color:white;
+ cursor:pointer;
 }
 
-.toggle-icon{
-    display: inline-block;
-    transition: transform 0.5s ease;
-}
+body.dark{background:#121212;color:#e0e0e0}
+body.dark .container{background:#1e1e1e}
+body.dark .section{background:#2a2a2a;border-left:5px solid #bb86fc}
+body.dark .jp{color:#fff}
+body.dark .romaji{color:#ccc}
+body.dark .bn{color:#7CFC00}
+body.dark h1{color:#fff}
+body.dark .toggle-btn{background:#bb86fc}
 
-body.dark .toggle-icon{
-    transform: rotate(180deg);
-}
+.nav{display:flex;gap:10px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
+.nav button{padding:8px 14px;border:none;border-radius:6px;background:#3498db;color:#fff;cursor:pointer}
 
-body.dark{
-    background-color: #121212;
-    color: #e0e0e0;
-}
+.lesson{display:none}
+.lesson.active{display:block}
 
-body.dark .container{
-    background-color: #1e1e1e;
-    color: #e0e0e0;
-}
+.hide-furigana rt{visibility:hidden}
 
-body.dark .section{
-    background-color: #2a2a2a;
-    border-left: 5px solid #bb86fc;
-}
+.quiz{margin-top:15px;padding:10px;border-radius:6px;background:#eef3ff}
+body.dark .quiz{background:#1f2633}
+.quiz button{margin-top:6px;margin-right:6px;padding:6px 10px;border:none;border-radius:4px;background:#3498db;color:#fff;cursor:pointer}
 
-body.dark .jp{ color: #ffffff; }
-body.dark .romaji{ color: #cccccc; }
-body.dark .bn{ color: #7CFC00; }
-body.dark h1{ color: #ffffff; }
-body.dark .toggle-btn{ background-color: #bb86fc; }
 
+
+
+.result{margin-top:6px;font-weight:bold}
+
+@media(max-width:600px){ruby rt{font-size:10px}}
 </style>
 </head>
 
 <body>
 
-<button class="toggle-btn" onclick="toggleMode()">
-    <span class="toggle-icon">🌙</span>
-    <span class="toggle-text">Dark Mode</span>
-</button>
+<button class="toggle-btn" onclick="toggleMode()">🌙 Dark Mode</button>
+<button class="furigana-btn" onclick="toggleFurigana()">Hide Furigana</button>
 
 <div class="container">
 
-<h1>N5 文法 (Japanese Grammar)</h1>
+<div class="nav">
+<button onclick="showLesson('lesson1')">Lesson 1</button>
+<button onclick="showLesson('lesson2')">Lesson 2</button>
+<button onclick="showLesson('lesson3')">Lesson 3</button>
+<button onclick="showLesson('lesson4')">Lesson 4</button>
+<button onclick="showLesson('lesson5')">Lesson 5</button>
+<button onclick="showLesson('lesson6')">Lesson 6</button>
+<button onclick="showLesson('lesson7')">Lesson 7</button>
+<button onclick="showLesson('lesson8')">Lesson 8</button>
+<button onclick="showLesson('lesson9')">Lesson 9</button>
+<button onclick="showLesson('lesson10')">Lesson 10</button>
+<button onclick="showLesson('lesson11')">Lesson 11</button>
+<button onclick="showLesson('lesson12')">Lesson 12</button>
+<button onclick="showLesson('lesson13')">Lesson 13</button>
+<button onclick="showLesson('lesson14')">Lesson 14</button>
+<button onclick="showLesson('lesson15')">Lesson 15</button>
+<button onclick="showLesson('lesson16')">Lesson 16</button>
+<button onclick="showLesson('lesson17')">Lesson 17</button>
+<button onclick="showLesson('lesson18')">Lesson 18</button>
+<button onclick="showLesson('lesson19')">Lesson 19</button>
+<button onclick="showLesson('lesson20')">Lesson 20</button>
+<button onclick="showLesson('lesson21')">Lesson 21</button>
+<button onclick="showLesson('lesson22')">Lesson 22</button>
+<button onclick="showLesson('lesson23')">Lesson 23</button>
+<button onclick="showLesson('lesson24')">Lesson 24</button>
+<button onclick="showLesson('lesson25')">Lesson 25</button>
+</div>
+
+<h1>N5 <ruby>文法<rt>ぶんぽう</rt></ruby></h1>
+
+<!-- LESSON 1 -->
+<div id="lesson1" class="lesson active">
 <h1>Lesson 1</h1>
 
 <!-- Rule 1 -->
@@ -193,13 +207,26 @@ body.dark .toggle-btn{ background-color: #bb86fc; }
 <p class="bn">ইনি জনাব মাইডো।</p>
 </div>
 
+
+
+<div class="quiz">
+<b>Practice</b><br>
+Q: わたしは がくせい ___。<br>
+<button onclick="checkAnswer('q1','A')">A) です</button>
+<button onclick="checkAnswer('q1','B')">B) でした</button>
+<div id="q1" class="result"></div>
+</div>
+
+</div>
+
+<!-- LESSON 2 -->
+<div id="lesson2" class="lesson">
 <h1>Lesson 2</h1>
 
-<!-- Rule 1 Lesson 2 -->
+<!-- Rule 1 -->
 <div class="section">
 <h2>1️⃣ これ / それ / あれ</h2>
-
-<p class="jp">これは辞書ですか。</p>
+<p class="jp">これは<ruby>辞書<rt>じしょ</rt></ruby>ですか。</p>
 <p class="romaji">Kore wa jisho desu ka?</p>
 <p class="bn">এটা কি অভিধান?</p>
 
@@ -207,67 +234,58 @@ body.dark .toggle-btn{ background-color: #bb86fc; }
 <p class="romaji">Sore wa dare no kasa desu ka?</p>
 <p class="bn">ওটা কার ছাতা?</p>
 
-<p class="jp">あれはわたしのくるまです。</p>
+<p class="jp">あれは<ruby>私<rt>わたし</rt></ruby>のくるまです。</p>
 <p class="romaji">Are wa watashi no kuruma desu.</p>
 <p class="bn">ওটা আমার গাড়ি।</p>
 </div>
 
-<!-- Rule 2 Lesson 2 -->
+<!-- Rule 2 -->
 <div class="section">
 <h2>2️⃣ この / その / あの</h2>
-
-<p class="jp">この本はわたしのです。</p>
+<p class="jp">この<ruby>本<rt>ほん</rt></ruby>はわたしのです。</p>
 <p class="romaji">Kono hon wa watashi no desu.</p>
 <p class="bn">এই বইটি আমার।</p>
 
-<p class="jp">あの方はどなたですか。</p>
+<p class="jp">あの<ruby>方<rt>かた</rt></ruby>はどなたですか。</p>
 <p class="romaji">Ano kata wa donata desu ka?</p>
 <p class="bn">সেই ভদ্রলোক কে?</p>
 
-<p class="jp">その人はだれですか。</p>
+<p class="jp">その<ruby>人<rt>ひと</rt></ruby>はだれですか。</p>
 <p class="romaji">Sono hito wa dare desu ka?</p>
 <p class="bn">সেই ব্যক্তি কে?</p>
 </div>
 
-<!-- Rule 3 Lesson 2 -->
+<!-- Rule 3 -->
 <div class="section">
 <h2>3️⃣ そうです</h2>
-
-<p class="jp">それは辞書ですか。はい、そうです。</p>
+<p class="jp">それは<ruby>辞書<rt>じしょ</rt></ruby>ですか。はい、そうです。</p>
 <p class="romaji">Sore wa jisho desu ka? Hai, sou desu.</p>
 <p class="bn">এটা কি অভিধান? হ্যাঁ, তাই।</p>
 
 <p class="jp">それはミラーさんのですか。いいえ、ちがいます。</p>
 <p class="romaji">Sore wa Miraa-san no desu ka? Iie, chigaimasu.</p>
 <p class="bn">এটা কি মি. মিলারের? না, তা নয়।</p>
-
-<p class="jp">これはシャープペンシルですか。はい、そうです。</p>
-<p class="romaji">Kore wa shaapu penshiru desu ka? Hai, sou desu.</p>
-<p class="bn">এটা কি মেকানিক্যাল পেন্সিল? হ্যাঁ, তাই।</p>
 </div>
 
-<!-- Rule 4 Lesson 2 -->
+<!-- Rule 4 -->
 <div class="section">
 <h2>4️⃣ ～か、～か</h2>
-
-<p class="jp">これは「9」ですか、「7」ですか。「9」です。</p>
-<p class="romaji">Kore wa "kyuu" desu ka, "nana" desu ka? "Kyuu" desu.</p>
-<p class="bn">এটা কি ৯ না ৭? ৯।</p>
+<p class="jp">これは「9」ですか、「7」ですか。</p>
+<p class="romaji">Kore wa "kyuu" desu ka, "nana" desu ka?</p>
+<p class="bn">এটা কি ৯ না ৭?</p>
 </div>
 
-<!-- Rule 5 Lesson 2 -->
+<!-- Rule 5 -->
 <div class="section">
 <h2>5️⃣ N1 の N2</h2>
-
-<p class="jp">これはコンピューターの本です。</p>
+<p class="jp">これはコンピューターの<ruby>本<rt>ほん</rt></ruby>です。</p>
 <p class="romaji">Kore wa konpyuutaa no hon desu.</p>
 <p class="bn">এটা কম্পিউটারের বই।</p>
 </div>
 
-<!-- Rule 6 Lesson 2 -->
+<!-- Rule 6 -->
 <div class="section">
 <h2>6️⃣ の (Substituting for a Noun)</h2>
-
 <p class="jp">あれはだれのかばんですか。さとうさんのです。</p>
 <p class="romaji">Are wa dare no kaban desu ka? Satou-san no desu.</p>
 <p class="bn">ওটা কার ব্যাগ? সাতো-সানের।</p>
@@ -277,20 +295,18 @@ body.dark .toggle-btn{ background-color: #bb86fc; }
 <p class="bn">এই ব্যাগটি কি আপনার? না, এটা আমার নয়।</p>
 </div>
 
-<!-- Rule 7 Lesson 2 -->
+<!-- Rule 7 -->
 <div class="section">
 <h2>7️⃣ お～ (Polite Prefix)</h2>
-
-<p class="jp">おみやげ・おさけ</p>
+<p class="jp">おみやげ ・ おさけ</p>
 <p class="romaji">Omiyage / Osake</p>
 <p class="bn">ভদ্রভাবে বলার জন্য お যোগ করা হয়।</p>
 </div>
 
-<!-- Rule 8 Lesson 2 -->
+<!-- Rule 8 -->
 <div class="section">
 <h2>8️⃣ そうですか</h2>
-
-<p class="jp">この筆はあなたのですか。いいえ、ちがいます。シュミットさんのです。</p>
+<p class="jp">この<ruby>筆<rt>ふで</rt></ruby>はあなたのですか。いいえ、ちがいます。シュミットさんのです。</p>
 <p class="romaji">Kono fude wa anata no desu ka? Iie, chigaimasu. Shumitto-san no desu.</p>
 <p class="bn">এই কলমটি কি আপনার? না, তা নয়। শ্মিট-সানের।</p>
 
@@ -298,9 +314,23 @@ body.dark .toggle-btn{ background-color: #bb86fc; }
 <p class="romaji">Sou desu ka.</p>
 <p class="bn">তাই নাকি?</p>
 </div>
+
+<div class="quiz">
+<b>Practice</b><br>
+Q: これは ___ ですか。<br>
+<button onclick="checkAnswer('q2','A')">A) <ruby>辞書<rt>じしょ</rt></ruby></button>
+<button onclick="checkAnswer('q2','B')">B) <ruby>車<rt>くるま</rt></ruby></button>
+<div id="q2" class="result"></div>
+</div>
+
+</div>
+
+<!-- LESSON 3 -->
+<div id="lesson3" class="lesson">
+
 <h1>Lesson 3</h1>
 
-<!-- Rule 1 Lesson 3 -->
+<!-- Rule 1 -->
 <div class="section">
 <h2>1️⃣ ここ / そこ / あそこ / こちら / そちら / あちら</h2>
 
@@ -311,42 +341,513 @@ body.dark .toggle-btn{ background-color: #bb86fc; }
 <p class="jp">そこは<ruby>事務所<rt>じむしょ</rt></ruby>です。</p>
 <p class="romaji">Soko wa jimusho desu.</p>
 <p class="bn">ওটা একটি অফিস।</p>
-  
+
 <p class="jp">あそこは<ruby>家<rt>いえ</rt></ruby>です。</p>
 <p class="romaji">Asoko wa ie desu.</p>
 <p class="bn">ওটা একটি বাড়ি (দূরে)।</p>
-  
-<p class="jp">こちらは<ruby>病院<rt>びょういん</rt></ruby>です。</p>
-<p class="romaji">Kochira wa byouin desu.</p>
-<p class="bn">এদিকে একটি হাসপাতাল।</p>
+</div>
 
-<p class="jp">そちらは<ruby>交番<rt>こうばん</rt></ruby>です。</p>
-<p class="romaji">Sochira wa kouban desu.</p>
-<p class="bn">ওদিকে একটি পুলিশ বক্স।</p>
+<!-- Rule 2 -->
+<div class="section">
+<h2>2️⃣ どこ / どちら (Where)</h2>
 
-<p class="jp">あちらは<ruby>図書館<rt>としょかん</rt></ruby>です。</p>
-<p class="romaji">Achira wa toshokan desu.</p>
-<p class="bn">ওদিকে একটি লাইব্রেরি।</p>
+<p class="jp"><ruby>銀行<rt>ぎんこう</rt></ruby>はどこですか。</p>
+<p class="romaji">Ginkou wa doko desu ka?</p>
+<p class="bn">ব্যাংক কোথায়?</p>
+
+<p class="jp">トイレはどちらですか。</p>
+<p class="romaji">Toire wa dochira desu ka?</p>
+<p class="bn">টয়লেট কোথায়?</p>
+</div>
+
+<!-- Rule 3 -->
+<div class="section">
+<h2>3️⃣ N1 は N2 (place) です</h2>
+
+<p class="jp">ここは<ruby>教室<rt>きょうしつ</rt></ruby>です。</p>
+<p class="romaji">Koko wa kyoushitsu desu.</p>
+<p class="bn">এটি একটি শ্রেণীকক্ষ।</p>
+
+<p class="jp">そこは<ruby>食堂<rt>しょくどう</rt></ruby>です。</p>
+<p class="romaji">Soko wa shokudou desu.</p>
+<p class="bn">ওটা একটি ক্যাফেটেরিয়া।</p>
+</div>
+
+<!-- Rule 4 -->
+<div class="section">
+<h2>4️⃣ N1 の N2 (Location / Organization)</h2>
+
+<p class="jp">こちらはABC<ruby>会社<rt>かいしゃ</rt></ruby>の<ruby>事務所<rt>じむしょ</rt></ruby>です。</p>
+<p class="romaji">Kochira wa ABC kaisha no jimusho desu.</p>
+<p class="bn">এটি ABC কোম্পানির অফিস।</p>
+</div>
+
+<!-- Rule 5 -->
+<div class="section">
+<h2>5️⃣ お<ruby>国<rt>くに</rt></ruby>はどちらですか</h2>
+
+<p class="jp">お<ruby>国<rt>くに</rt></ruby>はどちらですか。</p>
+<p class="romaji">Okuni wa dochira desu ka?</p>
+<p class="bn">আপনার দেশ কোথায়?</p>
+
+<p class="jp">バングラデシュです。</p>
+<p class="romaji">Banguradeshu desu.</p>
+<p class="bn">বাংলাদেশ।</p>
+</div>
+
+<!-- Rule 6 -->
+<div class="section">
+<h2>6️⃣ そうですか (Acknowledgement)</h2>
+
+<p class="jp">ここは<ruby>学校<rt>がっこう</rt></ruby>です。</p>
+<p class="romaji">Koko wa gakkou desu.</p>
+<p class="bn">এটি একটি স্কুল।</p>
+
+<p class="jp">そうですか。</p>
+<p class="romaji">Sou desu ka.</p>
+<p class="bn">তাই নাকি?</p>
+</div>
 
 </div>
+
+<!-- LESSON 4 -->
+<div id="lesson4" class="lesson">
+<h1>Lesson 4</h1>
+
+<div class="section">
+<h2>1️⃣ あります / います (Existence)</h2>
+<p class="jp"><ruby>机<rt>つくえ</rt></ruby>の<ruby>上<rt>うえ</rt></ruby>に<ruby>本<rt>ほん</rt></ruby>があります。</p>
+<p class="romaji">Tsukue no ue ni hon ga arimasu.</p>
+<p class="bn">টেবিলের উপর একটি বই আছে।</p>
+
+<p class="jp"><ruby>部屋<rt>へや</rt></ruby>に<ruby>猫<rt>ねこ</rt></ruby>がいます。</p>
+<p class="romaji">Heya ni neko ga imasu.</p>
+<p class="bn">ঘরে একটি বিড়াল আছে।</p>
 </div>
+
+<div class="section">
+<h2>2️⃣ Place に N があります / います</h2>
+<p class="jp"><ruby>公園<rt>こうえん</rt></ruby>に<ruby>木<rt>き</rt></ruby>があります。</p>
+<p class="romaji">Kouen ni ki ga arimasu.</p>
+<p class="bn">পার্কে গাছ আছে।</p>
+
+<p class="jp"><ruby>教室<rt>きょうしつ</rt></ruby>に<ruby>学生<rt>がくせい</rt></ruby>がいます。</p>
+<p class="romaji">Kyoushitsu ni gakusei ga imasu.</p>
+<p class="bn">শ্রেণীকক্ষে ছাত্র আছে।</p>
+</div>
+
+<div class="section">
+<h2>3️⃣ N は Place に あります / います</h2>
+<p class="jp"><ruby>本<rt>ほん</rt></ruby>は<ruby>机<rt>つくえ</rt></ruby>の<ruby>上<rt>うえ</rt></ruby>にあります。</p>
+<p class="romaji">Hon wa tsukue no ue ni arimasu.</p>
+<p class="bn">বইটি টেবিলের উপর আছে।</p>
+
+<p class="jp"><ruby>犬<rt>いぬ</rt></ruby>は<ruby>庭<rt>にわ</rt></ruby>にいます。</p>
+<p class="romaji">Inu wa niwa ni imasu.</p>
+<p class="bn">কুকুরটি উঠানে আছে।</p>
+</div>
+
+<div class="section">
+<h2>4️⃣ Location words</h2>
+<p class="jp"><ruby>机<rt>つくえ</rt></ruby>の<ruby>上<rt>うえ</rt></ruby>・<ruby>下<rt>した</rt></ruby>・<ruby>中<rt>なか</rt></ruby>・<ruby>前<rt>まえ</rt></ruby>・<ruby>後ろ<rt>うしろ</rt></ruby></p>
+<p class="romaji">ue / shita / naka / mae / ushiro</p>
+<p class="bn">উপরে / নিচে / ভিতরে / সামনে / পিছনে</p>
+</div>
+
+<div class="quiz">
+<b>Practice</b><br>
+Q: <ruby>部屋<rt>へや</rt></ruby>に <ruby>猫<rt>ねこ</rt></ruby> ___。<br>
+<button onclick="checkAnswer('q3','A')">A) がいます</button>
+<button onclick="checkAnswer('q3','B')">B) があります</button>
+<div id="q3" class="result"></div>
+</div>
+
+</div>
+
+<!-- LESSON 5 -->
+<div id="lesson5" class="lesson">
+<h1>Lesson 5</h1>
+
+<div class="section">
+<h2>1️⃣ <ruby>行<rt>い</rt></ruby>きます / <ruby>来<rt>き</rt></ruby>ます / <ruby>帰<rt>かえ</rt></ruby>ります</h2>
+<p class="jp"><ruby>私<rt>わたし</rt></ruby>は<ruby>学校<rt>がっこう</rt></ruby>へ<ruby>行<rt>い</rt></ruby>きます。</p>
+<p class="romaji">Watashi wa gakkou e ikimasu.</p>
+<p class="bn">আমি স্কুলে যাই।</p>
+
+<p class="jp">ともだちは<ruby>日本<rt>にほん</rt></ruby>へ<ruby>来<rt>き</rt></ruby>ます。</p>
+<p class="romaji">Tomodachi wa Nihon e kimasu.</p>
+<p class="bn">বন্ধু জাপানে আসে।</p>
+
+<p class="jp"><ruby>昨日<rt>きのう</rt></ruby><ruby>家<rt>いえ</rt></ruby>へ<ruby>帰<rt>かえ</rt></ruby>りました。</p>
+<p class="romaji">Kinou ie e kaerimashita.</p>
+<p class="bn">গতকাল আমি বাড়ি ফিরেছিলাম।</p>
+</div>
+
+<div class="section">
+<h2>2️⃣ <ruby>場所<rt>ばしょ</rt></ruby> へ (Direction particle)</h2>
+<p class="jp"><ruby>東京<rt>とうきょう</rt></ruby>へ<ruby>行<rt>い</rt></ruby>きます。</p>
+<p class="romaji">Tokyo e ikimasu.</p>
+<p class="bn">আমি টোকিও যাই।</p>
+</div>
+
+<div class="section">
+<h2>3️⃣ だれと (With whom)</h2>
+<p class="jp">だれと<ruby>学校<rt>がっこう</rt></ruby>へ<ruby>行<rt>い</rt></ruby>きますか。</p>
+<p class="romaji">Dare to gakkou e ikimasu ka?</p>
+<p class="bn">আপনি কার সাথে স্কুলে যান?</p>
+</div>
+
+<div class="quiz">
+<b>Practice</b><br>
+Q: <ruby>私<rt>わたし</rt></ruby>は <ruby>学校<rt>がっこう</rt></ruby>へ ___。<br>
+<button onclick="checkAnswer('q4','A')">A) <ruby>行<rt>い</rt></ruby>きます</button>
+<button onclick="checkAnswer('q4','B')">B) あります</button>
+<div id="q4" class="result"></div>
+</div>
+
+</div>
+
+<!-- LESSON 6 -->
+<div id="lesson6" class="lesson">
+<h1>Lesson 6</h1>
+
+<div class="section">
+<h2>1️⃣ を (Object particle)</h2>
+<p class="jp"><ruby>私<rt>わたし</rt></ruby>は<ruby>本<rt>ほん</rt></ruby>を<ruby>読<rt>よ</rt></ruby>みます。</p>
+<p class="romaji">Watashi wa hon o yomimasu.</p>
+<p class="bn">আমি বই পড়ি।</p>
+
+<p class="jp"><ruby>朝<rt>あさ</rt></ruby>ごはんを<ruby>食<rt>た</rt></ruby>べます。</p>
+<p class="romaji">Asa gohan o tabemasu.</p>
+<p class="bn">আমি সকালের খাবার খাই।</p>
+</div>
+
+<div class="section">
+<h2>2️⃣ よく / ときどき / いつも</h2>
+<p class="jp"><ruby>私<rt>わたし</rt></ruby>はよく<ruby>映画<rt>えいが</rt></ruby>を<ruby>見<rt>み</rt></ruby>ます。</p>
+<p class="romaji">Watashi wa yoku eiga o mimasu.</p>
+<p class="bn">আমি প্রায়ই সিনেমা দেখি।</p>
+
+<p class="jp">ときどき<ruby>本<rt>ほん</rt></ruby>を<ruby>読<rt>よ</rt></ruby>みます。</p>
+<p class="romaji">Tokidoki hon o yomimasu.</p>
+<p class="bn">কখনও কখনও বই পড়ি।</p>
+</div>
+
+<div class="quiz">
+<b>Practice</b><br>
+Q: <ruby>私<rt>わたし</rt></ruby>は <ruby>本<rt>ほん</rt></ruby> ___ <ruby>読<rt>よ</rt></ruby>みます。<br>
+<button onclick="checkAnswer('q5','A')">A) を</button>
+<button onclick="checkAnswer('q5','B')">B) に</button>
+<div id="q5" class="result"></div>
+</div>
+
+</div>
+
+<!-- LESSON 7 -->
+<div id="lesson7" class="lesson">
+<h1>Lesson 7</h1>
+<div class="section">
+<h2>1️⃣ で (Place of action)</h2>
+<p class="jp"><ruby>学校<rt>がっこう</rt></ruby>で<ruby>日本語<rt>にほんご</rt></ruby>を<ruby>勉強<rt>べんきょう</rt></ruby>します。</p>
+<p class="romaji">Gakkou de nihongo o benkyou shimasu.</p>
+<p class="bn">আমি স্কুলে জাপানি পড়ি।</p>
+</div>
+<div class="section">
+<h2>2️⃣ 何で (By what / With what)</h2>
+<p class="jp"><ruby>箸<rt>はし</rt></ruby>でごはんを<ruby>食<rt>た</rt></ruby>べます。</p>
+<p class="romaji">Hashi de gohan o tabemasu.</p>
+<p class="bn">চপস্টিক দিয়ে ভাত খাই।</p>
+</div>
+</div>
+
+<!-- LESSON 8 -->
+<div id="lesson8" class="lesson">
+<h1>Lesson 8</h1>
+<div class="section">
+<h2>1️⃣ い‑adjective</h2>
+<p class="jp">この<ruby>本<rt>ほん</rt></ruby>は<ruby>面白<rt>おもしろ</rt></ruby>いです。</p>
+<p class="romaji">Kono hon wa omoshiroi desu.</p>
+<p class="bn">এই বইটি মজার।</p>
+</div>
+<div class="section">
+<h2>2️⃣ な‑adjective</h2>
+<p class="jp">この<ruby>町<rt>まち</rt></ruby>は<ruby>静<rt>しず</rt></ruby>かです。</p>
+<p class="romaji">Kono machi wa shizuka desu.</p>
+<p class="bn">এই শহর শান্ত।</p>
+</div>
+</div>
+
+<!-- LESSON 9 -->
+<div id="lesson9" class="lesson">
+<h1>Lesson 9</h1>
+<div class="section">
+<h2>1️⃣ 好き / 嫌い</h2>
+<p class="jp"><ruby>私<rt>わたし</rt></ruby>は<ruby>日本語<rt>にほんご</rt></ruby>が<ruby>好<rt>す</rt></ruby>きです。</p>
+<p class="romaji">Watashi wa nihongo ga suki desu.</p>
+<p class="bn">আমি জাপানি ভাষা পছন্দ করি।</p>
+</div>
+<div class="section">
+<h2>2️⃣ 上手 / 下手</h2>
+<p class="jp">ラジさんは<ruby>日本語<rt>にほんご</rt></ruby>が<ruby>上手<rt>じょうず</rt></ruby>です。</p>
+<p class="romaji">Raji‑san wa nihongo ga jouzu desu.</p>
+<p class="bn">রাজ জাপানিতে দক্ষ।</p>
+</div>
+</div>
+
+<!-- LESSON 10 -->
+<div id="lesson10" class="lesson">
+<h1>Lesson 10</h1>
+<div class="section">
+<h2>1️⃣ あります / います (Possession)</h2>
+<p class="jp"><ruby>私<rt>わたし</rt></ruby>は<ruby>車<rt>くるま</rt></ruby>があります。</p>
+<p class="romaji">Watashi wa kuruma ga arimasu.</p>
+<p class="bn">আমার একটি গাড়ি আছে।</p>
+</div>
+<div class="section">
+<h2>2️⃣ どんな N</h2>
+<p class="jp">どんな<ruby>音楽<rt>おんがく</rt></ruby>が<ruby>好<rt>す</rt></ruby>きですか。</p>
+<p class="romaji">Donna ongaku ga suki desu ka?</p>
+<p class="bn">কেমন ধরনের গান পছন্দ?</p>
+</div>
+</div>
+
+<!-- LESSON 11 -->
+<div id="lesson11" class="lesson">
+<h1>Lesson 11</h1>
+<div class="section">
+<h2>1️⃣ 数量詞 (Counters)</h2>
+<p class="jp"><ruby>本<rt>ほん</rt></ruby>を<ruby>三冊<rt>さんさつ</rt></ruby><ruby>買<rt>か</rt></ruby>いました。</p>
+<p class="romaji">Hon o san‑satsu kaimashita.</p>
+<p class="bn">আমি তিনটি বই কিনেছি।</p>
+</div>
+</div>
+
+<!-- LESSON 12 -->
+<div id="lesson12" class="lesson">
+<h1>Lesson 12</h1>
+<div class="section">
+<h2>1️⃣ Past tense</h2>
+<p class="jp"><ruby>昨日<rt>きのう</rt></ruby><ruby>映画<rt>えいが</rt></ruby>を<ruby>見<rt>み</rt></ruby>ました。</p>
+<p class="romaji">Kinou eiga o mimashita.</p>
+<p class="bn">গতকাল সিনেমা দেখেছি।</p>
+</div>
+<div class="section">
+<h2>2️⃣ Past negative</h2>
+<p class="jp"><ruby>昨日<rt>きのう</rt></ruby><ruby>勉強<rt>べんきょう</rt></ruby>しませんでした。</p>
+<p class="romaji">Kinou benkyou shimasen deshita.</p>
+<p class="bn">গতকাল পড়িনি।</p>
+</div>
+</div>
+
+<!-- LESSON 13 -->
+<div id="lesson13" class="lesson">
+<h1>Lesson 13</h1>
+<div class="section">
+<h2>1️⃣ ～たいです</h2>
+<p class="jp"><ruby>日本<rt>にほん</rt></ruby>へ<ruby>行<rt>い</rt></ruby>きたいです。</p>
+<p class="romaji">Nihon e ikitai desu.</p>
+<p class="bn">আমি জাপান যেতে চাই।</p>
+</div>
+</div>
+
+<!-- LESSON 14 -->
+<div id="lesson14" class="lesson">
+<h1>Lesson 14</h1>
+<div class="section">
+<h2>1️⃣ て‑form</h2>
+<p class="jp"><ruby>本<rt>ほん</rt></ruby>を<ruby>読<rt>よ</rt></ruby>んでください。</p>
+<p class="romaji">Hon o yonde kudasai.</p>
+<p class="bn">অনুগ্রহ করে বই পড়ুন।</p>
+</div>
+</div>
+
+<!-- LESSON 15 -->
+<div id="lesson15" class="lesson">
+<h1>Lesson 15</h1>
+<div class="section">
+<h2>1️⃣ ～てもいいです</h2>
+<p class="jp">ここで<ruby>写真<rt>しゃしん</rt></ruby>を<ruby>撮<rt>と</rt></ruby>ってもいいです。</p>
+<p class="romaji">Koko de shashin o totte mo ii desu.</p>
+<p class="bn">এখানে ছবি তোলা যেতে পারে।</p>
+</div>
+</div>
+
+<!-- LESSON 16 -->
+<div id="lesson16" class="lesson">
+<h1>Lesson 16</h1>
+<div class="section">
+<h2>1️⃣ ～てはいけません</h2>
+<p class="jp">ここでタバコを<ruby>吸<rt>す</rt></ruby>ってはいけません。</p>
+<p class="romaji">Koko de tabako o sutte wa ikemasen.</p>
+<p class="bn">এখানে ধূমপান করা যাবে না।</p>
+</div>
+</div>
+
+<!-- LESSON 17 -->
+<div id="lesson17" class="lesson">
+<h1>Lesson 17</h1>
+<div class="section">
+<h2>1️⃣ ～ないでください</h2>
+<p class="jp"><ruby>写真<rt>しゃしん</rt></ruby>を<ruby>撮<rt>と</rt></ruby>らないでください。</p>
+<p class="romaji">Shashin o toranaide kudasai.</p>
+<p class="bn">ছবি তুলবেন না।</p>
+</div>
+</div>
+
+<!-- LESSON 18 -->
+<div id="lesson18" class="lesson">
+<h1>Lesson 18</h1>
+<div class="section">
+<h2>1️⃣ Dictionary form</h2>
+<p class="jp"><ruby>本<rt>ほん</rt></ruby>を<ruby>読<rt>よ</rt></ruby>むことができます。</p>
+<p class="romaji">Hon o yomu koto ga dekimasu.</p>
+<p class="bn">বই পড়তে পারি।</p>
+</div>
+</div>
+
+<!-- LESSON 19 -->
+<div id="lesson19" class="lesson">
+<h1>Lesson 19</h1>
+<div class="section">
+<h2>1️⃣ ～たことがあります</h2>
+<p class="jp"><ruby>日本<rt>にほん</rt></ruby>へ<ruby>行<rt>い</rt></ruby>ったことがあります。</p>
+<p class="romaji">Nihon e itta koto ga arimasu.</p>
+<p class="bn">আমি জাপানে গেছি।</p>
+</div>
+</div>
+
+<!-- LESSON 20 -->
+<div id="lesson20" class="lesson">
+<h1>Lesson 20</h1>
+<div class="section">
+<h2>1️⃣ Plain form + と思います</h2>
+<p class="jp"><ruby>明日<rt>あした</rt></ruby><ruby>雨<rt>あめ</rt></ruby>が<ruby>降<rt>ふ</rt></ruby>ると<ruby>思<rt>おも</rt></ruby>います。</p>
+<p class="romaji">Ashita ame ga furu to omoimasu.</p>
+<p class="bn">আমি মনে করি কাল বৃষ্টি হবে।</p>
+</div>
+</div>
+
+<!-- LESSON 21 -->
+<div id="lesson21" class="lesson">
+<h1>Lesson 21</h1>
+<div class="section">
+<h2>1️⃣ ～と思います</h2>
+<p class="jp">これはいいと<ruby>思<rt>おも</rt></ruby>います。</p>
+<p class="romaji">Kore wa ii to omoimasu.</p>
+<p class="bn">আমি মনে করি এটা ভালো।</p>
+</div>
+</div>
+
+<!-- LESSON 22 -->
+<div id="lesson22" class="lesson">
+<h1>Lesson 22</h1>
+<div class="section">
+<h2>1️⃣ Relative clause</h2>
+<p class="jp">これは<ruby>私<rt>わたし</rt></ruby>が<ruby>書<rt>か</rt></ruby>いた<ruby>本<rt>ほん</rt></ruby>です。</p>
+<p class="romaji">Kore wa watashi ga kaita hon desu.</p>
+<p class="bn">এটি সেই বই যা আমি লিখেছি।</p>
+</div>
+</div>
+
+<!-- LESSON 23 -->
+<div id="lesson23" class="lesson">
+<h1>Lesson 23</h1>
+<div class="section">
+<h2>1️⃣ ～とき</h2>
+<p class="jp"><ruby>日本<rt>にほん</rt></ruby>へ<ruby>行<rt>い</rt></ruby>くときカメラを<ruby>買<rt>か</rt></ruby>いました。</p>
+<p class="romaji">Nihon e iku toki kamera o kaimashita.</p>
+<p class="bn">জাপানে যাওয়ার সময় ক্যামেরা কিনেছিলাম।</p>
+</div>
+</div>
+
+<!-- LESSON 24 -->
+<div id="lesson24" class="lesson">
+<h1>Lesson 24</h1>
+<div class="section">
+<h2>1️⃣ くれます / あげます / もらいます</h2>
+<p class="jp">ともだちが<ruby>本<rt>ほん</rt></ruby>をくれました。</p>
+<p class="romaji">Tomodachi ga hon o kuremashita.</p>
+<p class="bn">বন্ধু আমাকে বই দিয়েছে।</p>
+</div>
+</div>
+
+<!-- LESSON 25 -->
+<div id="lesson25" class="lesson">
+<h1>Lesson 25</h1>
+<div class="section">
+<h2>1️⃣ ～たら (conditional)</h2>
+<p class="jp"><ruby>日本<rt>にほん</rt></ruby>へ<ruby>行<rt>い</rt></ruby>ったらすしを<ruby>食<rt>た</rt></ruby>べたいです。</p>
+<p class="romaji">Nihon e ittara sushi o tabetai desu.</p>
+<p class="bn">জাপানে গেলে সুসি খেতে চাই।</p>
+</div>
+</div></div>
 
 <script>
-function toggleMode() {
-    const body = document.body;
-    const icon = document.querySelector('.toggle-icon');
-    const text = document.querySelector('.toggle-text');
 
-    body.classList.toggle('dark');
-
-    if(body.classList.contains('dark')){
-        icon.textContent = '☀️';
-        text.textContent = 'Light Mode';
-    } else {
-        icon.textContent = '🌙';
-        text.textContent = 'Dark Mode';
-    }
+function toggleMode(){
+ document.body.classList.toggle('dark');
 }
+
+function toggleFurigana(){
+ const body=document.body;
+ body.classList.toggle('hide-furigana');
+
+ const btn=document.querySelector('.furigana-btn');
+ if(btn){
+  btn.textContent = body.classList.contains('hide-furigana') ? 'Show Furigana' : 'Hide Furigana';
+ }
+}
+
+function showLesson(id){
+ const lessons=document.querySelectorAll('.lesson');
+ lessons.forEach(l=>l.classList.remove('active'));
+
+ const target=document.getElementById(id);
+ if(target) target.classList.add('active');
+}
+
+function checkAnswer(q,ans){
+ const el=document.getElementById(q);
+ if(!el) return;
+
+ if(q==='q1'){
+  el.textContent = ans==='A' ? '✅ Correct' : '❌ Wrong';
+ }
+
+ if(q==='q2'){
+  el.textContent = ans==='A' ? '✅ Correct' : '❌ Wrong';
+ }
+
+ if(q==='q3'){
+  el.textContent = ans==='A' ? '✅ Correct (living things use います)' : '❌ Wrong';
+ }
+
+ if(q==='q4'){
+  el.textContent = ans==='A' ? '✅ Correct' : '❌ Wrong';
+ }
+
+ if(q==='q5'){
+  el.textContent = ans==='A' ? '✅ Correct (object particle を)' : '❌ Wrong';
+ }
+}
+
+
+
+function addRuby(text,reading){
+ return `<ruby>${text}<rt>${reading}</rt></ruby>`;
+}
+
+/* basic runtime tests to ensure functions exist */
+console.assert(typeof toggleMode === 'function','toggleMode missing');
+console.assert(typeof toggleFurigana === 'function','toggleFurigana missing');
+console.assert(typeof showLesson === 'function','showLesson missing');
+console.assert(typeof checkAnswer === 'function','checkAnswer missing');
+
+
+
+
+
+
 </script>
 
 </body>
