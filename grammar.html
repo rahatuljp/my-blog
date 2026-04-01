@@ -122,12 +122,14 @@ body.dark .quiz{background:#1f2633}
 
 <body>
 
+<!-- DARK MODE -->
 <button class="toggle-btn dark-btn" onclick="toggleMode()">
-    <span class="toggle-icon">🌙</span>
-    <span class="toggle-text">Dark Mode</span>
+<span id="mode-icon">🌙</span>
+<span id="mode-text">Dark</span>
 </button>
+
 <button class="toggle-btn furigana-btn" onclick="toggleFurigana()">
-    <span>🈶</span>
+    <span>🈶 </span>
     <span>Furigana</span>
 </button>
 
@@ -1130,7 +1132,19 @@ Q: <ruby>私<rt>わたし</rt></ruby>は <ruby>本<rt>ほん</rt></ruby> ___ <ru
 <script>
 
 function toggleMode(){
- document.body.classList.toggle('dark');
+ const body=document.body;
+ const icon=document.getElementById('mode-icon');
+ const text=document.getElementById('mode-text');
+
+ body.classList.toggle('dark');
+
+ if(body.classList.contains('dark')){
+  icon.textContent='☀️';
+  text.textContent='Light';
+ }else{
+  icon.textContent='🌙';
+  text.textContent='Dark';
+ }
 }
 
 function toggleFurigana(){
