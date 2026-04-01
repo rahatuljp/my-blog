@@ -41,16 +41,42 @@ h1{text-align:center;color:#2c3e50;margin-bottom:10px}
 .bn{color:#0b7a3e}
 
 .toggle-btn{
- position:fixed;
- top:20px;
- right:20px;
- padding:10px 18px;
- border:none;
- border-radius:30px;
- background:#3498db;
- color:white;
- cursor:pointer;
+    position: fixed;
+    right: 20px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: #3498db;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: background 0.3s, transform 0.3s;
 }
+
+/* Fixed button positions */
+.dark-btn{ position:fixed; right:20px; top:20px; }
+.furigana-btn{ position:fixed; right:20px; top:60px; }
+.romaji-btn{ position:fixed; right:20px; top:70px; }
+.furigana-btn{ top:60px; }
+.romaji-btn{ top:70px; }
+.toggle-btn:nth-of-type(2){ top:60px; }
+.toggle-btn:nth-of-type(3){ top:80px; }
+.toggle-btn:nth-of-type(2){ top:60px; }
+.toggle-btn:nth-of-type(3){ top:100px; }
+.toggle-btn:nth-of-type(2){ top:60px; }
+.toggle-btn:nth-of-type(3){ top:85px; }
+.toggle-btn:nth-of-type(2){ top:60px; }
+.toggle-btn:nth-of-type(3){ top:95px; }
+.toggle-btn:nth-of-type(2){ top:65px; }
+.toggle-btn:nth-of-type(3){ top:105px; }
+.toggle-btn:nth-of-type(2){ top:70px; }
+.toggle-btn:nth-of-type(3){ top:120px; }
+.toggle-btn:nth-of-type(2){ top:80px; }
+.toggle-btn:nth-of-type(3){ top:140px; }
 
 .furigana-btn{
  position:fixed;
@@ -96,8 +122,19 @@ body.dark .quiz{background:#1f2633}
 
 <body>
 
-<button class="toggle-btn" onclick="toggleMode()">🌙 Dark Mode</button>
-<button class="furigana-btn" onclick="toggleFurigana()">Hide Furigana</button>
+<button class="toggle-btn dark-btn" onclick="toggleMode()">
+    <span class="toggle-icon">🌙</span>
+    <span class="toggle-text">Dark Mode</span>
+</button>
+<button class="toggle-btn furigana-btn" onclick="toggleFurigana()">
+    <span>🈶</span>
+    <span>Furigana</span>
+</button>
+
+<button class="toggle-btn romaji-btn" onclick="toggleRomaji()">
+    <span>🔤</span>
+    <span class="romaji-text">Hide Romaji</span>
+</button>
 
 <div class="container">
 
@@ -136,7 +173,7 @@ body.dark .quiz{background:#1f2633}
 <h1>Lesson 1</h1>
 <!-- Rule 1 -->
 <div class="section">
-<h2>1️⃣ N1 は N2 です (A is B)</h2>
+<h2>1️⃣  N₁ は  N₂ です (A is B)</h2>
 <p class="jp"><ruby>私<rt>わたし</rt></ruby>はバングラデシュ<ruby>人<rt>じん</rt></ruby>です。</p>
 <p class="romaji">Watashi wa Banguradeshu-jin desu.</p>
 <p class="bn">আমি বাংলাদেশী।</p>
@@ -147,7 +184,7 @@ body.dark .quiz{background:#1f2633}
 </div>
 <!-- Rule 2 -->
 <div class="section">
-<h2>2️⃣ N1 は N2 ですか (Question)</h2>
+<h2>2️⃣ N₁ は  N₂ ですか (Question)</h2>
 <p class="jp">あなたは<ruby>誰<rt>だれ</rt></ruby>ですか。</p>
 <p class="romaji">Anata wa dare desu ka?</p>
 <p class="bn">তুমি কে?</p>
@@ -158,7 +195,7 @@ body.dark .quiz{background:#1f2633}
 </div>
 <!-- Rule 3 -->
 <div class="section">
-<h2>3️⃣ N1 は N2 じゃありません / ではありません (Negative)</h2>
+<h2>3️⃣  N₁ は  N₂  じゃありません / ではありません (Negative)</h2>
 <p class="jp">ナヒドさんは<ruby>学生<rt>がくせい</rt></ruby>ではありません。</p>
 <p class="romaji">Nahido-san wa gakusei dewa arimasen.</p>
 <p class="bn">জনাব নাহিদ ছাত্র নন।</p>
@@ -180,7 +217,7 @@ body.dark .quiz{background:#1f2633}
 </div>
 <!-- Rule 5 -->
 <div class="section">
-<h2>5️⃣ N1 の N2 (Possession / belonging)</h2>
+<h2>5️⃣  N₁ の  N₂ (Possession / belonging)</h2>
 <p class="jp"><ruby>原<rt>はら</rt></ruby>さんはエコネットの<ruby>社員<rt>しゃいん</rt></ruby>です。</p>
 <p class="romaji">Hara-san wa Econet no shain desu.</p>
 <p class="bn">জনাব হারা ইকোনেট কোম্পানির কর্মচারী।</p>
@@ -269,7 +306,7 @@ Q: わたしは <ruby>学生<rt>がくせい</rt></ruby> ___。<br>
 
 <!-- Rule 5 -->
 <div class="section">
-<h2>5️⃣ N1 の N2</h2>
+<h2>5️⃣ N₁ の  N₂</h2>
 <p class="jp">これはコンピューターの<ruby>本<rt>ほん</rt></ruby>です。</p>
 <p class="romaji">Kore wa konpyuutaa no hon desu.</p>
 <p class="bn">এটা কম্পিউটারের বই।</p>
@@ -354,7 +391,7 @@ Q: これは ___ ですか。<br>
 
 <!-- Rule 3 -->
 <div class="section">
-<h2>3️⃣ N1 は N2 (place) です</h2>
+<h2>3️⃣ N₁ は  N₂ (place) です</h2>
 
 <p class="jp">ここは<ruby>教室<rt>きょうしつ</rt></ruby>です。</p>
 <p class="romaji">Koko wa kyoushitsu desu.</p>
@@ -367,7 +404,7 @@ Q: これは ___ ですか。<br>
 
 <!-- Rule 4 -->
 <div class="section">
-<h2>4️⃣ N1 の N2 (Location / Organization)</h2>
+<h2>4️⃣ N₁ の  N₂ (Location / Organization)</h2>
 
 <p class="jp">こちらはABC<ruby>会社<rt>かいしゃ</rt></ruby>の<ruby>事務所<rt>じむしょ</rt></ruby>です。</p>
 <p class="romaji">Kochira wa ABC kaisha no jimusho desu.</p>
@@ -457,7 +494,7 @@ Q: これは ___ ですか。<br>
 </div>
 
 <div class="section">
-<h2>4️⃣ N1 から N2 まで</h2>
+<h2>4️⃣ N₁ から  N₂ まで</h2>
 <p class="jp"><ruby>九時<rt>くじ</rt></ruby>から <ruby>五時<rt>ごじ</rt></ruby>まで <ruby>勉強<rt>べんきょう</rt></ruby>します。</p> 
 <p class="romaji">Kuji kara goji made benkyou shimasu.</p> 
 <p class="bn">আমি ৯টা থেকে ৫টা পর্যন্ত পড়াশোনা করি।</p>
@@ -480,7 +517,7 @@ Q: これは ___ ですか。<br>
 </div>
 
 <div class="section">
-<h2> 5️⃣N1とN2 </h2>
+<h2> 5️⃣N₁ から  N₂ </h2>
 <p class="jp"><ruby>銀行<rt>ぎんこう</rt></ruby>の <ruby>休<rt>やす</rt></ruby>みは <ruby>土曜日<rt>どようび</rt></ruby>と <ruby>日曜日<rt>にちようび</rt></ruby>です。</p>  
 <p class="romaji">Ginkou no yasumi wa doyoubi to nichiyoubi desu.</p>  
 <p class="bn">ব্যাংকের ছুটি শনিবার ও রবিবার।</p>
@@ -729,7 +766,7 @@ Q: <ruby>私<rt>わたし</rt></ruby>は <ruby>本<rt>ほん</rt></ruby> ___ <ru
 
 </div>
 
-<!------------------------------------------------------------------------------------------ LESSON 7 ------------------------------------------------------>
+<!------------------------------------------------------------ LESSON 7 ----------------------------------------------------------->
 <div id="lesson7" class="lesson">
 <h1>Lesson 7</h1>
 
@@ -1182,6 +1219,24 @@ console.assert(typeof checkAnswer === 'function','checkAnswer missing');
 
 
 
+function toggleRomaji(){
+    const romaji=document.querySelectorAll('.romaji');
+    const btnText=document.querySelector('.romaji-text');
+
+    romaji.forEach(r=>{
+        if(r.style.display==='none'){
+            r.style.display='block';
+        }else{
+            r.style.display='none';
+        }
+    });
+
+    if(btnText.textContent==='Hide Romaji'){
+        btnText.textContent='Show Romaji';
+    }else{
+        btnText.textContent='Hide Romaji';
+    }
+}
 </script>
 
 </body>
