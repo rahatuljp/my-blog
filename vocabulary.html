@@ -1,30 +1,141 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
+<!-- HEADER BANNER -->
+<div class="header-banner">
 
-working on it
-</body>
-</html>
+  <!-- WAVES -->
+  <div class="wave wave1"></div>
+  <div class="wave wave2"></div>
+  <div class="wave wave3"></div>
 
-<!-- =============================== -->
-<!-- CREATE THESE 5 FILES SEPARATELY -->
-<!-- =============================== -->
+  <div class="banner-content">
 
-<!-- grammar.html -->
-<!-- Copy main structure and change title + content to Grammar -->
+    <h1 class="jp title">
+      やさしい<ruby>日本語<rt>にほんご</rt></ruby>レッスン
+    </h1>
 
-<!-- vocabulary.html -->
-<!-- Change title to Vocabulary and add vocabulary posts -->
+    <p class="jp sub">
+      もうすぐ<ruby>公開<rt>こうかい</rt></ruby>！しばらくお<ruby>待<rt>ま</rt></ruby>ちください。
+    </p>
 
-<!-- kanji.html -->
-<!-- Change title to Kanji and add kanji posts -->
+    <p class="romaji">
+      Yasashii Nihongo Lesson – Coming Soon!
+    </p>
 
-<!-- jlpt.html -->
-<!-- Change title to JLPT Preparation -->
+    <p class="bn">
+      সহজ জাপানি লেসন শীঘ্রই আসছে। অনুগ্রহ করে অপেক্ষা করুন।
+    </p>
 
-<!-- conversation.html -->
-<!-- Change title to Conversation Practice -->
+  </div>
+</div>
+
+<style>
+.header-banner{
+  position:relative;
+  background: linear-gradient(135deg, #3498db, #6dd5fa);
+  padding:70px 20px;
+  text-align:center;
+  color:white;
+  border-radius:12px;
+  overflow:hidden;
+}
+
+/* CONTENT */
+.banner-content{
+  position:relative;
+  z-index:2;
+}
+
+.banner-content h1{
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+.banner-content .sub{
+  font-size:18px;
+  margin-bottom:15px;
+}
+
+.banner-content .romaji{
+  font-style:italic;
+  opacity:0.9;
+  margin-bottom:8px;
+}
+
+.banner-content .bn{
+  font-size:16px;
+}
+
+/* RUBY */
+ruby rt{
+  font-size:12px;
+  color:#ffeaa7;
+}
+
+/* 🌊 WAVES */
+.wave{
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:200%;
+  height:100px;
+  background:rgba(255,255,255,0.2);
+  border-radius:40%;
+  animation:waveMove 10s linear infinite;
+}
+
+/* different layers */
+.wave1{
+  opacity:0.4;
+  animation-duration:12s;
+}
+
+.wave2{
+  bottom:10px;
+  opacity:0.3;
+  animation-duration:8s;
+}
+
+.wave3{
+  bottom:20px;
+  opacity:0.2;
+  animation-duration:6s;
+}
+
+@keyframes waveMove{
+  0%{ transform:translateX(0); }
+  100%{ transform:translateX(-50%); }
+}
+
+/* TEXT ANIMATION */
+.banner-content > *{
+  opacity:0;
+  transform:translateY(30px);
+  animation:fadeUp 1s ease forwards;
+}
+
+.banner-content h1{ animation-delay:0.2s; }
+.banner-content .sub{ animation-delay:0.4s; }
+.banner-content .romaji{ animation-delay:0.6s; }
+.banner-content .bn{ animation-delay:0.8s; }
+
+@keyframes fadeUp{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* FLOAT TITLE */
+.title{
+  animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-8px); }
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  .banner-content h1{font-size:24px;}
+}
+</style>
