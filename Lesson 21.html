@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 21</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            transition: background .3s, color .3s;
+        }
+
+        ruby rt {
+            font-size: 12px;
+            color: #e74c3c
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f9fbff;
+            border-left: 5px solid #3498db;
+            border-radius: 5px;
+        }
+
+        .jp {
+            font-weight: bold;
+            color: #2c3e50
+        }
+
+        .romaji {
+            color: #555;
+            font-style: italic
+        }
+
+        .bn {
+            color: #0b7a3e
+        }
+
+        .toggle-btn {
+            position: fixed;
+            right: 20px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        /* Fixed button positions */
+        .dark-btn {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+        }
+
+        .furigana-btn {
+            position: fixed;
+            right: 20px;
+            top: 60px;
+        }
+
+        .romaji-btn {
+            position: fixed;
+            right: 20px;
+            top: 70px;
+        }
+
+        .furigana-btn {
+            top: 60px;
+        }
+
+        .romaji-btn {
+            top: 70px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 60px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 80px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 60px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 100px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 60px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 85px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 60px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 95px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 65px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 105px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 70px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 120px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 80px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 140px;
+        }
+
+        .furigana-btn {
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 30px;
+            background: #27ae60;
+            color: white;
+            cursor: pointer;
+        }
+
+        body.dark {
+            background: #121212;
+            color: #e0e0e0
+        }
+
+        body.dark .container {
+            background: #1e1e1e
+        }
+
+        body.dark .section {
+            background: #2a2a2a;
+            border-left: 5px solid #bb86fc
+        }
+
+        body.dark .jp {
+            color: #fff
+        }
+
+        body.dark .romaji {
+            color: #ccc
+        }
+
+        body.dark .bn {
+            color: #7CFC00
+        }
+
+        body.dark h1 {
+            color: #fff
+        }
+
+        body.dark .toggle-btn {
+            background: #bb86fc
+        }
+
+        .nav {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap
+        }
+
+        .nav button {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 6px;
+            background: #3498db;
+            color: #fff;
+            cursor: pointer
+        }
+
+        .lesson {
+            display: none
+        }
+
+        .lesson.active {
+            display: block
+        }
+
+        .hide-furigana rt {
+            visibility: hidden
+        }
+
+        .quiz {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            background: #eef3ff
+        }
+
+        body.dark .quiz {
+            background: #1f2633
+        }
+
+        .quiz button {
+            margin-top: 6px;
+            margin-right: 6px;
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px;
+            background: #3498db;
+            color: #fff;
+            cursor: pointer
+        }
+
+
+
+
+        .result {
+            margin-top: 6px;
+            font-weight: bold
+        }
+
+        @media(max-width:600px) {
+            ruby rt {
+                font-size: 10px
+            }
+        }
+    </style>
+</head>
+
+<body>
+ <p id="currentTime"></p>
+      <script src="script.js"></script>
+    <!-- DARK MODE -->
+    <button class="toggle-btn dark-btn" onclick="toggleMode()">
+        <span id="mode-icon">🌙</span>
+        <span id="mode-text">Dark Mode</span>
+    </button>
+
+    <button class="toggle-btn furigana-btn" onclick="toggleFurigana()">
+        <span id="mode-icon">🈶</span>
+        <span id="mode-text">Furigana</span>
+
+    </button>
+
+    <button class="toggle-btn romaji-btn" onclick="toggleRomaji()">
+        <span>🔤</span>
+        <span class="romaji-text">Hide Romaji</span>
+    </button>
+
+    <div class="container">
+
+        <div class="nav">
+            <a href="Lesson 1.html"target="_blank"><button>Lesson 1</button></a>
+            <a href="Lesson 2.html"target="_blank"><button>Lesson 2</button></a>
+             <a href="Lesson 3.html"target="_blank"><button>Lesson 3</button></a>
+              <a href="Lesson 4.html"target="_blank"><button>Lesson 4</button></a>
+               <a href="Lesson 5.html"target="_blank"><button>Lesson 5</button></a>
+          <a href="Lesson 6.html"target="_blank"><button>Lesson 6</button></a>
+          <a href="Lesson 7.html"target="_blank"><button>Lesson 7</button></a>
+          <a href="Lesson 8.html"target="_blank"><button>Lesson 8</button></a>
+             <a href="Lesson 9.html"target="_blank"><button>Lesson 9</button></a>
+                    <a href="Lesson 10.html"target="_blank"><button>Lesson 10</button></a>
+                <a href="Lesson 11.html"target="_blank"><button>Lesson 11</button></a>
+            <a href="Lesson 12.html"target="_blank"><button>Lesson 12</button></a>
+            <a href="Lesson 13.html"target="_blank"><button>Lesson 13</button></a>
+            <a href="Lesson 14.html"target="_blank"><button>Lesson 14</button></a>
+                 <a href="Lesson 15.html"target="_blank"><button>Lesson 15</button></a>
+                  <a href="Lesson 16.html"target="_blank"><button>Lesson 16</button></a>
+                    <a href="Lesson 17.html"target="_blank"><button>Lesson 17</button></a>
+                <a href="Lesson 18.html"target="_blank"><button>Lesson 18</button></a>
+                <a href="Lesson 19.html"target="_blank"><button>Lesson 19</button></a>
+                     <a href="Lesson 20.html"target="_blank"><button>Lesson 20</button></a>
+                     <a href="Lesson 21.html"target="_blank"><button>Lesson 21</button></a>
+                     <a href="Lesson 22.html"target="_blank"><button>Lesson 22</button></a>
+                     <a href="Lesson 23.html"target="_blank"><button>Lesson 23</button></a>
+                     <a href="Lesson 24.html"target="_blank"><button>Lesson 24</button></a>
+             <a href="Lesson 25.html"target="_blank"><button>Lesson 25</button></a>
+
+</div>
+
+        <h1>N5 <ruby>文法<rt>ぶんぽう</rt></ruby></h1>
+              <div id="lesson21" class="lesson active">
+            <h1>Lesson 21</h1>
+<div class="section">
+                <h2>1️⃣ <p class="jp">［ plain form ］ と <ruby>思<rt>おも</rt></ruby>います</p>  </h2>
+
+<p>The ideas or information expressed with おもいます are indicated by the particle と. </p>
+<p>1) When expressing conjecture </p><br>
+<p class="jp">あした <ruby>雨<rt>あめ</rt></ruby>が <ruby>降<rt>ふ</rt></ruby>ると <ruby>思<rt>おも</rt></ruby>います。</p>
+<p class="romaji">Ashita ame ga furu to omoimasu.</p>
+<p class="bn">আমার মনে হয় আগামীকাল বৃষ্টি হবে।</p>
+
+<p class="jp">テレサちゃんは もう <ruby>寝<rt>ね</rt></ruby>たと <ruby>思<rt>おも</rt></ruby>います。</p>
+<p class="romaji">Teresa-chan wa mou neta to omoimasu.</p>
+<p class="bn">আমার মনে হয় তেরেসা সোনা ইতিমধ্যে ঘুমিয়ে পড়েছে।</p>
+
+<p>When the content of conjecture is negative in nature, make the sentence before と negative. </p>
+
+<p class="jp">ミラーさんは この ニュースを <ruby>知<rt>し</rt></ruby>って いますか。</p>
+<p class="romaji">Miraa-san wa kono nyuusu wo shitte imasu ka?</p>
+<p class="bn">মিলার সাহেব কি এই খবরটি জানেন?</p>
+
+<p class="jp">……いいえ、たぶん <ruby>知<rt>し</rt></ruby>らないと <ruby>思<rt>おも</rt></ruby>います。</p>
+<p class="romaji">......Iie, tabun shiranai to omoimasu.</p>
+<p class="bn">......না, আমার মনে হয় সম্ভবত তিনি জানেন না।</p>
+
+<p>2) When expressing one's opinion </p><br>
+<p class="jp"><ruby>日本<rt>にほん</rt></ruby>は <ruby>物価<rt>ぶっか</rt></ruby>が <ruby>高<rt>たか</rt></ruby>いと <ruby>思<rt>おも</rt></ruby>います。</p>
+<p class="romaji">Nihon wa bukka ga takai to omoimasu.</p>
+<p class="bn">আমার মনে হয় জাপানে জিনিসপত্রের দাম বেশি।</p><br>
+
+<p>The expression ～について どう おもいますか is used to ask someone's opinion on something by using おもいます。と is not necessary after どう. </p><br>
+
+<p class="jp"><ruby>新<rt>あたら</rt></ruby>しい <ruby>空港<rt>くうこう</rt></ruby>に ついて どう <ruby>思<rt>おも</rt></ruby>いますか。</p>
+<p class="romaji">Atarashii kuukou ni tsuite dou omoimasu ka?</p>
+<p class="bn">নতুন বিমানবন্দরটি সম্পর্কে আপনার কী মনে হয়?</p>
+
+<p class="jp">……きれいですが、ちょっと <ruby>交通<rt>こうつう</rt></ruby>が <ruby>不便<rt>ふべん</rt></ruby>だと <ruby>思<rt>おも</rt></ruby>います。</p>
+<p class="romaji">......Kirei desu ga, chotto koutsuu ga fuben da to omoimasu.</p>
+<p class="bn">......সুন্দর, কিন্তু আমার মনে হয় যাতায়াত ব্যবস্থা একটু অসুবিধাজনক।</p><br>
+
+<p>Agreement or disagreement with other people's opinions can be expressed as follows. </p>
+<br>
+<p class="jp">A：ファクスは <ruby>便利<rt>べんり</rt></ruby>ですね。</p>
+<p class="romaji">A: Fakusu wa benri desu ne.</p>
+<p class="bn">A: ফ্যাক্স খুব সুবিধাজনক, তাই না?</p>
+
+<p class="jp">B：わたしも そう <ruby>思<rt>おモ</rt></ruby>います。</p>
+<p class="romaji">B: Watashi mo sou omoimasu.</p>
+<p class="bn">B: আমারও তাই মনে হয়।</p>
+
+<p class="jp">C：わたしは そう［は］ <ruby>思<rt>おも</rt></ruby>いません。</p>
+<p class="romaji">C: Watashi wa sou [wa] omoimasen.</p>
+<p class="bn">C: আমার তেমনটা মনে হয় না।</p>
+</div>
+
+<div class="section">
+                <h2>2️⃣ ［ "S" / plain form ］ と 言います　say...  </h2>
+<p>The content expressed with いいます is indicated by the particle と.<br>
+1) When quoting directly what someone says or said, repeat exactly what they say as in the following structure.</p><br>
+
+<p class="jp"><ruby>寝<rt>ね</rt></ruby>る まえに 「おやすみなさい」と <ruby>言<rt>い</rt></ruby>います。</p>
+<p class="romaji">Neru mae ni "Oyasuminasai" to iimasu.</p>
+<p class="bn">ঘুমানোর আগে "শুভ রাত্রি" বলতে হয়।</p>
+
+<p class="jp">ミラーさんは 「<ruby>来週<rt>らいしゅう</rt></ruby> <ruby>東京<rt>とうきょう</rt></ruby>へ <ruby>出張<rt>しゅっちょう</rt></ruby>します」と <ruby>言<rt>い</rt></ruby>いました。</p>
+<p class="romaji">Miraa-san wa "Raishuu Toukyou he shucchou shimasu" to iimashitai.</p>
+<p class="bn">মিলার সাহেব বলেছেন, "আগামী সপ্তাহে টোকিওতে ব্যবসায়িক সফরে যাব।"</p>
+<p>2) When quoting indirectly what someone says or said, the plain form is used before と. The tense of the quoted sentence is not affected by the tense of the main sentence. </p><br>
+<p class="jp">ミラーさんは <ruby>来週<rt>らいしゅう</rt></ruby> <ruby>東京<rt>とうきょう</rt></ruby>へ <ruby>出張<rt>しゅっちょう</rt></ruby>すると <ruby>言<rt>い</rt></ruby>いました。</p>
+<p class="romaji">Miraa-san wa raishuu Toukyou he shucchou suru to iimashita.</p>
+<p class="bn">মিলার সাহেব বলেছেন যে তিনি আগামী সপ্তাহে টোকিওতে ব্যবসায়িক সফরে যাবেন।</p>
+</div> 
+
+<div class="section">
+                <h2>4️⃣   N₁ (place) で N₂ が あります   </h2>
+
+<p>When N₂ expresses such events as a party, concert, festival, incident, disaster and so on, あります means “to take place” or “to be held.” </p>
+<p class="jp"><ruby>東京<rt>とうきょう</rt></ruby>で <ruby>日本<rt>にほん</rt></ruby>と ブラジルの サッカーの <ruby>試合<rt>しあい</rt></ruby>が あります。</p>
+<p class="romaji">Toukyou de nihon to burajiru no sakkaa no shiai ga arimasu.</p>
+<p class="bn">টোকিওতে জাপান এবং ব্রাজিলের ফুটবল ম্যাচ আছে।</p>
+</div> 
+<div class="section">
+                <h2>5️⃣ N (occasion) で  </h2>
+      <p>When some action takes place on a certain occasion, that occasion is followed by で.</p>
+<p class="jp"><ruby>会議<rt>かいぎ</rt></ruby>で <ruby>何<rt>なに</rt></ruby>か <ruby>意見<rt>いけん</rt></ruby>を <ruby>言<rt>い</rt></ruby>いましたか。</p>
+<p class="romaji">Kaigi de nanika iken wo iimashita ka?</p>
+<p class="bn">মিটিংয়ে কি কোনো মতামত দিয়েছিলেন?</p>
+</div> 
+
+<div class="section">
+                <h2>6️⃣ N でも V   </h2>
+<p>でも is used to give an example out of things of the same kind (drinks in the case of )when one encourages or advises someone to do something or when one makes a suggestion.</p>
+<p class="jp">ちょっと ビールでも <ruby>飲<rt>の</rt></ruby>みませんか。</p>
+<p class="romaji">Chotto biiru demo nomimasen ka?</p>
+<p class="bn">চলুন একটু বিয়ার বা এই জাতীয় কিছু পান করি?</p>
+</div> 
+
+<div class="section">
+                <h2>7️⃣V ない-form ないと……   </h2>
+<p>This expression is made by omitting いけません from V ない-form ないといけません. <br>V ない-form ないといけません is similar to V ない-form なければなりません which you learned in Lesson 17.</p> 
+<p class="jp">もう <ruby>帰<rt>かえ</rt></ruby>らないと……。</p>
+<p class="romaji">Mou kaeranaito......</p>
+<p class="bn">এখনই ফিরতে হবে দেখছি...... / এখন না ফিরলেই নয়......</p>
+
+</div>
+
+            <script>
+function showTime() {
+	const japanTime = new Date().toLocaleString('en-US', {
+		timeZone: 'Asia/Tokyo',
+		weekday: 'short',
+		month: 'short',
+		day: 'numeric',
+		year: 'numeric',
+		hour: '2-digit',
+		minute: '2-digit',
+		second: '2-digit',
+		hour12: true
+	});
+
+	document.getElementById('currentTime').innerHTML = japanTime;
+}
+
+showTime();
+setInterval(showTime, 1000);
+        function toggleMode() {
+            const body = document.body;
+            const icon = document.getElementById('mode-icon');
+            const text = document.getElementById('mode-text');
+
+            body.classList.toggle('dark');
+
+            if (body.classList.contains('dark')) {
+                icon.textContent = '☀️';
+                text.textContent = 'Light Mode';
+            } else {
+                icon.textContent = '🌙';
+                text.textContent = 'Dark Mode';
+            }
+        }
+
+        function toggleFurigana() {
+            const body = document.body;
+            body.classList.toggle('hide-furigana');
+            const btn = document.querySelector('.furigana-btn');
+            if (btn) {
+                btn.textContent = body.classList.contains('hide-furigana') ? 'Show Furigana' : 'Hide Furigana';
+            }
+        }
+
+        const lessonOrder = [
+            'lesson1', 'lesson2', 'lesson3', 'lesson4', 'lesson5', 'lesson6', 'lesson7', 'lesson8', 'lesson9', 'lesson10',
+            'lesson11', 'lesson12', 'lesson13', 'lesson14', 'lesson15', 'lesson16', 'lesson17', 'lesson18', 'lesson19', 'lesson20',
+            'lesson21', 'lesson22', 'lesson23', 'lesson24', 'lesson25'
+        ];
+
+        function showLesson(id) {
+            const lessons = document.querySelectorAll('.lesson');
+            lessons.forEach(l => l.classList.remove('active'));
+            const target = document.getElementById(id);
+            if (target) target.classList.add('active');
+        }
+
+        function getActiveLesson() {
+            const active = document.querySelector('.lesson.active');
+            return active ? active.id : null;
+        }
+
+        function nextLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index < lessonOrder.length - 1) {
+                showLesson(lessonOrder[index + 1]);
+            }
+        }
+
+        function prevLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index > 0) {
+                showLesson(lessonOrder[index - 1]);
+            }
+        }
+
+        function checkAnswer(q, ans) {
+            const el = document.getElementById(q);
+            if (!el) return;
+
+            if (q === 'q1') {
+                el.textContent = ans === 'A' ? '✅ Correct' : '❌ Wrong';
+            }
+
+            if (q === 'q2') {
+                el.textContent = ans === 'A' ? '✅ Correct' : '❌ Wrong';
+            }
+
+            if (q === 'q3') {
+                el.textContent = ans === 'A' ? '✅ Correct (living things use います)' : '❌ Wrong';
+            }
+
+            if (q === 'q4') {
+                el.textContent = ans === 'A' ? '✅ Correct' : '❌ Wrong';
+            }
+
+            if (q === 'q5') {
+                el.textContent = ans === 'A' ? '✅ Correct (object particle を)' : '❌ Wrong';
+            }
+        }
+
+
+
+        function addRuby(text, reading) {
+            return `<ruby>${text}<rt>${reading}</rt></ruby>`;
+        }
+
+        /* basic runtime tests to ensure functions exist */
+        console.assert(typeof toggleMode === 'function', 'toggleMode missing');
+        console.assert(typeof toggleFurigana === 'function', 'toggleFurigana missing');
+        console.assert(typeof showLesson === 'function', 'showLesson missing');
+        console.assert(typeof checkAnswer === 'function', 'checkAnswer missing');
+
+
+
+
+
+
+        function toggleRomaji() {
+            const romaji = document.querySelectorAll('.romaji');
+            const btnText = document.querySelector('.romaji-text');
+
+            romaji.forEach(r => {
+                if (r.style.display === 'none') {
+                    r.style.display = 'block';
+                } else {
+                    r.style.display = 'none';
+                }
+            });
+
+            if (btnText.textContent === 'Hide Romaji') {
+                btnText.textContent = 'Show Romaji';
+            } else {
+                btnText.textContent = 'Hide Romaji';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

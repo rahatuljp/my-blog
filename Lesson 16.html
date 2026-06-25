@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 16</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            transition: background .3s, color .3s;
+        }
+
+        ruby rt {
+            font-size: 12px;
+            color: #e74c3c
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f9fbff;
+            border-left: 5px solid #3498db;
+            border-radius: 5px;
+        }
+
+        .jp {
+            font-weight: bold;
+            color: #2c3e50
+        }
+
+        .romaji {
+            color: #555;
+            font-style: italic
+        }
+
+        .bn {
+            color: #0b7a3e
+        }
+
+        .toggle-btn {
+            position: fixed;
+            right: 20px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        /* Fixed button positions */
+        .dark-btn {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+        }
+
+        .furigana-btn {
+            position: fixed;
+            right: 20px;
+            top: 60px;
+        }
+
+        .romaji-btn {
+            position: fixed;
+            right: 20px;
+            top: 70px;
+        }
+
+        .furigana-btn {
+            top: 60px;
+        }
+
+        .romaji-btn {
+            top: 70px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 60px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 80px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 60px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 100px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 60px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 85px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 60px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 95px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 65px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 105px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 70px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 120px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 80px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 140px;
+        }
+
+        .furigana-btn {
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 30px;
+            background: #27ae60;
+            color: white;
+            cursor: pointer;
+        }
+
+        body.dark {
+            background: #121212;
+            color: #e0e0e0
+        }
+
+        body.dark .container {
+            background: #1e1e1e
+        }
+
+        body.dark .section {
+            background: #2a2a2a;
+            border-left: 5px solid #bb86fc
+        }
+
+        body.dark .jp {
+            color: #fff
+        }
+
+        body.dark .romaji {
+            color: #ccc
+        }
+
+        body.dark .bn {
+            color: #7CFC00
+        }
+
+        body.dark h1 {
+            color: #fff
+        }
+
+        body.dark .toggle-btn {
+            background: #bb86fc
+        }
+
+        .nav {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap
+        }
+
+        .nav button {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 6px;
+            background: #3498db;
+            color: #fff;
+            cursor: pointer
+        }
+
+        .lesson {
+            display: none
+        }
+
+        .lesson.active {
+            display: block
+        }
+
+        .hide-furigana rt {
+            visibility: hidden
+        }
+
+        .quiz {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            background: #eef3ff
+        }
+
+        body.dark .quiz {
+            background: #1f2633
+        }
+
+        .quiz button {
+            margin-top: 6px;
+            margin-right: 6px;
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px;
+            background: #3498db;
+            color: #fff;
+            cursor: pointer
+        }
+
+
+
+
+        .result {
+            margin-top: 6px;
+            font-weight: bold
+        }
+
+        @media(max-width:600px) {
+            ruby rt {
+                font-size: 10px
+            }
+        }
+    </style>
+</head>
+
+<body>
+ <p id="currentTime"></p>
+      <script src="script.js"></script>
+    <!-- DARK MODE -->
+    <button class="toggle-btn dark-btn" onclick="toggleMode()">
+        <span id="mode-icon">🌙</span>
+        <span id="mode-text">Dark Mode</span>
+    </button>
+
+    <button class="toggle-btn furigana-btn" onclick="toggleFurigana()">
+        <span id="mode-icon">🈶</span>
+        <span id="mode-text">Furigana</span>
+
+    </button>
+
+    <button class="toggle-btn romaji-btn" onclick="toggleRomaji()">
+        <span>🔤</span>
+        <span class="romaji-text">Hide Romaji</span>
+    </button>
+
+    <div class="container">
+
+        <div class="nav">
+            <a href="Lesson 1.html"target="_blank"><button>Lesson 1</button></a>
+            <a href="Lesson 2.html"target="_blank"><button>Lesson 2</button></a>
+             <a href="Lesson 3.html"target="_blank"><button>Lesson 3</button></a>
+              <a href="Lesson 4.html"target="_blank"><button>Lesson 4</button></a>
+               <a href="Lesson 5.html"target="_blank"><button>Lesson 5</button></a>
+          <a href="Lesson 6.html"target="_blank"><button>Lesson 6</button></a>
+          <a href="Lesson 7.html"target="_blank"><button>Lesson 7</button></a>
+          <a href="Lesson 8.html"target="_blank"><button>Lesson 8</button></a>
+             <a href="Lesson 9.html"target="_blank"><button>Lesson 9</button></a>
+                    <a href="Lesson 10.html"target="_blank"><button>Lesson 10</button></a>
+                <a href="Lesson 11.html"target="_blank"><button>Lesson 11</button></a>
+            <a href="Lesson 12.html"target="_blank"><button>Lesson 12</button></a>
+            <a href="Lesson 13.html"target="_blank"><button>Lesson 13</button></a>
+            <a href="Lesson 14.html"target="_blank"><button>Lesson 14</button></a>
+                 <a href="Lesson 15.html"target="_blank"><button>Lesson 15</button></a>
+                  <a href="Lesson 16.html"target="_blank"><button>Lesson 16</button></a>
+                    <a href="Lesson 17.html"target="_blank"><button>Lesson 17</button></a>
+                <a href="Lesson 18.html"target="_blank"><button>Lesson 18</button></a>
+                <a href="Lesson 19.html"target="_blank"><button>Lesson 19</button></a>
+                     <a href="Lesson 20.html"target="_blank"><button>Lesson 20</button></a>
+                     <a href="Lesson 21.html"target="_blank"><button>Lesson 21</button></a>
+                     <a href="Lesson 22.html"target="_blank"><button>Lesson 22</button></a>
+                     <a href="Lesson 23.html"target="_blank"><button>Lesson 23</button></a>
+                     <a href="Lesson 24.html"target="_blank"><button>Lesson 24</button></a>
+             <a href="Lesson 25.html"target="_blank"><button>Lesson 25</button></a>
+
+</div>
+
+        <h1>N5 <ruby>文法<rt>ぶんぽう</rt></ruby></h1>
+              <div id="lesson16" class="lesson active">
+            <h1>Lesson 16</h1>
+<div class="section">
+                <h2>1️⃣ 1. How to join two or more sentences together</h2>
+                <p>
+                    1. How to join two or more sentences together 
+Two or more sentences can be joined together using 〜て（で）. 
+1) V₁ て-form[、 V₂  て-form、] V₃ 
+When mentioning two or more actions that take place in succession, they are listed in their order of occurrence using the て-form. The tense of the sentence is determined by the tense of the last verb in the sentence. 
+<p class="jp"><ruby>朝<rt>あさ</rt></ruby> ジョギングを して、シャワーを <ruby>浴<rt>あ</rt></ruby>びて、<ruby>会社<rt>かいしゃ</rt></ruby>へ <ruby>行<rt>い</rt></ruby>きます。</p>
+<p class="romaji">Asa jogingu o shite, shawaa o abite, kaisha e ikimasu.</p>
+<p class="bn">সকালে জগিং করি, গোসল করি, তারপর কোম্পানিতে যাই।</p>
+
+<p class="jp"><ruby>神戸<rt>こうべ</rt></ruby>へ <ruby>行<rt>い</rt></ruby>って、<ruby>映画<rt>えいが</rt></ruby>を <ruby>見<rt>み</rt></ruby>て、お<ruby>茶<rt>ちゃ</rt></ruby>を <ruby>飲<rt>の</rt></ruby>みました。</p>
+<p class="romaji">Koube e itte, eiga o mite, ocha o nomimashita.</p>
+<p class="bn">কোবেতে গিয়েছিলাম, সিনেমা দেখেছি, আর চা খেয়েছি।</p>
+
+2) い-adj（〜い）→ 〜くて
+おおきい → おおきくて (big)
+ちいさい → ちいさくて (small)
+いい → よくて (exception) (good)
+
+<p class="jp"><ruby>ミラーさんは<ruby>若<rt>わか</rt></ruby>くて、<ruby>元気<rt>げんき</rt></ruby>です。</p>
+<p class="romaji">Mira-san wa wakakute, genki desu.</p>
+<p class="bn">মিঃ মিলার তরুণ এবং উদ্যমী।</p>
+
+
+<p class="jp"><ruby>昨日<rt>きのう</rt></ruby>は<ruby>天気<rt>てんき</rt></ruby>がよくて、<ruby>暑<rt>あつ</rt></ruby>かったです。</p>
+<p class="romaji">Kinou wa tenki ga yokute, atsukatta desu.</p>
+<p class="bn">গতকাল আবহাওয়া ভালো ছিল এবং গরম ছিল।</p>
+
+3) な-adj［な］ →  〜で 
+
+<p class="jp">ミラーさんはハンサムで、<ruby>親切<rt>しんせつ</rt></ruby>です。</p>
+<p class="romaji">Mira-san wa hansamu de, shinsetsu desu.</p>
+<p class="bn">মিঃ মিলার সুদর্শন এবং দয়ালু।</p>
+
+<p class="jp"><ruby>奈良<rt>なら</rt></ruby>は<ruby>静<rt>しず</rt></ruby>かで、きれいな<ruby>町<rt>まち</rt></ruby>です。</p>
+<p class="romaji">Nara wa shizuka de, kireina machi desu.</p>
+<p class="bn">নারা একটি শান্ত এবং সুন্দর শহর।</p>
+
+✨ ［Note］ 〜て（で） cannot be used to connect two adjective sentences having the same subject if they present two contrasting descriptions. In such a case, が is used (see Lesson 8-4). 
+
+<p class="jp">✕この<ruby>部屋<rt>へや</rt></ruby>は<ruby>狭<rt>せま</rt></ruby>くて、きれいです。</p>
+<p class="romaji">Kono heya wa semakute, kirei desu.</p>
+<p class="bn">এই রুমটি ছোট (সংকীর্ণ) এবং সুন্দর।</p>
+
+<p class="jp"> ◯ この<ruby>部屋<rt>へや</rt></ruby>は<ruby>狭<rt>せま</rt></ruby>いですが、きれいです。</p>
+<p class="romaji">Kono heya wa semai desu ga, kirei desu.</p>
+<p class="bn">এই রুমটি ছোট (সংকীর্ণ) কিন্তু সুন্দর।</p>
+
+4) N で 
+<p class="jp">カリナさんはインドネシア<ruby>人<rt>じん</rt></ruby>で、<ruby>富士大学<rt>ふじだいがく</rt></ruby>の<ruby>留学生<rt>りゅうがくせい</rt></ruby>です。</p>
+<p class="romaji">Karina-san wa indonesia-jin de, fuji daigaku no ryuugakusei desu.</p>
+<p class="bn">কারিনা একজন ইন্দোনেশিয়ান এবং ফুজি বিশ্ববিদ্যালয়ের বিদেশী শিক্ষার্থী।</p>
+
+<p class="jp">カリナさんは<ruby>学生<rt>がくせい</rt></ruby>で、<ruby>マリアさんは<ruby>主婦<rt>しゅふ</rt></ruby>です。</p>
+<p class="romaji">Karina-san wa gakusei de, maria-san wa shufu desu.</p>
+<p class="bn">কারিনা একজন শিক্ষার্থী এবং মারিয়া একজন গৃহিণী।</p></p>
+
+</p>
+</div>
+                
+ <div class="section">
+     <h2>2️⃣V₁ て-form  から、V₂ 　</h2>
+    <p>In this sentence pattern, V₂  expresses something done after  V₁ . Because of this,  V₁  is often a precondition of doingV₂ or an action preparatory to doing it. The tense of the sentence is determined by the tense of the last verb in the sentence.  </p>
+        <p class="jp"><ruby>お金<rt>おかね</rt></ruby>を<ruby>入<rt>い</rt></ruby>れてから、ボタンを<ruby>押<rt>お</rt></ruby>してください。</p>
+<p class="romaji">Okane wo irete kara, botan wo oshite kudasai.</p>
+<p class="bn">টাকা দেওয়ার পর, বোতামটি চাপুন।</p>
+
+The subject of V て-form から is marked with the particle が. 
+<p class="jp"><ruby>もう<rt> </rt></ruby><ruby>昼<rt>ひる</rt></ruby>ごはんを<ruby>食<rt>た</rt></ruby>べましたか。</p>
+<p class="romaji">Mou hirugohan wo tabemashita ka.</p>
+<p class="bn">আপনি কি ইতিমধ্যে দুপুরের খাবার খেয়েছেন?</p>
+
+<p class="jp">……この<ruby>仕事<rt>しごと</rt></ruby>が<ruby>終<rt>お</rt></ruby>わってから、<ruby>食<rt>た</rt></ruby>べます。</p>
+<p class="romaji">......Kono shigoto ga owatte kara, tabemasu.</p>
+<p class="bn">......এই কাজটি শেষ হওয়ার পর, খাব।</p>
+     </div>
+     <div class="section">
+     <h2>3️⃣ N₁ はN₂  が adj</h2>
+<p>This sentence pattern indicates that the topic (N₁ ) has the characteristic (N₂ ) が adj'. </p>
+<p class="jp"><ruby>大阪<rt>おおさか</rt></ruby>は<ruby>食<rt>た</rt></ruby>べ<ruby>物<rt>もの</rt></ruby>がおいしいです。</p>
+<p class="romaji">Oosaka wa tabemono ga oishii desu.</p>
+<p class="bn">ওসাকার খাবার সুস্বাদু।</p>
+
+<p class="jp"><ruby>ドイツ<rt> </rt></ruby>の<ruby>フランケン<rt> </rt></ruby>は<ruby>ワイン<rt> </rt></ruby>が<ruby>有名<rt>ゆうめい</rt></ruby>です。</p>
+<p class="romaji">Doitsu no Furanken wa wain ga yuumei desu.</p>
+<p class="bn">জার্মানির ফ্রাঙ্কেন অঞ্চলের ওয়াইন বিখ্যাত।</p>
+
+
+<p class="jp"><ruby>マリア<rt> </rt></ruby>さんは<ruby>髪<rt>かみ</rt></ruby>が<ruby>長<rt>なが</rt></ruby>いです。</p>
+<p class="romaji">Maria-san wa kami ga nagai desu.</p>
+<p class="bn">মারিয়া-এর চুল লম্বা।</p>
+</div>
+
+ <div class="section">
+     <h2>4️⃣ N  を V </h2>
+<p>Verbs such as でます and おります, are used together with the particle を, which indicates a starting point. </p>
+<p class="jp"><ruby>7時<rt>しちじ</rt></ruby>にうちを<ruby>出<rt>で</rt></ruby>ます。</p>
+<p class="romaji">Shichiji ni uchi wo demasu.</p>
+<p class="bn">৭ টায় বাড়ি থেকে বের হই।</p>
+
+<p class="jp"><ruby>梅田<rt>うめだ</rt></ruby>で<ruby>電車<rt>でんしゃ</rt></ruby>を<ruby>降<rt>お</rt></ruby>りました。</p>
+<p class="romaji">Umeda de densha wo orimashita.</p>
+<p class="bn">উমেদাতে ট্রেন থেকে নেমেছিলাম।</p>
+
+</div> 
+
+<div class="section">
+     <h2>5️⃣ どうやって </h2>
+<p>どうやって is used when asking the way or how to do something.</p>
+<p class="jp"><ruby>大学<rt>だいがく</rt></ruby>までどうやって<ruby>行<rt>い</rt></ruby>きますか。</p>
+<p class="romaji">Daigaku made dou yatte ikimasu ka?</p>
+<p class="bn">বিশ্ববিদ্যালয় পর্যন্ত কীভাবে যান?</p>
+
+<p class="jp">……<ruby>京都駅<rt>きょうとえき</rt></ruby>から16<ruby>番<rt>ばん</rt></ruby>のバスに<ruby>乗<rt>の</rt></ruby>って、<ruby>大学前<rt>だいがくまえ</rt></ruby>で<ruby>降<rt>お</rt></ruby>ります。</p>
+<p class="romaji">......Kyoto-eki kara juuroku-ban no basu ni notte, daigakumaee de orimasu.</p>
+<p class="bn">......কিয়োটো স্টেশন থেকে ১৬ নম্বর বাসে উঠে, বিশ্ববিদ্যালয়ের সামনে নামি।</p>
+</div> 
+
+<div class="section">
+     <h2>6️⃣ どれ / どの N </h2>
+<p>どれ is an interrogative used when asking someone to specify one item out of a list of three or more. </p>
+<p class="jp"><ruby>ミラー<rt> </rt></ruby>さんの<ruby>傘<rt>かさ</rt></ruby>はどれですか。</p>
+<p class="romaji">Miraa-san no kasa wa dore desu ka?</p>
+<p class="bn">মিলার সাহেবের ছাতা কোনটি?</p>
+
+<p class="jp">……あの<ruby>青<rt>あお</rt></ruby>い<ruby>傘<rt>かさ</rt></ruby>です。</p>
+<p class="romaji">......Ano aoi kasa desu.</p>
+<p class="bn">......ঐ নীল ছাতাটি।</p>
+
+<p>どれ cannot modify a noun directly. When modifying a noun, どの is used. </p>
+<p class="jp"><ruby>サントス<rt> </rt></ruby>さんはどの<ruby>人<rt>ひと</rt></ruby>ですか。</p>
+<p class="romaji">Santosu-san wa dono hito desu ka?</p>
+<p class="bn">সান্তোস সাহেব কোন ব্যক্তি?</p>
+
+<p class="jp">……あの<ruby>背<rt>せ</rt></ruby>が<ruby>高<rt>たか</rt></ruby>くて、<ruby>髪<rt>かみ</rt></ruby>が<ruby>黒<rt>くろ</rt></ruby>い<ruby>人<rt>ひと</rt></ruby>です。</p>
+<p class="romaji">......Ano se ga takakute, kami ga kuroi hito desu.</p>
+<p class="bn">......ঐ লম্বা এবং কালো চুলের ব্যক্তিটি।</p>
+</div>  
+    </div>
+            <script>
+function showTime() {
+	const japanTime = new Date().toLocaleString('en-US', {
+		timeZone: 'Asia/Tokyo',
+		weekday: 'short',
+		month: 'short',
+		day: 'numeric',
+		year: 'numeric',
+		hour: '2-digit',
+		minute: '2-digit',
+		second: '2-digit',
+		hour12: true
+	});
+
+	document.getElementById('currentTime').innerHTML = japanTime;
+}
+
+showTime();
+setInterval(showTime, 1000);
+        function toggleMode() {
+            const body = document.body;
+            const icon = document.getElementById('mode-icon');
+            const text = document.getElementById('mode-text');
+
+            body.classList.toggle('dark');
+
+            if (body.classList.contains('dark')) {
+                icon.textContent = '☀️';
+                text.textContent = 'Light Mode';
+            } else {
+                icon.textContent = '🌙';
+                text.textContent = 'Dark Mode';
+            }
+        }
+
+        function toggleFurigana() {
+            const body = document.body;
+            body.classList.toggle('hide-furigana');
+            const btn = document.querySelector('.furigana-btn');
+            if (btn) {
+                btn.textContent = body.classList.contains('hide-furigana') ? 'Show Furigana' : 'Hide Furigana';
+            }
+        }
+
+        const lessonOrder = [
+            'lesson1', 'lesson2', 'lesson3', 'lesson4', 'lesson5', 'lesson6', 'lesson7', 'lesson8', 'lesson9', 'lesson10',
+            'lesson11', 'lesson12', 'lesson13', 'lesson14', 'lesson15', 'lesson16', 'lesson17', 'lesson18', 'lesson19', 'lesson20',
+            'lesson21', 'lesson22', 'lesson23', 'lesson24', 'lesson25'
+        ];
+
+        function showLesson(id) {
+            const lessons = document.querySelectorAll('.lesson');
+            lessons.forEach(l => l.classList.remove('active'));
+            const target = document.getElementById(id);
+            if (target) target.classList.add('active');
+        }
+
+        function getActiveLesson() {
+            const active = document.querySelector('.lesson.active');
+            return active ? active.id : null;
+        }
+
+        function nextLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index < lessonOrder.length - 1) {
+                showLesson(lessonOrder[index + 1]);
+            }
+        }
+
+        function prevLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index > 0) {
+                showLesson(lessonOrder[index - 1]);
+            }
+        }
+
+        function checkAnswer(q, ans) {
+            const el = document.getElementById(q);
+            if (!el) return;
+
+            if (q === 'q1') {
+                el.textContent = ans === 'A' ? '✅ Correct' : '❌ Wrong';
+            }
+
+            if (q === 'q2') {
+                el.textContent = ans === 'A' ? '✅ Correct' : '❌ Wrong';
+            }
+
+            if (q === 'q3') {
+                el.textContent = ans === 'A' ? '✅ Correct (living things use います)' : '❌ Wrong';
+            }
+
+            if (q === 'q4') {
+                el.textContent = ans === 'A' ? '✅ Correct' : '❌ Wrong';
+            }
+
+            if (q === 'q5') {
+                el.textContent = ans === 'A' ? '✅ Correct (object particle を)' : '❌ Wrong';
+            }
+        }
+
+
+
+        function addRuby(text, reading) {
+            return `<ruby>${text}<rt>${reading}</rt></ruby>`;
+        }
+
+        /* basic runtime tests to ensure functions exist */
+        console.assert(typeof toggleMode === 'function', 'toggleMode missing');
+        console.assert(typeof toggleFurigana === 'function', 'toggleFurigana missing');
+        console.assert(typeof showLesson === 'function', 'showLesson missing');
+        console.assert(typeof checkAnswer === 'function', 'checkAnswer missing');
+
+
+
+
+
+
+        function toggleRomaji() {
+            const romaji = document.querySelectorAll('.romaji');
+            const btnText = document.querySelector('.romaji-text');
+
+            romaji.forEach(r => {
+                if (r.style.display === 'none') {
+                    r.style.display = 'block';
+                } else {
+                    r.style.display = 'none';
+                }
+            });
+
+            if (btnText.textContent === 'Hide Romaji') {
+                btnText.textContent = 'Show Romaji';
+            } else {
+                btnText.textContent = 'Hide Romaji';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

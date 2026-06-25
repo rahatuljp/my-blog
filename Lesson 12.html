@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 12</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            transition: background .3s, color .3s;
+        }
+
+        ruby rt {
+            font-size: 12px;
+            color: #e74c3c
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f9fbff;
+            border-left: 5px solid #3498db;
+            border-radius: 5px;
+        }
+
+        .jp {
+            font-weight: bold;
+            color: #2c3e50
+        }
+
+        .romaji {
+            color: #555;
+            font-style: italic
+        }
+
+        .bn {
+            color: #0b7a3e
+        }
+
+        .toggle-btn {
+            position: fixed;
+            right: 20px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        /* Fixed button positions */
+        .dark-btn {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+        }
+
+        .furigana-btn {
+            position: fixed;
+            right: 20px;
+            top: 60px;
+        }
+
+        .romaji-btn {
+            position: fixed;
+            right: 20px;
+            top: 70px;
+        }
+
+        .furigana-btn {
+            top: 60px;
+        }
+
+        .romaji-btn {
+            top: 70px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 60px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 80px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 60px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 100px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 60px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 85px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 60px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 95px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 65px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 105px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 70px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 120px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 80px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 140px;
+        }
+
+        .furigana-btn {
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 30px;
+            background: #27ae60;
+            color: white;
+            cursor: pointer;
+        }
+
+        body.dark {
+            background: #121212;
+            color: #e0e0e0
+        }
+
+        body.dark .container {
+            background: #1e1e1e
+        }
+
+        body.dark .section {
+            background: #2a2a2a;
+            border-left: 5px solid #bb86fc
+        }
+
+        body.dark .jp {
+            color: #fff
+        }
+
+        body.dark .romaji {
+            color: #ccc
+        }
+
+        body.dark .bn {
+            color: #7CFC00
+        }
+
+        body.dark h1 {
+            color: #fff
+        }
+
+        body.dark .toggle-btn {
+            background: #bb86fc
+        }
+
+        .nav {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap
+        }
+
+        .nav button {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 6px;
+            background: #3498db;
+            color: #fff;
+            cursor: pointer
+        }
+
+        .lesson {
+            display: none
+        }
+
+        .lesson.active {
+            display: block
+        }
+
+        .hide-furigana rt {
+            visibility: hidden
+        }
+
+        .quiz {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            background: #eef3ff
+        }
+
+        body.dark .quiz {
+            background: #1f2633
+        }
+
+        .quiz button {
+            margin-top: 6px;
+            margin-right: 6px;
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px;
+            background: #3498db;
+            color: #fff;
+            cursor: pointer
+        }
+
+
+
+
+        .result {
+            margin-top: 6px;
+            font-weight: bold
+        }
+
+        @media(max-width:600px) {
+            ruby rt {
+                font-size: 10px
+            }
+        }
+    </style>
+</head>
+
+<body>
+ <p id="currentTime"></p>
+      <script src="script.js"></script>
+    <!-- DARK MODE -->
+    <button class="toggle-btn dark-btn" onclick="toggleMode()">
+        <span id="mode-icon">🌙</span>
+        <span id="mode-text">Dark Mode</span>
+    </button>
+
+    <button class="toggle-btn furigana-btn" onclick="toggleFurigana()">
+        <span id="mode-icon">🈶</span>
+        <span id="mode-text">Furigana</span>
+
+    </button>
+
+    <button class="toggle-btn romaji-btn" onclick="toggleRomaji()">
+        <span>🔤</span>
+        <span class="romaji-text">Hide Romaji</span>
+    </button>
+
+    <div class="container">
+
+        <div class="nav">
+            <a href="Lesson 1.html"target="_blank"><button>Lesson 1</button></a>
+            <a href="Lesson 2.html"target="_blank"><button>Lesson 2</button></a>
+             <a href="Lesson 3.html"target="_blank"><button>Lesson 3</button></a>
+              <a href="Lesson 4.html"target="_blank"><button>Lesson 4</button></a>
+               <a href="Lesson 5.html"target="_blank"><button>Lesson 5</button></a>
+          <a href="Lesson 6.html"target="_blank"><button>Lesson 6</button></a>
+          <a href="Lesson 7.html"target="_blank"><button>Lesson 7</button></a>
+          <a href="Lesson 8.html"target="_blank"><button>Lesson 8</button></a>
+             <a href="Lesson 9.html"target="_blank"><button>Lesson 9</button></a>
+                    <a href="Lesson 10.html"target="_blank"><button>Lesson 10</button></a>
+                <a href="Lesson 11.html"target="_blank"><button>Lesson 11</button></a>
+            <a href="Lesson 12.html"target="_blank"><button>Lesson 12</button></a>
+            <a href="Lesson 13.html"target="_blank"><button>Lesson 13</button></a>
+            <a href="Lesson 14.html"target="_blank"><button>Lesson 14</button></a>
+                 <a href="Lesson 15.html"target="_blank"><button>Lesson 15</button></a>
+                  <a href="Lesson 16.html"target="_blank"><button>Lesson 16</button></a>
+                    <a href="Lesson 17.html"target="_blank"><button>Lesson 17</button></a>
+                <a href="Lesson 18.html"target="_blank"><button>Lesson 18</button></a>
+                <a href="Lesson 19.html"target="_blank"><button>Lesson 19</button></a>
+                     <a href="Lesson 20.html"target="_blank"><button>Lesson 20</button></a>
+                     <a href="Lesson 21.html"target="_blank"><button>Lesson 21</button></a>
+                     <a href="Lesson 22.html"target="_blank"><button>Lesson 22</button></a>
+                     <a href="Lesson 23.html"target="_blank"><button>Lesson 23</button></a>
+                     <a href="Lesson 24.html"target="_blank"><button>Lesson 24</button></a>
+             <a href="Lesson 25.html"target="_blank"><button>Lesson 25</button></a>
+
+</div>
+
+        <h1>N5 <ruby>文法<rt>ぶんぽう</rt></ruby></h1>
+              <div id="lesson12" class="lesson active">
+            <h1>Lesson 12</h1>
+            <div class="section">
+                <h2>1️⃣ Tense and affirmative/negative forms of noun sentences and な adjective
+                    sentences </h2>
+                <p class="jp"> きのうは <ruby>雨<rt>あめ</rt></ruby>でした。 </p>
+                <p class="romaji"> Kinou wa ame deshita. </p>
+                <p class="bn"> গতকাল বৃষ্টি ছিল। </p>
+
+                <p class="jp"> きのうの <ruby>試験<rt>しけん</rt></ruby>は <ruby>簡単<rt>かんたん</rt></ruby>じゃ ありませんでした。 </p>
+                <p class="romaji"> Kinou no shiken wa kantan ja arimasen deshita. </p>
+                <p class="bn"> গতকালের পরীক্ষা সহজ ছিল না। </p>
+            </div>
+
+            <div class="section">
+                <h2>2️⃣ Tense and affirmative/negative forms of い adjective sentences </h2>
+                <p class="jp"> きのうは <ruby>暑<rt>あつ</rt></ruby>かったです。 </p>
+                <p class="romaji"> Kinou wa atsukatta desu. </p>
+                <p class="bn"> গতকাল গরম ছিল। </p>
+
+                <p class="jp"> きのうのパーティーは あまり <ruby>楽<rt>たの</rt></ruby>しくなかったです。 </p>
+                <p class="romaji"> Kinou no paatii wa amari tanoshikunakatta desu. </p>
+                <p class="bn"> গতকালের পার্টি খুব বেশি মজার ছিল না। </p>
+            </div>
+
+            <div class="section">
+                <h2>3️⃣ N₁ は N₂ より adj です </h2>
+                <p class="jp"> この <ruby>本<rt>ほん</rt></ruby>は あの本より <ruby>大<rt>おお</rt></ruby>きいです。 </p>
+                <p class="romaji"> Kono hon wa ano hon yori ookii desu. </p>
+                <p class="bn"> এই বইটি ওই বইয়ের চেয়ে বড়। </p>
+            </div>
+
+            <div class="section">
+                <h2>4️⃣ N₁ と N₂ とどちらが adj ですか<br>
+                    ......N₁ / N₂ のほうが adj です </h2>
+                <p class="jp"> サッカーと <ruby>野球<rt>やきゅう</rt></ruby>と どちらが おもしろいですか。<br> .......サッカーのほうが おもしろいです。 </p>
+                <p class="romaji"> Sakkaa to yakyuu to dochira ga omoshiroi desu ka?<br> .......Sakkaa no hou ga omoshiroi desu. </p>
+                <p class="bn"> ফুটবল আর বেসবলের মধ্যে কোনটি বেশি মজার?<br> .......ফুটবল বেশি মজার। </p>
+
+                <p class="jp"> ミラーさんと サントスさんと どちらが テニスが <ruby>上手<rt>じょうず</rt></ruby>ですか。 </p>
+                <p class="romaji"> Miraa-san to Santosu-san to dochira ga tenisu ga jouzu desu ka? </p>
+                <p class="bn"> মিলার-সান আর সানতোস-সানের মধ্যে কে টেনিসে ভালো? </p>
+
+                <p class="jp"> <ruby>北海道<rt>ほっかいどう</rt></ruby>と <ruby>大阪<rt>おおさか</rt></ruby>と どちらが <ruby>涼<rt>すず</rt></ruby>しいですか。 </p>
+                <p class="romaji"> Hokkaidou to Oosaka to dochira ga suzushii desu ka? </p>
+                <p class="bn"> হোক্কাইদো আর ওসাকার মধ্যে কোনটি বেশি শীতল? </p>
+
+                <p class="jp"> <ruby>春<rt>はる</rt></ruby>と <ruby>秋<rt>あき</rt></ruby>と どちらが <ruby>好<rt>す</rt></ruby>きですか。</p>
+                <p class="romaji"> Haru to aki to dochira ga suki desu ka? </p>
+                <p class="bn"> বসন্ত আর শরতের মধ্যে কোনটি পছন্দ করেন? </p>
+            </div>
+
+            <div class="section">
+                <h2>5️⃣<style>
+                        .sentence-container {
+                            display: flex;
+                            align-items: center;
+                            font-size: 24px;
+                            font-family: "MS Mincho", serif;
+                            /* জাপানি ফন্টের জন্য */
+                            gap: 5px;
+                        }
+
+                        .bracket-group {
+                            display: flex;
+                            align-items: center;
+                            font-size: 30px;
+                            /* ব্র্যাকেট একটু বড় দেখানোর জন্য */
+                        }
+
+                        .options-list {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            font-size: 20px;
+                            padding: 0 5px;
+                            line-height: 1.2;
+                        }
+
+                        ruby rt {
+                            font-size: 12px;
+                        }
+                    </style>
+                <body>
+
+                        <div class="sentence-container">
+                            <span>N₁ [の <ruby>中<rt>なか</rt></ruby>] で</span>
+
+                            <div class="bracket-group">
+                                <span>{</span>
+                                <div class="options-list">
+                                    <ruby>何<rt>なに</rt></ruby>
+                                    <span>どこ</span>
+                                    <span>だれ</span>
+                                    <span>いつ</span>
+                                </div>
+                                <span>}</span>
+                            </div>
+
+                            <span>が いちばん adj ですか</span>
+                        </div>
+
+                        <div style="margin-top: 10px; font-size: 24px;">
+                            ...... N₂ が いちばん adj です
+                        </div>
+
+                    </body>
+                </h2>
+                <p class="jp">
+                    <ruby>日本料理<rt>にほんりょうり</rt></ruby>の <ruby>中<rt>なか</rt></ruby>で <ruby>何<rt>なに</rt></ruby>が いちばん おいしいですか。<br>
+                    ……てんぷらが いちばん おいしいです。
+                </p>
+
+                <p class="romaji">
+                    Nihon ryouri no naka de nani ga ichiban oishii desu ka?<br>
+                    ...Tenpura ga ichiban oishii desu.
+                </p>
+
+                <p class="bn">
+                    জাপানি খাবারের মধ্যে কোনটি সবচেয়ে সুস্বাদু?<br>
+                    ...টেম্পুরা সবচেয়ে সুস্বাদু।
+                </p>
+
+                <p class="jp">
+                    ヨーロッパで どこが いちばん よかったですか。<br>
+                    ……スイスが いちばん よかったです。
+                </p>
+
+                <p class="romaji">
+                    Yooroppa de doko ga ichiban yokatta desu ka?<br>
+                    ...Suisu ga ichiban yokatta desu.
+                </p>
+
+                <p class="bn">
+                    ইউরোপে কোথায় সবচেয়ে ভালো লেগেছিল?<br>
+                    ...সুইজারল্যান্ড সবচেয়ে ভালো লেগেছিল।
+                </p>
+
+
+                <p class="jp">
+                    <ruby>家族<rt>かぞく</rt></ruby>で だれが いちばん <ruby>背<rt>せ</rt></ruby>が <ruby>高<rt>たか</rt></ruby>いですか。<br>
+                    ……<ruby>弟<rt>おとうと</rt></ruby>が いちばん <ruby>背<rt>せ</rt></ruby>が <ruby>高<rt>たか</rt></ruby>いです。
+                </p>
+
+                <p class="romaji">
+                    Kazoku de dare ga ichiban se ga takai desu ka?<br>
+                    ...Otouto ga ichiban se ga takai desu.
+                </p>
+
+                <p class="bn">
+                    পরিবারে কে সবচেয়ে লম্বা?<br>
+                    ...ছোট ভাই সবচেয়ে লম্বা।
+                </p>
+
+                <p class="jp">
+                    1<ruby>年<rt>ねん</rt></ruby>で いつが いちばん <ruby>寒<rt>さむ</rt></ruby>いですか。<br>
+                    ……2<ruby>月<rt>がつ</rt></ruby>が いちばん <ruby>寒<rt>さむ</rt></ruby>いです。
+                </p>
+
+                <p class="romaji">
+                    Ichinen de itsu ga ichiban samui desu ka?<br>
+                    ...Nigatsu ga ichiban samui desu.
+                </p>
+
+                <p class="bn">
+                    এক বছরে কখন সবচেয়ে ঠান্ডা থাকে?<br>
+                    ...ফেব্রুয়ারি সবচেয়ে ঠান্ডা।
+                </p>
+            </div>
+            <div class="section">
+                <h2>6️⃣Adj の ( の substituting for a noun )</h2>
+                <p class="jp">
+                    カリーナさんの かばんは どれですか。<br>
+                    ……あの <ruby>赤<rt>あか</rt></ruby>くて、<ruby>大<rt>おお</rt></ruby>きいの（かばん）です。
+                </p>
+
+                <p class="romaji">
+                    Karīna-san no kaban wa dore desu ka?<br>
+                    ...Ano akakute, ookii no (kaban) desu.
+                </p>
+
+                <p class="bn">
+                    কারিনা-সানের ব্যাগ কোনটি?<br>
+                    ...ওই লাল আর বড়টি (ব্যাগ)।
+                </p>
+
+            </div>
+        </div>
+            <script>
+function showTime() {
+	const japanTime = new Date().toLocaleString('en-US', {
+		timeZone: 'Asia/Tokyo',
+		weekday: 'short',
+		month: 'short',
+		day: 'numeric',
+		year: 'numeric',
+		hour: '2-digit',
+		minute: '2-digit',
+		second: '2-digit',
+		hour12: true
+	});
+
+	document.getElementById('currentTime').innerHTML = japanTime;
+}
+
+showTime();
+setInterval(showTime, 1000);
+        function toggleMode() {
+            const body = document.body;
+            const icon = document.getElementById('mode-icon');
+            const text = document.getElementById('mode-text');
+
+            body.classList.toggle('dark');
+
+            if (body.classList.contains('dark')) {
+                icon.textContent = '☀️';
+                text.textContent = 'Light Mode';
+            } else {
+                icon.textContent = '🌙';
+                text.textContent = 'Dark Mode';
+            }
+        }
+
+        function toggleFurigana() {
+            const body = document.body;
+            body.classList.toggle('hide-furigana');
+            const btn = document.querySelector('.furigana-btn');
+            if (btn) {
+                btn.textContent = body.classList.contains('hide-furigana') ? 'Show Furigana' : 'Hide Furigana';
+            }
+        }
+
+        const lessonOrder = [
+            'lesson1', 'lesson2', 'lesson3', 'lesson4', 'lesson5', 'lesson6', 'lesson7', 'lesson8', 'lesson9', 'lesson10',
+            'lesson11', 'lesson12', 'lesson13', 'lesson14', 'lesson15', 'lesson16', 'lesson17', 'lesson18', 'lesson19', 'lesson20',
+            'lesson21', 'lesson22', 'lesson23', 'lesson24', 'lesson25'
+        ];
+
+        function showLesson(id) {
+            const lessons = document.querySelectorAll('.lesson');
+            lessons.forEach(l => l.classList.remove('active'));
+            const target = document.getElementById(id);
+            if (target) target.classList.add('active');
+        }
+
+        function getActiveLesson() {
+            const active = document.querySelector('.lesson.active');
+            return active ? active.id : null;
+        }
+
+        function nextLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index < lessonOrder.length - 1) {
+                showLesson(lessonOrder[index + 1]);
+            }
+        }
+
+        function prevLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index > 0) {
+                showLesson(lessonOrder[index - 1]);
+            }
+        }
+
+        function checkAnswer(q, ans) {
+            const el = document.getElementById(q);
+            if (!el) return;
+
+            if (q === 'q1') {
+                el.textContent = ans === 'A' ? '✅ Correct' : '❌ Wrong';
+            }
+
+            if (q === 'q2') {
+                el.textContent = ans === 'A' ? '✅ Correct' : '❌ Wrong';
+            }
+
+            if (q === 'q3') {
+                el.textContent = ans === 'A' ? '✅ Correct (living things use います)' : '❌ Wrong';
+            }
+
+            if (q === 'q4') {
+                el.textContent = ans === 'A' ? '✅ Correct' : '❌ Wrong';
+            }
+
+            if (q === 'q5') {
+                el.textContent = ans === 'A' ? '✅ Correct (object particle を)' : '❌ Wrong';
+            }
+        }
+
+
+
+        function addRuby(text, reading) {
+            return `<ruby>${text}<rt>${reading}</rt></ruby>`;
+        }
+
+        /* basic runtime tests to ensure functions exist */
+        console.assert(typeof toggleMode === 'function', 'toggleMode missing');
+        console.assert(typeof toggleFurigana === 'function', 'toggleFurigana missing');
+        console.assert(typeof showLesson === 'function', 'showLesson missing');
+        console.assert(typeof checkAnswer === 'function', 'checkAnswer missing');
+
+
+
+
+
+
+        function toggleRomaji() {
+            const romaji = document.querySelectorAll('.romaji');
+            const btnText = document.querySelector('.romaji-text');
+
+            romaji.forEach(r => {
+                if (r.style.display === 'none') {
+                    r.style.display = 'block';
+                } else {
+                    r.style.display = 'none';
+                }
+            });
+
+            if (btnText.textContent === 'Hide Romaji') {
+                btnText.textContent = 'Show Romaji';
+            } else {
+                btnText.textContent = 'Hide Romaji';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

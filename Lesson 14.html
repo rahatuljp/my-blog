@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 14</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            transition: background .3s, color .3s;
+        }
+
+        ruby rt {
+            font-size: 12px;
+            color: #e74c3c
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f9fbff;
+            border-left: 5px solid #3498db;
+            border-radius: 5px;
+        }
+
+        .jp {
+            font-weight: bold;
+            color: #2c3e50
+        }
+
+        .romaji {
+            color: #555;
+            font-style: italic
+        }
+
+        .bn {
+            color: #0b7a3e
+        }
+
+        .toggle-btn {
+            position: fixed;
+            right: 20px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        /* Fixed button positions */
+        .dark-btn {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+        }
+
+        .furigana-btn {
+            position: fixed;
+            right: 20px;
+            top: 60px;
+        }
+
+        .romaji-btn {
+            position: fixed;
+            right: 20px;
+            top: 70px;
+        }
+
+        .furigana-btn {
+            top: 60px;
+        }
+
+        .romaji-btn {
+            top: 70px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 60px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 80px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 60px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 100px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 60px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 85px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 60px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 95px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 65px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 105px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 70px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 120px;
+        }
+
+        .toggle-btn:nth-of-type(2) {
+            top: 80px;
+        }
+
+        .toggle-btn:nth-of-type(3) {
+            top: 140px;
+        }
+
+        .furigana-btn {
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 30px;
+            background: #27ae60;
+            color: white;
+            cursor: pointer;
+        }
+
+        body.dark {
+            background: #121212;
+            color: #e0e0e0
+        }
+
+        body.dark .container {
+            background: #1e1e1e
+        }
+
+        body.dark .section {
+            background: #2a2a2a;
+            border-left: 5px solid #bb86fc
+        }
+
+        body.dark .jp {
+            color: #fff
+        }
+
+        body.dark .romaji {
+            color: #ccc
+        }
+
+        body.dark .bn {
+            color: #7CFC00
+        }
+
+        body.dark h1 {
+            color: #fff
+        }
+
+        body.dark .toggle-btn {
+            background: #bb86fc
+        }
+
+        .nav {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap
+        }
+
+        .nav button {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 6px;
+            background: #3498db;
+            color: #fff;
+            cursor: pointer
+        }
+
+        .lesson {
+            display: none
+        }
+
+        .lesson.active {
+            display: block
+        }
+
+        .hide-furigana rt {
+            visibility: hidden
+        }
+
+        .quiz {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            background: #eef3ff
+        }
+
+        body.dark .quiz {
+            background: #1f2633
+        }
+
+        .quiz button {
+            margin-top: 6px;
+            margin-right: 6px;
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px;
+            background: #3498db;
+            color: #fff;
+            cursor: pointer
+        }
+
+
+
+
+        .result {
+            margin-top: 6px;
+            font-weight: bold
+        }
+
+        @media(max-width:600px) {
+            ruby rt {
+                font-size: 10px
+            }
+        }
+    </style>
+</head>
+
+<body>
+ <p id="currentTime"></p>
+      <script src="script.js"></script>
+    <!-- DARK MODE -->
+    <button class="toggle-btn dark-btn" onclick="toggleMode()">
+        <span id="mode-icon">🌙</span>
+        <span id="mode-text">Dark Mode</span>
+    </button>
+
+    <button class="toggle-btn furigana-btn" onclick="toggleFurigana()">
+        <span id="mode-icon">🈶</span>
+        <span id="mode-text">Furigana</span>
+
+    </button>
+
+    <button class="toggle-btn romaji-btn" onclick="toggleRomaji()">
+        <span>🔤</span>
+        <span class="romaji-text">Hide Romaji</span>
+    </button>
+
+    <div class="container">
+
+        <div class="nav">
+            <a href="Lesson 1.html"target="_blank"><button>Lesson 1</button></a>
+            <a href="Lesson 2.html"target="_blank"><button>Lesson 2</button></a>
+             <a href="Lesson 3.html"target="_blank"><button>Lesson 3</button></a>
+              <a href="Lesson 4.html"target="_blank"><button>Lesson 4</button></a>
+               <a href="Lesson 5.html"target="_blank"><button>Lesson 5</button></a>
+          <a href="Lesson 6.html"target="_blank"><button>Lesson 6</button></a>
+          <a href="Lesson 7.html"target="_blank"><button>Lesson 7</button></a>
+          <a href="Lesson 8.html"target="_blank"><button>Lesson 8</button></a>
+             <a href="Lesson 9.html"target="_blank"><button>Lesson 9</button></a>
+                    <a href="Lesson 10.html"target="_blank"><button>Lesson 10</button></a>
+                <a href="Lesson 11.html"target="_blank"><button>Lesson 11</button></a>
+            <a href="Lesson 12.html"target="_blank"><button>Lesson 12</button></a>
+            <a href="Lesson 13.html"target="_blank"><button>Lesson 13</button></a>
+            <a href="Lesson 14.html"target="_blank"><button>Lesson 14</button></a>
+                 <a href="Lesson 15.html"target="_blank"><button>Lesson 15</button></a>
+                  <a href="Lesson 16.html"target="_blank"><button>Lesson 16</button></a>
+                    <a href="Lesson 17.html"target="_blank"><button>Lesson 17</button></a>
+                <a href="Lesson 18.html"target="_blank"><button>Lesson 18</button></a>
+                <a href="Lesson 19.html"target="_blank"><button>Lesson 19</button></a>
+                     <a href="Lesson 20.html"target="_blank"><button>Lesson 20</button></a>
+                     <a href="Lesson 21.html"target="_blank"><button>Lesson 21</button></a>
+                     <a href="Lesson 22.html"target="_blank"><button>Lesson 22</button></a>
+                     <a href="Lesson 23.html"target="_blank"><button>Lesson 23</button></a>
+                     <a href="Lesson 24.html"target="_blank"><button>Lesson 24</button></a>
+             <a href="Lesson 25.html"target="_blank"><button>Lesson 25</button></a>
+
+</div>
+
+        <h1>N5 <ruby>文法<rt>ぶんぽう</rt></ruby></h1>
+              <div id="lesson14" class="lesson active">
+            <h1>Lesson 14</h1>
+<div class="section">
+                <h2>1️⃣ Japanese verbs conjugate, and sentences with various meanings can be formed by adding various phrases to the conjugated forms of the verbs. Verbs are classified into three groups depending on how they are conjugated.</h2>
+     <p>
+         1. Group I Verbs 
+In all verbs of this group, the last sound of the ます-form is from the い-column of the syllabary chart, e.g. かきます(write), のみます(drink).
+     </p>
+     <p>2. Group II verbs 
+In most verbs of this group, the last sound of the ます-form is from the え-column (e.g. たべます(eat) and みせます(show), but in some verbs it is a sound from the い-column (e.g. みます(see).</p>
+<p>3. Group III Verbs 
+Verbs of this group include します and ‘action-denoting noun + します’, as well as きます.<p/>
+            </div>
+
+            <div class="section">
+                <h2>2️⃣  V て-form</h2>
+              <p>The verb form that ends with て or で is called the て-form. The method by which the て-form is created from the ます-form depends on the group to which the verb belongs, as described below. (See Exercise A1, Lesson 14 of Main Text.)</p>
+              <p>1) Group I Verbs</p>
+              <p>(1) When the last sound of the ます-form is い, ち or り, the い, ち or り is dropped and って is attached.
+e.g. かいます →かって (buy)
+まちます → まって (wait)
+かえります → かえって (go home, return)</p>
+<p>(2) When the last sound of the ます-form is み, び or に, the み, び or に is dropped and んで is attached.
+e.g. のみます → のんで (drink)
+よびます → よんで (call)
+しにます → しんで (die)</p>
+<p>(3) When the last sound of the ます-form is き or ぎ, the き or ぎ is dropped and いて or いで respectively is attached.
+e.g. かきます → かいて (write)
+いそぎます → いそいで (hurry)
+However, いきます (go) is an exception, and becomes いって.</p>
+<p>(4) When the last sound of the ます-form is し, て is added to the ます-form.
+e.g. かします → かして (lend)</p>
+<p>2) Group II Verbs</p>
+<p>て is added to the ます-form.
+e.g. たべます → たべて (eat)
+みせます → みせて (show)
+みます → みて (see)</p>
+<p>3) Group III Verbs</p>
+<p>て is added to the ます-form.
+e.g. きます → きて (come)
+します → して (do)
+さんぽします → さんぽして (go for a walk)</p>
+            </div>
+            <div class="section">
+                <h2> 3️⃣ V て-form ください — Please do...... </h2>
+                <p>However, it is not a very polite way of asking someone to do something, so it is often used together with the expression すみませんが </p>
+                <p class="jp">すみませんが、この <ruby>漢字<rt>かんじ</rt></ruby>の <ruby>読<rt>よ</rt></ruby>み<ruby>方<rt>かた</rt></ruby>を <ruby>教<rt>おし</rt></ruby>えて ください。</p>
+<p class="romaji">Sumimasen ga, kono kanji no yomikata o oshiete kudasai.</p>
+<p class="bn">মাফ করবেন, এই কানজির পড়ার পদ্ধতি (উচ্চারণ) শেখান / বলুন।</p>
+
+<p class="jp">
+ボールペンで <ruby>名前<rt>なまえ</rt></ruby>を <ruby>書<rt>か</rt></ruby>いて ください。</p>
+<p class="romaji">Boorupen de namae o kaite kudasai.</p>
+<p class="bn">বলপেন দিয়ে নাম লিখুন।</p>
+
+<p class="jp">どうぞ たくさん <ruby>食<rt>た</rt></ruby>べて ください。</p>
+<p class="romaji">Douzo takusan tabete kudasai.</p>
+<p class="bn">দয়া করে অনেক খান।</p>
+
+            </div>
+            <div class="section">
+                <h2>4️⃣  V て-form います </h2>
+                <p>This sentence pattern indicates that a certain action or motion is in progress. 
+এই বাক্য গঠনটি নির্দেশ করে যে কোনো একটি নির্দিষ্ট কাজ বা গতি চলমান রয়েছে।</p>
+<p class="jp">ミラーさんは <ruby>今<rt>いま</rt></ruby> <ruby>電話<rt>でんわ</rt></ruby>を かけて います。</p>
+<p class="romaji">Miraa-san wa ima denwa o kakete imasu.</p>
+<p class="bn">মিলার-সান এখন ফোন করছেন।</p>
+
+
+<p class="jp">
+<ruby>今<rt>いま</rt></ruby> <ruby>雨<rt>あめ</rt></ruby>が <ruby>降<rt>ふ</rt></ruby>って いますか。<br>
+……はい、<ruby>降<rt>ふ</rt></ruby>って います。<br>
+……いいえ、<ruby>降<rt>ふ</rt></ruby>って いません。</p>
+<p class="romaji">Ima ame ga futte imasu ka?<br>...Hai, futte imasu.<br>...Iie, futte imasen.</p>
+<p class="bn">এখন কি বৃষ্টি হচ্ছে?<br>...হ্যাঁ, হচ্ছে।<br>...না, হচ্ছে না।</p>
+            </div>
+              <div class="section">
+                <h2> 5️⃣  V ます-form ましょうか — Shall I......? </h2>
+               <p class="jp">あしたも <ruby>来<rt>き</rt></ruby>ましょうか。<br>
+……ええ、10<ruby>時<rt>じ</rt></ruby>に <ruby>来<rt>き</rt></ruby>て ください。
+</p>
+<p class="romaji">Ashita mo kimashou ka?<br>...Ee, juuji ni kite kudasai.</p>
+<p class="bn">আগামীকালও কি আসব?<br>...হ্যাঁ, ১০টায় আসুন।</p>
+
+
+<p class="jp">
+<ruby>傘<rt>かさ</rt></ruby>を <ruby>貸<rt>か</rt></ruby>しましょうか。<br>
+……すみません。お<ruby>願<rt>ねが</rt></ruby>い します。</p>
+<p class="romaji">Kasa o kashimashou ka?<br>...Sumimasen. Onegai shimasu.</p>
+<p class="bn">ছাতা ধার দেব?<br>...মাফ করবেন, অনুগ্রহ করে দিন।</p>
+
+<p class="jp"><ruby>荷物<rt>にもつ</rt></ruby>を <ruby>持<rt>も</rt></ruby>ちましょうか。<br>……いいえ、けっこうです。</p>
+<p class="romaji">Nimotsu o mochimashou ka?<br>...Iie, kekkou desu.</p>
+<p class="bn">লাগেজ বহন করব?<br>...না, দরকার নেই / ঠিক আছে।</p> 
+        </div>
+         <div class="section">
+                <h2>6️⃣  N が V </h2>
+                <p>When describing a phenomenon by saying what was felt about it through one or more of the five senses (sight, hearing, etc.) or when telling someone objectively about an event, the subject is marked with the particle が </p>
+<p class="jp"><ruby>雨<rt>あめ</rt></ruby>が <ruby>降<rt>ふ</rt></ruby>って います。</p>
+<p class="romaji">Ame ga futte imasu.</p>
+<p class="bn">বৃষ্টি হচ্ছে।</p>
+
+<p class="jp">ミラーさんが いませんね。</p>
+<p class="romaji">Miraa-san ga imasen ne.</p>
+<p class="bn">মিলার-সান নেই, তাই না?</p>
+          </div>
+           <div class="section">
+                <h2>7️⃣ すみませんが </h2>
+                <p class="jp">
+すみませんが、<ruby>塩<rt>しお</rt></ruby>を <ruby>取<rt>と</rt></ruby>って ください。</p>
+<p class="romaji">Sumimasen ga, shio o totte kudasai.</p>
+<p class="bn">মাফ করবেন, লবণটা দিন / এগিয়ে দিন।</p>
+
+
+<p class="jp"><ruby>失礼<rt>しつれい</rt></ruby>ですが、お<ruby>名前<rt>なまえ</rt></ruby>は？</p>
+<p class="romaji">Shitsurei desu ga, onamae wa?</p>
+<p class="bn">মাফ করবেন, আপনার নাম কী?</p>
+
+             </div>
+                  </div>
+
+            <script>
+function showTime() {
+	const japanTime = new Date().toLocaleString('en-US', {
+		timeZone: 'Asia/Tokyo',
+		weekday: 'short',
+		month: 'short',
+		day: 'numeric',
+		year: 'numeric',
+		hour: '2-digit',
+		minute: '2-digit',
+		second: '2-digit',
+		hour12: true
+	});
+
+	document.getElementById('currentTime').innerHTML = japanTime;
+}
+
+showTime();
+setInterval(showTime, 1000);
+        function toggleMode() {
+            const body = document.body;
+            const icon = document.getElementById('mode-icon');
+            const text = document.getElementById('mode-text');
+
+            body.classList.toggle('dark');
+
+            if (body.classList.contains('dark')) {
+                icon.textContent = '☀️';
+                text.textContent = 'Light Mode';
+            } else {
+                icon.textContent = '🌙';
+                text.textContent = 'Dark Mode';
+            }
+        }
+
+        function toggleFurigana() {
+            const body = document.body;
+            body.classList.toggle('hide-furigana');
+            const btn = document.querySelector('.furigana-btn');
+            if (btn) {
+                btn.textContent = body.classList.contains('hide-furigana') ? 'Show Furigana' : 'Hide Furigana';
+            }
+        }
+
+        const lessonOrder = [
+            'lesson1', 'lesson2', 'lesson3', 'lesson4', 'lesson5', 'lesson6', 'lesson7', 'lesson8', 'lesson9', 'lesson10',
+            'lesson11', 'lesson12', 'lesson13', 'lesson14', 'lesson15', 'lesson16', 'lesson17', 'lesson18', 'lesson19', 'lesson20',
+            'lesson21', 'lesson22', 'lesson23', 'lesson24', 'lesson25'
+        ];
+
+        function showLesson(id) {
+            const lessons = document.querySelectorAll('.lesson');
+            lessons.forEach(l => l.classList.remove('active'));
+            const target = document.getElementById(id);
+            if (target) target.classList.add('active');
+        }
+
+        function getActiveLesson() {
+            const active = document.querySelector('.lesson.active');
+            return active ? active.id : null;
+        }
+
+        function nextLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index < lessonOrder.length - 1) {
+                showLesson(lessonOrder[index + 1]);
+            }
+        }
+
+        function prevLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index > 0) {
+                showLesson(lessonOrder[index - 1]);
+            }
+        }
+
+        function checkAnswer(q, ans) {
+            const el = document.getElementById(q);
+            if (!el) return;
+
+            if (q === 'q1') {
+                el.textContent = ans === 'A' ? '✅ Correct' : '❌ Wrong';
+            }
+
+            if (q === 'q2') {
+                el.textContent = ans === 'A' ? '✅ Correct' : '❌ Wrong';
+            }
+
+            if (q === 'q3') {
+                el.textContent = ans === 'A' ? '✅ Correct (living things use います)' : '❌ Wrong';
+            }
+
+            if (q === 'q4') {
+                el.textContent = ans === 'A' ? '✅ Correct' : '❌ Wrong';
+            }
+
+            if (q === 'q5') {
+                el.textContent = ans === 'A' ? '✅ Correct (object particle を)' : '❌ Wrong';
+            }
+        }
+
+
+
+        function addRuby(text, reading) {
+            return `<ruby>${text}<rt>${reading}</rt></ruby>`;
+        }
+
+        /* basic runtime tests to ensure functions exist */
+        console.assert(typeof toggleMode === 'function', 'toggleMode missing');
+        console.assert(typeof toggleFurigana === 'function', 'toggleFurigana missing');
+        console.assert(typeof showLesson === 'function', 'showLesson missing');
+        console.assert(typeof checkAnswer === 'function', 'checkAnswer missing');
+
+
+
+
+
+
+        function toggleRomaji() {
+            const romaji = document.querySelectorAll('.romaji');
+            const btnText = document.querySelector('.romaji-text');
+
+            romaji.forEach(r => {
+                if (r.style.display === 'none') {
+                    r.style.display = 'block';
+                } else {
+                    r.style.display = 'none';
+                }
+            });
+
+            if (btnText.textContent === 'Hide Romaji') {
+                btnText.textContent = 'Show Romaji';
+            } else {
+                btnText.textContent = 'Hide Romaji';
+            }
+        }
+    </script>
+
+</body>
+
+</html>
