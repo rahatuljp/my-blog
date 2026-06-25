@@ -1,141 +1,2047 @@
-<!-- HEADER BANNER -->
-<div class="header-banner">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JLPT N5 Kanji Writing Guide</title>
+    <style>
+        :root {
+            --bg-color: #f7f9fa;
+            --card-bg: #ffffff;
+            --text-main: #1a202c;
+            --text-muted: #718096;
+            --stroke-active: #e53e3e;
+            --stroke-base: #cbd5e0;
+            --accent-blue: #3182ce;
+            --border-color: #e2e8f0;
+        }
 
-  <!-- WAVES -->
-  <div class="wave wave1"></div>
-  <div class="wave wave2"></div>
-  <div class="wave wave3"></div>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-  <div class="banner-content">
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            color: #2d3748;
+        }
 
-    <h1 class="jp title">
-      やさしい<ruby>日本語<rt>にほんご</rt></ruby>レッスン
-    </h1>
+        .subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
 
-    <p class="jp sub">
-      もうすぐ<ruby>公開<rt>こうかい</rt></ruby>！しばらくお<ruby>待<rt>ま</rt></ruby>ちください。
-    </p>
+        .kanji-container {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            max-width: 850px;
+            width: 100%;
+        }
 
-    <p class="romaji">
-      Yasashii Nihongo Lesson – Coming Soon!
-    </p>
+        .kanji-row {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
 
-    <p class="bn">
-      সহজ জাপানি লেসন শীঘ্রই আসছে। অনুগ্রহ করে অপেক্ষা করুন।
-    </p>
+        .meta-side {
+            min-width: 120px;
+            text-align: center;
+            border-right: 2px solid #edf2f7;
+            padding-right: 16px;
+        }
 
-  </div>
-</div>
+        .main-char {
+            font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+            font-size: 3.5rem;
+            font-weight: bold;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
 
-<style>
-.header-banner{
-  position:relative;
-  background: linear-gradient(135deg, #3498db, #6dd5fa);
-  padding:70px 20px;
-  text-align:center;
-  color:white;
-  border-radius:12px;
-  overflow:hidden;
-}
+        .meaning {
+            font-weight: bold;
+            color: #4a5568;
+            font-size: 0.95rem;
+        }
 
-/* CONTENT */
-.banner-content{
-  position:relative;
-  z-index:2;
-}
+        .count-badge {
+            font-size: 0.75rem;
+            background: #edf2f7;
+            padding: 2px 8px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 6px;
+        }
 
-.banner-content h1{
-  font-size:32px;
-  margin-bottom:10px;
-}
+        .writing-steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
 
-.banner-content .sub{
-  font-size:18px;
-  margin-bottom:15px;
-}
+        .svg-box {
+            width: 70px;
+            height: 70px;
+            border: 1px dashed var(--stroke-base);
+            background: var(--card-bg);
+            position: relative;
+            border-radius: 4px;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
 
-.banner-content .romaji{
-  font-style:italic;
-  opacity:0.9;
-  margin-bottom:8px;
-}
+        .svg-box::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(to right, var(--border-color) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--border-color) 1px, transparent 1px);
+            background-position: 35px 0, 0 35px;
+            pointer-events: none;
+        }
 
-.banner-content .bn{
-  font-size:16px;
-}
+        .svg-box svg {
+            width: 100%;
+            height: 100%;
+        }
 
-/* RUBY */
-ruby rt{
-  font-size:12px;
-  color:#ffeaa7;
-}
+        .stroke-path {
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
 
-/* 🌊 WAVES */
-.wave{
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:200%;
-  height:100px;
-  background:rgba(255,255,255,0.2);
-  border-radius:40%;
-  animation:waveMove 10s linear infinite;
-}
+        .base-stroke {
+            stroke: var(--stroke-base);
+            stroke-width: 5;
+        }
 
-/* different layers */
-.wave1{
-  opacity:0.4;
-  animation-duration:12s;
-}
+        /* Active stroke with dynamic dash animation setup */
+        .active-stroke {
+            stroke: var(--stroke-active);
+            stroke-width: 6;
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            animation: drawStroke 1.2s ease-in-out forwards;
+        }
 
-.wave2{
-  bottom:10px;
-  opacity:0.3;
-  animation-duration:8s;
-}
+        @keyframes drawStroke {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
 
-.wave3{
-  bottom:20px;
-  opacity:0.2;
-  animation-duration:6s;
-}
+        .step-num {
+            position: absolute;
+            top: 2px;
+            left: 4px;
+            font-size: 0.7rem;
+            background: var(--accent-blue);
+            color: white;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: sans-serif;
+            font-weight: bold;
+            z-index: 10;
+        }
 
-@keyframes waveMove{
-  0%{ transform:translateX(0); }
-  100%{ transform:translateX(-50%); }
-}
+        .arrow {
+            font-size: 1.2rem;
+            color: #a0aec0;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
 
-/* TEXT ANIMATION */
-.banner-content > *{
-  opacity:0;
-  transform:translateY(30px);
-  animation:fadeUp 1s ease forwards;
-}
+    <h1>How to Write N5 Kanji</h1>
+    <div class="subtitle">Follow the steps left-to-right to see exact brush strokes. Click any block to replay its stroke drawing animation.</div>
 
-.banner-content h1{ animation-delay:0.2s; }
-.banner-content .sub{ animation-delay:0.4s; }
-.banner-content .romaji{ animation-delay:0.6s; }
-.banner-content .bn{ animation-delay:0.8s; }
+    <div class="kanji-container" id="kanjiContainer"></div>
 
-@keyframes fadeUp{
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
+    <script>
+        // Expanded Data Matrix including Day, Month, Tree, Water, and Fire
+        const kanjiData = [
+    {
+        char: "一", meaning: "One", strokesCount: 1,
+        paths: ["M 15,50 L 85,50"]
+    },
+    {
+        char: "二", meaning: "Two", strokesCount: 2,
+        paths: ["M 25,35 L 75,35", "M 15,65 L 85,65"]
+    },
+    {
+        char: "三", meaning: "Three", strokesCount: 3,
+        paths: ["M 25,28 L 75,28", "M 30,50 L 70,50", "M 15,72 L 85,72"]
+    },
+    {
+        char: "四", meaning: "Four", strokesCount: 5,
+        paths: [
+            "M 25,20 L 25,80",
+            "M 25,20 L 75,20 L 75,80",
+            "M 40,38 Q 35,55 30,62",
+            "M 55,35 Q 68,45 70,62",
+            "M 25,80 L 75,80"
+        ]
+    },
+    {
+        char: "五", meaning: "Five", strokesCount: 4,
+        paths: [
+            "M 25,25 L 75,25",
+            "M 48,25 L 38,55",
+            "M 38,55 L 72,55 L 72,80",
+            "M 20,80 L 80,80"
+        ]
+    },
+    {
+        char: "六", meaning: "Six", strokesCount: 4,
+        paths: [
+            "M 50,15 L 50,30",
+            "M 20,42 L 80,42",
+            "M 38,55 Q 25,70 18,80",
+            "M 62,55 Q 75,70 85,80"
+        ]
+    },
+    {
+        char: "七", meaning: "Seven", strokesCount: 2,
+        paths: [
+            "M 20,50 C 45,45 60,40 80,35",
+            "M 45,20 L 45,65 Q 45,80 65,80 C 75,80 80,72 82,65"
+        ]
+    },
+    {
+        char: "八", meaning: "Eight", strokesCount: 2,
+        paths: [
+            "M 42,30 Q 32,50 18,75",
+            "M 58,25 Q 70,50 85,78"
+        ]
+    },
+    {
+        char: "九", meaning: "Nine", strokesCount: 2,
+        paths: [
+            "M 45,20 Q 40,55 20,80",
+            "M 25,38 L 70,38 L 70,75 Q 70,85 82,85"
+        ]
+    },
+    {
+        char: "十", meaning: "Ten", strokesCount: 2,
+        paths: ["M 15,50 L 85,50", "M 50,15 L 50,85"]
+    },
+    {
+        char: "百", meaning: "Hundred (ひゃく)", strokesCount: 6,
+        paths: [
+            "M 20,22 L 80,22", // Stroke 1: Top horizontal line
+            "M 48,22 L 35,42", // Stroke 2: Short slant down
+            "M 32,42 L 32,85", // Stroke 3: Box left vertical
+            "M 32,42 L 68,42 L 68,85", // Stroke 4: Box top-right outer corner
+            "M 32,63 L 68,63", // Stroke 5: Box middle horizontal line
+            "M 32,85 L 68,85"  // Stroke 6: Box bottom closing line
+        ]
+    },
+    {
+        char: "千", meaning: "Thousand (せん)", strokesCount: 3,
+        paths: [
+            "M 75,20 Q 45,30 25,35", // Stroke 1: Top slanted slash
+            "M 15,52 L 85,52",        // Stroke 2: Main horizontal crossbar
+            "M 50,35 L 50,88"         // Stroke 3: Central vertical down-stroke
+        ]
+    },
+    {
+        char: "万", meaning: "Ten Thousand (まん)", strokesCount: 3,
+        paths: [
+            "M 20,25 L 80,25",              // Stroke 1: Top horizontal bar
+            "M 46,25 L 35,80 Q 30,85 20,85", // Stroke 2: Left slanted curve downward
+            "M 44,25 L 44,48 L 72,48 Q 78,48 74,75 Q 71,85 62,85" // Stroke 3: Hooking right structure
+        ]
+    },
+    {
+        char: "人", meaning: "Person", strokesCount: 2,
+        paths: ["M 50,20 Q 45,55 15,80", "M 43,45 Q 65,65 85,80"]
+    },
+    {
+        char: "口", meaning: "Mouth", strokesCount: 3,
+        paths: ["M 25,25 L 25,75", "M 25,25 L 75,25 L 75,75", "M 23,75 L 77,75"]
+    },
+    
+    {
+        char: "月", meaning: "Moon / Month / Monday (げつ)", strokesCount: 4,
+        paths: [
+            "M 30,15 L 30,85",                        // Stroke 1: Left vertical line
+            "M 30,15 L 70,15 L 70,85 Q 70,85 62,80",  // Stroke 2: Top and right outer hook frame
+            "M 30,40 L 70,40",                        // Stroke 3: Top inner horizontal separator
+            "M 30,60 L 70,60"                         // Stroke 4: Bottom inner horizontal separator
+        ]
+    },
+    {
+        char: "火", meaning: "Fire / Tuesday (か)", strokesCount: 4,
+        paths: [
+            "M 25,35 Q 20,48 18,55",  // Stroke 1: Left small drop dot
+            "M 75,35 Q 80,48 82,55",  // Stroke 2: Right small drop dot
+            "M 43,20 Q 38,60 15,82",  // Stroke 3: Long sweeping down-left brush line
+            "M 42,48 Q 63,68 85,82"   // Stroke 4: Long balancing down-right matching sweep
+        ]
+    },
+    {
+        char: "水", meaning: "Water / Wednesday (すい)", strokesCount: 4,
+        paths: [
+            "M 50,15 L 50,75 Q 50,85 40,80",  // Stroke 1: Central vertical spine hook line
+            "M 15,40 Q 30,35 35,50",          // Stroke 2: Left top short folding angle
+            "M 18,75 Q 35,65 50,55",          // Stroke 3: Left bottom upward flick line
+            "M 50,50 Q 68,62 85,78"           // Stroke 4: Right downward sweeping support brush
+        ]
+    },
+    {
+        char: "木", meaning: "Tree / Wood / Thursday (もく)", strokesCount: 4,
+        paths: [
+            "M 15,40 L 85,40",        // Stroke 1: Wide horizontal crossbar beam
+            "M 50,15 L 50,85",        // Stroke 2: Central structural column trunk line
+            "M 50,40 Q 35,65 15,80",  // Stroke 3: Lower left sweeping diagonal brush line
+            "M 50,40 Q 65,65 85,80"   // Stroke 4: Lower right sweeping balancing brush line
+        ]
+    },
+    {
+        char: "金", meaning: "Gold / Money / Friday (きん)", strokesCount: 8,
+        paths: [
+            "M 50,12 Q 32,28 15,45",       // Stroke 1: Roof top-left deep sweep brush
+            "M 50,12 Q 68,28 85,45",       // Stroke 2: Roof top-right matching drop sweep
+            "M 32,45 L 68,45",             // Stroke 3: Upper horizontal connection bar
+            "M 22,60 L 78,60",             // Stroke 4: Middle long primary crossbar deck
+            "M 50,45 L 50,78",             // Stroke 5: Center supporting vertical pillar line
+            "M 32,70 Q 28,74 24,78",       // Stroke 6: Left interior detached sparkle drop
+            "M 68,70 Q 72,74 76,78",       // Stroke 7: Right interior detached sparkle drop
+            "M 12,82 L 88,82"              // Stroke 8: Solid earth foundational baseline footer
+        ]
+    },
+    {
+        char: "土", meaning: "Earth / Soil / Saturday (ど)", strokesCount: 3,
+        paths: [
+            "M 25,45 L 75,45",  // Stroke 1: Upper shorter horizontal crossbar
+            "M 50,18 L 50,82",  // Stroke 2: Core vertical grounding column axis
+            "M 12,82 L 88,82"   // Stroke 3: Lower long foundational grounding base line
+        ]
+    },
+    {
+        char: "日", meaning: "Day / Sun", strokesCount: 4,
+        paths: [
+            "M 25,20 L 25,80",
+            "M 25,20 L 75,20 L 75,80",
+            "M 25,50 L 75,50",
+            "M 25,80 L 75,80"
+        ]
+    },
+    {
+        char: "曜", meaning: "Day of the week / Dazzling (ようび)", strokesCount: 18,
+        paths: [
+            // Left component: 日 (Sun radical - scaled)
+            "M 12,24 L 12,48 L 26,48 L 26,24 Z", 
+            "M 12,36 L 26,36", 
+            // Right component upper: 羽 variation / Multi-horizontal bars
+            "M 32,20 L 48,20", 
+            "M 30,30 L 52,30", 
+            "M 35,20 L 35,42", 
+            "M 45,20 L 45,42", 
+            "M 30,42 L 52,42", 
+            // Right component middle: Multi-horizontal bars tier 2
+            "M 32,54 L 48,54", 
+            "M 30,64 L 52,64", 
+            "M 35,54 L 35,76", 
+            "M 45,54 L 45,76", 
+            "M 30,76 L 52,76", 
+            // Right component lower: 隹 shape foundation lines
+            "M 10,85 L 54,85", 
+            "M 28,48 L 28,85",
+            "M 36,85 Q 40,75 42,65",
+            "M 44,85 Q 48,75 50,65",
+            "M 18,85 Q 22,75 24,65",
+            "M 16,55 L 26,55"
+        ]
+    },
+    {
+        char: "山", meaning: "Mountain", strokesCount: 3,
+        paths: [
+            "M 50,20 L 50,80",
+            "M 25,45 L 25,75 L 75,75",
+            "M 75,45 L 75,75"
+        ]
+    },
+    {
+        char: "川", meaning: "River", strokesCount: 3,
+        paths: [
+            "M 30,25 L 30,75 Q 30,80 25,80",
+            "M 50,30 L 50,75",
+            "M 70,20 L 70,80"
+        ]
+    },
+    {
+        char: "田", meaning: "Rice Field", strokesCount: 5,
+        paths: [
+            "M 25,22 L 25,78",
+            "M 25,22 L 75,22 L 75,78",
+            "M 50,22 L 50,78",
+            "M 25,50 L 75,50",
+            "M 25,78 L 75,78"
+        ]
+    },
+     
+    {
+        char: "父", meaning: "Father (ちち)", strokesCount: 4,
+        paths: [
+            "M 32,22 Q 35,32 42,38", // Stroke 1: Top-left short slash
+            "M 68,20 Q 64,30 55,38", // Stroke 2: Top-right short counter-slash
+            "M 50,38 Q 33,58 15,82", // Stroke 3: Long sweeping stroke down-left
+            "M 43,45 Q 65,65 85,82"  // Stroke 4: Long balancing stroke down-right
+        ]
+    },
+    {
+        char: "母", meaning: "Mother (はは)", strokesCount: 5,
+        paths: [
+            "M 52,18 L 35,45 L 35,70 Q 35,82 45,82 L 60,82", // Stroke 1: Outer fold and baseline fold
+            "M 52,18 L 65,48 L 54,80", // Stroke 2: Main vertical downward hook
+            "M 15,48 L 85,48",         // Stroke 3: Long horizontal cutting line
+            "M 48,32 A 3,3 0 1 1 48,31", // Stroke 4: Top interior dot
+            "M 48,65 A 3,3 0 1 1 48,64"  // Stroke 5: Bottom interior dot
+        ]
+    },
+    {
+        char: "目", meaning: "Eye (め)", strokesCount: 5,
+        paths: [
+            "M 28,18 L 28,85",          // Stroke 1: Left vertical line
+            "M 28,18 L 72,18 L 72,85", // Stroke 2: Top and right outer frame
+            "M 28,40 L 72,40",         // Stroke 3: Top inner separator
+            "M 28,62 L 72,62",         // Stroke 4: Bottom inner separator
+            "M 28,85 L 72,85"          // Stroke 5: Final enclosing baseline
+        ]
+    },
+    {
+        char: "耳", meaning: "Ear (みみ)", strokesCount: 6,
+        paths: [
+            "M 18,22 L 82,22", // Stroke 1: Top long horizontal cap
+            "M 36,22 L 36,80", // Stroke 2: Left internal spine line
+            "M 48,22 L 48,60", // Stroke 3: Upper internal dividing block
+            "M 48,40 L 64,40", // Stroke 4: Horizontal connector line
+            "M 48,58 L 64,58", // Stroke 5: Horizontal bottom connector
+            "M 65,22 L 65,85"  // Stroke 6: Main right frame vertical drop
+        ]
+    },
+    {
+        char: "手", meaning: "Hand (て)", strokesCount: 4,
+        paths: [
+            "M 75,18 Q 45,24 25,28", // Stroke 1: Sweeping counter-balance dash
+            "M 22,44 L 78,44",        // Stroke 2: Upper horizontal guide line
+            "M 15,64 L 85,64",        // Stroke 3: Main long center horizontal bar
+            "M 50,44 L 50,78 Q 50,88 36,85" // Stroke 4: Center hook drop-stroke
+        ]
+    },
+    {
+        char: "足", meaning: "Foot / Leg (あし)", strokesCount: 7,
+        paths: [
+            "M 32,20 L 32,50",          // Stroke 1: Top box left vertical
+            "M 32,20 L 68,20 L 68,50", // Stroke 2: Top box right header corner
+            "M 32,35 L 68,35",         // Stroke 3: Top box internal divide line
+            "M 32,50 L 68,50",         // Stroke 4: Top box enclosure floor line
+            "M 50,50 L 50,70",         // Stroke 5: Vertical connecting stem line
+            "M 50,70 L 22,70 L 22,82", // Stroke 6: Left extended foot support leg
+            "M 50,70 Q 66,76 82,85"    // Stroke 7: Right sweeping stabilizing base
+        ]
+    },
+    {
+        char: "男", meaning: "Man (おとこ)", strokesCount: 7,
+        paths: [
+            "M 26,18 L 26,50",          // Stroke 1: Top box (田) left line
+            "M 26,18 L 74,18 L 74,50", // Stroke 2: Top box header corner edge
+            "M 50,18 L 50,50",         // Stroke 3: Top box internal split vertical
+            "M 26,34 L 74,34",         // Stroke 4: Top box internal split horizontal
+            "M 26,50 L 74,50",         // Stroke 5: Top box baseline border
+            "M 18,65 Q 48,60 82,56",   // Stroke 6: Lower structure (力) top-cross
+            "M 62,56 L 62,75 Q 62,85 50,85 C 45,85 36,83 30,80" // Stroke 7: Lower hook tail
+        ]
+    },
+    {
+        char: "女", meaning: "Woman (おんな)", strokesCount: 3,
+        paths: [
+            "M 50,15 L 35,48 L 72,78 Q 78,82 66,82", // Stroke 1: Master intersecting loop vector
+            "M 42,38 Q 28,60 15,82",                 // Stroke 2: Left anchor line down
+            "M 18,52 L 82,52"                        // Stroke 3: Center structural crossbar
+        ]
+    },
+    {
+        char: "子", meaning: "Child (こども)", strokesCount: 3,
+        paths: [
+            "M 28,25 L 72,25 L 42,48",       // Stroke 1: Upper ears-loop hook segment
+            "M 42,48 Q 58,62 58,78 Q 58,85 45,85", // Stroke 2: Lower continuous center hook curve
+            "M 15,52 L 85,52"                // Stroke 3: Main long horizontal floor cross
+        ]
+    },
+    {
+        char: "車", meaning: "Car / Vehicle (くるま)", strokesCount: 7,
+        paths: [
+            "M 25,25 L 75,25",          // Stroke 1: Top structural horizontal spacer
+            "M 22,40 L 22,65",          // Stroke 2: Center cabin window box left wall
+            "M 22,40 L 78,40 L 78,65", // Stroke 3: Center cabin box right window seal
+            "M 22,52 L 78,52",         // Stroke 4: Center cabin divider line
+            "M 22,65 L 78,65",         // Stroke 5: Center cabin baseline panel
+            "M 12,78 L 88,78",         // Stroke 6: Lower critical wheelbase horizontal bar
+            "M 50,14 L 50,88"          // Stroke 7: Full master axial baseline drop
+        ]
+    },
+    {
+        char: "上", meaning: "Up / Above (うえ)", strokesCount: 3,
+        paths: [
+            "M 50,20 L 50,82", // Stroke 1: Center core vertical spine down
+            "M 50,50 L 78,50", // Stroke 2: Hanging middle balance tag
+            "M 18,82 L 82,82"  // Stroke 3: Long base ground horizontal line
+        ]
+    },
+    {
+        char: "下", meaning: "Down / Below (した)", strokesCount: 3,
+        paths: [
+            "M 18,22 L 82,22", // Stroke 1: Long ceiling horizontal line
+            "M 50,22 L 50,82", // Stroke 2: Central structural column drop
+            "M 52,48 Q 68,60 78,68" // Stroke 3: Bottom trailing dynamic drop point
+        ]
+    },
+    {
+        char: "中", meaning: "Middle / Inside (なか)", strokesCount: 4,
+        paths: [
+            "M 22,30 L 22,65",          // Stroke 1: Central box left profile wall
+            "M 22,30 L 78,30 L 78,65", // Stroke 2: Central box upper corner right profile
+            "M 22,65 L 78,65",         // Stroke 3: Central box enclosing ground link
+            "M 50,15 L 50,88"          // Stroke 4: Master piercing division pole
+        ]
+    },
+    {
+        char: "多", meaning: "Many / Much (おおい)", strokesCount: 6,
+        paths: [
+            "M 45,15 Q 35,22 25,32",        // Stroke 1: Top component short slash
+            "M 25,32 Q 55,30 45,48 Q 35,55 18,60", // Stroke 2: Top component box curve
+            "M 33,42 A 2.5,2.5 0 1 1 33,41", // Stroke 3: Top component dot
+            "M 48,48 Q 38,58 28,68",        // Stroke 4: Bottom component slash
+            "M 28,68 Q 60,65 52,85 Q 40,90 22,92", // Stroke 5: Bottom component box curve
+            "M 38,78 A 2.5,2.5 0 1 1 38,77"  // Stroke 6: Bottom component dot
+        ]
+    },
+    {
+        char: "右", meaning: "Right (みぎ)", strokesCount: 5,
+        paths: [
+            "M 20,30 L 80,30",          // Stroke 1: Long horizontal slant down
+            "M 50,12 Q 40,48 20,82",    // Stroke 2: Left sweeping diagonal tail
+            "M 32,50 L 32,85",          // Stroke 3: Lower box (Mouth) left wall
+            "M 32,50 L 70,50 L 70,85", // Stroke 4: Lower box upper right corner
+            "M 32,85 L 70,85"          // Stroke 5: Lower box bottom closer
+        ]
+    },
+    {
+        char: "左", meaning: "Left (ひだり)", strokesCount: 5,
+        paths: [
+            "M 50,12 Q 40,45 20,78",    // Stroke 1: Left sweeping diagonal tail
+            "M 20,35 L 80,35",          // Stroke 2: Long horizontal crossbar
+            "M 38,48 L 38,82",          // Stroke 3: Lower component vertical hook
+            "M 38,55 L 75,55",          // Stroke 4: Lower component short crossbar
+            "M 25,82 L 85,82"          // Stroke 5: Lower component long base line
+        ]
+    },
+    {
+        char: "雨", meaning: "Rain (あめ)", strokesCount: 8,
+        paths: [
+            "M 25,20 L 75,20",          // Stroke 1: Top capping horizontal bar
+            "M 22,38 L 22,85",          // Stroke 2: Main canopy frame left border
+            "M 22,38 L 78,38 L 78,85 Q 78,85 70,80", // Stroke 3: Main canopy corner frame hook
+            "M 50,22 L 50,80",          // Stroke 4: Central dividing ridge line
+            "M 33,50 A 2,2 0 1 1 33,49", // Stroke 5: Top-left rain droplet
+            "M 33,70 A 2,2 0 1 1 33,69", // Stroke 6: Bottom-left rain droplet
+            "M 65,50 A 2,2 0 1 1 65,49", // Stroke 7: Top-right rain droplet
+            "M 65,70 A 2,2 0 1 1 65,69"  // Stroke 8: Bottom-right rain droplet
+        ]
+    },
+    {
+        char: "外", meaning: "Outside (そと)", strokesCount: 5,
+        paths: [
+            "M 32,20 Q 24,28 15,36",        // Stroke 1: Left component top slash
+            "M 16,38 Q 42,35 34,58 Q 26,72 12,78", // Stroke 2: Left component enclosure arc
+            "M 24,48 A 2.5,2.5 0 1 1 24,47", // Stroke 3: Left component anchor dot
+            "M 55,18 L 55,85 Q 55,92 42,88", // Stroke 4: Right component vertical hook
+            "M 58,45 Q 78,58 88,72"         // Stroke 5: Right component stray slash
+        ]
+    },
+    {
+        char: "間", meaning: "Between / Interval (あいだ)", strokesCount: 12,
+        paths: [
+            "M 22,25 L 22,88",          // Stroke 1: Gate left pillar vertical
+            "M 22,25 L 45,20 L 45,55", // Stroke 2: Gate left header frame corner
+            "M 22,40 L 45,37",         // Stroke 3: Gate left interior crossbar
+            "M 22,55 L 45,52",         // Stroke 4: Gate left bottom door seal
+            "M 58,20 L 80,25 L 80,88", // Stroke 5: Gate right header frame corner and post
+            "M 58,20 L 58,55",          // Stroke 6: Gate right interior panel line
+            "M 58,37 L 80,40",         // Stroke 7: Gate right interior crossbar
+            "M 58,52 L 80,55",         // Stroke 8: Gate right bottom door seal
+            "M 36,62 L 36,82",          // Stroke 9: Sun interior left wall
+            "M 36,62 L 66,62 L 66,82", // Stroke 10: Sun interior right corner
+            "M 36,72 L 66,72",         // Stroke 11: Sun interior window separator
+            "M 36,82 L 66,82"          // Stroke 12: Sun interior baseline
+        ]
+    },
+    {
+        char: "円", meaning: "Yen / Circle (えん)", strokesCount: 4,
+        paths: [
+            "M 28,25 L 28,88",          // Stroke 1: Left boundary wall
+            "M 28,25 L 75,25 L 75,88 Q 75,88 65,82", // Stroke 2: Outer roof right corner hook
+            "M 28,50 L 75,50",         // Stroke 3: Internal structural separator
+            "M 50,27 L 50,72 Q 50,85 32,85" // Stroke 4: Center hanging hook spine
+        ]
+    },
+    {
+        char: "金", meaning: "Money / Gold (おかね)", strokesCount: 8,
+        paths: [
+            "M 50,12 Q 32,28 15,45",    // Stroke 1: Roof left dynamic sweep
+            "M 50,12 Q 68,28 85,45",    // Stroke 2: Roof right balancing drop
+            "M 32,45 L 68,45",          // Stroke 3: Upper core crossbar
+            "M 22,60 L 78,60",          // Stroke 4: Middle long horizontal frame line
+            "M 50,45 L 50,78",          // Stroke 5: Center supporting vertical pillar
+            "M 32,70 Q 28,74 24,78",    // Stroke 6: Left interior sparkle point
+            "M 68,70 Q 72,74 76,78",    // Stroke 7: Right interior sparkle point
+            "M 12,82 L 88,82"          // Stroke 8: Solid earth structural baseline
+        ]
+    },
+    {
+        char: "日", meaning: "Day / Sun (にち)", strokesCount: 4,
+        paths: [
+            "M 25,20 L 25,80",
+            "M 25,20 L 75,20 L 75,80",
+            "M 25,50 L 75,50",
+            "M 25,80 L 75,80"
+        ]
+    },
+    {
+        char: "毎", meaning: "Every (まい)", strokesCount: 6,
+        paths: [
+            "M 55,14 Q 42,22 25,26",        // Stroke 1: Top canopy initial dash
+            "M 22,45 L 78,45",              // Stroke 2: Upper horizontal boundary bar
+            "M 48,26 L 32,65 L 68,65 Q 78,65 74,80", // Stroke 3: Sweeping continuous torso frame
+            "M 15,62 L 85,62",              // Stroke 4: Long piercing central crossbar
+            "M 42,76 A 2,2 0 1 1 42,75",     // Stroke 5: Upper internal core particle dot
+            "M 58,76 A 2,2 0 1 1 58,75"      // Stroke 6: Lower internal core particle dot
+        ]
+    },
+    {
+        char: "毎日", meaning: "Every Day (まいにち)", strokesCount: 10,
+        paths: [
+            // Character 1: 毎 (Offset to the left side of frame)
+            "M 35,16 Q 28,22 18,25", "M 15,40 L 48,40", "M 32,25 L 22,55 L 42,55 Q 48,55 45,68", "M 10,52 L 52,52", "M 26,62 A 1.5,1.5 0 1 1 26,61", "M 36,62 A 1.5,1.5 0 1 1 36,61",
+            // Character 2: 日 (Offset to the right side of frame)
+            "M 62,28 L 62,78", "M 62,28 L 90,28 L 90,78", "M 62,53 L 90,53", "M 62,78 L 90,78"
+        ]
+    },
+    {
+        char: "今", meaning: "Now (いま)", strokesCount: 4,
+        paths: [
+            "M 50,15 Q 32,32 15,52", // Stroke 1: Apex left long sweep
+            "M 50,15 Q 68,32 85,52", // Stroke 2: Apex right matching drop
+            "M 32,55 L 68,55",       // Stroke 3: Internal horizontal shelf bar
+            "M 45,55 L 35,78 Q 55,75 72,82" // Stroke 4: Floating counter-hook foundation
+        ]
+    },
+    {
+        char: "年", meaning: "Year (ねん)", strokesCount: 6,
+        paths: [
+            "M 48,15 Q 38,24 25,28", // Stroke 1: Short top left slash
+            "M 22,42 L 78,42",        // Stroke 2: Top horizontal bar
+            "M 25,58 L 75,58",        // Stroke 3: Middle shorter horizontal bar
+            "M 38,42 L 32,58",        // Stroke 4: Left interior connection join
+            "M 12,76 L 88,76",        // Stroke 5: Long structural ground baseline
+            "M 50,28 L 50,92"         // Stroke 6: Master central structural spine column
+        ]
+    },
+    {
+        char: "本", meaning: "Book / Origin (ほん)", strokesCount: 5,
+        paths: [
+            "M 18,38 L 82,38", // Stroke 1: Main broad horizontal crossbar
+            "M 50,12 L 50,82", // Stroke 2: Central standard grounding spine pillar
+            "M 50,38 Q 35,62 15,82", // Stroke 3: Left low diagonal sweeping tail
+            "M 50,38 Q 65,62 85,82", // Stroke 4: Right low diagonal matching sweep
+            "M 32,68 L 68,68"  // Stroke 5: Bottom central origin cross stamp
+        ]
+    },
+    {
+        char: "国", meaning: "Country (おくに)", strokesCount: 8,
+        paths: [
+            "M 20,15 L 20,88",          // Stroke 1: Enclosure outer left wall
+            "M 20,15 L 80,15 L 80,88", // Stroke 2: Enclosure outer right roof corner
+            "M 35,32 L 68,32",         // Stroke 3: Interior King (玉) top tier bar
+            "M 35,48 L 65,48",         // Stroke 4: Interior King mid tier bar
+            "M 48,32 L 48,68",         // Stroke 5: Interior King vertical support
+            "M 32,66 L 70,66",         // Stroke 6: Interior King bottom tier bar
+            "M 58,56 A 1.5,1.5 0 1 1 58,55", // Stroke 7: Interior Jade treasure point dot
+            "M 20,88 L 80,88"          // Stroke 8: Enclosure base ground lock line
+        ]
+    },
+    {
+        char: "語", meaning: "Word / Language (ことば)", strokesCount: 14,
+        paths: [
+            // Left component: 言 (Speech)
+            "M 26,18 L 36,18", "M 16,30 L 44,30", "M 20,40 L 40,40", "M 20,50 L 40,50", "M 20,60 L 20,76", "M 20,60 L 40,60 L 40,76", "M 20,76 L 40,76",
+            // Right component: 吾 (Myself)
+            "M 56,22 L 82,22", "M 68,22 L 52,42", "M 50,42 L 88,42", "M 58,54 L 58,82", "M 58,54 L 82,54 L 82,82", "M 58,68 L 82,68", "M 58,82 L 82,82"
+        ]
+    },
+     {
+        char: "音", meaning: "Sound (おと)", strokesCount: 9,
+        paths: [
+            "M 50,12 L 50,22",          // Stroke 1: Top stand point dash
+            "M 20,25 L 80,25",          // Stroke 2: Upper horizontal hat bar
+            "M 35,38 L 35,55",          // Stroke 3: Middle left standing wall
+            "M 35,38 L 68,38 L 68,55", // Stroke 4: Middle right standing hook corner
+            "M 22,46 L 78,46",         // Stroke 5: Middle interior horizontal separator
+            "M 35,55 L 68,55",         // Stroke 6: Middle stand closure bar
+            "M 28,68 L 28,88",          // Stroke 7: Sun box lower left vertical wall
+            "M 28,68 L 72,68 L 72,88", // Stroke 8: Sun box lower right boundary hook
+            "M 28,88 L 72,88"          // Stroke 9: Sun box final lower baseline edge
+        ]
+    },
+    {
+        char: "語", meaning: "Word / Language (ご)", strokesCount: 14,
+        paths: [
+            // Left component: 言 (Speech)
+            "M 26,18 L 36,18", "M 16,30 L 44,30", "M 20,40 L 40,40", "M 20,50 L 40,50", "M 20,60 L 20,76", "M 20,60 L 40,60 L 40,76", "M 20,76 L 40,76",
+            // Right component: 吾 (Myself)
+            "M 56,22 L 82,22", "M 68,22 L 52,42", "M 50,42 L 88,42", "M 58,54 L 58,82", "M 58,54 L 82,54 L 82,82", "M 58,68 L 82,68", "M 58,82 L 82,82"
+        ]
+    },
+    {
+        char: "店", meaning: "Shop / Store (みせ)", strokesCount: 8,
+        paths: [
+            "M 50,12 L 50,20",          // Stroke 1: Top canopy dot
+            "M 20,22 L 82,22",          // Stroke 2: Wide canopy hat horizontal
+            "M 28,22 Q 24,52 16,80",    // Stroke 3: Left side sweeping lean leg
+            "M 45,35 L 75,35",          // Stroke 4: Inner upper tier cross bar
+            "M 58,24 L 58,48",          // Stroke 5: Inner vertical link post
+            "M 35,58 L 35,85",          // Stroke 6: Lower box left frame line
+            "M 35,58 L 72,58 L 72,85", // Stroke 7: Lower box upper right frame line
+            "M 35,85 L 72,85"          // Stroke 8: Lower box ground edge lock
+        ]
+    },
+    {
+        char: "駅", meaning: "Station (えき)", strokesCount: 14,
+        paths: [
+            // Left component: 馬 (Horse)
+            "M 15,22 L 38,22", "M 15,22 L 15,62", "M 15,40 L 36,40", "M 15,50 L 36,50", "M 15,62 L 38,62", "M 28,22 L 28,62 Q 28,70 36,70", "M 12,80 A 1,1 0 1 1 12,79", "M 20,80 A 1,1 0 1 1 20,79", "M 28,80 A 1,1 0 1 1 28,79", "M 36,80 A 1,1 0 1 1 36,79",
+            // Right component: 尺 (Ruler)
+            "M 46,28 L 82,28 L 54,48", "M 48,44 Q 54,65 44,82", "M 55,48 L 85,82", "M 70,14 L 70,28"
+        ]
+    },
+    {
+        char: "色", meaning: "Color (いろ)", strokesCount: 6,
+        paths: [
+            "M 28,15 L 48,15 Q 38,32 18,40", // Stroke 1: Top left side boundary cross
+            "M 48,15 L 75,15 L 75,35 Q 75,42 64,42", // Stroke 2: Top right corner bracket link
+            "M 15,50 L 85,50",              // Stroke 3: Main critical division separator
+            "M 48,42 L 48,64",              // Stroke 4: Core central connector pole
+            "M 32,62 L 32,88",              // Stroke 5: Lower bottom wall curve guide
+            "M 32,62 L 68,62 L 68,88 Q 68,92 80,92" // Stroke 6: Tail master balance hook loop
+        ]
+    },
+    {
+        char: "白", meaning: "White (しろい)", strokesCount: 5,
+        paths: [
+            "M 50,14 Q 42,24 35,30",    // Stroke 1: Top tracking accent spark slash
+            "M 26,32 L 26,85",          // Stroke 2: Outer body box left profile wall
+            "M 26,32 L 74,32 L 74,85", // Stroke 3: Outer body box upper right framework
+            "M 26,58 L 74,58",         // Stroke 4: Internal partition layout line
+            "M 26,85 L 74,85"          // Stroke 5: Ground baseline boundary lock
+        ]
+    },
+    {
+        char: "黒", meaning: "Black (くろい)", strokesCount: 11,
+        paths: [
+            "M 28,24 L 72,24",          // Stroke 1: Top window header grid horizontal
+            "M 26,38 L 74,38",          // Stroke 2: Top window lower boundary separator
+            "M 38,14 L 38,38",          // Stroke 3: Top window left internal slot bar
+            "M 62,14 L 62,38",          // Stroke 4: Top window right internal slot bar
+            "M 18,52 L 82,52",          // Stroke 5: Lower central master bridge cross
+            "M 33,52 L 22,72 L 78,72", // Stroke 6: Lower structure box perimeter wrap
+            "M 66,52 L 66,72",          // Stroke 7: Lower structure box center trace link
+            "M 20,85 A 1.5,1.5 0 1 1 20,84", // Stroke 8: Bottom fire splash dot index 1
+            "M 40,85 A 1.5,1.5 0 1 1 40,84", // Stroke 9: Bottom fire splash dot index 2
+            "M 60,85 A 1.5,1.5 0 1 1 60,84", // Stroke 10: Bottom fire splash dot index 3
+            "M 80,85 A 1.5,1.5 0 1 1 80,84"  // Stroke 11: Bottom fire splash dot index 4
+        ]
+    },
+    {
+        char: "赤", meaning: "Red (あかい)", strokesCount: 7,
+        paths: [
+            "M 25,25 L 75,25",       // Stroke 1: Upper vertical-cross hat horizontal
+            "M 48,12 L 48,42",       // Stroke 2: Central structural header axis pillar
+            "M 15,42 L 85,42",       // Stroke 3: Wide middle support tray crossbar
+            "M 38,55 Q 26,72 15,82", // Stroke 4: Lower left profile support brush leg
+            "M 60,42 L 60,78 Q 60,85 75,85", // Stroke 5: Master lower right framing hook
+            "M 32,65 A 2,2 0 1 1 32,64",     // Stroke 6: Left accent anchor point dot
+            "M 80,65 A 2,2 0 1 1 80,64"      // Stroke 7: Right accent balance point dot
+        ]
+    },
+    {
+        char: "青", meaning: "Blue / Green (あおい)", strokesCount: 8,
+        paths: [
+            "M 25,18 L 75,18",          // Stroke 1: Top hat horizontal line unit
+            "M 48,12 L 48,32",          // Stroke 2: Upper top vertical anchor stub
+            "M 32,32 L 68,32",          // Stroke 3: Upper secondary horizontal spacer
+            "M 15,46 L 85,46",          // Stroke 4: Major structural dividing cross platform
+            "M 30,56 L 30,88",          // Stroke 5: Lower Moon frame left wall index
+            "M 30,56 L 70,56 L 70,88", // Stroke 6: Lower Moon frame corner track border
+            "M 30,70 L 70,70",         // Stroke 7: Lower Moon core first crossbar
+            "M 30,82 L 70,82"          // Stroke 8: Lower Moon core baseline seal bar
+        ]
+    },
+    {
+        char: "東", meaning: "East (ひがし)", strokesCount: 8,
+        paths: [
+            "M 20,20 L 80,20",          // Stroke 1: Top capping horizon bar line
+            "M 25,38 L 25,68",          // Stroke 2: Center core Sun box left wall edge
+            "M 25,38 L 75,38 L 75,68", // Stroke 3: Center core Sun box framework cap
+            "M 25,53 L 75,53",         // Stroke 4: Center core Sun box cross split line
+            "M 25,68 L 75,68",         // Stroke 5: Center core Sun box floor seal line
+            "M 50,20 L 50,85",          // Stroke 6: Master axis central spine track down
+            "M 50,53 Q 35,72 15,88",    // Stroke 7: Left structural bottom sweep leg
+            "M 50,53 Q 65,72 85,88"    // Stroke 8: Right structural bottom balancing leg
+        ]
+    },
+    {
+        char: "西", meaning: "West (にし)", strokesCount: 6,
+        paths: [
+            "M 20,22 L 80,22",          // Stroke 1: Main top ceiling border line
+            "M 30,35 L 30,85",          // Stroke 2: Outer bucket shape left profile wall
+            "M 30,35 L 70,35 L 70,85", // Stroke 3: Outer bucket shape frame loop wall
+            "M 42,35 L 38,62 Q 50,62 58,62 L 55,35", // Stroke 4: Interior core anchor loop curve
+            "M 50,35 L 50,85",          // Stroke 5: Central inside balance align pillar
+            "M 15,85 L 85,85"          // Stroke 6: Bottom protective baseline footer bar
+        ]
+    },
+    {
+        char: "北", meaning: "North (きた)", strokesCount: 5,
+        paths: [
+            "M 32,25 L 32,78",       // Stroke 1: Left primary pillar line downward
+            "M 15,50 L 45,50",       // Stroke 2: Left components core intersection horizontal
+            "M 45,35 Q 45,85 18,85", // Stroke 3: Left side sweep release curve
+            "M 64,15 L 64,72",       // Stroke 4: Right component vertical hook axis
+            "M 55,46 L 88,46"        // Stroke 5: Right component balance indicator hook
+        ]
+    },
+    {
+        char: "南", meaning: "South (みなみ)", strokesCount: 9,
+        paths: [
+            "M 25,20 L 75,20",          // Stroke 1: Top short cross horizon beam
+            "M 48,12 L 48,32",          // Stroke 2: Small upper vertical spine lock
+            "M 20,34 L 20,88",          // Stroke 3: Main canopy profile outer left border
+            "M 20,34 L 80,34 L 80,88 Q 80,88 72,82", // Stroke 4: Main canopy upper right corner loop
+            "M 33,48 L 68,48",         // Stroke 5: Internal cross boundary crossbar
+            "M 42,48 L 42,78",         // Stroke 6: Internal layout left inside wall
+            "M 58,48 L 58,78",         // Stroke 7: Internal layout right inside wall
+            "M 33,64 L 68,64",         // Stroke 8: Internal layout midpoint separator bar
+            "M 28,78 L 72,78"          // Stroke 9: Internal layout bottom base closer line
+        ]
+    },
+    {
+        char: "私", meaning: "I / Me (わたし)", strokesCount: 7,
+        paths: [
+            // Left component: 禾 (Grain)
+            "M 38,18 Q 28,26 15,30", "M 12,46 L 46,46", "M 32,26 L 32,85", "M 32,46 Q 24,65 12,80", "M 32,46 Q 40,65 48,80",
+            // Right component: 仏/ム (Private)
+            "M 68,32 L 56,65 L 85,65", "M 76,46 Q 64,68 55,85"
+        ]
+    },
+     {
+        char: "先", meaning: "Ahead / Before (せん)", strokesCount: 6,
+        paths: [
+            "M 50,15 L 50,32",        // Stroke 1: Top center alignment vertical drop
+            "M 25,34 L 75,34",        // Stroke 2: Upper center minor crossbar platform
+            "M 18,52 L 82,52",        // Stroke 3: Main center long horizontal separation bar
+            "M 48,34 Q 35,65 15,82",  // Stroke 4: Lower left side dynamic trace brush line
+            "M 42,54 L 42,72 Q 42,85 58,85 L 72,85 Q 85,85 85,68", // Stroke 5: Lower right container trunk hook
+            "M 64,58 L 82,78"         // Stroke 6: Final structural tracking stability line
+        ]
+    },
+    {
+        char: "生", meaning: "Life / Birth (せい)", strokesCount: 5,
+        paths: [
+            "M 45,18 Q 32,32 18,38", // Stroke 1: Top left slash down accent entry
+            "M 15,44 L 85,44",       // Stroke 2: Upper primary structural horizontal bar
+            "M 46,18 L 46,85",       // Stroke 3: Core baseline master grounding vertical trunk
+            "M 28,64 L 72,64",       // Stroke 4: Middle inner structural cross bar platform
+            "M 10,86 L 90,86"        // Stroke 5: Grand layout closing foundation base line
+        ]
+    },
+    {
+        char: "先生", meaning: "Teacher (せんせい)", strokesCount: 11,
+        paths: [
+            // Character 1: 先 (Left frame scale fit)
+            "M 32,15 L 32,28", "M 12,32 L 48,32", "M 8,46 L 52,46", "M 30,32 Q 22,58 8,72", "M 26,46 L 26,62 Q 26,72 38,72 L 48,72", "M 38,52 L 50,68",
+            // Character 2: 生 (Right frame scale fit)
+            "M 82,20 Q 72,32 62,38", "M 60,44 L 95,44", "M 78,20 L 78,85", "M 66,62 L 90,62", "M 55,86 L 98,86"
+        ]
+    },
+    {
+        char: "会", meaning: "Meeting / Association (かい)", strokesCount: 6,
+        paths: [
+            "M 50,14 Q 32,32 15,55", // Stroke 1: Umbrella peak top-left broad sweep
+            "M 50,14 Q 68,32 85,55", // Stroke 2: Umbrella peak top-right symmetric sweep
+            "M 32,48 L 68,48",       // Stroke 3: Internal primary flat partition bar
+            "M 22,68 Q 48,65 78,62", // Stroke 4: Lower layout floor deck separator bar
+            "M 42,48 L 32,88",       // Stroke 5: Bottom component trailing stability stroke
+            "M 56,48 L 56,76 Q 56,88 74,88" // Stroke 6: Bottom component right anchor loop edge
+        ]
+    },
+    {
+        char: "社", meaning: "Company / Shrine (しゃ)", strokesCount: 7,
+        paths: [
+            // Left component: 礻 (Show / Omens)
+            "M 26,14 L 34,22", "M 16,30 L 36,30 L 22,58", "M 25,50 L 25,88", "M 35,48 L 35,68",
+            // Right component: 土 (Earth / Ground)
+            "M 50,42 L 85,42", "M 66,22 L 66,82", "M 42,82 L 92,82"
+        ]
+    },
+    {
+        char: "会社", meaning: "Company / Office (かいしゃ)", strokesCount: 13,
+        paths: [
+            // Character 1: 会 (Left half boundary scale template)
+            "M 30,16 Q 18,32 8,50", "M 30,16 Q 42,32 52,50", "M 18,44 L 45,44", "M 12,62 Q 28,60 48,58", "M 24,44 L 18,82", "M 35,44 L 35,68 Q 35,78 46,78",
+            // Character 2: 社 (Right half boundary scale template)
+            "M 68,20 L 74,26", "M 60,32 L 76,32 L 64,52", "M 66,46 L 66,82", "M 74,45 L 74,62", "M 76,46 L 96,46", "M 86,30 L 86,82", "M 70,82 L 98,82"
+        ]
+    },
+    {
+        char: "学", meaning: "Study / Learn (がく)", strokesCount: 8,
+        paths: [
+            "M 32,15 L 32,26",          // Stroke 1: Left side upper ceiling marker crown dot
+            "M 50,12 L 50,22",          // Stroke 2: Center core upper ceiling marker crown dot
+            "M 68,15 L 60,26",          // Stroke 3: Right side upper counter crown slash
+            "M 22,35 L 22,46 L 78,46", // Stroke 4: Crown platform base perimeter outline hook
+            "M 32,54 L 68,54 L 46,72", // Stroke 5: Inside child (子) component loop profile
+            "M 46,72 Q 58,82 58,92",   // Stroke 6: Inside child components central frame curve
+            "M 15,64 L 85,64",          // Stroke 7: Main broad piercing child intersection bar
+            "M 45,35 L 55,35"          // Stroke 8: Top structure tracking micro horizontal connection
+        ]
+    },
+     {
+        char: "生", meaning: "Life / Birth / Student suffix (せい)", strokesCount: 5,
+        paths: [
+            "M 45,18 Q 32,32 18,38", // Stroke 1: Top left slant stroke
+            "M 15,44 L 85,44",       // Stroke 2: Upper horizontal line
+            "M 46,18 L 46,85",       // Stroke 3: Central vertical trunk axis
+            "M 28,64 L 72,64",       // Stroke 4: Middle shorter horizontal line
+            "M 10,86 L 90,86"        // Stroke 5: Long solid base grounding bar
+        ]
+    },
+    {
+        char: "学生", meaning: "Student (がくせい)", strokesCount: 13,
+        paths: [
+            // Character 1: 学 (Left-hand side structural layout scale template)
+            "M 18,18 L 18,26", "M 30,16 L 30,24", "M 42,18 L 36,26", "M 10,34 L 10,42 L 46,42", "M 18,50 L 40,50 L 26,66", "M 26,66 Q 35,74 35,84", "M 5,60 L 48,60", "M 26,34 L 34,34",
+            // Character 2: 生 (Right-hand side structural layout scale template)
+            "M 78,22 Q 68,34 58,40", "M 55,46 L 95,46", "M 76,22 L 76,84", "M 64,64 L 88,64", "M 52,86 L 98,86"
+        ]
+    },
+    {
+        char: "力", meaning: "Power / Strength (ちから)", strokesCount: 2,
+        paths: [
+            "M 25,35 Q 78,30 72,55 Q 68,78 52,82 Q 44,84 35,80", // Stroke 1: Upper right box bend hook
+            "M 50,15 Q 48,52 20,82" // Stroke 2: Left sweeping slice down crossing the box
+        ]
+    },
+    {
+        char: "何", meaning: "What (なん)", strokesCount: 7,
+        paths: [
+            "M 32,18 Q 24,35 15,52",    // Stroke 1: Left person profile slash
+            "M 24,36 L 24,88",          // Stroke 2: Left person profile side post
+            "M 42,28 L 82,28",          // Stroke 3: Right upper flat canopy bar
+            "M 52,28 L 52,85 Q 52,92 64,92 L 74,92 Q 85,92 85,74", // Stroke 4: Master right hook column
+            "M 52,48 L 78,48",          // Stroke 5: Inside mouth (口) upper deck bar
+            "M 52,65 L 78,65",          // Stroke 6: Inside mouth divider ceiling bar
+            "M 52,82 L 78,82"          // Stroke 7: Inside mouth bottom closing base
+        ]
+    },
+    {
+        char: "魚", meaning: "Fish (さかな)", strokesCount: 11,
+        paths: [
+            "M 50,12 Q 35,22 22,30",          // Stroke 1: Top roof entry corner dash
+            "M 50,12 Q 65,22 78,30",          // Stroke 2: Top roof symmetry balance dash
+            "M 25,32 L 25,58",                // Stroke 3: Middle body box left wall
+            "M 25,32 L 75,32 L 75,58",       // Stroke 4: Middle body box upper tracking framework
+            "M 25,45 L 75,45",               // Stroke 5: Middle body interior horizontal split
+            "M 50,32 L 50,58",               // Stroke 6: Middle body interior vertical balance axis
+            "M 25,58 L 75,58",               // Stroke 7: Middle body lower closing boundary floor
+            "M 18,74 Q 14,84 10,88",          // Stroke 8: Bottom fire fins sprinkle point 1
+            "M 38,74 Q 36,84 32,88",          // Stroke 9: Bottom fire fins sprinkle point 2
+            "M 62,74 Q 64,84 68,88",          // Stroke 10: Bottom fire fins sprinkle point 3
+            "M 82,74 Q 86,84 90,88"           // Stroke 11: Bottom fire fins sprinkle point 4
+        ]
+    },
+    {
+        char: "犬", meaning: "Dog (いぬ)", strokesCount: 4,
+        paths: [
+            "M 18,36 L 82,36",       // Stroke 1: Main broad horizontal layout arm
+            "M 50,12 Q 50,48 20,82", // Stroke 2: Central structural vertical sweeping drop
+            "M 50,36 Q 65,60 85,82", // Stroke 3: Right diagonal balancing leg sweep
+            "M 68,16 A 2.5,2.5 0 1 1 68,15" // Stroke 4: Top right essential dog tag accent point
+        ]
+    },
+    {
+        char: "大", meaning: "Big / Large (だい)", strokesCount: 3,
+        paths: [
+            "M 15,40 L 85,40",       // Stroke 1: Broad horizontal arm spread line
+            "M 50,12 Q 48,50 18,82", // Stroke 2: Central crown down-left deep sweep
+            "M 50,40 Q 65,64 85,82"  // Stroke 3: Center intersection down-right matching leg
+        ]
+    },
+    {
+        char: "学", meaning: "Study / Learn (がく)", strokesCount: 8,
+        paths: [
+            "M 32,15 L 32,26",          // Stroke 1: Left side upper ceiling marker crown dot
+            "M 50,12 L 50,22",          // Stroke 2: Center core upper ceiling marker crown dot
+            "M 68,15 L 60,26",          // Stroke 3: Right side upper counter crown slash
+            "M 22,35 L 22,46 L 78,46", // Stroke 4: Crown platform base perimeter outline hook
+            "M 32,54 L 68,54 L 46,72", // Stroke 5: Inside child (子) component loop profile
+            "M 46,72 Q 58,82 58,92",   // Stroke 6: Inside child components central frame curve
+            "M 15,64 L 85,64",          // Stroke 7: Main broad piercing child intersection bar
+            "M 45,35 L 55,35"          // Stroke 8: Top structure tracking micro horizontal connection
+        ]
+    },
+    {
+        char: "大学", meaning: "University (だいがく)", strokesCount: 11,
+        paths: [
+            // Character 1: 大 (Left half coordinate fit)
+            "M 5,42 L 45,42", "M 25,18 Q 22,54 8,80", "M 25,42 Q 34,64 46,80",
+            // Character 2: 学 (Right half coordinate fit)
+            "M 68,16 L 68,24", "M 80,14 L 80,22", "M 92,16 L 86,24", "M 58,34 L 58,44 L 95,44", "M 68,52 L 90,52 L 78,68", "M 78,68 Q 86,76 86,86", "M 52,62 L 98,62", "M 74,34 L 82,34"
+        ]
+    },
+    {
+        char: "小", meaning: "Small (ちいさい)", strokesCount: 3,
+        paths: [
+            "M 50,15 L 50,72 Q 50,84 36,82", // Stroke 1: Core anchoring axis spine hook drop
+            "M 28,42 Q 22,52 18,58",          // Stroke 2: Left detached side splash drop
+            "M 72,42 Q 78,52 82,58"           // Stroke 3: Right detached side splash drop
+        ]
+    },
+    {
+        char: "大", meaning: "Big / Great (おおきい)", strokesCount: 3,
+        paths: [
+            "M 15,40 L 85,40",
+            "M 50,12 Q 48,50 18,82",
+            "M 50,40 Q 65,64 85,82"
+        ]
+    },
+    {
+        char: "軽", meaning: "Light weight (かるい)", strokesCount: 12,
+        paths: [
+            // Left component: 車 (Vehicle car component template)
+            "M 12,24 L 38,24", "M 10,34 L 10,54 L 40,54", "M 10,44 L 40,44", "M 10,54 L 40,54", "M 5,64 L 45,64", "M 25,14 L 25,74", "M 5,74 L 45,74",
+            // Right component: 巠 upper layout drop
+            "M 58,18 L 88,18", "M 72,18 L 62,38", "M 50,44 L 95,44", "M 62,54 Q 56,76 48,88", "M 76,44 L 76,82 Q 76,88 88,88"
+        ]
+    },
+    {
+        char: "重", meaning: "Heavy weight / Important (おもい)", strokesCount: 9,
+        paths: [
+            "M 50,12 Q 38,20 22,24",    // Stroke 1: Top ceiling alignment starter slash
+            "M 15,34 L 85,34",          // Stroke 2: Upper main boundary horizontal deck
+            "M 28,44 L 28,68",          // Stroke 3: Central core box structure left wall
+            "M 28,44 L 72,44 L 72,68", // Stroke 4: Central core box structure upper loop
+            "M 28,56 L 72,56",         // Stroke 5: Central core box internal horizon slice
+            "M 28,68 L 72,68",         // Stroke 6: Central core box closing boundary platform
+            "M 50,14 L 50,85",          // Stroke 7: Master center support axis trunk line
+            "M 22,76 L 78,76",          // Stroke 8: Low sub-level floor balance horizontal bar
+            "M 10,88 L 90,88"          // Stroke 9: Foundation master grounding footer crossbar
+        ]
+    },
+    {
+        char: "高", meaning: "High / Expensive (たかい)", strokesCount: 10,
+        paths: [
+            "M 50,12 L 50,20",          // Stroke 1: Top accent point anchor stub
+            "M 22,24 L 78,24",          // Stroke 2: Upper horizontal roof panel line
+            "M 26,34 L 26,48 L 74,48", // Stroke 3: Upper perimeter wall framing clip
+            "M 35,34 L 65,34",          // Stroke 4: Upper inner window separator bar
+            "M 40,48 L 40,62",          // Stroke 5: Central internal box left wall
+            "M 40,48 L 62,48 L 62,62", // Stroke 6: Central internal box upper corner hook
+            "M 40,62 L 62,62",         // Stroke 7: Central internal box baseline seal
+            "M 22,72 L 22,88",          // Stroke 8: Bottom mouth frame outer left post
+            "M 22,72 L 78,72 L 78,88", // Stroke 9: Bottom mouth frame outer right corner
+            "M 22,88 L 78,88"          // Stroke 10: Lower foundation baseline closer bar
+        ]
+    },
+    {
+        char: "安", meaning: "Cheap / Relaxed (やすい)", strokesCount: 6,
+        paths: [
+            "M 50,14 L 50,22",          // Stroke 1: Top crown element center chimney dot
+            "M 24,32 C 24,32 20,44 14,48", // Stroke 2: Crown roof left edge bounding curve
+            "M 25,32 L 76,32 L 72,46", // Stroke 3: Crown roof main right bounding track
+            "M 50,38 L 35,62 L 74,85", // Stroke 4: Woman (女) element intersecting master loop
+            "M 42,56 Q 26,74 12,85",   // Stroke 5: Woman element left supporting stabilizer
+            "M 16,68 L 84,68"          // Stroke 6: Woman element main horizontal cross anchor
+        ]
+    },
+    {
+        char: "新聞", meaning: "Newspaper (しんぶん)", strokesCount: 27,
+        paths: [
+            // Character 1: 新 (Left-side structural column layout template)
+            "M 14,18 L 36,18", "M 25,18 L 25,35", "M 10,35 L 44,35", "M 18,48 L 18,72", "M 18,48 L 36,48 L 36,72", "M 18,60 L 36,60", "M 18,72 L 36,72", "M 12,85 L 42,85", "M 28,72 L 28,92", "M 44,22 L 44,88", "M 44,48 Q 50,68 56,88", "M 42,32 L 52,32", "M 42,62 L 52,62",
+            // Character 2: 聞 (Right-side structural column layout template)
+            "M 58,16 L 58,82", "M 58,16 L 76,14 L 76,46", "M 58,30 L 76,28", "M 58,44 L 76,42", "M 85,14 L 98,16 L 98,82", "M 85,14 L 85,46", "M 85,28 L 98,30", "M 85,42 L 98,44", "M 68,52 L 68,82", "M 68,52 L 88,52 L 88,82", "M 68,64 L 88,64", "M 68,74 L 88,74", "M 68,82 L 88,82", "M 78,52 L 78,82"
+        ]
+    },
+    {
+        char: "新", meaning: "New (あたらしい)", strokesCount: 13,
+        paths: [
+            // Left component: 立 + 木 combo framework
+            "M 22,14 L 38,14", "M 28,14 L 22,26", "M 38,14 L 44,26", "M 15,28 L 48,28", "M 18,42 L 44,42", "M 32,28 L 32,74", "M 32,42 Q 22,58 12,74", "M 32,42 Q 42,58 52,74",
+            // Right component: 斤 (Axe structural side column)
+            "M 74,18 Q 62,26 54,34", "M 52,48 L 88,48", "M 78,18 L 78,88", "M 58,48 L 58,88", "M 58,74 Q 68,82 82,88"
+        ]
+    },
+    {
+        char: "古", meaning: "Old (ふるい)", strokesCount: 5,
+        paths: [
+            "M 15,36 L 85,36",          // Stroke 1: Main bold crossbar horizon line
+            "M 50,12 L 50,54",          // Stroke 2: Central structural master post column
+            "M 30,54 L 30,88",          // Stroke 3: Lower mouth box outer left wall
+            "M 30,54 L 70,54 L 70,88", // Stroke 4: Lower mouth box upper right parameter
+            "M 30,88 L 70,88"          // Stroke 5: Lower mouth box baseline floor closer
+        ]
+    },
+    {
+        char: "少", meaning: "Few / Little (すくない)", strokesCount: 4,
+        paths: [
+            "M 50,15 L 50,65 Q 50,72 40,70", // Stroke 1: Central core column hook anchor drop
+            "M 26,38 Q 18,48 14,56",          // Stroke 2: Left detached structural splash point
+            "M 74,38 Q 80,48 84,56",          // Stroke 3: Right detached structural balance point
+            "M 32,54 Q 58,74 82,85"           // Stroke 4: Long sweeping diagonal floor slash
+        ]
+    },
+    {
+        char: "長", meaning: "Long / Leader (ながい)", strokesCount: 8,
+        paths: [
+            "M 32,18 L 32,88",       // Stroke 1: Left boundary spine pillar downward
+            "M 32,20 L 78,20",       // Stroke 2: Top header shelf horizontal track
+            "M 32,38 L 68,38",       // Stroke 3: First internal slot divider line
+            "M 32,54 L 62,54",       // Stroke 4: Second internal slot dividing deck
+            "M 15,68 L 85,68",       // Stroke 5: Extended long master distribution platform
+            "M 52,20 L 52,54",       // Stroke 6: Upper internal alignment tracking joiner
+            "M 45,68 Q 35,78 18,85", // Stroke 7: Bottom-left stabilizing trace brush
+            "M 48,68 Q 65,78 85,88"  // Stroke 8: Bottom-right sweeping scale footer brush
+        ]
+    },
+    {
+        char: "短", meaning: "Short (みじかい)", strokesCount: 12,
+        paths: [
+            // Left component: 矢 (Arrow component grid scale)
+            "M 15,28 L 44,28", "M 28,15 L 18,42", "M 12,46 L 46,46", "M 28,46 Q 22,66 12,82", "M 28,46 Q 36,66 44,82",
+            // Right component: 豆 (Bean structural column grid)
+            "M 55,24 L 88,24", "M 62,36 L 62,56", "M 82,36 L 82,56", "M 52,58 L 92,58", "M 72,24 L 72,58", "M 58,72 L 86,72", "M 48,88 L 95,88"
+        ]
+    },
+    {
+        char: "天", meaning: "Heaven / Sky (てんき)", strokesCount: 4,
+        paths: [
+            "M 26,24 L 74,24",       // Stroke 1: Upper shorter celestial boundary line
+            "M 15,46 L 85,46",       // Stroke 2: Lower longer grand crossbar platform
+            "M 50,24 Q 45,62 18,86", // Stroke 3: Central apex down-left major sweep curve
+            "M 50,46 Q 66,66 85,86"  // Stroke 4: Center crown down-right balancing leg vector
+        ]
+    },
+    {
+        char: "春", meaning: "Spring season (はる)", strokesCount: 9,
+        paths: [
+            "M 28,20 L 72,20",       // Stroke 1: Top internal horizontal slot bar
+            "M 22,34 L 78,34",       // Stroke 2: Middle internal horizontal slot deck
+            "M 12,50 L 88,50",       // Stroke 3: Main wide structural distribution deck
+            "M 50,12 Q 46,50 15,84", // Stroke 4: Grand crown left sweeping diagonal line
+            "M 50,34 Q 68,58 88,84", // Stroke 5: Grand crown right sweeping balance line
+            "M 35,62 L 35,88",       // Stroke 6: Lower Sun (日) component left vertical wall
+            "M 35,62 L 66,62 L 66,88", // Stroke 7: Lower Sun component upper outer corner edge
+            "M 35,74 L 66,74",       // Stroke 8: Lower Sun component interior window split
+            "M 35,88 L 66,88"        // Stroke 9: Lower Sun component baseline ground lock
+        ]
+    },
+    {
+        char: "夏", meaning: "Summer (なつ)", strokesCount: 10,
+        paths: [
+            "M 22,20 L 78,20",          // Stroke 1: Top horizontal cap line
+            "M 48,20 L 35,38",          // Stroke 2: Short upper left slant
+            "M 32,38 L 72,38",          // Stroke 3: Top edge of head container
+            "M 26,52 L 76,52",          // Stroke 4: Bottom edge of head container
+            "M 50,38 L 50,52",          // Stroke 5: Vertical box divider line
+            "M 30,62 Q 40,60 72,56",    // Stroke 6: Mid-lower crossing sweep
+            "M 46,56 Q 38,76 18,85",    // Stroke 7: Lower left sweeping leg
+            "M 42,68 Q 62,64 78,86",    // Stroke 8: Lower right balancing leg
+            "M 55,68 A 2,2 0 1 1 55,67", // Stroke 9: Internal trailing accent dot 1
+            "M 65,76 A 2,2 0 1 1 65,75"  // Stroke 10: Internal trailing accent dot 2
+        ]
+    },
+    {
+        char: "秋", meaning: "Autumn (あき)", strokesCount: 9,
+        paths: [
+            // Left component: 禾 (Grain / Rice plant)
+            "M 38,20 Q 28,28 15,32", "M 12,46 L 46,46", "M 32,26 L 32,85", "M 32,46 Q 22,66 12,82", "M 32,46 Q 38,65 46,80",
+            // Right component: 火 (Fire)
+            "M 58,42 Q 54,52 52,58", "M 88,40 Q 92,50 94,56", "M 74,25 Q 70,62 55,84", "M 74,52 Q 85,70 96,84"
+        ]
+    },
+    {
+        char: "冬", meaning: "Winter (ふゆ)", strokesCount: 5,
+        paths: [
+            "M 48,15 Q 36,25 22,30",        // Stroke 1: Upper tracking structural slant
+            "M 22,30 Q 75,28 52,50 Q 38,64 18,72", // Stroke 2: Cross folding roof component
+            "M 42,56 Q 64,68 85,82",        // Stroke 3: Main lower right balancing leg
+            "M 44,74 A 2.5,2.5 0 1 1 44,73", // Stroke 4: Upper trailing ice dot
+            "M 52,86 A 2.5,2.5 0 1 1 52,85"  // Stroke 5: Lower trailing ice dot
+        ]
+    },
+    {
+        char: "田", meaning: "Rice Field (た / だ)", strokesCount: 5,
+        paths: [
+            "M 25,22 L 25,78",          // Stroke 1: Left perimeter boundary wall
+            "M 25,22 L 75,22 L 75,78", // Stroke 2: Top and right outer edge hook
+            "M 50,22 L 50,78",          // Stroke 3: Central vertical dividing spine
+            "M 25,50 L 75,50",          // Stroke 4: Central horizontal separating bar
+            "M 25,78 L 75,78"          // Stroke 5: Baseline closing boundary line
+        ]
+    },
+    {
+        char: "田中", meaning: "Tanaka - Surname (たなか)", strokesCount: 9,
+        paths: [
+            // Character 1: 田 (Left scaled panel)
+            "M 10,28 L 10,74", "M 10,28 L 48,28 L 48,74", "M 29,28 L 29,74", "M 10,51 L 48,51", "M 10,74 L 48,74",
+            // Character 2: 中 (Right scaled panel)
+            "M 58,34 L 58,64", "M 58,34 L 92,34 L 92,64", "M 58,64 L 92,64", "M 75,16 L 75,86"
+        ]
+    },
+    {
+        char: "山田", meaning: "Yamada - Surname (やまだ)", strokesCount: 8,
+        paths: [
+            // Character 1: 山 (Left scaled panel)
+            "M 28,22 L 28,74", "M 12,44 L 12,70 L 44,70", "M 44,44 L 44,70",
+            // Character 2: 田 (Right scaled panel)
+            "M 56,28 L 56,74", "M 56,28 L 94,28 L 94,74", "M 75,28 L 75,74", "M 56,51 L 94,51", "M 56,74 L 94,74"
+        ]
+    },
+    {
+        char: "午", meaning: "Noon (ご)", strokesCount: 4,
+        paths: [
+            "M 52,14 Q 40,24 25,28", // Stroke 1: Short top left entry slash
+            "M 20,44 L 80,44",       // Stroke 2: Top short horizontal shelf line
+            "M 12,68 L 88,68",       // Stroke 3: Bottom long horizontal platform line
+            "M 50,28 L 50,88"        // Stroke 4: Master vertical alignment column
+        ]
+    },
+    {
+        char: "前", meaning: "Front / Before / Past (ぜん)", strokesCount: 9,
+        paths: [
+            "M 35,14 L 35,24",          // Stroke 1: Top-left horn mark dot
+            "M 65,12 L 60,24",          // Stroke 2: Top-right counter horn slash
+            "M 18,30 L 82,30",          // Stroke 3: Upper horizontal divider platform
+            "M 28,42 L 28,54 L 72,54", // Stroke 4: Left interior bucket frame corner
+            "M 42,34 L 42,52",          // Stroke 5: Internal structural left slot bar
+            "M 58,34 L 58,52",          // Stroke 6: Internal structural right slot bar
+            "M 28,64 L 28,88",          // Stroke 7: Lower component left vertical wall
+            "M 28,64 L 72,64 L 72,88 Q 72,92 82,92", // Stroke 8: Lower right trunk corner hook
+            "M 48,64 L 48,84"          // Stroke 9: Lower component interior dividing line
+        ]
+    },
+    {
+        char: "午前", meaning: "Morning / AM (ごぜん)", strokesCount: 13,
+        paths: [
+            // Character 1: 午 (Left frame optimization grid)
+            "M 28,20 Q 22,28 12,32", "M 8,46 L 44,46", "M 4,68 L 48,68", "M 26,32 L 26,86",
+            // Character 2: 前 (Right frame optimization grid)
+            "M 64,16 L 64,24", "M 85,14 L 82,24", "M 54,32 L 96,32", "M 60,42 L 60,52 L 90,52", "M 70,36 L 70,50", "M 80,36 L 80,50", "M 62,62 L 62,84", "M 62,62 L 92,62 L 92,84 C 92,88 98,87 98,84", "M 76,62 L 76,80"
+        ]
+    },
+    {
+        char: "前", meaning: "Front / Before (まえ)", strokesCount: 9,
+        paths: [
+            "M 35,14 L 35,24",
+            "M 65,12 L 60,24",
+            "M 18,30 L 82,30",
+            "M 28,42 L 28,54 L 72,54",
+            "M 42,34 L 42,52",
+            "M 58,34 L 58,52",
+            "M 28,64 L 28,88",
+            "M 28,64 L 72,64 L 72,88 Q 72,92 82,92",
+            "M 48,64 L 48,84"
+        ]
+    },
+    {
+        char: "午後", meaning: "Afternoon / PM (ごご)", strokesCount: 13,
+        paths: [
+            // Character 1: 後 (Left scaled grid)
+            "M 26,18 Q 18,28 10,34", "M 22,34 Q 14,48 8,58", "M 18,52 L 18,88", "M 28,26 L 46,26", "M 32,26 L 24,46 L 46,46", "M 25,46 C 25,58 20,68 12,76", "M 24,58 Q 36,74 48,84", "M 38,36 A 1,1 0 1 1 38,35",
+            // Character 2: 午 (Right scaled grid)
+            "M 76,22 Q 68,30 58,34", "M 55,46 L 94,46", "M 50,68 L 98,68", "M 74,34 L 74,86"
+        ]
+    },
+    {
+        char: "名前", meaning: "Name (なまえ)", strokesCount: 15,
+        paths: [
+            // Character 1: 名 (Left scaled grid)
+            "M 32,16 Q 24,25 12,32", "M 12,34 Q 45,30 36,52 Q 28,68 10,75", "M 22,46 A 2,2 0 1 1 22,45", "M 20,58 L 44,58", "M 20,58 L 20,84 L 44,84", "M 20,84 L 44,84",
+            // Character 2: 前 (Right scaled grid)
+            "M 64,16 L 64,24", "M 85,14 L 82,24", "M 54,32 L 96,32", "M 60,42 L 60,52 L 90,52", "M 70,36 L 70,50", "M 80,36 L 80,50", "M 62,62 L 62,84", "M 62,62 L 92,62 L 92,84 C 92,88 98,87 98,84", "M 76,62 L 76,80"
+        ]
+    },
+    {
+        char: "後", meaning: "After / Later (あとで)", strokesCount: 9,
+        paths: [
+            "M 32,15 Q 22,25 12,32",          // Stroke 1: Left step radical top slash
+            "M 26,32 Q 16,46 8,56",           // Stroke 2: Left step radical bottom slash
+            "M 18,52 L 18,88",                // Stroke 3: Left step radical vertical anchor
+            "M 36,24 L 74,24",                // Stroke 4: Right top horizontal roof line
+            "M 44,24 L 32,50 L 74,50",        // Stroke 5: Right middle folded box element
+            "M 55,26 L 55,48",                // Stroke 6: Right middle internal slot bar
+            "M 35,62 C 35,74 25,84 12,90",    // Stroke 7: Lower left sweeping branch leg
+            "M 36,54 Q 60,72 82,88",          // Stroke 8: Lower right dynamic anchor slide leg
+            "M 52,34 A 1.5,1.5 0 1 1 52,33"   // Stroke 9: Right internal trailing dot accent
+        ]
+    },
+    {
+        char: "後", meaning: "Behind / Rear (うしろ)", strokesCount: 9,
+        paths: [
+            "M 32,15 Q 22,25 12,32",
+            "M 26,32 Q 16,46 8,56",
+            "M 18,52 L 18,88",
+            "M 36,24 L 74,24",
+            "M 44,24 L 32,50 L 74,50",
+            "M 55,26 L 55,48",
+            "M 35,62 C 35,74 25,84 12,90",
+            "M 36,54 Q 60,72 82,88",
+            "M 52,34 A 1.5,1.5 0 1 1 52,33"
+        ]
+    },
+    {
+        char: "海", meaning: "Sea / Ocean (うみ)", strokesCount: 9,
+        paths: [
+            "M 22,20 Q 15,26 12,34",          // Stroke 1: Water radical top dot splash
+            "M 24,44 Q 16,50 14,58",          // Stroke 2: Water radical middle dot splash
+            "M 12,82 Q 22,74 28,64",          // Stroke 3: Water radical bottom flick upward
+            "M 40,28 L 85,28",                // Stroke 4: Right component top horizontal panel
+            "M 38,48 L 82,48",                // Stroke 5: Right component main window ceiling bar
+            "M 60,14 L 44,82 L 80,82 Q 88,82 85,64", // Stroke 6: Right component master framing trunk loop
+            "M 32,62 L 92,62",                // Stroke 7: Right component long division crossbar
+            "M 52,38 A 1.5,1.5 0 1 1 52,37",   // Stroke 8: Right interior core top data particle
+            "M 52,72 A 1.5,1.5 0 1 1 52,71"    // Stroke 9: Right interior core bottom data particle
+        ]
+    },
+    {
+        char: "体", meaning: "Body (からだ)", strokesCount: 7,
+        paths: [
+            "M 34,18 Q 24,35 12,52",    // Stroke 1: Left person radical top slash
+            "M 24,36 L 24,88",          // Stroke 2: Left person radical vertical support column
+            "M 42,38 L 88,38",          // Stroke 3: Right Book (本) component horizontal beam
+            "M 65,14 L 65,84",          // Stroke 4: Right Book component main spine grounding pillar
+            "M 65,38 Q 50,64 34,84",    // Stroke 5: Right Book component lower left sweep brush
+            "M 65,38 Q 78,64 92,84",    // Stroke 6: Right Book component lower right symmetry sweep
+            "M 50,68 L 80,68"          // Stroke 7: Right Book component center grounding stamp bar
+        ]
+    },
+    {
+        char: "分", meaning: "Minute / Part / To Divide (ふん)", strokesCount: 4,
+        paths: [
+            "M 42,18 Q 30,32 16,42",    // Stroke 1: Top left side roof slash drop
+            "M 58,15 Q 72,30 86,42",    // Stroke 2: Top right side roof mirror slash drop
+            "M 22,58 Q 78,54 70,78 Q 66,90 52,90 Q 42,90 35,84", // Stroke 3: Lower knife block bend hook loop
+            "M 48,46 Q 44,70 20,86"     // Stroke 4: Lower knife block piercing cross down-left
+        ]
+    },
+    {
+        char: "時", meaning: "Time / Hour (じ)", strokesCount: 10,
+        paths: [
+            "M 16,28 L 16,74",          // Stroke 1: Left Sun (日) component left profile wall
+            "M 16,28 L 44,28 L 44,74", // Stroke 2: Left Sun component upper outer ceiling framework
+            "M 16,50 L 44,50",         // Stroke 3: Left Sun component internal split screen bar
+            "M 16,74 L 44,74",         // Stroke 4: Left Sun component lower boundary lock line
+            "M 52,24 L 88,24",          // Stroke 5: Right top Temple (寺) component horizontal bar
+            "M 68,12 L 68,42",          // Stroke 6: Right top Temple component vertical support stem
+            "M 48,44 L 94,44",          // Stroke 7: Right middle Temple component long deck platform
+            "M 68,44 L 68,82 Q 68,90 54,90 C 48,90 42,88 36,85", // Stroke 8: Right master bottom hook shaft anchor
+            "M 52,64 L 84,64",          // Stroke 9: Right lower interior partition crossbar
+            "M 80,28 A 2,2 0 1 1 80,27"  // Stroke 10: Right interior space alignment dot indicator
+        ]
+    },
+    {
+        char: "間", meaning: "Interval / Space / Room (かん)", strokesCount: 12,
+        paths: [
+            "M 22,25 L 22,88",
+            "M 22,25 L 45,20 L 45,55",
+            "M 22,40 L 45,37",
+            "M 22,55 L 45,52",
+            "M 58,20 L 80,25 L 80,88",
+            "M 58,20 L 58,55",
+            "M 58,37 L 80,40",
+            "M 58,52 L 80,55",
+            "M 36,62 L 36,82",
+            "M 36,62 L 66,62 L 66,82",
+            "M 36,72 L 66,72",
+            "M 36,82 L 66,82"
+        ]
+    },
+    {
+        char: "時間", meaning: "Time / Hours (じかん)", strokesCount: 22,
+        paths: [
+            // Character 1: 時 (Left scaled grid frame)
+            "M 10,34 L 10,68", "M 10,34 L 28,34 L 28,68", "M 10,51 L 28,51", "M 10,68 L 28,68", "M 34,32 L 52,32", "M 43,24 L 43,44", "M 32,46 L 55,46", "M 43,46 L 43,74 Q 43,80 34,80", "M 34,60 L 50,60", "M 48,35 A 1,1 0 1 1 48,34",
+            // Character 2: 間 (Right scaled grid frame)
+            "M 60,30 L 60,82", "M 60,30 L 75,26 L 75,54", "M 60,42 L 75,40", "M 60,54 L 75,52", "M 84,26 L 98,30 L 98,82", "M 84,26 L 84,54", "M 84,40 L 98,42", "M 84,54 L 98,52", "M 68,60 L 68,76", "M 68,60 L 90,60 L 90,76", "M 68,68 L 90,68", "M 68,76 L 90,76"
+        ]
+    },
+    {
+        char: "一時間", meaning: "One Hour (いちじかん)", strokesCount: 23,
+        paths: [
+            // Character 1: 一 (Far-left slim layout)
+            "M 5,50 L 20,50",
+            // Character 2: 時 (Center layout)
+            "M 26,34 L 26,68", "M 26,34 L 42,34 L 42,68", "M 26,51 L 42,51", "M 26,68 L 42,68", "M 48,32 L 64,32", "M 56,24 L 56,44", "M 46,46 L 66,46", "M 56,46 L 56,74 Q 56,80 48,80", "M 48,60 L 62,60", "M 60,35 A 1,1 0 1 1 60,34",
+            // Character 3: 間 (Far-right layout)
+            "M 70,30 L 70,82", "M 70,30 L 82,26 L 82,54", "M 70,42 L 82,40", "M 70,54 L 82,52", "M 90,26 L 98,30 L 98,82", "M 90,26 L 90,54", "M 90,40 L 98,42", "M 90,54 L 98,52", "M 76,60 L 76,76", "M 76,60 L 94,60 L 94,76", "M 76,68 L 94,68", "M 76,76 L 94,76"
+        ]
+    },
+    {
+        char: "半", meaning: "Half (はん)", strokesCount: 5,
+        paths: [
+            "M 32,22 Q 28,32 22,38", // Stroke 1: Left upper detached accent dot
+            "M 68,20 Q 72,30 78,38", // Stroke 2: Right upper detached accent dot
+            "M 20,44 L 80,44",       // Stroke 3: Upper short horizontal line
+            "M 12,68 L 88,68",       // Stroke 4: Lower long horizontal ground bar
+            "M 50,14 L 50,90"        // Stroke 5: Central core master spine column
+        ]
+    },
+    {
+        char: "曜日", meaning: "Day of the Week (ようび)", strokesCount: 22,
+        paths: [
+            // Character 1: 曜 (Left master panel setup)
+            "M 12,24 L 12,48 L 26,48 L 26,24 Z", "M 12,36 L 26,36", "M 32,20 L 48,20", "M 30,30 L 52,30", "M 35,20 L 35,42", "M 45,20 L 45,42", "M 30,42 L 52,42", "M 32,54 L 48,54", "M 30,64 L 52,64", "M 35,54 L 35,76", "M 45,54 L 45,76", "M 30,76 L 52,76", "M 10,85 L 54,85", "M 28,48 L 28,85",
+            // Character 2: 日 (Right master panel setup)
+            "M 66,32 L 66,78", "M 66,32 L 92,32 L 92,78", "M 66,55 L 92,55", "M 66,78 L 92,78"
+        ]
+    },
+    {
+        char: "月曜日", meaning: "Monday (げつようび)", strokesCount: 26,
+        paths: [
+            // Character 1: 月
+            "M 12,30 L 12,82", "M 12,30 L 28,30 L 28,82 Q 28,85 24,83", "M 12,48 L 28,48", "M 12,64 L 28,64",
+            // Character 2: 曜
+            "M 36,32 L 36,48 L 44,48 L 44,32 Z", "M 36,40 L 44,40", "M 48,28 L 60,28", "M 46,36 L 64,36", "M 50,28 L 50,44", "M 58,28 L 58,44", "M 46,44 L 64,44", "M 48,54 L 60,54", "M 46,62 L 64,62", "M 50,54 L 50,70", "M 58,54 L 58,70", "M 46,70 L 64,70", "M 34,78 L 66,78", "M 44,48 L 44,78",
+            // Character 3: 日
+            "M 74,36 L 74,74", "M 74,36 L 94,36 L 94,74", "M 74,55 L 94,55", "M 74,74 L 94,74"
+        ]
+    },
+    {
+        char: "火曜日", meaning: "Tuesday (かいようび)", strokesCount: 26,
+        paths: [
+            // Character 1: 火
+            "M 15,40 Q 12,50 10,55", "M 30,40 Q 32,50 34,55", "M 22,25 Q 20,60 8,80", "M 21,50 Q 28,68 36,80",
+            // Character 2: 曜
+            "M 44,32 L 44,48 L 52,48 L 52,32 Z", "M 44,40 L 52,40", "M 56,28 L 68,28", "M 54,36 L 72,36", "M 58,28 L 58,44", "M 66,28 L 66,44", "M 54,44 L 72,44", "M 56,54 L 68,54", "M 54,62 L 72,62", "M 58,54 L 58,70", "M 66,54 L 66,70", "M 54,70 L 72,70", "M 42,78 L 74,78", "M 52,48 L 52,78",
+            // Character 3: 日
+            "M 80,36 L 80,74", "M 80,36 L 96,36 L 96,74", "M 80,55 L 96,55", "M 80,74 L 96,74"
+        ]
+    },
+    {
+        char: "水曜日", meaning: "Wednesday (すいようび)", strokesCount: 26,
+        paths: [
+            // Character 1: 水
+            "M 22,22 L 22,74 Q 22,82 15,80", "M 6,42 Q 13,38 16,48", "M 7,72 Q 15,64 22,56", "M 22,52 Q 28,62 34,74",
+            // Character 2: 曜
+            "M 44,32 L 44,48 L 52,48 L 52,32 Z", "M 44,40 L 52,40", "M 56,28 L 68,28", "M 54,36 L 72,36", "M 58,28 L 58,44", "M 66,28 L 66,44", "M 54,44 L 72,44", "M 56,54 L 68,54", "M 54,62 L 72,62", "M 58,54 L 58,70", "M 66,54 L 66,70", "M 54,70 L 72,70", "M 42,78 L 74,78", "M 52,48 L 52,78",
+            // Character 3: 日
+            "M 80,36 L 80,74", "M 80,36 L 96,36 L 96,74", "M 80,55 L 96,55", "M 80,74 L 96,74"
+        ]
+    },
+    {
+        char: "木曜日", meaning: "Thursday (もくようび)", strokesCount: 26,
+        paths: [
+            // Character 1: 木
+            "M 6,44 L 32,44", "M 19,22 L 19,82", "M 19,44 Q 12,64 5,76", "M 19,44 Q 26,64 33,76",
+            // Character 2: 曜
+            "M 44,32 L 44,48 L 52,48 L 52,32 Z", "M 44,40 L 52,40", "M 56,28 L 68,28", "M 54,36 L 72,36", "M 58,28 L 58,44", "M 66,28 L 66,44", "M 54,44 L 72,44", "M 56,54 L 68,54", "M 54,62 L 72,62", "M 58,54 L 58,70", "M 66,54 L 66,70", "M 54,70 L 72,70", "M 42,78 L 74,78", "M 52,48 L 52,78",
+            // Character 3: 日
+            "M 80,36 L 80,74", "M 80,36 L 96,36 L 96,74", "M 80,55 L 96,55", "M 80,74 L 96,74"
+        ]
+    },
+    {
+        char: "金曜日", meaning: "Friday (きんようび)", strokesCount: 30,
+        paths: [
+            // Character 1: 金
+            "M 19,22 Q 13,32 6,42", "M 19,22 Q 25,32 32,42", "M 13,42 L 26,42", "M 9,54 L 30,54", "M 19,42 L 19,68", "M 13,60 Q 11,63 9,65", "M 25,60 Q 27,63 29,65", "M 5,74 L 34,74",
+            // Character 2: 曜
+            "M 44,32 L 44,48 L 52,48 L 52,32 Z", "M 44,40 L 52,40", "M 56,28 L 68,28", "M 54,36 L 72,36", "M 58,28 L 58,44", "M 66,28 L 66,44", "M 54,44 L 72,44", "M 56,54 L 68,54", "M 54,62 L 72,62", "M 58,54 L 58,70", "M 66,54 L 66,70", "M 54,70 L 72,70", "M 42,78 L 74,78", "M 52,48 L 52,78",
+            // Character 3: 日
+            "M 80,36 L 80,74", "M 80,36 L 96,36 L 96,74", "M 80,55 L 96,55", "M 80,74 L 96,74"
+        ]
+    },
+    {
+        char: "土曜日", meaning: "Saturday (どようび)", strokesCount: 25,
+        paths: [
+            // Character 1: 土
+            "M 10,44 L 28,44", "M 19,25 L 19,74", "M 5,74 L 33,74",
+            // Character 2: 曜
+            "M 44,32 L 44,48 L 52,48 L 52,32 Z", "M 44,40 L 52,40", "M 56,28 L 68,28", "M 54,36 L 72,36", "M 58,28 L 58,44", "M 66,28 L 66,44", "M 54,44 L 72,44", "M 56,54 L 68,54", "M 54,62 L 72,62", "M 58,54 L 58,70", "M 66,54 L 66,70", "M 54,70 L 72,70", "M 42,78 L 74,78", "M 52,48 L 52,78",
+            // Character 3: 日
+            "M 80,36 L 80,74", "M 80,36 L 96,36 L 96,74", "M 80,55 L 96,55", "M 80,74 L 96,74"
+        ]
+    },
+    {
+        char: "日曜日", meaning: "Sunday (にちようび)", strokesCount: 26,
+        paths: [
+            // Character 1: 日
+            "M 12,36 L 12,74", "M 12,36 L 32,36 L 32,74", "M 12,55 L 32,55", "M 12,74 L 32,74",
+            // Character 2: 曜
+            "M 44,32 L 44,48 L 52,48 L 52,32 Z", "M 44,40 L 52,40", "M 56,28 L 68,28", "M 54,36 L 72,36", "M 58,28 L 58,44", "M 66,28 L 66,44", "M 54,44 L 72,44", "M 56,54 L 68,54", "M 54,62 L 72,62", "M 58,54 L 58,70", "M 66,54 L 66,70", "M 54,70 L 72,70", "M 42,78 L 74,78", "M 52,48 L 52,78",
+            // Character 3: 日
+            "M 80,36 L 80,74", "M 80,36 L 96,36 L 96,74", "M 80,55 L 96,55", "M 80,74 L 96,74"
+        ]
+    },
+    {
+        char: "何曜日", meaning: "What Day of the Week? (なんようび)", strokesCount: 29,
+        paths: [
+            // Character 1: 何
+            "M 16,30 Q 12,42 6,54", "M 12,44 L 12,82", "M 20,36 L 36,36", "M 24,36 L 24,80 Q 24,85 30,85 C 33,85 35,76 35,70", "M 24,50 L 34,50", "M 24,62 L 34,62", "M 24,74 L 34,74",
+            // Character 2: 曜
+            "M 44,32 L 44,48 L 52,48 L 52,32 Z", "M 44,40 L 52,40", "M 56,28 L 68,28", "M 54,36 L 72,36", "M 58,28 L 58,44", "M 66,28 L 66,44", "M 54,44 L 72,44", "M 56,54 L 68,54", "M 54,62 L 72,62", "M 58,54 L 58,70", "M 66,54 L 66,70", "M 54,70 L 72,70", "M 42,78 L 74,78", "M 52,48 L 52,78",
+            // Character 3: 日
+            "M 80,36 L 80,74", "M 80,36 L 96,36 L 96,74", "M 80,55 L 96,55", "M 80,74 L 96,74"
+        ]
+    },
+    {
+        char: "言", meaning: "To Say / Speak (いいます)", strokesCount: 7,
+        paths: [
+            "M 42,16 L 58,16",          // Stroke 1: Top horizontal dash crown
+            "M 20,32 L 80,32",          // Stroke 2: Wide upper main horizontal bar
+            "M 28,46 L 72,46",          // Stroke 3: Middle horizontal stack bar 1
+            "M 28,60 L 72,60",          // Stroke 4: Middle horizontal stack bar 2
+            "M 32,72 L 32,92",          // Stroke 5: Lower mouth (口) left border line
+            "M 32,72 L 68,72 L 68,92", // Stroke 6: Lower mouth outer corner bracket
+            "M 32,92 L 68,92"          // Stroke 7: Lower mouth baseline floor closure
+        ]
+    },
+    {
+        char: "話", meaning: "To Talk / Conversation (はなします)", strokesCount: 13,
+        paths: [
+            // Left component: 言 (Speech radical segment template)
+            "M 24,18 L 34,18", "M 15,30 L 42,30", "M 18,40 L 38,40", "M 18,50 L 38,50", "M 20,62 L 20,78", "M 20,62 L 36,62 L 36,78", "M 20,78 L 36,78",
+            // Right component: 舌 (Tongue component structural column)
+            "M 78,16 Q 64,24 52,28", "M 48,42 L 92,42", "M 68,28 L 68,56", "M 54,58 L 54,86", "M 54,58 L 86,58 L 86,86", "M 54,86 L 86,86"
+        ]
+    },
+     {
+        char: "読", meaning: "To Read (よみます)", strokesCount: 14,
+        paths: [
+            // Left component: 言 (Speech radical segment template)
+            "M 24,18 L 34,18", "M 15,30 L 42,30", "M 18,40 L 38,40", "M 18,50 L 38,50", "M 20,62 L 20,78", "M 20,62 L 36,62 L 36,78", "M 20,78 L 36,78",
+            // Right component: 売 (To Sell component framework)
+            "M 55,20 L 85,20", "M 68,12 L 68,28", "M 48,34 L 92,34", "M 52,48 L 52,62 L 88,62 L 88,48 Z", "M 68,48 L 68,62", "M 62,68 C 55,78 44,85 28,90", "M 58,74 Q 74,84 88,90"
+        ]
+    },
+    {
+        char: "開", meaning: "To Open (あけます)", strokesCount: 12,
+        paths: [
+            "M 22,18 L 22,88",          // Stroke 1: Gate (門) outer left pillar
+            "M 22,18 L 46,14 L 46,52", // Stroke 2: Gate top-left shutter bracket
+            "M 22,34 L 46,31",         // Stroke 3: Gate left shutter middle beam
+            "M 22,50 L 46,47",         // Stroke 4: Gate left shutter lower floor line
+            "M 58,14 L 82,18 L 82,88", // Stroke 5: Gate outer right pillar structure
+            "M 58,14 L 58,52",          // Stroke 6: Gate top-right shutter bracket line
+            "M 58,31 L 82,34",         // Stroke 7: Gate right shutter middle beam
+            "M 58,47 L 82,50",         // Stroke 8: Gate right shutter lower floor line
+            "M 32,62 L 72,62",          // Stroke 9: Interior Torii structure top crossbar
+            "M 30,76 L 74,76",          // Stroke 10: Interior Torii structure middle beam
+            "M 42,62 L 42,92",          // Stroke 11: Interior Torii left grounding pole
+            "M 62,62 L 62,92"          // Stroke 12: Interior Torii right grounding pole
+        ]
+    },
+    {
+        char: "閉", meaning: "To Close / Shut (しめます)", strokesCount: 11,
+        paths: [
+            "M 22,18 L 22,88",          // Stroke 1: Gate (門) outer left pillar
+            "M 22,18 L 46,14 L 46,52", // Stroke 2: Gate top-left shutter bracket
+            "M 22,34 L 46,31",         // Stroke 3: Gate left middle beam
+            "M 22,50 L 46,47",         // Stroke 4: Gate left lower line
+            "M 58,14 L 82,18 L 82,88", // Stroke 5: Gate outer right pillar structure
+            "M 58,14 L 58,52",          // Stroke 6: Gate top-right shutter line
+            "M 58,31 L 82,34",         // Stroke 7: Gate right middle beam
+            "M 58,47 L 82,50",         // Stroke 8: Gate right lower line
+            "M 32,66 L 72,66",          // Stroke 9: Interior horizontal cross brace
+            "M 52,56 L 36,88",          // Stroke 10: Interior lower left sliding angle
+            "M 52,66 L 68,88"          // Stroke 11: Interior lower right matching leg
+        ]
+    },
+    {
+        char: "見", meaning: "To See / Watch (みます)", strokesCount: 7,
+        paths: [
+            "M 28,15 L 28,54",          // Stroke 1: Eye component left vertical wall
+            "M 28,15 L 72,15 L 72,54", // Stroke 2: Eye component top and right frame corner
+            "M 28,28 L 72,28",         // Stroke 3: Eye component upper separator bar
+            "M 28,41 L 72,41",         // Stroke 4: Eye component lower separator bar
+            "M 28,54 L 72,54",         // Stroke 5: Eye component baseline lock bar
+            "M 38,54 Q 28,74 15,86",    // Stroke 6: Human legs left sweeping brush
+            "M 56,54 L 56,78 Q 56,86 70,86 L 82,86 Q 88,86 88,72" // Stroke 7: Human legs dynamic hook tail
+        ]
+    },
+    {
+        char: "見", meaning: "To Show / Display (みせます)", strokesCount: 7,
+        paths: [
+            "M 28,15 L 28,54",
+            "M 28,15 L 72,15 L 72,54",
+            "M 28,28 L 72,28",
+            "M 28,41 L 72,41",
+            "M 28,54 L 72,54",
+            "M 38,54 Q 28,74 15,86",
+            "M 56,54 L 56,78 Q 56,86 70,86 L 82,86 Q 88,86 88,72"
+        ]
+    },
+    {
+        char: "止", meaning: "To Stop (とめます)", strokesCount: 4,
+        paths: [
+            "M 50,15 L 50,78", // Stroke 1: Central primary vertical spine column
+            "M 50,46 L 80,46", // Stroke 2: Upper hanging right structural arm
+            "M 25,36 L 25,78", // Stroke 3: Left side vertical boundary wall
+            "M 16,78 L 88,78"  // Stroke 4: Solid anchoring ground baseline footer
+        ]
+    },
+    {
+        char: "入", meaning: "To Enter / Insert (はいります)", strokesCount: 2,
+        paths: [
+            "M 52,15 Q 40,40 18,78", // Stroke 1: Shorter left dynamic support sweep
+            "M 32,25 Q 58,55 86,85"  // Stroke 2: Dominant long right crossing brush sweep
+        ]
+    },
+    {
+        char: "出", meaning: "To Go Out / Leave (でます)", strokesCount: 5,
+        paths: [
+            "M 50,12 L 50,88",          // Stroke 1: Full central master piercing backbone
+            "M 25,32 L 25,50 L 75,50", // Stroke 2: Upper container profile structure
+            "M 25,32 L 75,32",         // Stroke 3: Upper component enclosing line
+            "M 15,70 L 15,88 L 85,88", // Stroke 4: Lower container profile foundation
+            "M 15,70 L 85,70"          // Stroke 5: Lower component enclosing line
+        ]
+    },
+    {
+        char: "行", meaning: "To Go / Conduct (いきます)", strokesCount: 6,
+        paths: [
+            "M 38,18 Q 28,28 15,35", // Stroke 1: Left radical top downward step slant
+            "M 35,36 Q 24,52 12,62", // Stroke 2: Left radical bottom downward step slant
+            "M 25,54 L 25,90",       // Stroke 3: Left radical vertical anchoring trail post
+            "M 45,28 L 88,28",       // Stroke 4: Right component upper horizontal step header
+            "M 42,50 L 82,50",       // Stroke 5: Right component middle horizontal deck panel
+            "M 66,28 L 66,76 Q 66,88 52,88" // Stroke 6: Right master vertical spine anchoring hook
+        ]
+    }, {
+        char: "来", meaning: "To Come (きます)", strokesCount: 7,
+        paths: [
+            "M 18,25 L 82,25",       // Stroke 1: Top horizontal roof crossbar
+            "M 30,42 Q 22,34 14,30", // Stroke 2: Left internal balance dot
+            "M 70,42 Q 78,34 86,30", // Stroke 3: Right internal balance dot
+            "M 12,50 L 88,50",       // Stroke 4: Main wide horizontal divider deck
+            "M 50,12 L 50,88",       // Stroke 5: Central structural vertical column axis
+            "M 50,50 Q 34,70 15,86", // Stroke 6: Lower left sweeping diagonal brush line
+            "M 50,50 Q 66,70 85,86"  // Stroke 7: Lower right sweeping balancing brush line
+        ]
+    },
+    {
+        char: "帰", meaning: "To Return Home (かえります)", strokesCount: 10,
+        paths: [
+            // Left component: 𠂊/小 style setup
+            "M 30,16 L 18,34", "M 15,44 L 38,44", "M 25,44 L 25,85 Q 25,92 14,88",
+            // Right component: 帚 (Broom framework layout)
+            "M 50,22 L 85,22", "M 48,38 L 88,38", "M 46,54 L 92,54", "M 68,14 L 68,54", "M 52,65 L 52,86 L 86,86 L 86,65 Z", "M 52,75 L 86,75", "M 68,54 L 68,86"
+        ]
+    },
+    {
+        char: "立", meaning: "To Stand (たちます)", strokesCount: 5,
+        paths: [
+            "M 50,12 L 50,24",       // Stroke 1: Top alignment anchor stub
+            "M 25,32 L 75,32",       // Stroke 2: Upper horizontal shelf platform
+            "M 34,32 L 25,58",       // Stroke 3: Left side downward profile wall
+            "M 66,32 L 75,58",       // Stroke 4: Right side downward profile wall
+            "M 12,82 L 88,82"        // Stroke 5: Solid wide grounding baseline support
+        ]
+    },
+    {
+        char: "門", meaning: "Gate (もん)", strokesCount: 8,
+        paths: [
+            "M 25,18 L 25,88",          // Stroke 1: Left boundary outer post column
+            "M 25,18 L 48,15 L 48,54", // Stroke 2: Left shutter crown profile wrap
+            "M 25,34 L 48,31",         // Stroke 3: Left shutter internal divider rail
+            "M 25,48 L 48,45",         // Stroke 4: Left shutter lower baseline lock
+            "M 58,15 L 80,18 L 80,88", // Stroke 5: Right boundary outer post column hook
+            "M 58,15 L 58,54",          // Stroke 6: Right shutter crown profile entry
+            "M 58,31 L 80,34",         // Stroke 7: Right shutter internal divider rail
+            "M 58,45 L 80,48"          // Stroke 8: Right shutter lower baseline lock
+        ]
+    },
+    {
+        char: "聞", meaning: "To Hear / Listen / Ask (ききます)", strokesCount: 14,
+        paths: [
+            // Left component: 門 (Gate framework template)
+            "M 20,20 L 20,85", "M 20,20 L 42,16 L 42,50", "M 20,34 L 42,31", "M 20,46 L 42,43", "M 52,16 L 74,20 L 74,85", "M 52,16 L 52,50", "M 52,31 L 74,34", "M 52,43 L 74,46",
+            // Center interior component: 耳 (Ear)
+            "M 32,56 L 64,56", "M 40,56 L 40,84", "M 48,56 L 48,74", "M 40,65 L 56,65", "M 40,74 L 56,74", "M 56,56 L 56,86"
+        ]
+    },
+    {
+        char: "買", meaning: "To Buy (かいます)", strokesCount: 12,
+        paths: [
+            "M 28,15 L 72,15",          // Stroke 1: Top shell eye component horizontal
+            "M 24,26 L 24,48",          // Stroke 2: Upper box enclosure left vertical profile
+            "M 24,26 L 76,26 L 76,48", // Stroke 3: Upper box enclosure right framework clip
+            "M 24,48 L 76,48",         // Stroke 4: Upper box enclosing floor layout deck
+            "M 40,15 L 40,48",          // Stroke 5: Upper internal window partition splitter 1
+            "M 60,15 L 60,48",          // Stroke 6: Upper internal window partition splitter 2
+            "M 32,56 L 32,84",          // Stroke 7: Lower Shell (貝) box left profile wall
+            "M 32,56 L 68,56 L 68,84", // Stroke 8: Lower Shell box upper outer boundary corner
+            "M 32,70 L 68,70",         // Stroke 9: Lower Shell box interior division crossbar
+            "M 32,84 L 68,84",         // Stroke 10: Lower Shell box boundary floor closer bar
+            "M 25,92 Q 33,84 40,78",    // Stroke 11: Bottom-left diagonal detached support drop
+            "M 75,92 Q 67,84 60,78"     // Stroke 12: Bottom-right diagonal detached balance drop
+        ]
+    },
+    {
+        char: "食", meaning: "To Eat / Food (たべます)", strokesCount: 9,
+        paths: [
+            "M 50,14 Q 32,30 15,50", // Stroke 1: Umbrella roof top left long sweep brush
+            "M 50,14 Q 68,30 85,50", // Stroke 2: Umbrella roof top right balancing drop brush
+            "M 32,45 L 68,45",       // Stroke 3: Upper core cross layout stabilizer bar
+            "M 24,60 L 24,78 Q 24,84 34,84 L 52,84 Q 56,84 54,72", // Stroke 4: Center container framework loop
+            "M 24,60 L 64,60 L 64,74", // Stroke 5: Center container inner box structural frame
+            "M 24,72 L 64,72",       // Stroke 6: Center container inner box divider shelf bar
+            "M 46,45 L 46,60",       // Stroke 7: Upper interior connection vertical joining pin
+            "M 36,88 Q 26,92 16,94", // Stroke 8: Bottom-left loose base stabilizer dash
+            "M 68,78 Q 78,86 88,90"  // Stroke 9: Bottom-right sweeping scale tracking footer
+        ]
+    },
+    {
+        char: "飲", meaning: "To Drink (のみます)", strokesCount: 12,
+        paths: [
+            // Left component: 食 (Food radical column scale layout)
+            "M 32,15 Q 22,26 12,38", "M 32,15 Q 40,24 46,32", "M 22,34 L 42,34", "M 16,48 L 16,74 L 38,74", "M 16,48 L 42,48 L 42,64", "M 16,60 L 42,60", "M 26,34 L 26,48", "M 10,88 Q 25,84 44,92",
+            // Right component: 欠 (Lack structural column scale layout)
+            "M 72,16 Q 64,28 54,36", "M 55,34 L 92,34", "M 74,34 Q 65,60 52,85", "M 70,52 Q 82,72 96,88"
+        ]
+    },
+    {
+        char: "書", meaning: "To Write (かきます)", strokesCount: 10,
+        paths: [
+            "M 22,20 L 78,20",          // Stroke 1: Top primary cross layout header line
+            "M 34,32 L 66,32",          // Stroke 2: Upper secondary shorter horizontal divider
+            "M 16,45 L 84,45",          // Stroke 3: Middle dominant platform separator deck
+            "M 50,12 L 50,45",          // Stroke 4: Upper center core column alignment post
+            "M 24,56 L 76,56",          // Stroke 5: Lower structure ceiling panel separator bar
+            "M 50,45 L 50,68",          // Stroke 6: Lower structure vertical connecting post segment
+            "M 28,68 L 28,90",          // Stroke 7: Bottom Sun (日) box left profile boundary wall
+            "M 28,68 L 72,68 L 72,90", // Stroke 8: Bottom Sun box right outer framework channel
+            "M 28,79 L 72,79",         // Stroke 9: Bottom Sun box interior window partition rail
+            "M 28,90 L 72,90"          // Stroke 10: Bottom Sun box final grounding baseline floor
+        ]
+    },
+    {
+        char: "会", meaning: "To Meet / Society (あいます)", strokesCount: 6,
+        paths: [
+            "M 50,14 Q 32,32 15,55",
+            "M 50,14 Q 68,32 85,55",
+            "M 32,48 L 68,48",
+            "M 22,68 Q 48,65 78,62",
+            "M 42,48 L 32,88",
+            "M 56,48 L 56,76 Q 56,88 74,88"
+        ]
+    },
+    {
+        char: "休", meaning: "To Rest / Holiday (やすみます)", strokesCount: 6,
+        paths: [
+            "M 34,18 Q 24,35 12,52", // Stroke 1: Left person radical top slash entry
+            "M 24,36 L 24,88",       // Stroke 2: Left person radical vertical support pole
+            "M 40,42 L 88,42",       // Stroke 3: Right Tree (木) component cross layout arm
+            "M 64,15 L 64,85",       // Stroke 4: Right Tree component central master spine column
+            "M 64,42 Q 48,64 32,82", // Stroke 5: Right Tree component lower left sweep brush line
+            "M 64,42 Q 78,64 92,82"  // Stroke 6: Right Tree component lower right balance sweep line
+        ]
+    },
+    {
+        char: "起", meaning: "To Wake Up / Get Up (おきます)", strokesCount: 10,
+        paths: [
+            // Left component: 走 (To Run movement framework template)
+            "M 15,24 L 48,24", "M 32,12 L 32,48", "M 10,48 L 56,48", "M 22,48 L 15,84", "M 15,70 L 58,70 L 64,88", "M 32,48 L 32,70", "M 32,70 Q 44,78 58,84",
+            // Right component: 己 (Self container element)
+            "M 65,30 L 88,30 L 68,52", "M 68,52 L 92,52", "M 72,52 L 72,74 Q 72,85 88,85"
+        ]
+    },
+    {
+        char: "寝", meaning: "To Sleep (ねます)", strokesCount: 13,
+        paths: [
+            // Top component: 宀 (Roof cap layout guide)
+            "M 50,12 L 50,18", "M 22,24 L 22,34 L 78,34 Q 78,34 74,28",
+            // Left-lower component: 爿 (Bed framework layout guide)
+            "M 32,38 L 32,88", "M 18,48 L 32,48", "M 15,62 L 32,62 L 18,85",
+            // Right-lower component: 侵 lower layout framework style
+            "M 48,42 L 88,42", "M 45,54 L 92,54", "M 66,34 L 54,64", "M 52,66 L 52,86 L 86,86 L 86,66 Z", "M 52,76 L 86,76", "M 68,42 L 68,86"
+        ]
+    },
+    {
+        char: "働", meaning: "To Work (はたらきます)", strokesCount: 13,
+        paths: [
+            // Left component: 人 (Person radical - scaled)
+            "M 26,18 Q 18,34 8,50", "M 18,36 L 18,88",
+            // Center component: 重 (Heavy / Core trunk)
+            "M 36,24 Q 42,16 52,14", "M 32,32 L 68,32", "M 38,40 L 38,58 L 62,58 L 62,40 Z", "M 38,49 L 62,49", "M 48,14 L 48,74", "M 35,66 L 65,66", "M 30,75 L 70,75",
+            // Right component: 力 (Power / Energy)
+            "M 74,36 Q 96,34 92,54 Q 88,72 78,75", "M 84,20 Q 82,50 64,78"
+        ]
+    },
+    {
+        char: "終", meaning: "To End / Finish (おわります)", strokesCount: 11,
+        paths: [
+            // Left component: 糸 (Thread radical - scaled)
+            "M 32,16 Q 25,25 18,32", "M 18,32 Q 34,30 28,45 Q 22,52 14,56", "M 24,48 Q 20,62 12,72", "M 22,66 A 1.5,1.5 0 1 1 22,65", "M 32,64 A 1.5,1.5 0 1 1 32,63", "M 42,66 A 1.5,1.5 0 1 1 42,65",
+            // Right component: 冬 (Winter structure - scaled)
+            "M 68,18 Q 58,26 48,32", "M 48,32 Q 82,30 68,48 Q 58,58 45,66", "M 62,52 Q 78,64 92,78", "M 64,68 A 1.5,1.5 0 1 1 64,67", "M 72,78 A 1.5,1.5 0 1 1 72,77"
+        ]
+    },
+    {
+        char: "考", meaning: "To Think / Consider (かんがえます)", strokesCount: 6,
+        paths: [
+            "M 25,24 L 75,24",       // Stroke 1: Top horizontal roof line
+            "M 48,12 L 48,38",       // Stroke 2: Central top vertical axis
+            "M 18,38 L 82,38",       // Stroke 3: Middle long boundary crossbar
+            "M 68,14 L 30,76",       // Stroke 4: Deep diagonal left sweeping brush
+            "M 44,55 L 76,55 L 74,72 Q 72,85 54,85 C 46,85 36,83 30,78", // Stroke 5: Lower complex hook loop
+            "M 40,68 L 88,68"        // Stroke 6: Bottom short horizontal accent cross
+        ]
+    },
+    {
+        char: "着", meaning: "To Arrive / Wear (つきます)", strokesCount: 12,
+        paths: [
+            "M 42,12 Q 35,18 28,22",          // Stroke 1: Top-left horn mark
+            "M 58,12 Q 65,18 72,22",          // Stroke 2: Top-right counter horn
+            "M 20,32 L 80,32",                // Stroke 3: First horizontal shelf panel
+            "M 28,44 L 72,44",                // Stroke 4: Second horizontal shelf panel
+            "M 15,56 L 85,56",                // Stroke 5: Main broad dividing cross deck
+            "M 66,14 L 35,76",                // Stroke 6: Deep diagonal left dividing sweep
+            "M 42,66 L 42,88",                // Stroke 7: Eye box lower left wall
+            "M 42,66 L 75,66 L 75,88",        // Stroke 8: Eye box lower outer corner framework
+            "M 42,74 L 75,74",                // Stroke 9: Eye box internal division line 1
+            "M 42,81 L 75,81",                // Stroke 10: Eye box internal division line 2
+            "M 42,88 L 75,88",                // Stroke 11: Eye box bottom closing floor line
+            "M 24,84 Q 46,80 68,84"           // Stroke 12: Bottom loose base stabilizer bar
+        ]
+    },
+    {
+        char: "取", meaning: "To Take / Fetch (とります)", strokesCount: 8,
+        paths: [
+            // Left component: 耳 (Ear - scaled)
+            "M 14,24 L 54,24", "M 24,24 L 24,78", "M 35,24 L 35,62", "M 35,38 L 48,38", "M 35,50 L 48,50", "M 48,24 L 48,82",
+            // Right component: 又 (Again / Hand structural clip)
+            "M 58,35 L 88,35 Q 74,58 56,76", "M 64,44 Q 74,62 88,82"
+        ]
+    },
+    {
+        char: "待", meaning: "To Wait (まちます)", strokesCount: 9,
+        paths: [
+            // Left component: 彳 (Step radical - scaled)
+            "M 32,16 Q 22,26 12,32", "M 26,34 Q 16,48 8,58", "M 18,52 L 18,88",
+            // Right component: 寺 (Temple structure - scaled)
+            "M 42,30 L 85,30", "M 64,14 L 64,44", "M 36,46 L 94,46", "M 64,46 L 64,82 Q 64,88 50,88", "M 46,66 L 82,66", "M 78,35 A 1.5,1.5 0 1 1 78,34"
+        ]
+    },
+    {
+        char: "持", meaning: "To Hold / Have (もちます)", strokesCount: 9,
+        paths: [
+            // Left component: 扌 (Hand radical - scaled)
+            "M 10,38 L 42,38", "M 28,15 L 28,84 Q 28,92 16,88", "M 12,68 Q 24,62 36,52",
+            // Right component: 寺 (Temple structure - scaled)
+            "M 48,30 L 88,30", "M 68,14 L 68,44", "M 42,46 L 96,46", "M 68,46 L 68,82 Q 68,88 54,88", "M 50,66 L 86,66", "M 82,35 A 1.5,1.5 0 1 1 82,34"
+        ]
+    },
+    {
+        char: "使", meaning: "To Use (つかいます)", strokesCount: 8,
+        paths: [
+            // Left component: 人 (Person radical - scaled)
+            "M 32,18 Q 24,35 12,52", "M 24,36 L 24,88",
+            // Right component: 吏 style inner framework
+            "M 44,24 L 84,24", "M 36,40 L 90,40", "M 42,40 L 42,62 L 82,62 L 82,40 Z", "M 42,51 L 82,51", "M 62,12 L 62,88", "M 52,65 Q 68,76 86,85"
+        ]
+    },
+    {
+        char: "切", meaning: "To Cut (きります)", strokesCount: 4,
+        paths: [
+            "M 15,48 L 52,48",       // Stroke 1: Left component horizontal arm
+            "M 38,20 Q 38,55 12,78", // Stroke 2: Left component deep piercing vertical sweep
+            "M 55,34 L 85,34 L 82,75 Q 80,84 66,84 C 58,84 50,82 44,78", // Stroke 3: Right刀 element enclosure frame loop
+            "M 66,15 L 66,44"        // Stroke 4: Right component top alignment stub bar
+        ]
+    },
+    {
+        char: "貸", meaning: "To Lend (かします)", strokesCount: 12,
+        paths: [
+            // Upper component: 代 (To Substitute / Replace framework)
+            "M 34,14 Q 26,26 15,35", "M 24,26 L 24,48", "M 44,28 L 78,28", "M 56,12 Q 64,36 84,46", "M 64,30 A 1.5,1.5 0 1 1 64,29",
+            // Lower component: 貝 (Shellfish / Money concept)
+            "M 32,56 L 32,84", "M 32,56 L 68,56 L 68,84", "M 32,70 L 68,70", "M 32,84 L 68,84", "M 25,92 Q 33,84 40,78", "M 75,92 Q 67,84 60,78", "M 42,56 L 58,56"
+        ]
+    },
+    {
+        char: "借", meaning: "To Borrow (かります)", strokesCount: 10,
+        paths: [
+            // Left component: 人 (Person radical - scaled)
+            "M 30,18 Q 22,34 10,50", "M 20,36 L 20,88",
+            // Right component: 昔 (Old times / Ancient combo)
+            "M 44,24 L 84,24", "M 42,36 L 86,36", "M 42,48 L 86,48", "M 64,14 L 64,48", 
+            "M 46,60 L 46,86", "M 46,60 L 82,60 L 82,86", "M 46,73 L 82,73", "M 46,86 L 82,86"
+        ]
+    },
+    {
+        char: "教", meaning: "To Teach / Inform (おしえます)", strokesCount: 11,
+        paths: [
+            // Left component: 孝 (Filial piety - scaled)
+            "M 22,25 L 56,25", "M 38,12 L 38,36", "M 15,38 L 58,38", "M 52,16 L 24,64", 
+            "M 26,52 L 50,52 L 48,76 Q 46,84 34,84", "M 32,66 L 56,66",
+            // Right component: 攵 (Action/Strike radical - scaled)
+            "M 74,18 Q 66,28 58,36", "M 56,44 L 92,44", "M 78,20 Q 75,54 58,82", "M 68,54 Q 80,72 94,84"
+        ]
+    },
+    {
+        char: "習", meaning: "To Learn / Study (ならいます)", strokesCount: 11,
+        paths: [
+            // Upper component: 羽 (Wings radical framework)
+            "M 24,18 L 45,18 L 45,45 Q 45,50 38,48", "M 24,18 L 24,34", "M 24,34 L 45,34", 
+            "M 55,18 L 76,18 L 76,45 Q 76,50 69,48", "M 55,18 L 55,34", "M 55,34 L 76,34",
+            // Lower component: 白 (White core container)
+            "M 50,48 Q 44,55 38,60", "M 32,62 L 32,90", "M 32,62 L 68,62 L 68,90", 
+            "M 32,76 L 68,76", "M 32,90 L 68,90"
+        ]
+    },
+    {
+        char: "座", meaning: "To Sit (すわります)", strokesCount: 10,
+        paths: [
+            // Outer component: 广 (Canopy/Cave radical)
+            "M 50,11 L 50,18", "M 22,22 L 82,22", "M 28,22 Q 24,54 15,84",
+            // Interior upper: 人 + 人 (Two people sitting)
+            "M 42,34 Q 36,44 26,50", "M 34,42 L 46,50", 
+            "M 65,32 Q 58,42 48,48", "M 58,40 L 70,48",
+            // Interior lower: 土 (Ground / Earth)
+            "M 36,64 L 72,64", "M 54,52 L 54,84", "M 24,84 L 85,84"
+        ]
+    },
+    {
+        char: "出", meaning: "To Take Out / Hand In (だします)", strokesCount: 5,
+        paths: [
+            "M 50,12 L 50,88",          // Stroke 1: Central vertical tracking ridge
+            "M 25,32 L 25,50 L 75,50", // Stroke 2: Upper branching mountain bracket
+            "M 25,32 L 75,32",         // Stroke 3: Upper enclosure cap bar
+            "M 15,70 L 15,88 L 85,88", // Stroke 4: Lower grounding mountain base profile
+            "M 15,70 L 85,70"          // Stroke 5: Lower enclosure floor platform
+        ]
+    },
+    {
+        char: "出", meaning: "To Go Out / Depart (でかけます)", strokesCount: 5,
+        paths: [
+            "M 50,12 L 50,88",
+            "M 25,32 L 25,50 L 75,50",
+            "M 25,32 L 75,32",
+            "M 15,70 L 15,88 L 85,88",
+            "M 15,70 L 85,70"
+        ]
+    },
+    {
+        char: "出", meaning: "To Exit / Appear (でます)", strokesCount: 5,
+        paths: [
+            "M 50,12 L 50,88",
+            "M 25,32 L 25,50 L 75,50",
+            "M 25,32 L 75,32",
+            "M 15,70 L 15,88 L 85,88",
+            "M 15,70 L 85,70"
+        ]
+    },
+    {
+        char: "押", meaning: "To Push / Stamp (おします)", strokesCount: 8,
+        paths: [
+            // Left component: 扌 (Hand radical - scaled)
+            "M 12,38 L 42,38", "M 28,15 L 28,84 Q 28,92 16,88", "M 14,66 Q 24,60 36,50",
+            // Right component: 甲 (Shell / Armor framework)
+            "M 48,30 L 88,30", "M 48,30 L 48,65 L 88,65", "M 48,48 L 88,48", 
+            "M 88,30 L 88,65", "M 68,14 L 68,88"
+        ]
+    }
+];
 
-/* FLOAT TITLE */
-.title{
-  animation:float 3s ease-in-out infinite;
-}
+        const container = document.getElementById('kanjiContainer');
 
-@keyframes float{
-  0%,100%{ transform:translateY(0); }
-  50%{ transform:translateY(-8px); }
-}
+        kanjiData.forEach(kanji => {
+            const row = document.createElement('div');
+            row.className = 'kanji-row';
 
-/* MOBILE */
-@media(max-width:600px){
-  .banner-content h1{font-size:24px;}
-}
-</style>
+            let rowHTML = `
+                <div class="meta-side">
+                    <div class="main-char">${kanji.char}</div>
+                    <div class="meaning">${kanji.meaning}</div>
+                    <div class="count-badge">${kanji.strokesCount} Stroke${kanji.strokesCount > 1 ? 's' : ''}</div>
+                </div>
+                <div class="writing-steps">
+            `;
+
+            for (let stepIndex = 0; stepIndex < kanji.strokesCount; stepIndex++) {
+                let pathsHTML = '';
+                
+                kanji.paths.forEach((pathD, pathIndex) => {
+                    if (pathIndex < stepIndex) {
+                        pathsHTML += `<path class="stroke-path base-stroke" d="${pathD}" />`;
+                    } else if (pathIndex === stepIndex) {
+                        pathsHTML += `<path class="stroke-path active-stroke" d="${pathD}" />`;
+                    }
+                });
+
+                rowHTML += `
+                    <div class="svg-box" onclick="replayAnimation(this)">
+                        <span class="step-num">${stepIndex + 1}</span>
+                        <svg viewBox="0 0 100 100">${pathsHTML}</svg>
+                    </div>
+                `;
+
+                if (stepIndex < kanji.strokesCount - 1) {
+                    rowHTML += `<div class="arrow">➔</div>`;
+                }
+            }
+
+            rowHTML += `</div>`;
+            row.innerHTML = rowHTML;
+            container.appendChild(row);
+        });
+
+        // Click Handler Engine to trigger wipe animation reloads
+        function replayAnimation(element) {
+            const activePath = element.querySelector('.active-stroke');
+            if (activePath) {
+                // Instantly remove and re-apply style properties to reset CSS animation lifecycle
+                activePath.style.animation = 'none';
+                activePath.offsetHeight; /* Trigger reflow matrix layout engine calculation */
+                activePath.style.animation = 'drawStroke 1.2s ease-in-out forwards';
+            }
+        }
+    </script>
+</body>
+</html>
