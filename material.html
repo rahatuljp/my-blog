@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>হিরাগানা (Hiragana Chart Table)</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #1a202c;
+            --border-color: #000000;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 24px;
+            color: #000000;
+            text-align: center;
+            font-weight: normal;
+        }
+h2 {
+            font-size: 2rem;
+            margin-bottom: 24px;
+            color: #000000;
+            text-align: right;
+            font-weight: normal;
+            margin-right: 20px;
+        }
+        .wrapper {
+            max-width: 1040px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .split-section {
+            display: flex;
+            gap: 40px;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .split-section > div {
+            flex: 1;
+            min-width: 340px;
+        }
+
+        table {
+            border-collapse: collapse;
+            background: #ffffff;
+            width: 100%;
+        }
+
+        td {
+            border: 1px solid var(--border-color);
+            padding: 8px 4px;
+            text-align: center;
+            vertical-align: middle;
+            box-sizing: border-box;
+            width: 10%;
+        }
+
+        tr.kana-row td {
+            font-size: 1.4rem;
+            color: #000000;
+            background-color: #ffffff;
+            cursor: pointer;
+        }
+        
+        tr.bengali-row td {
+            font-size: 1.1rem;
+            color: #000000;
+            background-color: #ffffff;
+            padding-bottom: 12px;
+        }
+
+        .empty {
+            background-color: #ffffff !important;
+            cursor: default !important;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>হিরাগানা</h1>
+
+    <div class="wrapper">
+        
+        <!-- SECTION 1: MAIN CHARACTERS MATRIX -->
+        <table>
+            <!-- Row 1: あ - こ -->
+            <tr class="kana-row">
+                <td onclick="speak('あ')">あ</td><td onclick="speak('い')">い</td><td onclick="speak('う')">う</td><td onclick="speak('え')">え</td><td onclick="speak('お')">お</td>
+                <td onclick="speak('か')">か</td><td onclick="speak('き')">き</td><td onclick="speak('く')">く</td><td onclick="speak('け')">け</td><td onclick="speak('こ')">こ</td>
+            </tr>
+            <tr class="bengali-row">
+                <td>আ</td><td>ই</td><td>উ</td><td>এ</td><td>ও</td>
+                <td>কা</td><td>কি</td><td>কু</td><td>কে</td><td>কো</td>
+            </tr>
+            <!-- Row 2: さ - と -->
+            <tr class="kana-row">
+                <td onclick="speak('さ')">さ</td><td onclick="speak('し')">し</td><td onclick="speak('す')">す</td><td onclick="speak('せ')">せ</td><td onclick="speak('そ')">そ</td>
+                <td onclick="speak('た')">た</td><td onclick="speak('ち')">ち</td><td onclick="speak('つ')">つ</td><td onclick="speak('て')">て</td><td onclick="speak('と')">と</td>
+            </tr>
+            <tr class="bengali-row">
+                <td>ছাতা</td><td>শি</td><td>শু</td><td>সে</td><td>সো</td>
+                <td>তা</td><td>চি</td><td>চু</td><td>তে</td><td>তো</td>
+            </tr>
+            <!-- Row 3: な - ほ -->
+            <tr class="kana-row">
+                <td onclick="speak('な')">な</td><td onclick="speak('に')">に</td><td onclick="speak('ぬ')">ぬ</td><td onclick="speak('ね')">ね</td><td onclick="speak('の')">の</td>
+                <td onclick="speak('は')">は</td><td onclick="speak('ひ')">ひ</td><td onclick="speak('ふ')">ふ</td><td onclick="speak('へ')">へ</td><td onclick="speak('ほ')">ほ</td>
+            </tr>
+            <tr class="bengali-row">
+                <td>না</td><td>নি</td><td>নু</td><td>নে</td><td>নো</td>
+                <td>হা</td><td>হি</td><td>হু</td><td>হে</td><td>হো</td>
+            </tr>
+            <!-- Row 4: ま - よ -->
+            <tr class="kana-row">
+                <td onclick="speak('ま')">ま</td><td onclick="speak('み')">み</td><td onclick="speak('む')">む</td><td onclick="speak('め')">め</td><td onclick="speak('も')">も</td>
+                <td onclick="speak('や')">や</td><td class="empty"></td><td onclick="speak('ゆ')">ゆ</td><td class="empty"></td><td onclick="speak('よ')">よ</td>
+            </tr>
+            <tr class="bengali-row">
+                <td>মা</td><td>মি</td><td>মু</td><td>মে</td><td>মও</td>
+                <td>ইয়া</td><td class="empty"></td><td>ইয়ু</td><td class="empty"></td><td>ইয়ে</td>
+            </tr>
+            <!-- Row 5: ら - ん -->
+            <tr class="kana-row">
+                <td onclick="speak('ら')">ら</td><td onclick="speak('り')">り</td><td onclick="speak('る')">る</td><td onclick="speak('れ')">れ</td><td onclick="speak('ろ')">ろ</td>
+                <td onclick="speak('わ')">わ</td><td class="empty"></td><td class="empty"></td><td onclick="speak('を')">を</td><td onclick="speak('ん')">ん</td>
+            </tr>
+            <tr class="bengali-row">
+                <td>রা</td><td>রি</td><td>রু</td><td>রে</td><td>রো</td>
+                <td>ওয়া</td><td class="empty"></td><td class="empty"></td><td>ও</td><td>এন</td>
+            </tr>
+        </table>
+
+        <!-- SPLIT BOTTOM CONTAINERS -->
+        <div class="split-section">
+            
+            <!-- SECTION 2: CONTRACTED SOUNDS (3 COLUMNS) -->
+            <div>
+                <table>
+                    <tr class="kana-row">
+                        <td onclick="speak('きゃ')">きゃ</td><td onclick="speak('きゅ')">きゅ</td><td onclick="speak('きょ')">きょ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>কিয়া</td><td>কিউ </td><td>কিয়</td></tr>
+                    
+                    <tr class="kana-row">
+                        <td onclick="speak('しゃ')">しゃ</td><td onclick="speak('しゅ')">しゅ</td><td onclick="speak('しょ')">しょ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>শা</td><td>শু</td><td>স</td></tr>
+
+                    <tr class="kana-row">
+                        <td onclick="speak('ちゃ')">ちゃ</td><td onclick="speak('ちゅ')">ちゅ</td><td onclick="speak('ちょ')">ちょ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>ছা</td><td>ছু</td><td>ছো</td></tr>
+
+                    <tr class="kana-row">
+                        <td onclick="speak('にゃ')">にゃ</td><td onclick="speak('にゅ')">にゅ</td><td onclick="speak('にょ')">にょ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>নিয়া</td><td>নিউ </td><td>নিয়</td></tr>
+
+                    <tr class="kana-row">
+                        <td onclick="speak('ひゃ')">ひゃ</td><td onclick="speak('ひゅ')">ひゅ</td><td onclick="speak('ひょ')">ひょ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>হিয়া</td><td>হিউ </td><td>হিয়</td></tr>
+
+                    <tr class="kana-row">
+                        <td onclick="speak('りゃ')">りゃ</td><td onclick="speak('りゅ')">りゅ</td><td onclick="speak('りょ')">りょ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>রিয়া</td><td>রিউ </td><td>রিয়</td></tr>
+
+                    <tr class="kana-row">
+                        <td onclick="speak('ぎゃ')">ぎゃ</td><td onclick="speak('ぎゅ')">ぎゅ</td><td onclick="speak('ぎょ')">ぎょ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>গিয়া</td><td>গিয়ু</td><td>গিয়</td></tr>
+
+                    <tr class="kana-row">
+                        <td onclick="speak('じゃ')">じゃ</td><td onclick="speak('じゅ')">じゅ</td><td onclick="speak('じょ')">じょ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>জাআ</td><td>জু</td><td>জো</td></tr>
+
+                    <tr class="kana-row">
+                        <td onclick="speak('びゃ')">びゃ</td><td onclick="speak('びゅ')">びゅ</td><td onclick="speak('びょ')">びょ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>বিয়া</td><td>বিউ</td><td>বিয়</td></tr>
+
+                    <tr class="kana-row">
+                        <td onclick="speak('ぴゃ')">ぴゃ</td><td onclick="speak('ぴゅ')">ぴゅ</td><td onclick="speak('ぴょ')">ぴょ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>পিয়া</td><td>পিয়ুড</td><td>পিয়ও</td></tr>
+
+                    <tr class="kana-row">
+                        <td onclick="speak('みゃ')">みゃ</td><td onclick="speak('みゅ')">みゅ</td><td onclick="speak('みょ')">みょ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>মিয়া</td><td>মিউ</td><td>মিয়</td></tr>
+                </table>
+                <br>
+                  <br>
+                   <br>
+                     <h2>কাতাকানা</h2>
+            </div>
+
+            <!-- SECTION 3: DAKUON / HANDAKUON (5 COLUMNS) -->
+            <div>
+                <table>
+                    <tr class="kana-row">
+                        <td onclick="speak('が')">が</td><td onclick="speak('ぎ')">ぎ</td><td onclick="speak('ぐ')">ぐ</td><td onclick="speak('げ')">げ</td><td onclick="speak('ご')">ご</td>
+                    </tr>
+                    <tr class="bengali-row"><td>গা</td><td>গি</td><td>গু</td><td>গে</td><td>গো</td></tr>
+
+                    <tr class="kana-row">
+                        <td onclick="speak('ざ')">ざ</td><td onclick="speak('じ')">じ</td><td onclick="speak('ず')">ず</td><td onclick="speak('ぜ')">ぜ</td><td onclick="speak('ぞ')">ぞ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>যা</td><td>জি</td><td>জু</td><td>যে</td><td>য</td></tr>
+
+                    <tr class="kana-row">
+                        <td onclick="speak('だ')">だ</td><td onclick="speak('ぢ')">ぢ</td><td onclick="speak('づ')">づ</td><td onclick="speak('で')">で</td><td onclick="speak('ど')">ど</td>
+                    </tr>
+                    <tr class="bengali-row"><td>দা</td><td>জি</td><td>জু</td><td>দে</td><td>দো</td></tr>
+                     <tr class="kana-row">
+                         
+                        <td onclick="speak('ば')">ば</td><td onclick="speak('び')">び</td><td onclick="speak('ぶ')">ぶ</td><td onclick="speak('べ')">べ</td><td onclick="speak('ぼ')">ぼ</td>
+                    </tr> <tr class="bengali-row"><td>বা</td><td>বি</td><td>বু</td><td>বে</td><td>বো</td></tr>
+                    <td onclick="speak('ぱ')">ぱ</td><td onclick="speak('ぴ')">ぴ</td><td onclick="speak('ぷ')">ぷ</td><td onclick="speak('ぺ')">ぺ</td><td onclick="speak('ぽ')">ぽ</td></tr>
+                    </tr> <tr class="bengali-row"><td>পা</td><td>পি</td><td>পু</td><td>পে</td><td>পো</td></tr>
+                </table>
+                 </div>
+                  
+
+    <div class="wrapper">
+                <!-- SECTION 1: MAIN CHARACTERS MATRIX -->
+        <table>
+           
+            <!-- Row 1: ア - コ -->
+            <tr class="kana-row">
+                <td onclick="speak('ア')">ア</td><td onclick="speak('イ')">イ</td><td onclick="speak('ウ')">ウ</td><td onclick="speak('エ')">エ</td><td onclick="speak('オ')">オ</td>
+                <td onclick="speak('カ')">カ</td><td onclick="speak('キ')">キ</td><td onclick="speak('ク')">ク</td><td onclick="speak('ケ')">ケ</td><td onclick="speak('コ')">コ</td>
+            </tr>
+            <tr class="bengali-row">
+                <td>আ</td><td>ই</td><td>উ</td><td>এ</td><td>ও</td>
+                <td>কা</td><td>কি</td><td>কু</td><td>কে</td><td>কো</td>
+            </tr>
+            <!-- Row 2: サ - ト -->
+            <tr class="kana-row">
+                <td onclick="speak('サ')">サ</td><td onclick="speak('シ')">シ</td><td onclick="speak('ス')">ス</td><td onclick="speak('セ')">セ</td><td onclick="speak('ソ')">ソ</td>
+                <td onclick="speak('タ')">タ</td><td onclick="speak('チ')">チ</td><td onclick="speak('ツ')">ツ</td><td onclick="speak('テ')">テ</td><td onclick="speak('ト')">ト</td>
+            </tr>
+            <tr class="bengali-row">
+                <td>ছাতা</td><td>শি</td><td>শু</td><td>সে</td><td>সো</td>
+                <td>তা</td><td>চি</td><td>চু</td><td>তে</td><td>তো</td>
+            </tr>
+            <!-- Row 3: ナ - ホ -->
+            <tr class="kana-row">
+                <td onclick="speak('ナ')">ナ</td><td onclick="speak('ニ')">ニ</td><td onclick="speak('ヌ')">ヌ</td><td onclick="speak('ネ')">ネ</td><td onclick="speak('ノ')">ノ</td>
+                <td onclick="speak('ハ')">ハ</td><td onclick="speak('ヒ')">ヒ</td><td onclick="speak('フ')">フ</td><td onclick="speak('ヘ')">ヘ</td><td onclick="speak('ホ')">ホ</td>
+            </tr>
+            <tr class="bengali-row">
+                <td>না</td><td>নি</td><td>নু</td><td>নে</td><td>নো</td>
+                <td>হা</td><td>হি</td><td>হু</td><td>হে</td><td>হো</td>
+            </tr>
+            <!-- Row 4: マ - ヨ -->
+            <tr class="kana-row">
+                <td onclick="speak('マ')">マ</td><td onclick="speak('ミ')">ミ</td><td onclick="speak('ム')">ム</td><td onclick="speak('メ')">メ</td><td onclick="speak('モ')">モ</td>
+                <td onclick="speak('ヤ')">ヤ</td><td class="empty"></td><td onclick="speak('ユ')">ユ</td><td class="empty"></td><td onclick="speak('ヨ')">ヨ</td>
+            </tr>
+            <tr class="bengali-row">
+                <td>মা</td><td>মি</td><td>মু</td><td>মে</td><td>মও</td>
+                <td>ইয়া</td><td class="empty"></td><td>ইয়ু</td><td class="empty"></td><td>ইয়ে</td>
+            </tr>
+            <!-- Row 5: ラ - ン -->
+            <tr class="kana-row">
+                <td onclick="speak('ラ')">ラ</td><td onclick="speak('リ')">リ</td><td onclick="speak('ル')">ル</td><td onclick="speak('レ')">レ</td><td onclick="speak('ロ')">ロ</td>
+                <td onclick="speak('ワ')">ワ</td><td class="empty"></td><td class="empty"></td><td onclick="speak('ヲ')">ヲ</td><td onclick="speak('ン')">ン</td>
+            </tr>
+            <tr class="bengali-row">
+                <td>রা</td><td>রি</td><td>রু</td><td>রে</td><td>রো</td>
+                <td>ওয়া</td><td class="empty"></td><td class="empty"></td><td>ও</td><td>এন</td>
+            </tr>
+        </table>
+
+        <!-- SPLIT BOTTOM CONTAINERS -->
+        <div class="split-section">
+            
+            <!-- SECTION 2: CONTRACTED SOUNDS (3 COLUMNS) -->
+            <div>
+                <table>
+                    <tr class="kana-row">
+                        <td onclick="speak('キャ')">キャ</td><td onclick="speak('キュ')">キュ</td><td onclick="speak('キョ')">キョ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>কিয়া</td><td>কিউ</td><td>কিয়ু</td></tr>
+                    
+                    <tr class="kana-row">
+                        <td onclick="speak('シャ')">シャ</td><td onclick="speak('シュ')">シュ</td><td onclick="speak('ショ')">ショ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>শা</td><td>শু</td><td>স</td></tr>
+
+                    <tr class="kana-row">
+                        <td onclick="speak('チャ')">チャ</td><td onclick="speak('チュ')">チュ</td><td onclick="speak('チョ')">チョ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>ছা</td><td>ছু</td><td>ছো</td></tr>
+
+                    <tr class="kana-row">
+                        <td onclick="speak('ニャ')">ニャ</td><td onclick="speak('ニュ')">ニュ</td><td onclick="speak('ニョ')">ニョ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>নিয়া</td><td>নিউ </td><td>নিয়</td></tr>
+
+                    <tr class="kana-row">
+                        <td onclick="speak('ヒャ')">ヒャ</td><td onclick="speak('ヒュ')">ヒュ</td><td onclick="speak('ヒョ')">ヒョ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>হিয়া</td><td>হিউ</td><td>হিয়</td></tr>
+
+                    <tr class="kana-row">
+                        <td onclick="speak('リャ')">リャ</td><td onclick="speak('リュ')">リュ</td><td onclick="speak('リョ')">リョ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>রিয়া</td><td>রিউ</td><td>রিয়</td></tr>
+
+                    <tr class="kana-row">
+                        <td onclick="speak('ギャ')">ギャ</td><td onclick="speak('ギュ')">ギュ</td><td onclick="speak('ギョ')">ギョ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>গিয়া</td><td>গিউ</td><td>গিয়</td></tr>
+
+                    <tr class="kana-row">
+                        <td onclick="speak('ジャ')">ジャ</td><td onclick="speak('ジュ')">ジュ</td><td onclick="speak('ジョ')">ジョ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>জাআ</td><td>জু</td><td>জোউ</td></tr>
+
+                    <tr class="kana-row">
+                        <td onclick="speak('ビャ')">ビャ</td><td onclick="speak('ビュ')">ビュ</td><td onclick="speak('ビョ')">ビョ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>বিয়া</td><td>বিউ</td><td>বিয়</td></tr>
+
+                    <tr class="kana-row">
+                        <td onclick="speak('ピャ')">ピャ</td><td onclick="speak('ピュ')">ピュ</td><td onclick="speak('ピョ')">ピョ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>পিয়া</td><td>পিউ</td><td>পিয়</td></tr>
+
+                    <tr class="kana-row">
+                        <td onclick="speak('ミャ')">ミャ</td><td onclick="speak('ミュ')">ミュ</td><td onclick="speak('ミョ')">ミョ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>মিয়া</td><td>মিউ</td><td>মিয়</td></tr>
+                </table>
+            </div>
+
+            <!-- SECTION 3: DAKUON / HANDAKUON (5 COLUMNS) -->
+            <div>
+                <table>
+                    <tr class="kana-row">
+                        <td onclick="speak('ガ')">ガ</td><td onclick="speak('ギ')">ギ</td><td onclick="speak('グ')">グ</td><td onclick="speak('ゲ')">ゲ</td><td onclick="speak('ゴ')">ゴ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>গা</td><td>গি</td><td>গু</td><td>গে</td><td>গো</td></tr>
+
+                    <tr class="kana-row">
+                        <td onclick="speak('ザ')">ザ</td><td onclick="speak('ジ')">ジ</td><td onclick="speak('ズ')">ズ</td><td onclick="speak('ゼ')">ゼ</td><td onclick="speak('ゾ')">ゾ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>যা</td><td>জি</td><td>জু</td><td>যে</td><td>য</td></tr>
+
+                    <tr class="kana-row">
+                        <td onclick="speak('ダ')">ダ</td><td onclick="speak('ヂ')">ヂ</td><td onclick="speak('ヅ')">ヅ</td><td onclick="speak('デ')">デ</td><td onclick="speak('ド')">ド</td>
+                    </tr>
+                    <tr class="bengali-row"><td>দা</td><td>জি</td><td>জু</td><td>দে</td><td>দো</td></tr>
+
+                    <tr class="kana-row">
+                        <tr class="kana-row">
+                        <td onclick="speak('バ')">バ</td><td onclick="speak('ビ')">ビ</td><td onclick="speak('ブ')">ブ</td><td onclick="speak('べ')">べ</td><td onclick="speak('ボ')">ボ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>বা </td><td>বি</td><td>বু </td><td>বে </td><td>বো </td></tr>
+
+                    <tr class="kana-row">
+                         <tr class="kana-row">
+                        <tr class="kana-row">
+                        <td onclick="speak('パ')">パ</td><td onclick="speak('ピ')">ピ</td><td onclick="speak('プ')">プ</td><td onclick="speak('ペ')">ペ</td><td onclick="speak('ポ')">ポ</td>
+                    </tr>
+                    <tr class="bengali-row"><td>পা  </td><td>পি </td><td>পু  </td><td>পে  </td><td>পো  </td></tr>
+
+                    <tr class="kana-row">  
+                        </tr>
+                    </table>
+                    </div>
+        </body>
+        
+</html>
