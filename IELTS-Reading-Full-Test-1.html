@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Reading - Full Practice Test 1</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            transition: background .3s, color .3s;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f9fbff;
+            border-left: 5px solid #3498db;
+            border-radius: 5px;
+        }
+
+        .toggle-btn {
+            position: fixed;
+            right: 20px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        /* Fixed button position */
+        .dark-btn {
+            top: 20px;
+        }
+
+        body.dark {
+            background: #121212;
+            color: #e0e0e0
+        }
+
+        body.dark .container {
+            background: #1e1e1e
+        }
+
+        body.dark .section {
+            background: #2a2a2a;
+            border-left: 5px solid #bb86fc
+        }
+
+        body.dark h1 {
+            color: #fff
+        }
+
+        body.dark .toggle-btn {
+            background: #bb86fc
+        }
+
+        .nav {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap
+        }
+
+        .nav button {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 6px;
+            background: #3498db;
+            color: #fff;
+            cursor: pointer
+        }
+
+        .lesson {
+            display: none
+        }
+
+        .lesson.active {
+            display: block
+        }
+
+        #currentTime {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 20px;
+            color: #4615b8;
+            margin: 0;
+            padding: 8px 0;
+            
+            
+        }
+
+        body.dark #currentTime {
+            color: #0eca27;
+            
+        }
+
+        /* push page content down so the fixed clock doesn't cover it */
+        .container {
+            margin-top: 40px;
+        }
+
+        #toggleAnswersBtn {
+            display: block;
+            margin: 28px auto 8px;
+            padding: 10px 22px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+            background: #2c3e50;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #toggleAnswersBtn:hover {
+            opacity: 0.9;
+        }
+
+        #answerKeySection {
+            display: none;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- DARK MODE -->
+    <button class="toggle-btn dark-btn" onclick="toggleMode()">
+        <span id="dark-icon">🌙</span>
+        <span id="dark-text">Dark Mode</span>
+    </button>
+
+    <div class="container">
+
+        <p id="currentTime"></p>
+
+        <div class="nav">
+            <a href="IELTS-Reading-Full-Test-1.html" target="_blank"><button>Test 1</button></a>
+            <a href="IELTS-Reading-Full-Test-2.html" target="_blank"><button>Test 2</button></a>
+            <a href="IELTS-Reading-Full-Test-3.html" target="_blank"><button>Test 3</button></a>
+            <a href="IELTS-Reading-Full-Test-4.html" target="_blank"><button>Test 4</button></a>
+            <a href="IELTS-Reading-Full-Test-5.html" target="_blank"><button>Test 5</button></a>
+            <a href="IELTS-Reading-Full-Test-6.html" target="_blank"><button>Test 6</button></a>
+            <a href="IELTS-Reading-Full-Test-7.html" target="_blank"><button>Test 7</button></a>
+            <a href="IELTS-Reading-Full-Test-8.html" target="_blank"><button>Test 8</button></a>
+            <a href="IELTS-Reading-Full-Test-9.html" target="_blank"><button>Test 9</button></a>
+            <a href="IELTS-Reading-Full-Test-10.html" target="_blank"><button>Test 10</button></a>
+            <a href="IELTS-Reading-Full-Test-11.html" target="_blank"><button>Test 11</button></a>
+            <a href="IELTS-Reading-Full-Test-12.html" target="_blank"><button>Test 12</button></a>
+        </div>
+
+        <h1>IELTS Academic Reading — Full Practice Test (Beginner Level)</h1>
+        <h3>3 Passages · 40 Questions · Suggested time: 60 minutes</h3>
+        <hr />
+        <h1>PASSAGE 1</h1>
+        <h2>The History of Chocolate</h2>
+        <p>Chocolate has a history that stretches back over 3,000 years. It was first used by the ancient Maya and Aztec civilizations in Central America, long before it became the sweet treat we know today. These early cultures did not eat chocolate as a solid bar; instead, they made it into a bitter drink by mixing crushed cacao beans with water, spices, and sometimes chili peppers.</p>
+        <p>The Aztecs valued cacao beans so highly that they used them as a form of currency. A rabbit, for example, might cost four cacao beans, while a slave could be purchased for around 100 beans. Cacao was also linked to religious rituals, and the Aztec emperor Montezuma reportedly drank large quantities of chocolate daily, believing it gave him energy and strength.</p>
+        <p>Chocolate arrived in Europe in the 16th century, brought back by Spanish explorers. At first, it remained a drink enjoyed mainly by the wealthy, as cacao beans were expensive and difficult to transport. Europeans changed the original recipe significantly, removing the chili peppers and adding sugar and honey to suit European tastes. By the 17th century, chocolate houses—similar to modern cafes—had become popular gathering places in cities like London and Paris.</p>
+        <p>The transformation of chocolate into a solid, edible form did not happen until the 19th century. In 1847, a British company called Fry's created the first chocolate bar by combining cocoa powder, sugar, and cocoa butter into a paste that could be pressed into a mold. Later, in 1875, a Swiss chocolatier named Daniel Peter invented milk chocolate by adding powdered milk to the mixture, creating a smoother and sweeter product.</p>
+        <p>Today, chocolate is produced and consumed worldwide, with countries like Switzerland, Belgium, and Germany particularly famous for their chocolate-making traditions. Despite its long and complex history, one thing has remained constant: people's love for this rich, flavorful treat.</p>
+
+        <h3>Questions 1–4: True / False / Not Given</h3>
+        <p><strong>1.</strong> The ancient Maya and Aztecs drank chocolate rather than eating it as a solid bar.
+        <strong>2.</strong> Only wealthy Aztecs were allowed to drink chocolate.
+        <strong>3.</strong> Chocolate became popular in Europe immediately after it arrived.
+        <strong>4.</strong> Fry's chocolate bar was invented before milk chocolate.</p>
+
+        <h3>Questions 5–8: Multiple Choice</h3>
+        <p><em>Choose the correct letter, A, B, C, or D.</em></p>
+        <p><strong>5. Why did the Aztecs value cacao beans?</strong>
+        A. They were rare and beautiful B. They could be used as money and in religious rituals C. They were used only for medicine D. They were given as gifts to visitors</p>
+        <p><strong>6. What did Europeans change about the original recipe?</strong>
+        A. They added chili peppers B. They removed sugar C. They removed chili peppers and added sugar D. They made it solid immediately</p>
+        <p><strong>7. What were 17th-century chocolate houses similar to?</strong>
+        A. Chocolate factories B. Modern cafes C. Supermarkets D. Restaurants</p>
+        <p><strong>8. Who invented milk chocolate?</strong>
+        A. Fry's company B. Montezuma C. Daniel Peter D. Spanish explorers</p>
+
+        <h3>Questions 9–13: Sentence Completion</h3>
+        <p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+        <p>
+            <strong>9.</strong> The Aztecs mixed crushed cacao beans with water and __________.<br>
+            <strong>10.</strong> A slave could reportedly be bought for around __________ cacao beans.<br>
+            <strong>11.</strong> Spanish explorers brought chocolate to __________ in the 16th century.<br>
+            <strong>12.</strong> Fry's company created the first chocolate bar in __________.<br>
+            <strong>13.</strong> Switzerland, Belgium, and __________ are famous for chocolate-making today.
+        </p>
+        <hr />
+
+        <h1>PASSAGE 2</h1>
+        <h2>Urban Green Spaces</h2>
+        <p>As cities around the world continue to grow, urban planners are paying increasing attention to the role of green spaces—parks, gardens, and tree-lined streets—in maintaining the wellbeing of city residents. Far from being simply decorative, these spaces serve a range of practical purposes that affect health, environment, and community life.</p>
+        <p>One of the most well-documented benefits of green space is its impact on physical health. Numerous studies have found that people living near parks tend to exercise more frequently, since accessible green areas encourage walking, jogging, and outdoor sports. In addition, trees and plants help filter air pollutants, which can reduce the incidence of respiratory illnesses in densely populated areas.</p>
+        <p>Green spaces also play a significant role in mental health. Spending time in natural surroundings has been shown to lower levels of stress hormones and improve mood. Some hospitals have even begun incorporating garden areas into their design, recognizing that patients with a view of greenery often recover more quickly than those without one.</p>
+        <p>Beyond individual health, parks and gardens contribute to the environmental balance of a city. Trees absorb carbon dioxide and produce oxygen, while also providing shade that can lower surrounding temperatures during hot months—a phenomenon particularly valuable in combating the "urban heat island" effect, where cities become significantly warmer than surrounding rural areas due to concrete and asphalt absorbing heat.</p>
+        <p>Finally, green spaces function as social hubs. Parks provide a free, shared space where people from different backgrounds can gather, exercise, and interact, which can strengthen community bonds. Community gardens, in particular, have become popular in many cities, allowing residents to grow their own food while building relationships with neighbors.</p>
+        <p>Despite these benefits, access to green space remains unequal in many cities, with wealthier neighborhoods often having significantly more parks and tree cover than poorer ones. Addressing this imbalance has become a priority for many urban planning departments in recent years.</p>
+
+        <h3>Questions 14–18: Matching Headings</h3>
+        <p><em>Choose the correct heading for paragraphs A–E from the list below.</em></p>
+        <p><strong>List of Headings</strong><br>
+        i. An unequal distribution of benefits<br>
+        ii. Green spaces bring people together<br>
+        iii. The purpose of this passage<br>
+        iv. Effects on the body<br>
+        v. Cooling the city and cleaning the air<br>
+        vi. Calming the mind</p>
+        <p>
+            <strong>14.</strong> Paragraph 1 (introduction)<br>
+            <strong>15.</strong> Paragraph 2 (physical health)<br>
+            <strong>16.</strong> Paragraph 3 (mental health)<br>
+            <strong>17.</strong> Paragraph 4 (environmental balance)<br>
+            <strong>18.</strong> Paragraph 5 (social hubs)
+        </p>
+
+        <h3>Questions 19–22: True / False / Not Given</h3>
+        <p>
+            <strong>19.</strong> People who live near parks tend to exercise less than those who don't.<br>
+            <strong>20.</strong> Hospital patients with a view of greenery sometimes recover faster.<br>
+            <strong>21.</strong> Trees can help reduce temperatures in cities during summer.<br>
+            <strong>22.</strong> All cities currently provide equal access to green space for every neighborhood.
+        </p>
+
+        <h3>Questions 23–26: Sentence Completion</h3>
+        <p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+        <p>
+            <strong>23.</strong> Trees help filter air __________, which can reduce respiratory illness.<br>
+            <strong>24.</strong> Spending time in nature can lower __________ hormones.<br>
+            <strong>25.</strong> The effect where cities become warmer than surrounding areas is called the "__________" effect.<br>
+            <strong>26.</strong> __________ allow residents to grow food and build relationships with neighbors.
+        </p>
+        <hr />
+
+        <h1>PASSAGE 3</h1>
+        <h2>The Invention of the Telephone</h2>
+        <p>The invention of the telephone stands as one of the most transformative moments in the history of communication, fundamentally changing how people across distances could interact. While the device is most commonly associated with Alexander Graham Bell, the story of its invention is more complex than a single moment of discovery.</p>
+        <p>Bell, a Scottish-born scientist who had emigrated to Canada and later the United States, was primarily interested in the study of sound and speech, partly due to his work with deaf students—his mother and wife were both deaf, which deeply influenced his career. Alongside his assistant, Thomas Watson, Bell spent years experimenting with ways to transmit sound electrically, building on earlier work related to the telegraph, which could only send simple coded signals rather than actual voice.</p>
+        <p>On March 10, 1876, Bell succeeded in transmitting clear speech to Watson in another room, famously saying, "Mr. Watson, come here, I want to see you." This moment is widely regarded as the birth of the telephone, though historians note that Bell filed his patent application just hours before a rival inventor, Elisha Gray, filed a similar claim—a coincidence that led to decades of legal disputes over who truly deserved credit for the invention.</p>
+        <p>Despite the controversy, Bell's patent was upheld, and he went on to found the Bell Telephone Company in 1877. Initial public reaction to the telephone was mixed; some considered it a novelty with little practical use, while others immediately recognized its potential for business and personal communication. Early telephones required an operator to manually connect calls through a switchboard, a system that remained standard for decades before automatic switching was introduced.</p>
+        <p>By the early 20th century, telephone networks had expanded rapidly across the United States and Europe, transforming business practices and personal relationships alike. What began as an experimental device capable of transmitting a single sentence between two rooms eventually became a foundational piece of global infrastructure, paving the way for the interconnected communication systems that define the modern world.</p>
+
+        <h3>Questions 27–30: Multiple Choice</h3>
+        <p><em>Choose the correct letter, A, B, C, or D.</em></p>
+        <p><strong>27. What influenced Bell's interest in sound and speech?</strong>
+        A. His university education B. His work with deaf students, including family members C. His experience with the telegraph D. His rivalry with Elisha Gray</p>
+        <p><strong>28. What did Bell say in his first successful telephone call?</strong>
+        A. "Hello, can you hear me?" B. "This is a great invention." C. "Mr. Watson, come here, I want to see you." D. "Testing, one, two, three."</p>
+        <p><strong>29. What caused decades of legal disputes?</strong>
+        A. Bell refused to pay Watson B. Bell and Gray filed similar patent claims on the same day C. The telephone company went bankrupt D. Watson claimed he invented the telephone</p>
+        <p><strong>30. How were early telephone calls connected?</strong>
+        A. Automatically, by machine B. By manually turning a dial C. Manually, through an operator at a switchboard D. Through the telegraph system</p>
+
+        <h3>Questions 31–35: Matching Information</h3>
+        <p><em>Which paragraph contains the following information? Write the correct paragraph number (1–5).</em></p>
+        <p>
+            <strong>31.</strong> A description of the exact words spoken during the first successful call<br>
+            <strong>32.</strong> Information about the founding of a telephone company<br>
+            <strong>33.</strong> Background on Bell's personal motivation for studying sound<br>
+            <strong>34.</strong> A comparison between telephone technology and an earlier communication device<br>
+            <strong>35.</strong> A description of how telephone networks grew in the following decades
+        </p>
+
+        <h3>Questions 36–40: Summary Completion</h3>
+        <p><em>Complete the summary using NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+        <p>Alexander Graham Bell's interest in sound was shaped by his work with <strong>(36)</strong> __________ students. Working with his assistant Thomas Watson, Bell built on earlier technology related to the <strong>(37)</strong> __________. His famous first call took place in <strong>(38)</strong> __________. Although Bell's patent was legally challenged by <strong>(39)</strong> __________, it was ultimately upheld, and he founded the Bell Telephone Company in <strong>(40)</strong> __________.</p>
+        <hr />
+
+        <button id="toggleAnswersBtn" onclick="toggleAnswerKey()">Show Answer Key</button>
+
+        <div id="answerKeySection">
+            <h1>ANSWER KEY</h1>
+            <h3>Passage 1</h3>
+            <p>1. True &nbsp; 2. Not Given &nbsp; 3. False &nbsp; 4. True &nbsp; 5. B &nbsp; 6. C &nbsp; 7. B &nbsp; 8. C<br>
+            9. spices &nbsp; 10. 100 &nbsp; 11. Europe &nbsp; 12. 1847 &nbsp; 13. Germany</p>
+            <h3>Passage 2</h3>
+            <p>14. iii &nbsp; 15. iv &nbsp; 16. vi &nbsp; 17. v &nbsp; 18. ii<br>
+            19. False &nbsp; 20. True &nbsp; 21. True &nbsp; 22. False<br>
+            23. pollutants &nbsp; 24. stress &nbsp; 25. urban heat island &nbsp; 26. Community gardens</p>
+            <h3>Passage 3</h3>
+            <p>27. B &nbsp; 28. C &nbsp; 29. B &nbsp; 30. C<br>
+            31. Paragraph 3 &nbsp; 32. Paragraph 4 &nbsp; 33. Paragraph 2 &nbsp; 34. Paragraph 2 &nbsp; 35. Paragraph 5<br>
+            36. deaf &nbsp; 37. telegraph &nbsp; 38. 1876 &nbsp; 39. Elisha Gray &nbsp; 40. 1877</p>
+            <hr />
+            <h3>Scoring guide (approximate, for practice purposes)</h3>
+            <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr><th>Correct answers</th><th>Approximate Band</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>39–40</td><td>9</td></tr>
+                    <tr><td>35–38</td><td>8</td></tr>
+                    <tr><td>30–34</td><td>7</td></tr>
+                    <tr><td>23–29</td><td>6</td></tr>
+                    <tr><td>16–22</td><td>5</td></tr>
+                    <tr><td>13–15</td><td>4</td></tr>
+                </tbody>
+            </table>
+            </div>
+            <p><em>This is a rough estimate for self-practice only — official band scores are calculated by IELTS using their own conversion tables.</em></p>
+        </div>
+
+    </div>
+
+    <script>
+        function showTime() {
+            const japanTime = new Date().toLocaleString('en-US', {
+                timeZone: 'Asia/Tokyo',
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            });
+            document.getElementById('currentTime').innerHTML = japanTime;
+        }
+        showTime();
+        setInterval(showTime, 1000);
+
+        // DARK MODE
+        function toggleMode() {
+            const body = document.body;
+            const icon = document.getElementById('dark-icon');
+            const text = document.getElementById('dark-text');
+            body.classList.toggle('dark');
+            if (body.classList.contains('dark')) {
+                icon.textContent = '☀️';
+                text.textContent = 'Light Mode';
+            } else {
+                icon.textContent = '🌙';
+                text.textContent = 'Dark Mode';
+            }
+        }
+
+        // LESSON NAVIGATION (kept as-is; has no effect until elements with
+        // id="lesson1"..."lesson25" and class="lesson" exist on the page)
+        const lessonOrder = [
+            'lesson1', 'lesson2', 'lesson3', 'lesson4', 'lesson5', 'lesson6', 'lesson7', 'lesson8', 'lesson9', 'lesson10',
+            'lesson11', 'lesson12', 'lesson13', 'lesson14', 'lesson15', 'lesson16', 'lesson17', 'lesson18', 'lesson19', 'lesson20',
+            'lesson21', 'lesson22', 'lesson23', 'lesson24', 'lesson25'
+        ];
+
+        function showLesson(id) {
+            const lessons = document.querySelectorAll('.lesson');
+            lessons.forEach(l => l.classList.remove('active'));
+            const target = document.getElementById(id);
+            if (target) target.classList.add('active');
+        }
+
+        function getActiveLesson() {
+            const active = document.querySelector('.lesson.active');
+            return active ? active.id : null;
+        }
+
+        function nextLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index < lessonOrder.length - 1) {
+                showLesson(lessonOrder[index + 1]);
+            }
+        }
+
+        function prevLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index > 0) {
+                showLesson(lessonOrder[index - 1]);
+            }
+        }
+
+        // TABLE SCROLL WRAP
+        document.querySelectorAll('table').forEach(function (t) {
+            if (t.parentElement.classList.contains('table-wrap')) return;
+            var wrap = document.createElement('div');
+            wrap.className = 'table-wrap';
+            t.parentNode.insertBefore(wrap, t);
+            wrap.appendChild(t);
+        });
+
+        // ANSWER KEY TOGGLE
+        function toggleAnswerKey() {
+            var section = document.getElementById('answerKeySection');
+            var btn = document.getElementById('toggleAnswersBtn');
+            if (section.style.display === 'none' || section.style.display === '') {
+                section.style.display = 'block';
+                btn.textContent = 'Hide Answer Key';
+            } else {
+                section.style.display = 'none';
+                btn.textContent = 'Show Answer Key';
+            }
+        }
+    </script>
+
+</body>
+
+</html>
