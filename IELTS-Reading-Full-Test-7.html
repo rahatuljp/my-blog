@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Reading - Full Practice Test 7</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            transition: background .3s, color .3s;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f9fbff;
+            border-left: 5px solid #3498db;
+            border-radius: 5px;
+        }
+
+        .toggle-btn {
+            position: fixed;
+            right: 20px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        /* Fixed button position */
+        .dark-btn {
+            top: 20px;
+        }
+
+        body.dark {
+            background: #121212;
+            color: #e0e0e0
+        }
+
+        body.dark .container {
+            background: #1e1e1e
+        }
+
+        body.dark .section {
+            background: #2a2a2a;
+            border-left: 5px solid #bb86fc
+        }
+
+        body.dark h1 {
+            color: #fff
+        }
+
+        body.dark .toggle-btn {
+            background: #bb86fc
+        }
+
+        .nav {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap
+        }
+
+        .nav button {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 6px;
+            background: #3498db;
+            color: #fff;
+            cursor: pointer
+        }
+
+        .lesson {
+            display: none
+        }
+
+        .lesson.active {
+            display: block
+        }
+
+        #currentTime {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 20px;
+            color: #4615b8;
+            margin: 0;
+            padding: 8px 0;
+            
+            
+        }
+
+        body.dark #currentTime {
+            color: #0eca27;
+            
+        }
+
+        /* push page content down so the fixed clock doesn't cover it */
+        .container {
+            margin-top: 40px;
+        }
+
+        #toggleAnswersBtn {
+            display: block;
+            margin: 28px auto 8px;
+            padding: 10px 22px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+            background: #2c3e50;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #toggleAnswersBtn:hover {
+            opacity: 0.9;
+        }
+
+        #answerKeySection {
+            display: none;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- DARK MODE -->
+    <button class="toggle-btn dark-btn" onclick="toggleMode()">
+        <span id="dark-icon">🌙</span>
+        <span id="dark-text">Dark Mode</span>
+    </button>
+
+    <div class="container">
+
+        <p id="currentTime"></p>
+
+        <div class="nav">
+            <a href="IELTS-Reading-Full-Test-1.html" target="_blank"><button>Test 1</button></a>
+            <a href="IELTS-Reading-Full-Test-2.html" target="_blank"><button>Test 2</button></a>
+            <a href="IELTS-Reading-Full-Test-3.html" target="_blank"><button>Test 3</button></a>
+            <a href="IELTS-Reading-Full-Test-4.html" target="_blank"><button>Test 4</button></a>
+            <a href="IELTS-Reading-Full-Test-5.html" target="_blank"><button>Test 5</button></a>
+            <a href="IELTS-Reading-Full-Test-6.html" target="_blank"><button>Test 6</button></a>
+            <a href="IELTS-Reading-Full-Test-7.html" target="_blank"><button>Test 7</button></a>
+            <a href="IELTS-Reading-Full-Test-8.html" target="_blank"><button>Test 8</button></a>
+            <a href="IELTS-Reading-Full-Test-9.html" target="_blank"><button>Test 9</button></a>
+            <a href="IELTS-Reading-Full-Test-10.html" target="_blank"><button>Test 10</button></a>
+            <a href="IELTS-Reading-Full-Test-11.html" target="_blank"><button>Test 11</button></a>
+            <a href="IELTS-Reading-Full-Test-12.html" target="_blank"><button>Test 12</button></a>
+        </div>
+
+        <h1>IELTS Academic Reading — Full Practice Test 7 (Beginner Level)</h1>
+        <h3>3 Passages · 40 Questions · Suggested time: 60 minutes</h3>
+        <hr />
+<h1>PASSAGE 1</h1>
+<h2>The History of Vaccination</h2>
+<p>The concept of deliberately exposing individuals to a disease-causing agent in order to build immunity predates modern medicine by centuries. As early as the 10th century, physicians in China practiced a technique known as variolation, in which material from smallpox sores was introduced into healthy individuals, typically through the skin or nose, in the hope of producing a mild infection that would grant future immunity. While often effective, variolation carried significant risk, occasionally causing severe illness or death in a small percentage of recipients.</p>
+<p>A major turning point occurred in 1796, when English physician Edward Jenner observed that milkmaids who had previously contracted cowpox, a relatively mild disease affecting cattle, appeared to be protected from the far more dangerous smallpox. Building on this observation, Jenner conducted a now-famous experiment, deliberately infecting a young boy with cowpox material and subsequently exposing him to smallpox, finding that the boy remained healthy. This work laid the foundation for modern vaccination, with the very term "vaccine" deriving from <em>vacca</em>, the Latin word for cow.</p>
+<p>Throughout the 19th and 20th centuries, scientific understanding of immunology advanced considerably, enabling the development of vaccines against an expanding range of diseases, including rabies, developed by Louis Pasteur in the 1880s, and later, diseases such as polio, measles, and tetanus. These developments dramatically reduced illness and death from diseases that had previously caused widespread suffering, particularly among children.</p>
+<p>Perhaps the most notable achievement of vaccination programs came in 1980, when the World Health Organization officially declared smallpox eradicated worldwide, following a coordinated global vaccination campaign—marking the first, and to date only, human disease to be completely eliminated through deliberate intervention.</p>
+<p>Despite these historical successes, vaccination programs continue to face challenges, including unequal access to vaccines across different regions of the world, and, in some populations, hesitancy or skepticism regarding vaccine safety, a phenomenon that public health officials continue to address through education and community engagement efforts, recognizing that maintaining high vaccination rates remains essential for preventing the resurgence of diseases that vaccines have successfully controlled.</p>
+<h3>Questions 1–4: True / False / Not Given</h3>
+<p><strong>1.</strong> Variolation was completely safe and carried no risk to recipients.
+<strong>2.</strong> Jenner observed that milkmaids who had contracted cowpox seemed protected from smallpox.
+<strong>3.</strong> The word "vaccine" originates from the Latin word for cow.
+<strong>4.</strong> Smallpox was declared eradicated by the World Health Organization in 1980.</p>
+<h3>Questions 5–8: Multiple Choice</h3>
+<p><em>Choose the correct letter, A, B, C, or D.</em></p>
+<p><strong>5. What was variolation?</strong>
+A. A modern vaccination technique B. An early Chinese technique exposing people to smallpox material C. A vaccine developed by Jenner D. A treatment for cowpox</p>
+<p><strong>6. What did Jenner's experiment involve?</strong>
+A. Testing a vaccine on animals only B. Infecting a boy with cowpox and later exposing him to smallpox C. Studying rabies transmission D. Developing the polio vaccine</p>
+<p><strong>7. Who developed a vaccine against rabies in the 1880s?</strong>
+A. Edward Jenner B. Louis Pasteur C. The World Health Organization D. Chinese physicians</p>
+<p><strong>8. According to the passage, what remains a challenge for vaccination programs today?</strong>
+A. A lack of any effective vaccines B. Unequal access and vaccine hesitancy C. The complete eradication of all diseases D. Excessive government funding</p>
+<h3>Questions 9–13: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p><strong>9.</strong> Variolation used material from <strong><em>_</em></strong><strong><em> sores to produce immunity.
+<strong>10.</strong> Jenner's work built on his observation of </em></strong><strong><em>_</em></strong> who had contracted cowpox.
+<strong>11.</strong> The word "vaccine" comes from the Latin word <strong><em>_</em></strong><strong><em>, meaning cow.
+<strong>12.</strong> Louis Pasteur developed a vaccine against </em></strong><strong><em>_</em></strong> in the 1880s.
+<strong>13.</strong> Smallpox remains the only human disease fully <strong><em>_</em></strong>___ through deliberate intervention.</p>
+<hr />
+<h1>PASSAGE 2</h1>
+<h2>Wind Power and the Renewable Energy Transition</h2>
+<p>Among the various forms of renewable energy currently being developed and deployed worldwide, wind power has emerged as one of the most mature and widely adopted technologies, playing an increasingly significant role in national electricity grids across many countries. Modern wind turbines convert the kinetic energy of moving air into electricity through large rotating blades connected to a generator housed within the turbine structure.</p>
+<p>Wind turbines are typically installed in two main configurations: onshore, situated on land in areas with consistently strong and reliable wind patterns, and offshore, positioned in bodies of water where wind speeds tend to be higher and more consistent than on land, though offshore installation and maintenance generally involve significantly higher costs due to the engineering challenges of building and servicing structures at sea.</p>
+<p>Over the past two decades, wind turbine technology has advanced considerably, with modern turbines becoming substantially larger and more efficient than earlier generations. Larger rotor blades allow turbines to capture more wind energy, while improvements in materials science and turbine design have contributed to declining costs per unit of electricity generated, making wind power increasingly cost-competitive with conventional fossil fuel-based electricity generation in many regions.</p>
+<p>Despite these advantages, wind power faces certain inherent challenges. Because electricity generation depends directly on wind availability, which naturally fluctuates, wind farms cannot guarantee constant power output in the way that traditional power plants can. This intermittency issue is typically addressed through a combination of strategies, including geographically diversifying wind farm locations, pairing wind power with other energy sources, and increasingly, incorporating large-scale battery storage systems capable of storing excess electricity generated during periods of high wind for later use.</p>
+<p>Additional challenges include visual and noise concerns raised by some communities located near wind farm installations, as well as potential impacts on bird and bat populations, though researchers continue developing mitigation strategies, such as improved turbine siting practices and technologies designed to reduce wildlife collisions, aimed at minimizing these environmental impacts as the technology continues to expand globally.</p>
+<h3>Questions 14–18: Matching Headings</h3>
+<p><em>Choose the correct heading for paragraphs A–E from the list below.</em></p>
+<p><strong>List of Headings</strong>
+i. Onshore versus offshore installations
+ii. Remaining community and environmental concerns
+iii. How wind turbines generate electricity
+iv. Managing the challenge of inconsistent output
+v. Advances leading to falling costs</p>
+<p><strong>14.</strong> Paragraph 1
+<strong>15.</strong> Paragraph 2
+<strong>16.</strong> Paragraph 3
+<strong>17.</strong> Paragraph 4
+<strong>18.</strong> Paragraph 5</p>
+<h3>Questions 19–22: True / False / Not Given</h3>
+<p><strong>19.</strong> Offshore wind installations generally cost less than onshore installations.
+<strong>20.</strong> Modern wind turbines have become larger and more efficient over the past two decades.
+<strong>21.</strong> Wind farms can guarantee constant electricity output at all times.
+<strong>22.</strong> Battery storage systems can help address wind power's intermittency issue.</p>
+<h3>Questions 23–26: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p><strong>23.</strong> Wind turbines convert the <strong><em>_</em></strong><strong><em> energy of moving air into electricity.
+<strong>24.</strong> Offshore wind speeds tend to be higher and more </em></strong><strong><em>_</em></strong> than on land.
+<strong>25.</strong> Wind power has become increasingly cost-competitive with <strong><em>_</em></strong><strong><em> fuel-based electricity.
+<strong>26.</strong> Some communities have raised </em></strong><strong><em>_</em></strong> and noise concerns about nearby wind farms.</p>
+<hr />
+<h1>PASSAGE 3</h1>
+<h2>Social Media and Mental Health</h2>
+<p>Since the widespread adoption of social media platforms over the past two decades, researchers across psychology, sociology, and public health have devoted considerable attention to understanding how these technologies influence users' mental health and general wellbeing. The relationship, however, has proven considerably more complex than many early studies initially suggested.</p>
+<p>Some research, particularly studies conducted among adolescents and young adults, has identified associations between heavy social media use and increased rates of anxiety, depression, and lowered self-esteem, with several proposed explanations. One frequently cited factor is social comparison, in which users compare their own lives unfavorably to the often carefully curated, idealized portrayals of others' lives presented on social platforms. Another concern involves the potential displacement of face-to-face social interaction and sleep time, both of which are widely recognized as important contributors to psychological wellbeing.</p>
+<p>However, other researchers caution against drawing overly simplistic conclusions from this body of research. Many studies establishing correlations between social media use and mental health outcomes have not been able to definitively establish causation, since numerous other factors—including pre-existing mental health conditions, socioeconomic circumstances, and broader life stressors—may independently influence both social media usage patterns and mental health outcomes simultaneously.</p>
+<p>Furthermore, some research suggests that the effects of social media use may depend considerably on how platforms are used, rather than simply how much time is spent using them. Passive use, such as scrolling through content without meaningful interaction, has been associated with more negative outcomes in certain studies, whereas active use, involving direct communication and engagement with friends and family, has sometimes been linked to more neutral or even positive effects on wellbeing, particularly for users maintaining existing social connections.</p>
+<p>Given this complexity, many public health experts currently advocate for a nuanced, individualized approach rather than blanket recommendations, emphasizing mindful and intentional social media use, alongside continued research into which specific usage patterns, platform features, and individual vulnerabilities most significantly influence mental health outcomes across different populations.</p>
+<h3>Questions 27–30: Multiple Choice</h3>
+<p><em>Choose the correct letter, A, B, C, or D.</em></p>
+<p><strong>27. What is "social comparison," as described in the passage?</strong>
+A. Comparing prices of products online B. Comparing one's own life unfavorably to idealized portrayals of others C. A government policy on social media D. A type of mental health treatment</p>
+<p><strong>28. Why do some researchers caution against simplistic conclusions?</strong>
+A. No research has ever studied this topic B. Correlation studies cannot definitively establish causation C. Social media has no effect on anyone D. All studies agree completely on the findings</p>
+<p><strong>29. What distinction does some research draw regarding social media use?</strong>
+A. Between mobile and desktop use B. Between passive and active use C. Between paid and free platforms D. Between morning and evening use</p>
+<p><strong>30. What approach do many public health experts currently advocate?</strong>
+A. Banning social media entirely B. A nuanced, individualized approach C. Ignoring the issue entirely D. Encouraging maximum daily usage</p>
+<h3>Questions 31–35: Matching Information</h3>
+<p><em>Which paragraph contains the following information? Write the correct paragraph number (1–5).</em></p>
+<p><strong>31.</strong> A mention of factors that may independently affect both social media use and mental health
+<strong>32.</strong> An explanation of the difference between passive and active social media use
+<strong>33.</strong> A description of social comparison as a proposed explanation for negative effects
+<strong>34.</strong> A statement about experts favoring individualized approaches rather than blanket rules
+<strong>35.</strong> A general introduction to research interest in social media's effect on mental health</p>
+<h3>Questions 36–40: Summary Completion</h3>
+<p><em>Complete the summary using NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p>Some studies link heavy social media use among young people to increased anxiety, depression, and lowered <strong>(36)</strong> <strong><em>_</em></strong><strong><em>. One proposed explanation is <strong>(37)</strong> </em></strong><strong><em>_</em></strong>, where users compare their lives to idealized portrayals of others. However, correlation studies cannot definitively establish <strong>(38)</strong> <strong><em>_</em></strong><strong><em>, since other factors may play a role. Research suggests <strong>(39)</strong> </em></strong><strong><em>_</em></strong> use is associated with more negative outcomes than active use. Experts currently recommend a <strong>(40)</strong> <strong><em>_</em></strong>___ approach rather than blanket rules.</p>
+<hr />
+<button id="toggleAnswersBtn" onclick="toggleAnswerKey()">Show Answer Key</button>
+
+<div id="answerKeySection">
+<h1>ANSWER KEY</h1>
+<h3>Passage 1</h3>
+<p>1. False 2. True 3. True 4. True 5. B 6. B 7. B 8. B
+9. smallpox 10. milkmaids 11. vacca 12. rabies 13. eradicated</p>
+<h3>Passage 2</h3>
+<p>14. iii 15. i 16. v 17. iv 18. ii
+19. False 20. True 21. False 22. True
+23. kinetic 24. consistent 25. fossil 26. visual</p>
+<h3>Passage 3</h3>
+<p>27. B 28. B 29. B 30. B
+31. Paragraph 3 32. Paragraph 4 33. Paragraph 2 34. Paragraph 5 35. Paragraph 1
+36. self-esteem 37. social comparison 38. causation 39. Passive 40. nuanced (individualized)</p>
+<p><em>Scoring guide: 39–40 = Band 9, 35–38 = Band 8, 30–34 = Band 7, 23–29 = Band 6, 16–22 = Band 5, 13–15 = Band 4 (approximate, for self-practice only).</em></p>
+</div>
+
+<script>
+        function showTime() {
+            const japanTime = new Date().toLocaleString('en-US', {
+                timeZone: 'Asia/Tokyo',
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            });
+            document.getElementById('currentTime').innerHTML = japanTime;
+        }
+        showTime();
+        setInterval(showTime, 1000);
+
+        // DARK MODE
+        function toggleMode() {
+            const body = document.body;
+            const icon = document.getElementById('dark-icon');
+            const text = document.getElementById('dark-text');
+            body.classList.toggle('dark');
+            if (body.classList.contains('dark')) {
+                icon.textContent = '☀️';
+                text.textContent = 'Light Mode';
+            } else {
+                icon.textContent = '🌙';
+                text.textContent = 'Dark Mode';
+            }
+        }
+
+        
+
+        function showLesson(id) {
+            const lessons = document.querySelectorAll('.lesson');
+            lessons.forEach(l => l.classList.remove('active'));
+            const target = document.getElementById(id);
+            if (target) target.classList.add('active');
+        }
+
+        function getActiveLesson() {
+            const active = document.querySelector('.lesson.active');
+            return active ? active.id : null;
+        }
+
+        function nextLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index < lessonOrder.length - 1) {
+                showLesson(lessonOrder[index + 1]);
+            }
+        }
+
+        function prevLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index > 0) {
+                showLesson(lessonOrder[index - 1]);
+            }
+        }
+
+        // TABLE SCROLL WRAP
+        document.querySelectorAll('table').forEach(function (t) {
+            if (t.parentElement.classList.contains('table-wrap')) return;
+            var wrap = document.createElement('div');
+            wrap.className = 'table-wrap';
+            t.parentNode.insertBefore(wrap, t);
+            wrap.appendChild(t);
+        });
+
+        // ANSWER KEY TOGGLE
+        function toggleAnswerKey() {
+            var section = document.getElementById('answerKeySection');
+            var btn = document.getElementById('toggleAnswersBtn');
+            if (section.style.display === 'none' || section.style.display === '') {
+                section.style.display = 'block';
+                btn.textContent = 'Hide Answer Key';
+            } else {
+                section.style.display = 'none';
+                btn.textContent = 'Show Answer Key';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

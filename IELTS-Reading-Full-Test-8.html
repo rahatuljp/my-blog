@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Reading - Full Practice Test 8</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            transition: background .3s, color .3s;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f9fbff;
+            border-left: 5px solid #3498db;
+            border-radius: 5px;
+        }
+
+        .toggle-btn {
+            position: fixed;
+            right: 20px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        /* Fixed button position */
+        .dark-btn {
+            top: 20px;
+        }
+
+        body.dark {
+            background: #121212;
+            color: #e0e0e0
+        }
+
+        body.dark .container {
+            background: #1e1e1e
+        }
+
+        body.dark .section {
+            background: #2a2a2a;
+            border-left: 5px solid #bb86fc
+        }
+
+        body.dark h1 {
+            color: #fff
+        }
+
+        body.dark .toggle-btn {
+            background: #bb86fc
+        }
+
+        .nav {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap
+        }
+
+        .nav button {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 6px;
+            background: #3498db;
+            color: #fff;
+            cursor: pointer
+        }
+
+        .lesson {
+            display: none
+        }
+
+        .lesson.active {
+            display: block
+        }
+
+        #currentTime {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 20px;
+            color: #4615b8;
+            margin: 0;
+            padding: 8px 0;
+            
+            
+        }
+
+        body.dark #currentTime {
+            color: #0eca27;
+            
+        }
+
+        /* push page content down so the fixed clock doesn't cover it */
+        .container {
+            margin-top: 40px;
+        }
+
+        #toggleAnswersBtn {
+            display: block;
+            margin: 28px auto 8px;
+            padding: 10px 22px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+            background: #2c3e50;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #toggleAnswersBtn:hover {
+            opacity: 0.9;
+        }
+
+        #answerKeySection {
+            display: none;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- DARK MODE -->
+    <button class="toggle-btn dark-btn" onclick="toggleMode()">
+        <span id="dark-icon">🌙</span>
+        <span id="dark-text">Dark Mode</span>
+    </button>
+
+    <div class="container">
+
+        <p id="currentTime"></p>
+
+        <div class="nav">
+            <a href="IELTS-Reading-Full-Test-1.html" target="_blank"><button>Test 1</button></a>
+            <a href="IELTS-Reading-Full-Test-2.html" target="_blank"><button>Test 2</button></a>
+            <a href="IELTS-Reading-Full-Test-3.html" target="_blank"><button>Test 3</button></a>
+            <a href="IELTS-Reading-Full-Test-4.html" target="_blank"><button>Test 4</button></a>
+            <a href="IELTS-Reading-Full-Test-5.html" target="_blank"><button>Test 5</button></a>
+            <a href="IELTS-Reading-Full-Test-6.html" target="_blank"><button>Test 6</button></a>
+            <a href="IELTS-Reading-Full-Test-7.html" target="_blank"><button>Test 7</button></a>
+            <a href="IELTS-Reading-Full-Test-8.html" target="_blank"><button>Test 8</button></a>
+            <a href="IELTS-Reading-Full-Test-9.html" target="_blank"><button>Test 9</button></a>
+            <a href="IELTS-Reading-Full-Test-10.html" target="_blank"><button>Test 10</button></a>
+            <a href="IELTS-Reading-Full-Test-11.html" target="_blank"><button>Test 11</button></a>
+            <a href="IELTS-Reading-Full-Test-12.html" target="_blank"><button>Test 12</button></a>
+        </div>
+
+        <h1>IELTS Academic Reading — Full Practice Test 8 (Beginner Level)</h1>
+        <h3>3 Passages · 40 Questions · Suggested time: 60 minutes</h3>
+        <hr />
+<h1>PASSAGE 1</h1>
+<h2>The Origins of the Olympic Games</h2>
+<p>The Olympic Games, one of the most widely recognized sporting events in the modern world, trace their origins to ancient Greece, where the earliest recorded games were held in 776 BCE at Olympia, a sanctuary site dedicated to the god Zeus. Held every four years, these ancient games combined athletic competition with religious ceremony, drawing participants and spectators from across the various Greek city-states.</p>
+<p>Ancient Olympic events differed considerably from their modern counterparts, initially featuring only a single event—a short foot race called the stade—before gradually expanding over subsequent centuries to include additional events such as wrestling, boxing, chariot racing, and the pentathlon, a combined event testing multiple athletic skills. Notably, participation was restricted to free Greek men, and married women were forbidden from attending as spectators, under threat of severe punishment, though unmarried women may have been permitted to watch certain events.</p>
+<p>The ancient games continued for nearly twelve centuries before being discontinued in 393 CE, when Roman Emperor Theodosius I banned pagan festivals, including the Olympics, as part of broader efforts to promote Christianity throughout the Roman Empire. For the following fifteen hundred years, the Olympic Games effectively ceased to exist as an organized event.</p>
+<p>Interest in reviving the Olympics emerged in the late 19th century, driven significantly by French educator Pierre de Coubertin, who believed that international athletic competition could promote peace, cultural exchange, and physical education among nations. His efforts culminated in the establishment of the International Olympic Committee in 1894, and the first modern Olympic Games were subsequently held in Athens in 1896, deliberately chosen as the host city in recognition of Greece's historical connection to the ancient games.</p>
+<p>Since this revival, the Olympics have grown enormously in scale and global significance, expanding to include a Winter Games alongside the original Summer Games, and now featuring participants from over 200 nations. Despite periodic disruptions, including cancellations during both World Wars, the Games have generally continued to grow in size and global visibility, evolving into one of the most prominent international events, symbolizing, for many, ideals of global unity and peaceful competition among nations.</p>
+<h3>Questions 1–4: True / False / Not Given</h3>
+<p><strong>1.</strong> The ancient Olympic Games were held at a site dedicated to the god Zeus.
+<strong>2.</strong> The ancient Olympics originally featured multiple events from the very beginning.
+<strong>3.</strong> Married women were forbidden from attending the ancient Olympics as spectators.
+<strong>4.</strong> The modern Olympics have never been cancelled or disrupted since 1896.</p>
+<h3>Questions 5–8: Multiple Choice</h3>
+<p><em>Choose the correct letter, A, B, C, or D.</em></p>
+<p><strong>5. In what year were the earliest recorded ancient Olympic Games held?</strong>
+A. 393 CE B. 1894 CE C. 776 BCE D. 1896 CE</p>
+<p><strong>6. Who banned the ancient Olympic Games?</strong>
+A. Pierre de Coubertin B. Roman Emperor Theodosius I C. The International Olympic Committee D. Greek city-state leaders</p>
+<p><strong>7. What did Pierre de Coubertin believe international competition could promote?</strong>
+A. Military strength B. Peace, cultural exchange, and physical education C. Religious devotion alone D. Economic growth only</p>
+<p><strong>8. Why was Athens chosen as the host of the first modern Olympics?</strong>
+A. It had the largest stadium at the time B. It was recognized for its historical connection to the ancient games C. It was the only city that applied D. It was selected randomly</p>
+<h3>Questions 9–13: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p><strong>9.</strong> The earliest ancient Olympic event was a foot race called the <strong><em>_</em></strong><strong><em>.
+<strong>10.</strong> The pentathlon tested multiple </em></strong><strong><em>_</em></strong> skills.
+<strong>11.</strong> Emperor Theodosius I banned the games as part of efforts to promote <strong><em>_</em></strong><strong><em>.
+<strong>12.</strong> The International Olympic Committee was established in </em></strong><strong><em>_</em></strong>.
+<strong>13.</strong> The Olympics now include a Winter Games alongside the original <strong><em>_</em></strong>___ Games.</p>
+<hr />
+<h1>PASSAGE 2</h1>
+<h2>Deforestation and Biodiversity Loss</h2>
+<p>Forests cover roughly thirty percent of the Earth's total land area and support an estimated eighty percent of terrestrial plant and animal species, making them among the most biologically significant ecosystems on the planet. Despite their ecological importance, forests worldwide continue to face substantial pressure from deforestation, driven primarily by agricultural expansion, logging, and infrastructure development.</p>
+<p>Tropical rainforests, particularly the Amazon in South America and forests across Southeast Asia and Central Africa, have experienced especially significant rates of forest loss in recent decades. In many cases, forests are cleared to make way for cattle ranching, palm oil plantations, or soybean cultivation, industries driven substantially by growing global demand for these agricultural products.</p>
+<p>The consequences of deforestation extend considerably beyond the direct loss of tree cover. Forests provide critical habitat for an enormous diversity of species, and their removal frequently results in habitat fragmentation, isolating wildlife populations into smaller, disconnected areas that struggle to maintain genetically healthy populations over time. This process significantly increases the risk of species extinction, particularly among species that require large, continuous habitat ranges or possess highly specialized ecological requirements.</p>
+<p>Deforestation also carries substantial climate implications. Trees absorb and store significant quantities of carbon dioxide throughout their lifetimes; when forests are cleared and burned, this stored carbon is released back into the atmosphere, contributing meaningfully to global greenhouse gas emissions. Additionally, forests play an important role in regulating regional rainfall patterns, meaning that large-scale deforestation can disrupt local and even regional climate systems in ways that extend well beyond the immediate area being cleared.</p>
+<p>In response to these concerns, various conservation strategies have been developed and implemented, including the establishment of protected areas and national parks, reforestation and afforestation programs aimed at restoring degraded land, and international agreements designed to reduce deforestation rates, such as initiatives that provide financial incentives to developing nations for preserving existing forest cover rather than clearing it for short-term economic gain.</p>
+<h3>Questions 14–18: Matching Headings</h3>
+<p><em>Choose the correct heading for paragraphs A–E from the list below.</em></p>
+<p><strong>List of Headings</strong>
+i. Climate consequences of forest loss
+ii. Efforts to conserve remaining forests
+iii. The ecological importance of forests
+iv. Drivers of tropical deforestation
+v. Impacts on species and habitat</p>
+<p><strong>14.</strong> Paragraph 1
+<strong>15.</strong> Paragraph 2
+<strong>16.</strong> Paragraph 3
+<strong>17.</strong> Paragraph 4
+<strong>18.</strong> Paragraph 5</p>
+<h3>Questions 19–22: True / False / Not Given</h3>
+<p><strong>19.</strong> Forests support roughly eighty percent of terrestrial plant and animal species.
+<strong>20.</strong> Deforestation in tropical regions has decreased significantly in recent decades.
+<strong>21.</strong> Habitat fragmentation can increase the risk of species extinction.
+<strong>22.</strong> All countries have signed agreements to completely stop deforestation.</p>
+<h3>Questions 23–26: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p><strong>23.</strong> Forests are often cleared for cattle ranching, palm oil, or <strong><em>_</em></strong><strong><em> cultivation.
+<strong>24.</strong> Habitat loss can isolate wildlife into smaller, </em></strong><strong><em>_</em></strong> areas.
+<strong>25.</strong> When forests are cleared and burned, stored <strong><em>_</em></strong><strong><em> is released into the atmosphere.
+<strong>26.</strong> Some international agreements offer </em></strong><strong><em>_</em></strong> incentives to preserve forest cover.</p>
+<hr />
+<h1>PASSAGE 3</h1>
+<h2>The Development of Self-Driving Cars</h2>
+<p>Autonomous vehicle technology, once confined largely to science fiction, has advanced considerably over the past two decades, driven by rapid progress in sensor technology, computing power, and machine learning algorithms capable of processing vast quantities of real-time data required for safe vehicle navigation. Modern self-driving systems typically rely on a combination of cameras, radar, and, in many designs, a laser-based sensing technology called LiDAR, working together to build a detailed, continuously updated model of the vehicle's surrounding environment.</p>
+<p>Industry experts and regulatory bodies commonly classify autonomous vehicle capability using a six-level scale, ranging from Level 0, indicating no automation whatsoever, to Level 5, representing full automation in which a vehicle can operate safely in all conditions without any human intervention required. As of the mid-2020s, most commercially available systems operate at Level 2 or Level 3, offering substantial driving assistance while still requiring attentive human supervision and, in many cases, the ability to take control immediately if requested.</p>
+<p>Proponents of self-driving technology point to several potential benefits, most notably the possibility of significantly reducing traffic accidents, since human error—including distraction, fatigue, and impaired driving—contributes to a substantial majority of current traffic collisions worldwide. Additional potential benefits include improved traffic flow through more efficient vehicle coordination, expanded mobility options for elderly or disabled individuals unable to drive conventional vehicles, and potential reductions in fuel consumption through more efficient driving patterns.</p>
+<p>However, significant technical and regulatory challenges remain before fully autonomous vehicles become widely available. Self-driving systems must reliably handle an enormous range of unpredictable real-world scenarios, including adverse weather conditions, complex urban environments, and unusual situations that may not have been adequately represented in the data used to train these systems. Additionally, questions regarding legal liability in the event of accidents involving autonomous vehicles, as well as broader ethical considerations regarding how such systems should be programmed to make split-second decisions in unavoidable collision scenarios, remain subjects of ongoing debate among policymakers, ethicists, and industry stakeholders.</p>
+<p>Despite these considerable challenges, most industry analysts anticipate continued gradual progress toward higher levels of vehicle autonomy in the coming years, even as full, unrestricted Level 5 autonomy across all driving conditions is likely to require substantially more time, testing, and regulatory development before becoming a widespread commercial reality.</p>
+<h3>Questions 27–30: Multiple Choice</h3>
+<p><em>Choose the correct letter, A, B, C, or D.</em></p>
+<p><strong>27. What does LiDAR refer to?</strong>
+A. A type of traffic regulation B. A laser-based sensing technology used in self-driving cars C. A government safety agency D. A type of electric vehicle battery</p>
+<p><strong>28. What does Level 5 represent on the autonomy scale?</strong>
+A. No automation whatsoever B. Full automation with no human intervention required C. Basic driving assistance only D. A vehicle that cannot be driven by humans at all</p>
+<p><strong>29. What is cited as a major cause of current traffic collisions?</strong>
+A. Vehicle malfunctions alone B. Poor road design exclusively C. Human error, including distraction and fatigue D. Weather conditions alone</p>
+<p><strong>30. What remains a subject of ongoing debate, according to the passage?</strong>
+A. Whether cars should have four wheels B. Legal liability and ethical decision-making in autonomous vehicles C. Whether LiDAR technology exists D. Whether traffic laws should be abolished</p>
+<h3>Questions 31–35: Matching Information</h3>
+<p><em>Which paragraph contains the following information? Write the correct paragraph number (1–5).</em></p>
+<p><strong>31.</strong> A description of the six-level autonomy classification scale
+<strong>32.</strong> A mention of expanded mobility for elderly or disabled individuals as a potential benefit
+<strong>33.</strong> An explanation of the sensor technologies used in self-driving systems
+<strong>34.</strong> A statement about the timeline expected for full Level 5 autonomy
+<strong>35.</strong> A discussion of ethical questions regarding split-second collision decisions</p>
+<h3>Questions 36–40: Summary Completion</h3>
+<p><em>Complete the summary using NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p>Self-driving systems commonly use cameras, radar, and <strong>(36)</strong> <strong><em>_</em></strong><strong><em> to build a model of their surroundings. Vehicle autonomy is classified on a scale from Level 0 to Level <strong>(37)</strong> </em></strong><strong><em>_</em></strong>. Most commercial systems currently operate at Level 2 or <strong>(38)</strong> <strong><em>_</em></strong><strong><em>. A major potential benefit is reducing accidents caused by human <strong>(39)</strong> </em></strong><strong><em>_</em></strong>. However, questions remain regarding legal <strong>(40)</strong> <strong><em>_</em></strong>___ in the event of accidents.</p>
+<hr />
+<button id="toggleAnswersBtn" onclick="toggleAnswerKey()">Show Answer Key</button>
+
+<div id="answerKeySection">
+<h1>ANSWER KEY</h1>
+<h3>Passage 1</h3>
+<p>1. True 2. False 3. True 4. False 5. C 6. B 7. B 8. B
+9. stade 10. athletic 11. Christianity 12. 1894 13. Summer</p>
+<h3>Passage 2</h3>
+<p>14. iii 15. iv 16. v 17. i 18. ii
+19. True 20. False 21. True 22. Not Given
+23. soybean 24. disconnected 25. carbon 26. financial</p>
+<h3>Passage 3</h3>
+<p>27. B 28. B 29. C 30. B
+31. Paragraph 2 32. Paragraph 3 33. Paragraph 1 34. Paragraph 5 35. Paragraph 4
+36. LiDAR 37. 5 38. Level 3 39. error 40. liability</p>
+<p><em>Scoring guide: 39–40 = Band 9, 35–38 = Band 8, 30–34 = Band 7, 23–29 = Band 6, 16–22 = Band 5, 13–15 = Band 4 (approximate, for self-practice only).</em></p>
+</div>
+
+<script>
+        function showTime() {
+            const japanTime = new Date().toLocaleString('en-US', {
+                timeZone: 'Asia/Tokyo',
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            });
+            document.getElementById('currentTime').innerHTML = japanTime;
+        }
+        showTime();
+        setInterval(showTime, 1000);
+
+        // DARK MODE
+        function toggleMode() {
+            const body = document.body;
+            const icon = document.getElementById('dark-icon');
+            const text = document.getElementById('dark-text');
+            body.classList.toggle('dark');
+            if (body.classList.contains('dark')) {
+                icon.textContent = '☀️';
+                text.textContent = 'Light Mode';
+            } else {
+                icon.textContent = '🌙';
+                text.textContent = 'Dark Mode';
+            }
+        }
+
+        
+
+        function showLesson(id) {
+            const lessons = document.querySelectorAll('.lesson');
+            lessons.forEach(l => l.classList.remove('active'));
+            const target = document.getElementById(id);
+            if (target) target.classList.add('active');
+        }
+
+        function getActiveLesson() {
+            const active = document.querySelector('.lesson.active');
+            return active ? active.id : null;
+        }
+
+        function nextLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index < lessonOrder.length - 1) {
+                showLesson(lessonOrder[index + 1]);
+            }
+        }
+
+        function prevLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index > 0) {
+                showLesson(lessonOrder[index - 1]);
+            }
+        }
+
+        // TABLE SCROLL WRAP
+        document.querySelectorAll('table').forEach(function (t) {
+            if (t.parentElement.classList.contains('table-wrap')) return;
+            var wrap = document.createElement('div');
+            wrap.className = 'table-wrap';
+            t.parentNode.insertBefore(wrap, t);
+            wrap.appendChild(t);
+        });
+
+        // ANSWER KEY TOGGLE
+        function toggleAnswerKey() {
+            var section = document.getElementById('answerKeySection');
+            var btn = document.getElementById('toggleAnswersBtn');
+            if (section.style.display === 'none' || section.style.display === '') {
+                section.style.display = 'block';
+                btn.textContent = 'Hide Answer Key';
+            } else {
+                section.style.display = 'none';
+                btn.textContent = 'Show Answer Key';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

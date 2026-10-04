@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Reading - Full Practice Test 3</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            transition: background .3s, color .3s;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f9fbff;
+            border-left: 5px solid #3498db;
+            border-radius: 5px;
+        }
+
+        .toggle-btn {
+            position: fixed;
+            right: 20px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        /* Fixed button position */
+        .dark-btn {
+            top: 20px;
+        }
+
+        body.dark {
+            background: #121212;
+            color: #e0e0e0
+        }
+
+        body.dark .container {
+            background: #1e1e1e
+        }
+
+        body.dark .section {
+            background: #2a2a2a;
+            border-left: 5px solid #bb86fc
+        }
+
+        body.dark h1 {
+            color: #fff
+        }
+
+        body.dark .toggle-btn {
+            background: #bb86fc
+        }
+
+        .nav {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap
+        }
+
+        .nav button {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 6px;
+            background: #3498db;
+            color: #fff;
+            cursor: pointer
+        }
+
+        .lesson {
+            display: none
+        }
+
+        .lesson.active {
+            display: block
+        }
+
+        #currentTime {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 20px;
+            color: #4615b8;
+            margin: 0;
+            padding: 8px 0;
+            
+            
+        }
+
+        body.dark #currentTime {
+            color: #0eca27;
+            
+        }
+
+        /* push page content down so the fixed clock doesn't cover it */
+        .container {
+            margin-top: 40px;
+        }
+
+        #toggleAnswersBtn {
+            display: block;
+            margin: 28px auto 8px;
+            padding: 10px 22px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+            background: #2c3e50;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #toggleAnswersBtn:hover {
+            opacity: 0.9;
+        }
+
+        #answerKeySection {
+            display: none;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- DARK MODE -->
+    <button class="toggle-btn dark-btn" onclick="toggleMode()">
+        <span id="dark-icon">🌙</span>
+        <span id="dark-text">Dark Mode</span>
+    </button>
+
+    <div class="container">
+
+        <p id="currentTime"></p>
+
+        <div class="nav">
+            <a href="IELTS-Reading-Full-Test-1.html" target="_blank"><button>Test 1</button></a>
+            <a href="IELTS-Reading-Full-Test-2.html" target="_blank"><button>Test 2</button></a>
+            <a href="IELTS-Reading-Full-Test-3.html" target="_blank"><button>Test 3</button></a>
+            <a href="IELTS-Reading-Full-Test-4.html" target="_blank"><button>Test 4</button></a>
+            <a href="IELTS-Reading-Full-Test-5.html" target="_blank"><button>Test 5</button></a>
+            <a href="IELTS-Reading-Full-Test-6.html" target="_blank"><button>Test 6</button></a>
+            <a href="IELTS-Reading-Full-Test-7.html" target="_blank"><button>Test 7</button></a>
+            <a href="IELTS-Reading-Full-Test-8.html" target="_blank"><button>Test 8</button></a>
+            <a href="IELTS-Reading-Full-Test-9.html" target="_blank"><button>Test 9</button></a>
+            <a href="IELTS-Reading-Full-Test-10.html" target="_blank"><button>Test 10</button></a>
+            <a href="IELTS-Reading-Full-Test-11.html" target="_blank"><button>Test 11</button></a>
+            <a href="IELTS-Reading-Full-Test-12.html" target="_blank"><button>Test 12</button></a>
+        </div>
+
+        <h1>IELTS Academic Reading — Full Practice Test 3 (Beginner Level)</h1>
+        <h3>3 Passages · 40 Questions · Suggested time: 60 minutes</h3>
+        <hr />
+<h1>PASSAGE 1</h1>
+<h2>The Great Barrier Reef</h2>
+<p>Stretching for over 2,300 kilometres along the northeastern coast of Australia, the Great Barrier Reef is the largest living structure on Earth, so extensive that it can be seen from space. Composed of nearly 3,000 individual reefs and hundreds of islands, it is home to an extraordinary diversity of marine life, including over 1,500 species of fish, 400 types of coral, and numerous species of sharks, rays, and sea turtles.</p>
+<p>The reef itself is built by tiny organisms called coral polyps, which secrete calcium carbonate to form hard external skeletons. Over thousands of years, the accumulated skeletons of countless generations of polyps form the vast limestone structures that make up the reef. Coral polyps live in a mutually beneficial relationship with microscopic algae called zooxanthellae, which live within their tissues and provide the coral with food through photosynthesis, in exchange for a protected environment.</p>
+<p>In recent decades, however, the Great Barrier Reef has faced serious threats, most notably from rising ocean temperatures caused by climate change. When water becomes too warm, corals expel the zooxanthellae living within them, a process known as coral bleaching, since the coral loses its color and turns white. While bleached coral is not immediately dead, it becomes significantly more vulnerable to disease and starvation, and if warm conditions persist for too long, large-scale die-offs can occur.</p>
+<p>Major bleaching events have struck the reef multiple times in recent years, with particularly severe episodes recorded in 2016, 2017, and again in the early 2020s. Scientists have expressed increasing concern that the frequency of these events is not allowing reef ecosystems sufficient time to recover between episodes. Other threats include ocean acidification, water pollution from agricultural runoff, and outbreaks of coral-eating starfish.</p>
+<p>In response, the Australian government and various research institutions have invested significantly in reef conservation efforts, including coral restoration projects, water quality improvement programs, and research into more heat-resistant coral varieties. Despite these efforts, many scientists agree that the long-term survival of the reef will ultimately depend on global success in reducing greenhouse gas emissions and slowing the pace of climate change.</p>
+<h3>Questions 1–4: True / False / Not Given</h3>
+<p><strong>1.</strong> The Great Barrier Reef is large enough to be visible from space.
+<strong>2.</strong> Coral polyps and zooxanthellae have a relationship that benefits both organisms.
+<strong>3.</strong> Bleached coral always dies within a few days.
+<strong>4.</strong> The Australian government has invested in coral restoration projects.</p>
+<h3>Questions 5–8: Multiple Choice</h3>
+<p><em>Choose the correct letter, A, B, C, or D.</em></p>
+<p><strong>5. What builds the physical structure of the reef?</strong>
+A. Fish B. Coral polyps C. Sea turtles D. Algae alone</p>
+<p><strong>6. What happens during coral bleaching?</strong>
+A. Coral grows faster than normal B. Coral expels the algae living within it C. Coral produces more calcium carbonate D. Coral changes shape permanently</p>
+<p><strong>7. What does the passage suggest about recent bleaching events?</strong>
+A. They are becoming less frequent B. They are not related to climate change C. They may be too frequent for reefs to recover between events D. They only affect a small part of the reef</p>
+<p><strong>8. According to the passage, what will ultimately determine the reef's survival?</strong>
+A. Local conservation projects alone B. Global success in reducing greenhouse gas emissions C. The number of tourists visiting the reef D. The population of sea turtles</p>
+<h3>Questions 9–13: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p><strong>9.</strong> Coral polyps secrete <strong><em>_</em></strong><strong><em> to form hard external skeletons.
+<strong>10.</strong> Zooxanthellae provide coral with food through </em></strong><strong><em>_</em></strong>.
+<strong>11.</strong> Severe bleaching episodes were recorded in 2016, 2017, and the early <strong><em>_</em></strong><strong><em>.
+<strong>12.</strong> </em></strong><strong><em>_</em></strong> from agricultural land is another threat to the reef.
+<strong>13.</strong> Researchers are studying more <strong><em>_</em></strong>___ coral varieties.</p>
+<hr />
+<h1>PASSAGE 2</h1>
+<h2>The Evolution of Urban Transport</h2>
+<p>The way people move through cities has been transformed repeatedly over the past two centuries, shaped by successive waves of technological innovation. In the early 19th century, most urban transportation relied on horse-drawn carriages and, in some cities, horse-drawn omnibuses that operated along fixed routes—an early precursor to the modern bus system.</p>
+<p>The introduction of steam-powered and later electric trains in the mid-to-late 19th century marked a major turning point. Cities such as London opened underground railway systems, with the London Underground beginning operations in 1863, initially using steam locomotives before converting to electric power decades later. These systems allowed cities to expand outward, since workers could now live farther from city centers while still commuting efficiently.</p>
+<p>The 20th century brought the rise of the automobile, which fundamentally reshaped urban design. As car ownership became widespread, particularly in the United States, cities increasingly built infrastructure—wide roads, highways, and parking facilities—around the assumption that most residents would travel by private vehicle. This shift enabled the growth of suburbs but also introduced new challenges, including traffic congestion, air pollution, and a decline in pedestrian-friendly urban spaces.</p>
+<p>In recent decades, however, many cities have begun reconsidering car-centric planning, driven by concerns over environmental sustainability and quality of life. Investment has increasingly shifted toward public transit systems, cycling infrastructure, and pedestrian zones. Bus rapid transit systems, which use dedicated lanes to allow buses to bypass traffic congestion, have become popular in many rapidly growing cities as a cost-effective alternative to building new rail lines.</p>
+<p>Electric vehicles and shared mobility services, including ride-hailing apps and bike-sharing programs, represent the latest phase of this ongoing transformation. Looking ahead, many urban planners anticipate that autonomous vehicle technology could further reshape cities, potentially reducing the need for large parking areas and changing how urban space is allocated altogether.</p>
+<h3>Questions 14–18: Matching Headings</h3>
+<p><em>Choose the correct heading for paragraphs A–E from the list below.</em></p>
+<p><strong>List of Headings</strong>
+i. Early forms of urban transportation
+ii. Looking toward future technology
+iii. The rise and impact of the automobile
+iv. A shift back toward public and shared transport
+v. The arrival of rail-based transit</p>
+<p><strong>14.</strong> Paragraph 1
+<strong>15.</strong> Paragraph 2
+<strong>16.</strong> Paragraph 3
+<strong>17.</strong> Paragraph 4
+<strong>18.</strong> Paragraph 5</p>
+<h3>Questions 19–22: True / False / Not Given</h3>
+<p><strong>19.</strong> The London Underground originally used electric locomotives from its opening.
+<strong>20.</strong> Widespread car ownership contributed to the growth of suburbs.
+<strong>21.</strong> Bus rapid transit systems are more expensive than building new rail lines.
+<strong>22.</strong> Autonomous vehicles are currently used in most major cities.</p>
+<h3>Questions 23–26: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p><strong>23.</strong> Horse-drawn omnibuses operated along <strong><em>_</em></strong><strong><em> routes.
+<strong>24.</strong> Rail systems allowed workers to live farther from </em></strong><strong><em>_</em></strong>.
+<strong>25.</strong> Car-centric planning led to traffic congestion and <strong><em>_</em></strong><strong><em>.
+<strong>26.</strong> Bus rapid transit systems use </em></strong><strong><em>_</em></strong> lanes to avoid congestion.</p>
+<hr />
+<h1>PASSAGE 3</h1>
+<h2>Artificial Intelligence and the Future of Work</h2>
+<p>Artificial intelligence (AI) has moved rapidly from a niche academic pursuit to a technology embedded in daily life, influencing everything from how people search for information to how businesses make decisions. As AI systems become increasingly capable, questions about their impact on employment have taken on growing urgency among economists, policymakers, and workers alike.</p>
+<p>Historically, technological change has consistently reshaped labor markets. The Industrial Revolution displaced many agricultural and craft workers while simultaneously creating entirely new categories of factory and industrial employment. Similarly, the rise of computers in the late 20th century eliminated certain clerical roles while generating substantial demand for programmers, IT specialists, and related professions. Many economists argue that AI represents a continuation of this pattern rather than something entirely unprecedented.</p>
+<p>However, several features of AI distinguish it from earlier waves of automation. Unlike machinery that primarily replaced physical labor, AI systems are increasingly capable of performing cognitive tasks—including data analysis, written communication, and even certain forms of creative work—that were previously considered uniquely human domains. This has raised concerns that AI could affect a broader range of occupations, including white-collar and professional roles, more rapidly than past technological shifts.</p>
+<p>Research on this topic presents a mixed picture. Some studies suggest that AI is more likely to automate specific tasks within jobs rather than eliminate entire occupations outright, potentially freeing workers to focus on tasks requiring judgment, creativity, or interpersonal skills. Other research highlights the emergence of entirely new job categories directly related to AI development, deployment, and oversight, such as roles focused on training AI systems or ensuring their ethical use.</p>
+<p>Regardless of the precise outcome, most experts agree that adaptability will be crucial for workers navigating this transition. Continuous learning, the development of skills that complement rather than compete with AI capabilities, and institutional support for retraining programs are widely viewed as essential components of a successful transition, both for individual workers and for the broader economy.</p>
+<h3>Questions 27–30: Multiple Choice</h3>
+<p><em>Choose the correct letter, A, B, C, or D.</em></p>
+<p><strong>27. According to the passage, how do many economists view AI's impact on labor?</strong>
+A. As completely unprecedented in history B. As a continuation of historical patterns of technological change C. As having no meaningful economic impact D. As only affecting agricultural workers</p>
+<p><strong>28. What distinguishes AI from earlier forms of automation, according to the passage?</strong>
+A. It only affects physical labor B. It cannot perform any cognitive tasks C. It can perform cognitive tasks previously considered uniquely human D. It has no impact on professional roles</p>
+<p><strong>29. What do some studies suggest about AI's effect on jobs?</strong>
+A. It eliminates entire occupations rather than specific tasks B. It automates specific tasks rather than entire occupations C. It has no measurable effect on any job D. It only creates new jobs, without eliminating any</p>
+<p><strong>30. What do most experts agree is crucial for workers during this transition?</strong>
+A. Avoiding all new technology B. Relying solely on government support C. Adaptability and continuous learning D. Working exclusively in AI-related fields</p>
+<h3>Questions 31–35: Matching Information</h3>
+<p><em>Which paragraph contains the following information? Write the correct paragraph number (1–5).</em></p>
+<p><strong>31.</strong> A comparison between AI and the impact of the Industrial Revolution
+<strong>32.</strong> A statement about the growing urgency of questions surrounding AI and employment
+<strong>33.</strong> Mention of new job categories related to AI oversight and development
+<strong>34.</strong> An explanation of why AI may affect white-collar jobs more than past automation
+<strong>35.</strong> A statement about the importance of retraining programs</p>
+<h3>Questions 36–40: Summary Completion</h3>
+<p><em>Complete the summary using NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p>Historically, major technological shifts such as the <strong>(36)</strong> <strong><em>_</em></strong><strong><em> have displaced certain workers while creating new categories of employment. AI differs from earlier automation because it can perform <strong>(37)</strong> </em></strong><strong><em>_</em></strong> tasks once considered uniquely human. While some research suggests AI mainly automates specific <strong>(38)</strong> <strong><em>_</em></strong><strong><em> within jobs, other research points to new roles focused on AI <strong>(39)</strong> </em></strong><strong><em>_</em></strong>. Experts broadly agree that <strong>(40)</strong> <strong><em>_</em></strong>___ will be essential for workers adapting to this shift.</p>
+<hr />
+<button id="toggleAnswersBtn" onclick="toggleAnswerKey()">Show Answer Key</button>
+
+<div id="answerKeySection">
+<h1>ANSWER KEY</h1>
+<h3>Passage 1</h3>
+<p>1. True 2. True 3. False 4. True 5. B 6. B 7. C 8. B
+9. calcium carbonate 10. photosynthesis 11. 2020s 12. Water pollution (runoff) 13. heat-resistant</p>
+<h3>Passage 2</h3>
+<p>14. i 15. v 16. iii 17. iv 18. ii
+19. False 20. True 21. Not Given 22. Not Given
+23. fixed 24. city centers 25. air pollution 26. dedicated</p>
+<h3>Passage 3</h3>
+<p>27. B 28. C 29. B 30. C
+31. Paragraph 2 32. Paragraph 1 33. Paragraph 4 34. Paragraph 3 35. Paragraph 5
+36. Industrial Revolution 37. cognitive 38. tasks 39. oversight (ethical use) 40. adaptability</p>
+<h3>Scoring guide (approximate, for practice purposes)</h3>
+<table>
+<thead>
+<tr>
+<th>Correct answers</th>
+<th>Approximate Band</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>39–40</td>
+<td>9</td>
+</tr>
+<tr>
+<td>35–38</td>
+<td>8</td>
+</tr>
+<tr>
+<td>30–34</td>
+<td>7</td>
+</tr>
+<tr>
+<td>23–29</td>
+<td>6</td>
+</tr>
+<tr>
+<td>16–22</td>
+<td>5</td>
+</tr>
+<tr>
+<td>13–15</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p><em>This is a rough estimate for self-practice only — official band scores are calculated by IELTS using their own conversion tables.</em></p>
+</div>
+
+<script>
+        function showTime() {
+            const japanTime = new Date().toLocaleString('en-US', {
+                timeZone: 'Asia/Tokyo',
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            });
+            document.getElementById('currentTime').innerHTML = japanTime;
+        }
+        showTime();
+        setInterval(showTime, 1000);
+
+        // DARK MODE
+        function toggleMode() {
+            const body = document.body;
+            const icon = document.getElementById('dark-icon');
+            const text = document.getElementById('dark-text');
+            body.classList.toggle('dark');
+            if (body.classList.contains('dark')) {
+                icon.textContent = '☀️';
+                text.textContent = 'Light Mode';
+            } else {
+                icon.textContent = '🌙';
+                text.textContent = 'Dark Mode';
+            }
+        }
+
+        function showLesson(id) {
+            const lessons = document.querySelectorAll('.lesson');
+            lessons.forEach(l => l.classList.remove('active'));
+            const target = document.getElementById(id);
+            if (target) target.classList.add('active');
+        }
+
+        function getActiveLesson() {
+            const active = document.querySelector('.lesson.active');
+            return active ? active.id : null;
+        }
+
+        function nextLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index < lessonOrder.length - 1) {
+                showLesson(lessonOrder[index + 1]);
+            }
+        }
+
+        function prevLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index > 0) {
+                showLesson(lessonOrder[index - 1]);
+            }
+        }
+
+        // TABLE SCROLL WRAP
+        document.querySelectorAll('table').forEach(function (t) {
+            if (t.parentElement.classList.contains('table-wrap')) return;
+            var wrap = document.createElement('div');
+            wrap.className = 'table-wrap';
+            t.parentNode.insertBefore(wrap, t);
+            wrap.appendChild(t);
+        });
+
+        // ANSWER KEY TOGGLE
+        function toggleAnswerKey() {
+            var section = document.getElementById('answerKeySection');
+            var btn = document.getElementById('toggleAnswersBtn');
+            if (section.style.display === 'none' || section.style.display === '') {
+                section.style.display = 'block';
+                btn.textContent = 'Hide Answer Key';
+            } else {
+                section.style.display = 'none';
+                btn.textContent = 'Show Answer Key';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

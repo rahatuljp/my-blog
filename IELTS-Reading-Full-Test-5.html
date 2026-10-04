@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Reading - Full Practice Test 3</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            transition: background .3s, color .3s;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f9fbff;
+            border-left: 5px solid #3498db;
+            border-radius: 5px;
+        }
+
+        .toggle-btn {
+            position: fixed;
+            right: 20px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        /* Fixed button position */
+        .dark-btn {
+            top: 20px;
+        }
+
+        body.dark {
+            background: #121212;
+            color: #e0e0e0
+        }
+
+        body.dark .container {
+            background: #1e1e1e
+        }
+
+        body.dark .section {
+            background: #2a2a2a;
+            border-left: 5px solid #bb86fc
+        }
+
+        body.dark h1 {
+            color: #fff
+        }
+
+        body.dark .toggle-btn {
+            background: #bb86fc
+        }
+
+        .nav {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap
+        }
+
+        .nav button {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 6px;
+            background: #3498db;
+            color: #fff;
+            cursor: pointer
+        }
+
+        .lesson {
+            display: none
+        }
+
+        .lesson.active {
+            display: block
+        }
+
+        #currentTime {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 20px;
+            color: #4615b8;
+            margin: 0;
+            padding: 8px 0;
+            
+            
+        }
+
+        body.dark #currentTime {
+            color: #0eca27;
+            
+        }
+
+        /* push page content down so the fixed clock doesn't cover it */
+        .container {
+            margin-top: 40px;
+        }
+
+        #toggleAnswersBtn {
+            display: block;
+            margin: 28px auto 8px;
+            padding: 10px 22px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+            background: #2c3e50;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #toggleAnswersBtn:hover {
+            opacity: 0.9;
+        }
+
+        #answerKeySection {
+            display: none;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- DARK MODE -->
+    <button class="toggle-btn dark-btn" onclick="toggleMode()">
+        <span id="dark-icon">🌙</span>
+        <span id="dark-text">Dark Mode</span>
+    </button>
+
+    <div class="container">
+
+        <p id="currentTime"></p>
+
+        <div class="nav">
+            <a href="IELTS-Reading-Full-Test-1.html" target="_blank"><button>Test 1</button></a>
+            <a href="IELTS-Reading-Full-Test-2.html" target="_blank"><button>Test 2</button></a>
+            <a href="IELTS-Reading-Full-Test-3.html" target="_blank"><button>Test 3</button></a>
+            <a href="IELTS-Reading-Full-Test-4.html" target="_blank"><button>Test 4</button></a>
+            <a href="IELTS-Reading-Full-Test-5.html" target="_blank"><button>Test 5</button></a>
+            <a href="IELTS-Reading-Full-Test-6.html" target="_blank"><button>Test 6</button></a>
+            <a href="IELTS-Reading-Full-Test-7.html" target="_blank"><button>Test 7</button></a>
+            <a href="IELTS-Reading-Full-Test-8.html" target="_blank"><button>Test 8</button></a>
+            <a href="IELTS-Reading-Full-Test-9.html" target="_blank"><button>Test 9</button></a>
+            <a href="IELTS-Reading-Full-Test-10.html" target="_blank"><button>Test 10</button></a>
+            <a href="IELTS-Reading-Full-Test-11.html" target="_blank"><button>Test 11</button></a>
+            <a href="IELTS-Reading-Full-Test-12.html" target="_blank"><button>Test 12</button></a>
+        </div>
+
+        <h1>IELTS Academic Reading — Full Practice Test 5 (Beginner Level)</h1>
+        <h3>3 Passages · 40 Questions · Suggested time: 60 minutes</h3>
+        <hr />
+<h1>PASSAGE 1</h1>
+<h2>The History of the Printing Press</h2>
+<p>Before the mid-15th century, books in Europe were produced almost entirely by hand, a slow and labor-intensive process typically carried out by monks and professional scribes who copied texts letter by letter. As a result, books were rare, expensive, and largely accessible only to religious institutions, universities, and the wealthy elite.</p>
+<p>This changed dramatically around 1440, when a German goldsmith named Johannes Gutenberg developed a printing system using movable metal type, an innovation that would go on to transform European society. Although earlier forms of printing, including woodblock printing, had existed in East Asia for centuries, Gutenberg's specific combination of durable metal type, an oil-based ink, and an adapted wooden printing press proved to be a decisive breakthrough for mass production in Europe.</p>
+<p>Gutenberg's most famous work, a printed edition of the Bible completed around 1455, demonstrated the remarkable capabilities of the new technology. Compared to hand-copying, which might take a single scribe close to a year to complete one Bible, Gutenberg's press could produce multiple copies far more quickly and with far greater consistency between copies.</p>
+<p>The impact of printing technology extended well beyond religious texts. Within just a few decades, printing presses had spread across major European cities, dramatically increasing the availability and affordability of books. This, in turn, contributed to rising literacy rates, as reading material became accessible to a broader segment of the population beyond the traditional elite.</p>
+<p>Historians widely regard the printing press as one of the most significant inventions in human history, credited with accelerating the spread of knowledge, fueling the Renaissance and the Protestant Reformation, and laying important groundwork for the Scientific Revolution that followed in subsequent centuries. Some scholars argue that its long-term societal impact rivals that of the internet in more recent history, given its transformative role in how information was recorded, shared, and preserved.</p>
+<h3>Questions 1–4: True / False / Not Given</h3>
+<p><strong>1.</strong> Before the printing press, most books in Europe were copied by hand.
+<strong>2.</strong> Gutenberg invented the very first form of printing in world history.
+<strong>3.</strong> Gutenberg's Bible was completed faster than a hand-copied version would have been.
+<strong>4.</strong> Printing technology spread across Europe within a few decades.</p>
+<h3>Questions 5–8: Multiple Choice</h3>
+<p><em>Choose the correct letter, A, B, C, or D.</em></p>
+<p><strong>5. Who typically produced books before the printing press?</strong>
+A. Professional publishers B. Monks and scribes C. Government officials D. Wealthy merchants</p>
+<p><strong>6. What was Gutenberg's profession?</strong>
+A. Scholar B. Priest C. Goldsmith D. Teacher</p>
+<p><strong>7. What effect did printing have on literacy?</strong>
+A. It had no measurable effect B. It contributed to rising literacy rates C. It reduced literacy among elites D. It only affected religious literacy</p>
+<p><strong>8. What movements does the passage link to the spread of printing?</strong>
+A. The Industrial Revolution only B. The Renaissance and Protestant Reformation C. The invention of the internet D. The rise of universities alone</p>
+<h3>Questions 9–13: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p><strong>9.</strong> Gutenberg combined metal type with an <strong><em>_</em></strong><strong><em> ink and a printing press.
+<strong>10.</strong> Gutenberg's most famous printed work was a copy of the </em></strong><strong><em>_</em></strong>.
+<strong>11.</strong> A single scribe might take close to a <strong><em>_</em></strong><strong><em> to copy one Bible by hand.
+<strong>12.</strong> Printing helped lay groundwork for the </em></strong><strong><em>_</em></strong> Revolution.
+<strong>13.</strong> Some scholars compare the printing press's impact to that of the <strong><em>_</em></strong>___.</p>
+<hr />
+<h1>PASSAGE 2</h1>
+<h2>Water Scarcity and Desalination</h2>
+<p>Fresh water scarcity has emerged as one of the most pressing global challenges of the 21st century, affecting billions of people across regions with limited natural freshwater resources. While roughly seventy percent of the Earth's surface is covered by water, less than three percent of it is fresh water, and much of that is locked away in glaciers and polar ice caps, leaving a relatively small fraction readily accessible for human use.</p>
+<p>Population growth, combined with increasing agricultural and industrial demand, has placed growing pressure on existing freshwater supplies in many regions, particularly arid and semi-arid areas of the Middle East, North Africa, and parts of Australia. Climate change has further complicated the situation, altering historical rainfall patterns and increasing the frequency of prolonged droughts in various parts of the world.</p>
+<p>In response to these pressures, desalination—the process of removing salt and other minerals from seawater to produce fresh water—has become an increasingly important technology, particularly for coastal nations facing severe freshwater shortages. The most widely used modern desalination method, reverse osmosis, works by forcing seawater through specially designed membranes that filter out salt and other impurities, leaving behind usable fresh water.</p>
+<p>Countries such as Saudi Arabia, Israel, and the United Arab Emirates have invested heavily in desalination infrastructure, with some nations now sourcing a majority of their domestic water supply from desalinated seawater. However, the technology is not without drawbacks. Desalination remains relatively energy-intensive compared to conventional water treatment methods, contributing to higher costs and, when powered by fossil fuels, additional carbon emissions. The process also produces a concentrated saltwater byproduct known as brine, which, if not managed carefully, can harm marine ecosystems when discharged back into the ocean.</p>
+<p>Ongoing research aims to make desalination more energy-efficient and environmentally sustainable, including efforts to power desalination plants using renewable energy sources and to develop improved methods for managing brine disposal, as the technology is expected to play an increasingly important role in global water security in the coming decades.</p>
+<h3>Questions 14–18: Matching Headings</h3>
+<p><em>Choose the correct heading for paragraphs A–E from the list below.</em></p>
+<p><strong>List of Headings</strong>
+i. Environmental drawbacks of the technology
+ii. How reverse osmosis works
+iii. The limited availability of fresh water
+iv. Efforts to improve sustainability
+v. Growing demand and climate pressures</p>
+<p><strong>14.</strong> Paragraph 1
+<strong>15.</strong> Paragraph 2
+<strong>16.</strong> Paragraph 3
+<strong>17.</strong> Paragraph 4
+<strong>18.</strong> Paragraph 5</p>
+<h3>Questions 19–22: True / False / Not Given</h3>
+<p><strong>19.</strong> Less than three percent of Earth's water is fresh water.
+<strong>20.</strong> Climate change has had no measurable effect on rainfall patterns.
+<strong>21.</strong> Reverse osmosis uses membranes to filter out salt from seawater.
+<strong>22.</strong> Desalination brine can potentially harm marine ecosystems.</p>
+<h3>Questions 23–26: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p><strong>23.</strong> Much of Earth's fresh water is locked away in glaciers and <strong><em>_</em></strong><strong><em>.
+<strong>24.</strong> </em></strong><strong><em>_</em></strong> growth has placed growing pressure on freshwater supplies.
+<strong>25.</strong> Desalination is relatively <strong><em>_</em></strong><strong><em> compared to conventional water treatment.
+<strong>26.</strong> Researchers are working on powering desalination plants using </em></strong><strong><em>_</em></strong> energy.</p>
+<hr />
+<h1>PASSAGE 3</h1>
+<h2>The Growth of E-commerce</h2>
+<p>The practice of buying and selling goods online has expanded from a niche activity in the 1990s into a dominant force reshaping global retail. Early online retailers faced significant obstacles, including limited internet access among the general public, widespread consumer distrust of entering payment details online, and underdeveloped logistics networks for delivering purchased goods efficiently.</p>
+<p>Over subsequent decades, a combination of technological and infrastructural developments gradually addressed these early barriers. Widespread internet access, improved website security standards, and the development of trusted digital payment systems all contributed to growing consumer confidence in online shopping. Simultaneously, retailers and logistics companies invested heavily in warehousing, inventory management systems, and delivery networks capable of handling rapidly increasing order volumes.</p>
+<p>The rise of smartphones added a further dimension to this transformation, enabling consumers to browse and purchase products conveniently from virtually anywhere, at any time. Mobile commerce, often referred to as "m-commerce," has grown into a substantial segment of overall e-commerce activity, with many companies redesigning their websites and applications specifically to optimize the mobile shopping experience.</p>
+<p>The global disruptions of 2020 further accelerated existing trends, as physical store closures during that period prompted many consumers, including those who had previously been hesitant to shop online, to adopt e-commerce out of necessity. Many businesses that had been slow to develop an online presence were compelled to rapidly establish or expand their digital sales channels during this period, a shift that, for many companies, proved lasting even after physical stores reopened.</p>
+<p>Looking ahead, industry analysts anticipate continued growth in e-commerce, driven by ongoing improvements in areas such as same-day delivery services, more immersive online shopping experiences incorporating technologies like augmented reality, and expanding e-commerce infrastructure in developing markets where online retail remains at a comparatively early stage of development.</p>
+<h3>Questions 27–30: Multiple Choice</h3>
+<p><em>Choose the correct letter, A, B, C, or D.</em></p>
+<p><strong>27. What obstacle did early online retailers face?</strong>
+A. Excessive government regulation B. Consumer distrust of entering payment details online C. A lack of interest in shopping generally D. Overly efficient logistics networks</p>
+<p><strong>28. What contributed to growing consumer confidence in online shopping?</strong>
+A. Reduced internet access B. Improved website security and trusted payment systems C. Fewer delivery options D. Higher product prices</p>
+<p><strong>29. What is "m-commerce"?</strong>
+A. A type of physical retail store B. Mobile commerce, shopping via smartphones C. A government regulation on e-commerce D. A type of delivery vehicle</p>
+<p><strong>30. What effect did the disruptions of 2020 have on e-commerce?</strong>
+A. It slowed e-commerce growth significantly B. It had no lasting effect on shopping habits C. It accelerated adoption of e-commerce among many consumers D. It caused most online retailers to close</p>
+<h3>Questions 31–35: Matching Information</h3>
+<p><em>Which paragraph contains the following information? Write the correct paragraph number (1–5).</em></p>
+<p><strong>31.</strong> A description of early obstacles faced by online retailers
+<strong>32.</strong> A mention of future trends such as augmented reality shopping
+<strong>33.</strong> An explanation of how smartphones changed online shopping habits
+<strong>34.</strong> A description of infrastructural investments made by retailers and logistics companies
+<strong>35.</strong> An explanation of how 2020's disruptions accelerated existing e-commerce trends</p>
+<h3>Questions 36–40: Summary Completion</h3>
+<p><em>Complete the summary using NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p>Early online retailers struggled with limited internet access and consumer <strong>(36)</strong> <strong><em>_</em></strong><strong><em> regarding online payments. Over time, improved <strong>(37)</strong> </em></strong><strong><em>_</em></strong> standards and trusted payment systems increased consumer confidence. The rise of <strong>(38)</strong> <strong><em>_</em></strong><strong><em> enabled shopping from virtually anywhere. Disruptions in 2020 accelerated adoption, forcing many businesses to expand their <strong>(39)</strong> </em></strong><strong><em>_</em></strong> sales channels. Analysts expect continued growth driven by improvements such as same-day <strong>(40)</strong> <strong><em>_</em></strong>___.</p>
+<hr />
+<button id="toggleAnswersBtn" onclick="toggleAnswerKey()">Show Answer Key</button>
+
+<div id="answerKeySection">
+<h1>ANSWER KEY</h1>
+<h3>Passage 1</h3>
+<p>1. True 2. False 3. True 4. True 5. B 6. C 7. B 8. B
+9. oil-based 10. Bible 11. year 12. Scientific 13. internet</p>
+<h3>Passage 2</h3>
+<p>14. iii 15. v 16. ii 17. i 18. iv
+19. True 20. False 21. True 22. True
+23. polar ice caps 24. Population 25. energy-intensive 26. renewable</p>
+<h3>Passage 3</h3>
+<p>27. B 28. B 29. B 30. C
+31. Paragraph 1 32. Paragraph 5 33. Paragraph 3 34. Paragraph 2 35. Paragraph 4
+36. distrust 37. security (website) 38. smartphones 39. digital (online) 40. delivery</p>
+<p><em>Scoring guide: 39–40 = Band 9, 35–38 = Band 8, 30–34 = Band 7, 23–29 = Band 6, 16–22 = Band 5, 13–15 = Band 4 (approximate, for self-practice only).</em></p>
+</div>
+
+<script>
+        function showTime() {
+            const japanTime = new Date().toLocaleString('en-US', {
+                timeZone: 'Asia/Tokyo',
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            });
+            document.getElementById('currentTime').innerHTML = japanTime;
+        }
+        showTime();
+        setInterval(showTime, 1000);
+
+        // DARK MODE
+        function toggleMode() {
+            const body = document.body;
+            const icon = document.getElementById('dark-icon');
+            const text = document.getElementById('dark-text');
+            body.classList.toggle('dark');
+            if (body.classList.contains('dark')) {
+                icon.textContent = '☀️';
+                text.textContent = 'Light Mode';
+            } else {
+                icon.textContent = '🌙';
+                text.textContent = 'Dark Mode';
+            }
+        }
+
+        // LESSON NAVIGATION (kept as-is; has no effect until elements with
+        // id="lesson1"..."lesson25" and class="lesson" exist on the page)
+        const lessonOrder = [
+            'lesson1', 'lesson2', 'lesson3', 'lesson4', 'lesson5', 'lesson6', 'lesson7', 'lesson8', 'lesson9', 'lesson10',
+            'lesson11', 'lesson12', 'lesson13', 'lesson14', 'lesson15', 'lesson16', 'lesson17', 'lesson18', 'lesson19', 'lesson20',
+            'lesson21', 'lesson22', 'lesson23', 'lesson24', 'lesson25'
+        ];
+
+        function showLesson(id) {
+            const lessons = document.querySelectorAll('.lesson');
+            lessons.forEach(l => l.classList.remove('active'));
+            const target = document.getElementById(id);
+            if (target) target.classList.add('active');
+        }
+
+        function getActiveLesson() {
+            const active = document.querySelector('.lesson.active');
+            return active ? active.id : null;
+        }
+
+        function nextLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index < lessonOrder.length - 1) {
+                showLesson(lessonOrder[index + 1]);
+            }
+        }
+
+        function prevLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index > 0) {
+                showLesson(lessonOrder[index - 1]);
+            }
+        }
+
+        // TABLE SCROLL WRAP
+        document.querySelectorAll('table').forEach(function (t) {
+            if (t.parentElement.classList.contains('table-wrap')) return;
+            var wrap = document.createElement('div');
+            wrap.className = 'table-wrap';
+            t.parentNode.insertBefore(wrap, t);
+            wrap.appendChild(t);
+        });
+
+        // ANSWER KEY TOGGLE
+        function toggleAnswerKey() {
+            var section = document.getElementById('answerKeySection');
+            var btn = document.getElementById('toggleAnswersBtn');
+            if (section.style.display === 'none' || section.style.display === '') {
+                section.style.display = 'block';
+                btn.textContent = 'Hide Answer Key';
+            } else {
+                section.style.display = 'none';
+                btn.textContent = 'Show Answer Key';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

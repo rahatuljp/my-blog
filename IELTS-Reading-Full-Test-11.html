@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Reading - Full Practice Test 11</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            transition: background .3s, color .3s;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f9fbff;
+            border-left: 5px solid #3498db;
+            border-radius: 5px;
+        }
+
+        .toggle-btn {
+            position: fixed;
+            right: 20px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        /* Fixed button position */
+        .dark-btn {
+            top: 20px;
+        }
+
+        body.dark {
+            background: #121212;
+            color: #e0e0e0
+        }
+
+        body.dark .container {
+            background: #1e1e1e
+        }
+
+        body.dark .section {
+            background: #2a2a2a;
+            border-left: 5px solid #bb86fc
+        }
+
+        body.dark h1 {
+            color: #fff
+        }
+
+        body.dark .toggle-btn {
+            background: #bb86fc
+        }
+
+        .nav {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap
+        }
+
+        .nav button {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 6px;
+            background: #3498db;
+            color: #fff;
+            cursor: pointer
+        }
+
+        .lesson {
+            display: none
+        }
+
+        .lesson.active {
+            display: block
+        }
+
+        #currentTime {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 20px;
+            color: #4615b8;
+            margin: 0;
+            padding: 8px 0;
+            
+            
+        }
+
+        body.dark #currentTime {
+            color: #0eca27;
+            
+        }
+
+        /* push page content down so the fixed clock doesn't cover it */
+        .container {
+            margin-top: 40px;
+        }
+
+        #toggleAnswersBtn {
+            display: block;
+            margin: 28px auto 8px;
+            padding: 10px 22px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+            background: #2c3e50;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #toggleAnswersBtn:hover {
+            opacity: 0.9;
+        }
+
+        #answerKeySection {
+            display: none;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- DARK MODE -->
+    <button class="toggle-btn dark-btn" onclick="toggleMode()">
+        <span id="dark-icon">🌙</span>
+        <span id="dark-text">Dark Mode</span>
+    </button>
+
+    <div class="container">
+
+        <p id="currentTime"></p>
+
+        <div class="nav">
+            <a href="IELTS-Reading-Full-Test-1.html" target="_blank"><button>Test 1</button></a>
+            <a href="IELTS-Reading-Full-Test-2.html" target="_blank"><button>Test 2</button></a>
+            <a href="IELTS-Reading-Full-Test-3.html" target="_blank"><button>Test 3</button></a>
+            <a href="IELTS-Reading-Full-Test-4.html" target="_blank"><button>Test 4</button></a>
+            <a href="IELTS-Reading-Full-Test-5.html" target="_blank"><button>Test 5</button></a>
+            <a href="IELTS-Reading-Full-Test-6.html" target="_blank"><button>Test 6</button></a>
+            <a href="IELTS-Reading-Full-Test-7.html" target="_blank"><button>Test 7</button></a>
+            <a href="IELTS-Reading-Full-Test-8.html" target="_blank"><button>Test 8</button></a>
+            <a href="IELTS-Reading-Full-Test-9.html" target="_blank"><button>Test 9</button></a>
+            <a href="IELTS-Reading-Full-Test-10.html" target="_blank"><button>Test 10</button></a>
+            <a href="IELTS-Reading-Full-Test-11.html" target="_blank"><button>Test 11</button></a>
+            <a href="IELTS-Reading-Full-Test-12.html" target="_blank"><button>Test 12</button></a>
+        </div>
+
+        <h1>IELTS Academic Reading — Full Practice Test 11 (Beginner Level)</h1>
+        <h3>3 Passages · 40 Questions · Suggested time: 60 minutes</h3>
+        <hr />
+<h1>PASSAGE 1</h1>
+<h2>The Invention of the Compass</h2>
+<p>The magnetic compass, a deceptively simple device that has profoundly shaped the course of human history, is generally believed to have originated in China, with the earliest known references dating back to the Han Dynasty, roughly around the 2nd century BCE. These early devices, however, bore little resemblance to the navigational compasses used today; instead, they consisted of a naturally magnetized mineral called lodestone, shaped into a spoon-like form and placed upon a smooth bronze plate marked with directional symbols, used primarily for divination and geomantic purposes rather than navigation.</p>
+<p>It was not until several centuries later, during the Song Dynasty around the 11th century CE, that Chinese sailors began adapting magnetic technology specifically for maritime navigation, recognizing that a freely suspended magnetized needle would consistently align itself along a north-south axis. This discovery proved transformative for seafaring, as it allowed navigators to maintain a reliable sense of direction even during overcast conditions or on the open ocean, far from familiar coastal landmarks that sailors had previously relied upon for orientation.</p>
+<p>Knowledge of the magnetic compass gradually spread westward, reaching the Islamic world and, subsequently, Europe by the late 12th century, though the precise route and mechanism of this transmission remain subjects of historical debate among scholars. European sailors initially adopted relatively simple compass designs, typically consisting of a magnetized needle floated on water or balanced on a pivot, before further refinements—including the addition of a compass card marked with directional points, and eventually protective housing—gradually improved the device's reliability and ease of use aboard ships.</p>
+<p>The compass's impact on the history of exploration can hardly be overstated. Alongside other navigational innovations, including the astrolabe and improved cartographic techniques, the compass played an essential role in enabling the long-distance oceanic voyages of the Age of Exploration, from the 15th century onward, allowing European sailors to confidently navigate across open oceans far from land, ultimately facilitating transoceanic voyages that reshaped global trade, cultural exchange, and geopolitics in ways that continue to influence the modern world.</p>
+<p>Although modern navigation increasingly relies on satellite-based systems such as GPS, the magnetic compass remains in widespread use today, valued particularly for its simplicity, reliability, and complete independence from external power sources or satellite signals—qualities that continue to make it an essential backup navigational tool for sailors, hikers, and pilots alike.</p>
+<h3>Questions 1–4: True / False / Not Given</h3>
+<p><strong>1.</strong> The earliest known compass-like devices in China were used primarily for navigation.
+<strong>2.</strong> Chinese sailors began adapting magnetic technology for maritime navigation during the Song Dynasty.
+<strong>3.</strong> The exact route by which compass knowledge spread to Europe is fully agreed upon by historians.
+<strong>4.</strong> The compass remains in use today despite the availability of GPS technology.</p>
+<h3>Questions 5–8: Multiple Choice</h3>
+<p><em>Choose the correct letter, A, B, C, or D.</em></p>
+<p><strong>5. What were early Chinese compass-like devices primarily used for?</strong>
+A. Maritime navigation B. Divination and geomantic purposes C. Measuring time D. Military strategy</p>
+<p><strong>6. What natural material was used to create early compass devices?</strong>
+A. Iron ore B. Lodestone C. Bronze D. Quartz</p>
+<p><strong>7. What advantage did the compass provide to sailors?</strong>
+A. It allowed faster ship construction B. It provided reliable direction even in overcast conditions or open ocean C. It eliminated the need for maps entirely D. It allowed ships to travel without wind</p>
+<p><strong>8. What other navigational innovations are mentioned alongside the compass?</strong>
+A. The telescope and sextant B. The astrolabe and improved cartographic techniques C. Radar and sonar D. The steam engine</p>
+<h3>Questions 9–13: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p><strong>9.</strong> Early Chinese compass devices were shaped like a <strong><em>_</em></strong><strong><em> and placed on a bronze plate.
+<strong>10.</strong> A freely suspended magnetized needle aligns itself along a </em></strong><strong><em>_</em></strong> axis.
+<strong>11.</strong> European sailors initially floated a magnetized needle on <strong><em>_</em></strong><strong><em> or balanced it on a pivot.
+<strong>12.</strong> The compass helped enable long-distance voyages during the Age of </em></strong><strong><em>_</em></strong>.
+<strong>13.</strong> The compass remains valued today for being independent of external <strong><em>_</em></strong>___ or satellite signals.</p>
+<hr />
+<h1>PASSAGE 2</h1>
+<h2>The Development of Refrigeration</h2>
+<p>For most of human history, preserving perishable food relied on methods such as salting, drying, smoking, and fermentation, or, in colder climates and seasons, simply storing food in naturally cool environments such as cellars, caves, or ice houses stocked with ice harvested from frozen lakes and rivers during winter months. These methods, while useful, offered limited effectiveness, particularly in warmer climates or during summer months when natural ice was unavailable.</p>
+<p>The scientific foundation for mechanical refrigeration emerged gradually during the 18th and 19th centuries, as scientists increasingly understood the relationship between the evaporation of certain liquids and the absorption of heat from surrounding surfaces. Scottish physician William Cullen is generally credited with demonstrating artificial refrigeration for the first time in 1748, though his experiment remained largely a scientific curiosity rather than a practical application.</p>
+<p>Practical mechanical refrigeration technology developed considerably during the 19th century, with numerous inventors across different countries contributing incremental improvements to compression-based refrigeration systems. These early industrial refrigeration systems found their first major commercial applications in breweries, meatpacking facilities, and other industries requiring reliable, large-scale food preservation, well before the technology became practical or affordable for widespread household use.</p>
+<p>Home refrigeration units began appearing commercially in the early 20th century, though initial adoption remained gradual, limited by high costs and ongoing concerns regarding the safety of early refrigerants, several of which were toxic or flammable. The introduction of safer synthetic refrigerants during the 1920s and 1930s significantly improved both the safety and practicality of household refrigeration, contributing to dramatically increased adoption rates across households in industrialized countries throughout the mid-20th century.</p>
+<p>The widespread adoption of refrigeration technology has had profound effects extending well beyond simple food preservation convenience. It has fundamentally transformed global food supply chains, enabling the long-distance transportation of perishable goods, significantly reducing food waste, and supporting the development of modern supermarkets stocking fresh produce, meat, and dairy products year-round, regardless of local seasonal availability—a transformation so significant that some food historians consider refrigeration among the most consequential technological developments in the history of human food systems.</p>
+<h3>Questions 14–18: Matching Headings</h3>
+<p><em>Choose the correct heading for paragraphs A–E from the list below.</em></p>
+<p><strong>List of Headings</strong>
+i. Early industrial applications of refrigeration
+ii. Traditional food preservation before refrigeration
+iii. The profound impact on global food systems
+iv. The scientific basis for artificial cooling
+v. Household adoption and safety improvements</p>
+<p><strong>14.</strong> Paragraph 1
+<strong>15.</strong> Paragraph 2
+<strong>16.</strong> Paragraph 3
+<strong>17.</strong> Paragraph 4
+<strong>18.</strong> Paragraph 5</p>
+<h3>Questions 19–22: True / False / Not Given</h3>
+<p><strong>19.</strong> Before refrigeration, people relied on methods such as salting and drying to preserve food.
+<strong>20.</strong> William Cullen's 1748 experiment immediately led to widespread commercial refrigeration.
+<strong>21.</strong> Early industrial refrigeration was first used in breweries and meatpacking facilities.
+<strong>22.</strong> All early refrigerants used in home units were completely safe.</p>
+<h3>Questions 23–26: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p><strong>23.</strong> In colder climates, food was stored in cellars, caves, or <strong><em>_</em></strong><strong><em> stocked with ice.
+<strong>24.</strong> Mechanical refrigeration relies on the relationship between evaporation and </em></strong><strong><em>_</em></strong> absorption.
+<strong>25.</strong> Safer <strong><em>_</em></strong><strong><em> refrigerants were introduced during the 1920s and 1930s.
+<strong>26.</strong> Refrigeration has significantly reduced food </em></strong><strong><em>_</em></strong> by enabling long-distance transport.</p>
+<hr />
+<h1>PASSAGE 3</h1>
+<h2>The Science of Color Perception</h2>
+<p>Human color perception, though experienced as an effortless and automatic process, relies on a remarkably complex interaction between physical light properties, biological structures within the eye, and extensive neural processing within the brain. Visible light itself consists of electromagnetic radiation spanning a narrow range of wavelengths, with different wavelengths corresponding to what humans perceive as different colors, ranging from shorter-wavelength violet light to longer-wavelength red light.</p>
+<p>Color perception begins within the retina, a light-sensitive layer of tissue lining the back of the eye, which contains two main types of photoreceptor cells: rods, which are highly sensitive to light intensity but do not distinguish color, and cones, which are responsible for color vision but require considerably more light to function effectively—explaining why colors become difficult to distinguish in very dim lighting conditions. Most humans possess three distinct types of cone cells, each maximally sensitive to a different range of wavelengths, roughly corresponding to red, green, and blue light.</p>
+<p>The brain subsequently processes signals from these three cone types through a comparative process, effectively determining perceived color based on the relative stimulation patterns across all three cone types simultaneously, rather than through any single cone type functioning independently. This trichromatic system allows humans to perceive an estimated one million or more distinguishable colors through the combination and comparison of just three basic signal types.</p>
+<p>Variations in color perception exist across the human population, most notably color vision deficiency, commonly though somewhat imprecisely referred to as color blindness, which affects a meaningful percentage of the population, occurring considerably more frequently in men than women due to the specific genetic inheritance pattern involved. Most cases involve difficulty distinguishing between red and green hues specifically, rather than a complete absence of color perception, which is considerably rarer.</p>
+<p>Beyond biological factors, research has additionally demonstrated that color perception can be meaningfully influenced by psychological, cultural, and linguistic factors, with studies suggesting that the specific color categories and vocabulary available within a person's native language may subtly influence how quickly and precisely they distinguish between certain closely related colors—an active and ongoing area of research within cognitive science exploring the complex relationship between language, perception, and thought.</p>
+<h3>Questions 27–30: Multiple Choice</h3>
+<p><em>Choose the correct letter, A, B, C, or D.</em></p>
+<p><strong>27. What are rods, as described in the passage?</strong>
+A. Photoreceptors responsible for color vision B. Photoreceptors sensitive to light intensity but not color C. A type of neural pathway D. A structure found only in the brain</p>
+<p><strong>28. How many types of cone cells do most humans possess?</strong>
+A. One B. Two C. Three D. Four</p>
+<p><strong>29. How does the brain determine perceived color?</strong>
+A. Through a single cone type functioning independently B. Through comparative processing of signals across all three cone types C. Through rods alone D. Through processing entirely outside the retina</p>
+<p><strong>30. What does research suggest about language and color perception?</strong>
+A. Language has no effect on color perception whatsoever B. Available color vocabulary may subtly influence color distinction C. All languages have identical color vocabularies D. Color perception is entirely determined by language</p>
+<h3>Questions 31–35: Matching Information</h3>
+<p><em>Which paragraph contains the following information? Write the correct paragraph number (1–5).</em></p>
+<p><strong>31.</strong> A description of the two main types of photoreceptor cells in the retina
+<strong>32.</strong> A mention of color vision deficiency and its genetic inheritance pattern
+<strong>33.</strong> An explanation of how visible light relates to different wavelengths
+<strong>34.</strong> A discussion of psychological, cultural, and linguistic influences on color perception
+<strong>35.</strong> An explanation of the trichromatic system allowing perception of millions of colors</p>
+<h3>Questions 36–40: Summary Completion</h3>
+<p><em>Complete the summary using NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p>Visible light consists of electromagnetic radiation across a range of <strong>(36)</strong> <strong><em>_</em></strong><strong><em>. The retina contains two types of photoreceptors: rods, sensitive to light intensity, and <strong>(37)</strong> </em></strong><strong><em>_</em></strong>, responsible for color vision. Most humans have three types of cone cells, each sensitive to a different range of wavelengths. The brain determines color through a <strong>(38)</strong> <strong><em>_</em></strong><strong><em> process across all three cone types. Color vision deficiency occurs more frequently in <strong>(39)</strong> </em></strong><strong><em>_</em></strong> than women. Research suggests that <strong>(40)</strong> <strong><em>_</em></strong>___ vocabulary may subtly influence color perception.</p>
+<hr />
+<button id="toggleAnswersBtn" onclick="toggleAnswerKey()">Show Answer Key</button>
+
+<div id="answerKeySection">
+<h1>ANSWER KEY</h1>
+<h3>Passage 1</h3>
+<p>1. False 2. True 3. False 4. True 5. B 6. B 7. B 8. B
+9. spoon 10. north-south 11. water 12. Exploration 13. power sources</p>
+<h3>Passage 2</h3>
+<p>14. ii 15. iv 16. i 17. v 18. iii
+19. True 20. False 21. True 22. False
+23. ice houses 24. heat 25. synthetic 26. waste</p>
+<h3>Passage 3</h3>
+<p>27. B 28. C 29. B 30. B
+31. Paragraph 2 32. Paragraph 4 33. Paragraph 1 34. Paragraph 5 35. Paragraph 3
+36. wavelengths 37. cones 38. comparative 39. men 40. color (language)</p>
+<p><em>Scoring guide: 39–40 = Band 9, 35–38 = Band 8, 30–34 = Band 7, 23–29 = Band 6, 16–22 = Band 5, 13–15 = Band 4 (approximate, for self-practice only).</em></p>
+</div>
+
+<script>
+        function showTime() {
+            const japanTime = new Date().toLocaleString('en-US', {
+                timeZone: 'Asia/Tokyo',
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            });
+            document.getElementById('currentTime').innerHTML = japanTime;
+        }
+        showTime();
+        setInterval(showTime, 1000);
+
+        // DARK MODE
+        function toggleMode() {
+            const body = document.body;
+            const icon = document.getElementById('dark-icon');
+            const text = document.getElementById('dark-text');
+            body.classList.toggle('dark');
+            if (body.classList.contains('dark')) {
+                icon.textContent = '☀️';
+                text.textContent = 'Light Mode';
+            } else {
+                icon.textContent = '🌙';
+                text.textContent = 'Dark Mode';
+            }
+        }
+
+        function showLesson(id) {
+            const lessons = document.querySelectorAll('.lesson');
+            lessons.forEach(l => l.classList.remove('active'));
+            const target = document.getElementById(id);
+            if (target) target.classList.add('active');
+        }
+
+        function getActiveLesson() {
+            const active = document.querySelector('.lesson.active');
+            return active ? active.id : null;
+        }
+
+        function nextLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index < lessonOrder.length - 1) {
+                showLesson(lessonOrder[index + 1]);
+            }
+        }
+
+        function prevLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index > 0) {
+                showLesson(lessonOrder[index - 1]);
+            }
+        }
+
+        // TABLE SCROLL WRAP
+        document.querySelectorAll('table').forEach(function (t) {
+            if (t.parentElement.classList.contains('table-wrap')) return;
+            var wrap = document.createElement('div');
+            wrap.className = 'table-wrap';
+            t.parentNode.insertBefore(wrap, t);
+            wrap.appendChild(t);
+        });
+
+        // ANSWER KEY TOGGLE
+        function toggleAnswerKey() {
+            var section = document.getElementById('answerKeySection');
+            var btn = document.getElementById('toggleAnswersBtn');
+            if (section.style.display === 'none' || section.style.display === '') {
+                section.style.display = 'block';
+                btn.textContent = 'Hide Answer Key';
+            } else {
+                section.style.display = 'none';
+                btn.textContent = 'Show Answer Key';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

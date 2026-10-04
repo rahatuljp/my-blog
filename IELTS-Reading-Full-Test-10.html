@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Reading - Full Practice Test 10</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            transition: background .3s, color .3s;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f9fbff;
+            border-left: 5px solid #3498db;
+            border-radius: 5px;
+        }
+
+        .toggle-btn {
+            position: fixed;
+            right: 20px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        /* Fixed button position */
+        .dark-btn {
+            top: 20px;
+        }
+
+        body.dark {
+            background: #121212;
+            color: #e0e0e0
+        }
+
+        body.dark .container {
+            background: #1e1e1e
+        }
+
+        body.dark .section {
+            background: #2a2a2a;
+            border-left: 5px solid #bb86fc
+        }
+
+        body.dark h1 {
+            color: #fff
+        }
+
+        body.dark .toggle-btn {
+            background: #bb86fc
+        }
+
+        .nav {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap
+        }
+
+        .nav button {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 6px;
+            background: #3498db;
+            color: #fff;
+            cursor: pointer
+        }
+
+        .lesson {
+            display: none
+        }
+
+        .lesson.active {
+            display: block
+        }
+
+        #currentTime {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 20px;
+            color: #4615b8;
+            margin: 0;
+            padding: 8px 0;
+            
+            
+        }
+
+        body.dark #currentTime {
+            color: #0eca27;
+            
+        }
+
+        /* push page content down so the fixed clock doesn't cover it */
+        .container {
+            margin-top: 40px;
+        }
+
+        #toggleAnswersBtn {
+            display: block;
+            margin: 28px auto 8px;
+            padding: 10px 22px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+            background: #2c3e50;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #toggleAnswersBtn:hover {
+            opacity: 0.9;
+        }
+
+        #answerKeySection {
+            display: none;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- DARK MODE -->
+    <button class="toggle-btn dark-btn" onclick="toggleMode()">
+        <span id="dark-icon">🌙</span>
+        <span id="dark-text">Dark Mode</span>
+    </button>
+
+    <div class="container">
+
+        <p id="currentTime"></p>
+
+        <div class="nav">
+            <a href="IELTS-Reading-Full-Test-1.html" target="_blank"><button>Test 1</button></a>
+            <a href="IELTS-Reading-Full-Test-2.html" target="_blank"><button>Test 2</button></a>
+            <a href="IELTS-Reading-Full-Test-3.html" target="_blank"><button>Test 3</button></a>
+            <a href="IELTS-Reading-Full-Test-4.html" target="_blank"><button>Test 4</button></a>
+            <a href="IELTS-Reading-Full-Test-5.html" target="_blank"><button>Test 5</button></a>
+            <a href="IELTS-Reading-Full-Test-6.html" target="_blank"><button>Test 6</button></a>
+            <a href="IELTS-Reading-Full-Test-7.html" target="_blank"><button>Test 7</button></a>
+            <a href="IELTS-Reading-Full-Test-8.html" target="_blank"><button>Test 8</button></a>
+            <a href="IELTS-Reading-Full-Test-9.html" target="_blank"><button>Test 9</button></a>
+            <a href="IELTS-Reading-Full-Test-10.html" target="_blank"><button>Test 10</button></a>
+            <a href="IELTS-Reading-Full-Test-11.html" target="_blank"><button>Test 11</button></a>
+            <a href="IELTS-Reading-Full-Test-12.html" target="_blank"><button>Test 12</button></a>
+        </div>
+
+        <h1>IELTS Academic Reading — Full Practice Test 10 (Beginner Level)</h1>
+        <h3>3 Passages · 40 Questions · Suggested time: 60 minutes</h3>
+        <hr />
+<h1>PASSAGE 1</h1>
+<h2>The Domestication of the Dog</h2>
+<p>Dogs hold the distinction of being the first animal species domesticated by humans, a process that most genetic and archaeological evidence suggests began somewhere between 15,000 and 40,000 years ago, considerably predating the domestication of any other animal, including livestock species such as goats, sheep, and cattle. The precise timeline and location of dog domestication, however, remain subjects of ongoing scientific debate.</p>
+<p>Most researchers agree that dogs descended from a now-extinct population of gray wolves, though the exact process by which this transformation occurred is not entirely settled. One widely supported theory suggests that certain wolves, particularly those less fearful of humans, began scavenging near human settlements, drawn by discarded food waste. Over successive generations, wolves that tolerated human proximity most successfully would have gained a survival advantage, gradually leading to a self-domestication process rather than one driven by deliberate human intervention from the outset.</p>
+<p>As this relationship deepened over thousands of years, humans began actively selecting and breeding dogs for specific traits and purposes, including hunting assistance, guarding, herding livestock, and companionship. This selective breeding process, particularly intensified over the past few centuries, eventually gave rise to the remarkable diversity of modern dog breeds, which vary dramatically in size, appearance, and temperament despite belonging to a single species.</p>
+<p>Beyond their practical utility, dogs have developed a uniquely close social and emotional bond with humans, a relationship extensively studied by researchers across multiple scientific disciplines. Studies have shown that interactions between dogs and their owners can trigger the release of oxytocin, a hormone associated with bonding and attachment, in both species—a phenomenon rarely observed in human relationships with other domesticated animals to a comparable degree.</p>
+<p>Today, dogs serve in an extraordinarily wide range of roles beyond companionship, including search and rescue operations, assistance for individuals with disabilities, detection work in security and medical contexts, and therapeutic support in various clinical settings, reflecting the deep and multifaceted nature of the relationship that has developed between humans and dogs over tens of thousands of years of shared history.</p>
+<h3>Questions 1–4: True / False / Not Given</h3>
+<p><strong>1.</strong> Dogs were the first animal species domesticated by humans.
+<strong>2.</strong> Scientists agree completely on the exact timeline of dog domestication.
+<strong>3.</strong> Dogs are believed to have descended from a now-extinct population of gray wolves.
+<strong>4.</strong> Oxytocin release during dog-human interaction has been observed in both species.</p>
+<h3>Questions 5–8: Multiple Choice</h3>
+<p><em>Choose the correct letter, A, B, C, or D.</em></p>
+<p><strong>5. What does the passage suggest about early dog domestication?</strong>
+A. It was entirely planned by early humans from the start B. It may have begun as a self-domestication process C. It occurred after livestock domestication D. It happened within a single generation</p>
+<p><strong>6. What theory is described regarding wolves and human settlements?</strong>
+A. Wolves were captured and forced into captivity B. Less fearful wolves scavenged near settlements, gaining a survival advantage C. Wolves were bred exclusively for hunting from the beginning D. Humans actively hunted all nearby wolf populations</p>
+<p><strong>7. What gave rise to the diversity of modern dog breeds?</strong>
+A. Random genetic mutation alone B. Selective breeding for specific traits over time C. Environmental factors alone D. Cross-breeding with other wild animals</p>
+<p><strong>8. What roles do dogs serve today, according to the passage?</strong>
+A. Only companionship B. Search and rescue, disability assistance, detection work, and therapy C. Exclusively guarding livestock D. Only hunting assistance</p>
+<h3>Questions 9–13: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p><strong>9.</strong> Dog domestication considerably predates the domestication of <strong><em>_</em></strong><strong><em> species.
+<strong>10.</strong> Wolves less fearful of humans may have gained a </em></strong><strong><em>_</em></strong> advantage.
+<strong>11.</strong> Humans began breeding dogs for hunting, guarding, herding, and <strong><em>_</em></strong><strong><em>.
+<strong>12.</strong> Dog-human interaction can trigger release of </em></strong><strong><em>_</em></strong>, a bonding hormone.
+<strong>13.</strong> Dogs assist individuals with <strong><em>_</em></strong>___ in various roles today.</p>
+<hr />
+<h1>PASSAGE 2</h1>
+<h2>The Rise of Electric Vehicles</h2>
+<p>Electric vehicles, though frequently discussed as a relatively recent development, actually have a history stretching back to the late 19th century, when early electric cars briefly competed alongside steam and gasoline-powered vehicles for dominance in the emerging automobile market. Electric vehicles of this early period offered notable advantages, including quiet operation and ease of use, but ultimately lost out to gasoline-powered cars during the early 20th century, largely due to the latter's greater range and the widespread development of petroleum-based fuel infrastructure.</p>
+<p>Interest in electric vehicles resurfaced periodically throughout the 20th century, often coinciding with periods of concern over oil prices or air pollution, though these earlier revivals generally failed to achieve lasting commercial success, primarily due to persistent limitations in battery technology, including high cost, limited driving range, and lengthy charging times compared to the convenience offered by conventional gasoline vehicles.</p>
+<p>The modern resurgence of electric vehicles, beginning notably in the early 21st century, has been driven substantially by significant advances in lithium-ion battery technology, which has dramatically improved energy density while simultaneously reducing costs, alongside growing governmental and consumer interest in reducing greenhouse gas emissions associated with conventional transportation. Several manufacturers, including established automakers alongside newer companies founded specifically around electric vehicle production, have played prominent roles in accelerating this modern transition.</p>
+<p>Despite considerable progress, electric vehicles continue to face certain adoption barriers. Charging infrastructure, while expanding rapidly in many regions, remains considerably less widespread and convenient than traditional refueling infrastructure in numerous areas, particularly in rural or less economically developed regions. Additionally, electric vehicles generally carry higher upfront purchase costs compared to comparable conventional vehicles, though this gap has been narrowing considerably as battery costs continue to decline, and many governments have introduced financial incentives aimed at further reducing this cost difference for consumers.</p>
+<p>Looking toward the future, many automotive industry analysts anticipate that electric vehicles will continue capturing an increasing share of the global automobile market in the coming decades, driven by continued technological improvement, expanding charging infrastructure, and increasingly ambitious government policies aimed at reducing transportation-related emissions as part of broader climate change mitigation strategies.</p>
+<h3>Questions 14–18: Matching Headings</h3>
+<p><em>Choose the correct heading for paragraphs A–E from the list below.</em></p>
+<p><strong>List of Headings</strong>
+i. Remaining barriers to widespread adoption
+ii. A more optimistic outlook for future growth
+iii. Early competition among vehicle types
+iv. Factors driving the modern resurgence
+v. Failed revivals during the 20th century</p>
+<p><strong>14.</strong> Paragraph 1
+<strong>15.</strong> Paragraph 2
+<strong>16.</strong> Paragraph 3
+<strong>17.</strong> Paragraph 4
+<strong>18.</strong> Paragraph 5</p>
+<h3>Questions 19–22: True / False / Not Given</h3>
+<p><strong>19.</strong> Early electric vehicles competed with steam and gasoline-powered vehicles in the 19th century.
+<strong>20.</strong> Earlier 20th-century revivals of electric vehicles generally achieved lasting commercial success.
+<strong>21.</strong> Lithium-ion battery advances have improved energy density and reduced costs.
+<strong>22.</strong> Charging infrastructure is equally widespread in all regions of the world.</p>
+<h3>Questions 23–26: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p><strong>23.</strong> Early gasoline cars had greater <strong><em>_</em></strong><strong><em> than early electric vehicles.
+<strong>24.</strong> Earlier EV revivals failed largely due to limitations in </em></strong><strong><em>_</em></strong> technology.
+<strong>25.</strong> Electric vehicles generally carry higher <strong><em>_</em></strong><strong><em> purchase costs than conventional vehicles.
+<strong>26.</strong> Many governments offer financial </em></strong><strong><em>_</em></strong> to reduce EV cost differences for consumers.</p>
+<hr />
+<h1>PASSAGE 3</h1>
+<h2>The Psychology of Habit Formation</h2>
+<p>Habits—automatic behaviors triggered by contextual cues rather than conscious deliberation—account for a substantial portion of daily human behavior, with some researchers estimating that a significant majority of everyday actions are performed habitually rather than as the result of active, deliberate decision-making in the moment.</p>
+<p>Psychologists studying habit formation generally describe a three-part process often referred to as the "habit loop," consisting of a cue, which triggers the behavior; a routine, the behavior itself; and a reward, which reinforces the association between the cue and the routine, making the behavior progressively more automatic with repetition. Over time, as this loop is repeated consistently within a stable context, the behavior becomes increasingly automatic, requiring progressively less conscious effort or motivation to perform.</p>
+<p>Research examining how long habit formation typically takes has produced somewhat varied findings, with one frequently cited study suggesting an average of around 66 days for a new behavior to become reasonably automatic, though the researchers found considerable individual variation, with some participants forming habits considerably faster and others requiring substantially longer periods, depending on the complexity of the behavior and individual differences between participants.</p>
+<p>Understanding habit formation carries considerable practical significance, particularly regarding efforts to establish beneficial habits, such as regular exercise or healthy eating patterns, or to break unwanted ones, such as smoking or excessive screen time. Behavioral scientists frequently emphasize the importance of consistent contextual cues in supporting habit formation, suggesting that anchoring new desired behaviors to existing stable routines—a strategy sometimes referred to as "habit stacking"—can substantially improve the likelihood of successfully establishing lasting behavioral change.</p>
+<p>Conversely, breaking unwanted habits often proves more challenging than establishing new ones, since existing neural pathways associated with well-established habitual behaviors do not simply disappear, even after a person consciously decides to stop performing the associated behavior. Instead, effective habit-breaking strategies frequently focus on modifying or removing the environmental cues that trigger unwanted behaviors, or deliberately substituting alternative, more desirable routines in response to the same triggering cues, rather than relying on willpower and conscious effort alone.</p>
+<h3>Questions 27–30: Multiple Choice</h3>
+<p><em>Choose the correct letter, A, B, C, or D.</em></p>
+<p><strong>27. What is a "habit loop," as described in the passage?</strong>
+A. A type of exercise routine B. A three-part process of cue, routine, and reward C. A medical treatment for addiction D. A type of memory test</p>
+<p><strong>28. According to the cited study, how long did habit formation take on average?</strong>
+A. 7 days B. 30 days C. 66 days D. One year</p>
+<p><strong>29. What is "habit stacking"?</strong>
+A. Performing multiple unrelated habits simultaneously B. Anchoring new behaviors to existing stable routines C. A method for measuring habit strength D. A type of psychological therapy</p>
+<p><strong>30. Why is breaking unwanted habits often more challenging than forming new ones?</strong>
+A. New habits require no neural pathways B. Existing neural pathways do not simply disappear after a decision to stop C. Unwanted habits are always more complex D. Breaking habits requires no environmental change</p>
+<h3>Questions 31–35: Matching Information</h3>
+<p><em>Which paragraph contains the following information? Write the correct paragraph number (1–5).</em></p>
+<p><strong>31.</strong> A description of the three components of the habit loop
+<strong>32.</strong> An explanation of strategies for breaking unwanted habits
+<strong>33.</strong> A mention of the practical significance of understanding habit formation
+<strong>34.</strong> A statement about the proportion of daily behavior that is habitual
+<strong>35.</strong> A reference to individual variation in how long habit formation takes</p>
+<h3>Questions 36–40: Summary Completion</h3>
+<p><em>Complete the summary using NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p>Habits are automatic behaviors triggered by contextual <strong>(36)</strong> <strong><em>_</em></strong><strong><em> rather than conscious thought. The habit loop consists of a cue, a <strong>(37)</strong> </em></strong><strong><em>_</em></strong>, and a reward. One study found habit formation takes an average of around <strong>(38)</strong> <strong><em>_</em></strong><strong><em> days, though this varies between individuals. A strategy called habit <strong>(39)</strong> </em></strong><strong><em>_</em></strong> involves anchoring new behaviors to existing routines. Breaking unwanted habits often involves modifying environmental <strong>(40)</strong> <strong><em>_</em></strong>___ rather than relying on willpower alone.</p>
+<hr />
+<button id="toggleAnswersBtn" onclick="toggleAnswerKey()">Show Answer Key</button>
+
+<div id="answerKeySection">
+<h1>ANSWER KEY</h1>
+<h3>Passage 1</h3>
+<p>1. True 2. False 3. True 4. True 5. B 6. B 7. B 8. B
+9. livestock 10. survival 11. companionship 12. oxytocin 13. disabilities</p>
+<h3>Passage 2</h3>
+<p>14. iii 15. v 16. iv 17. i 18. ii
+19. True 20. False 21. True 22. False
+23. range 24. battery 25. upfront 26. incentives</p>
+<h3>Passage 3</h3>
+<p>27. B 28. C 29. B 30. B
+31. Paragraph 2 32. Paragraph 5 33. Paragraph 4 34. Paragraph 1 35. Paragraph 3
+36. cues 37. routine 38. 66 39. stacking 40. cues</p>
+<p><em>Scoring guide: 39–40 = Band 9, 35–38 = Band 8, 30–34 = Band 7, 23–29 = Band 6, 16–22 = Band 5, 13–15 = Band 4 (approximate, for self-practice only).</em></p>
+</div>
+
+<script>
+        function showTime() {
+            const japanTime = new Date().toLocaleString('en-US', {
+                timeZone: 'Asia/Tokyo',
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            });
+            document.getElementById('currentTime').innerHTML = japanTime;
+        }
+        showTime();
+        setInterval(showTime, 1000);
+
+        // DARK MODE
+        function toggleMode() {
+            const body = document.body;
+            const icon = document.getElementById('dark-icon');
+            const text = document.getElementById('dark-text');
+            body.classList.toggle('dark');
+            if (body.classList.contains('dark')) {
+                icon.textContent = '☀️';
+                text.textContent = 'Light Mode';
+            } else {
+                icon.textContent = '🌙';
+                text.textContent = 'Dark Mode';
+            }
+        }
+
+        function showLesson(id) {
+            const lessons = document.querySelectorAll('.lesson');
+            lessons.forEach(l => l.classList.remove('active'));
+            const target = document.getElementById(id);
+            if (target) target.classList.add('active');
+        }
+
+        function getActiveLesson() {
+            const active = document.querySelector('.lesson.active');
+            return active ? active.id : null;
+        }
+
+        function nextLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index < lessonOrder.length - 1) {
+                showLesson(lessonOrder[index + 1]);
+            }
+        }
+
+        function prevLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index > 0) {
+                showLesson(lessonOrder[index - 1]);
+            }
+        }
+
+        // TABLE SCROLL WRAP
+        document.querySelectorAll('table').forEach(function (t) {
+            if (t.parentElement.classList.contains('table-wrap')) return;
+            var wrap = document.createElement('div');
+            wrap.className = 'table-wrap';
+            t.parentNode.insertBefore(wrap, t);
+            wrap.appendChild(t);
+        });
+
+        // ANSWER KEY TOGGLE
+        function toggleAnswerKey() {
+            var section = document.getElementById('answerKeySection');
+            var btn = document.getElementById('toggleAnswersBtn');
+            if (section.style.display === 'none' || section.style.display === '') {
+                section.style.display = 'block';
+                btn.textContent = 'Hide Answer Key';
+            } else {
+                section.style.display = 'none';
+                btn.textContent = 'Show Answer Key';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

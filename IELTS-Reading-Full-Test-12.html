@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Reading - Full Practice Test 12</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            transition: background .3s, color .3s;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f9fbff;
+            border-left: 5px solid #3498db;
+            border-radius: 5px;
+        }
+
+        .toggle-btn {
+            position: fixed;
+            right: 20px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        /* Fixed button position */
+        .dark-btn {
+            top: 20px;
+        }
+
+        body.dark {
+            background: #121212;
+            color: #e0e0e0
+        }
+
+        body.dark .container {
+            background: #1e1e1e
+        }
+
+        body.dark .section {
+            background: #2a2a2a;
+            border-left: 5px solid #bb86fc
+        }
+
+        body.dark h1 {
+            color: #fff
+        }
+
+        body.dark .toggle-btn {
+            background: #bb86fc
+        }
+
+        .nav {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap
+        }
+
+        .nav button {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 6px;
+            background: #3498db;
+            color: #fff;
+            cursor: pointer
+        }
+
+        .lesson {
+            display: none
+        }
+
+        .lesson.active {
+            display: block
+        }
+
+        #currentTime {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 20px;
+            color: #4615b8;
+            margin: 0;
+            padding: 8px 0;
+            
+            
+        }
+
+        body.dark #currentTime {
+            color: #0eca27;
+            
+        }
+
+        /* push page content down so the fixed clock doesn't cover it */
+        .container {
+            margin-top: 40px;
+        }
+
+        #toggleAnswersBtn {
+            display: block;
+            margin: 28px auto 8px;
+            padding: 10px 22px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+            background: #2c3e50;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #toggleAnswersBtn:hover {
+            opacity: 0.9;
+        }
+
+        #answerKeySection {
+            display: none;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- DARK MODE -->
+    <button class="toggle-btn dark-btn" onclick="toggleMode()">
+        <span id="dark-icon">🌙</span>
+        <span id="dark-text">Dark Mode</span>
+    </button>
+
+    <div class="container">
+
+        <p id="currentTime"></p>
+
+        <div class="nav">
+            <a href="IELTS-Reading-Full-Test-1.html" target="_blank"><button>Test 1</button></a>
+            <a href="IELTS-Reading-Full-Test-2.html" target="_blank"><button>Test 2</button></a>
+            <a href="IELTS-Reading-Full-Test-3.html" target="_blank"><button>Test 3</button></a>
+            <a href="IELTS-Reading-Full-Test-4.html" target="_blank"><button>Test 4</button></a>
+            <a href="IELTS-Reading-Full-Test-5.html" target="_blank"><button>Test 5</button></a>
+            <a href="IELTS-Reading-Full-Test-6.html" target="_blank"><button>Test 6</button></a>
+            <a href="IELTS-Reading-Full-Test-7.html" target="_blank"><button>Test 7</button></a>
+            <a href="IELTS-Reading-Full-Test-8.html" target="_blank"><button>Test 8</button></a>
+            <a href="IELTS-Reading-Full-Test-9.html" target="_blank"><button>Test 9</button></a>
+            <a href="IELTS-Reading-Full-Test-10.html" target="_blank"><button>Test 10</button></a>
+            <a href="IELTS-Reading-Full-Test-11.html" target="_blank"><button>Test 11</button></a>
+            <a href="IELTS-Reading-Full-Test-12.html" target="_blank"><button>Test 12</button></a>
+        </div>
+
+        <h1>IELTS Academic Reading — Full Practice Test 12 (Beginner Level)</h1>
+        <h3>3 Passages · 40 Questions · Suggested time: 60 minutes</h3>
+        <hr />
+<h1>PASSAGE 1</h1>
+<h2>The History of the Bicycle</h2>
+<p>The bicycle, now among the most widely used forms of transportation worldwide, evolved gradually over roughly two centuries through a series of incremental mechanical innovations. The earliest known precursor, called the "draisine" or "running machine," was invented by German baron Karl von Drais in 1817. This early device had no pedals whatsoever; instead, riders propelled themselves forward by pushing against the ground with their feet, essentially walking or running while seated on a wheeled frame.</p>
+<p>Pedals were not added until the 1860s, when French inventors attached crank mechanisms directly to the front wheel, creating what became popularly known as the "boneshaker," named for the notably uncomfortable ride produced by its rigid iron-framed construction and wooden or iron wheels traveling over the uneven cobblestone roads common at the time. Despite the discomfort involved, these early pedal-powered bicycles achieved considerable popularity across parts of Europe and North America.</p>
+<p>The 1870s and 1880s saw the emergence of the distinctive "penny-farthing" design, featuring a dramatically oversized front wheel and a comparatively tiny rear wheel, a configuration that allowed considerably higher speeds but rendered the bicycle notoriously difficult to mount, ride, and dismount safely, frequently resulting in serious falls when riders encountered obstacles or sudden stops.</p>
+<p>A truly transformative breakthrough arrived in 1885 with the introduction of the "safety bicycle" by English inventor John Kemp Starley, featuring two similarly sized wheels, a chain-driven rear wheel, and a considerably lower center of gravity, dramatically improving stability, safety, and ease of use compared to earlier designs. Combined with the subsequent introduction of pneumatic (air-filled) rubber tires by John Boyd Dunlop in 1888, which significantly improved comfort and further increased bicycles' practicality, this design established the fundamental bicycle configuration that remains essentially recognizable in modern bicycles today.</p>
+<p>Beyond its practical transportation function, the bicycle carried significant social implications, particularly regarding women's independence and mobility during the late 19th century, offering many women unprecedented personal freedom of movement and even influencing changes in women's clothing fashion, as more practical clothing designs gradually replaced restrictive garments poorly suited to cycling.</p>
+<h3>Questions 1–4: True / False / Not Given</h3>
+<p><strong>1.</strong> The earliest bicycle precursor, the draisine, had pedals from the very beginning.
+<strong>2.</strong> The "boneshaker" name referred to the uncomfortable ride caused by its rigid construction.
+<strong>3.</strong> The penny-farthing design was generally considered safer than earlier bicycle designs.
+<strong>4.</strong> John Boyd Dunlop introduced pneumatic rubber tires in 1888.</p>
+<h3>Questions 5–8: Multiple Choice</h3>
+<p><em>Choose the correct letter, A, B, C, or D.</em></p>
+<p><strong>5. Who invented the earliest bicycle precursor, the draisine?</strong>
+A. John Kemp Starley B. Karl von Drais C. John Boyd Dunlop D. French inventors</p>
+<p><strong>6. What distinguished the penny-farthing design?</strong>
+A. Two similarly sized wheels B. A dramatically oversized front wheel and tiny rear wheel C. A chain-driven front wheel D. No wheels at all</p>
+<p><strong>7. What did the "safety bicycle" introduce?</strong>
+A. Pneumatic tires only B. Two similarly sized wheels and a chain-driven rear wheel C. An oversized front wheel D. Wooden wheels</p>
+<p><strong>8. What social implication does the passage associate with the bicycle?</strong>
+A. Increased restrictions on women's mobility B. Greater independence and mobility for women C. A decline in women's fashion innovation D. No notable social effects</p>
+<h3>Questions 9–13: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p><strong>9.</strong> The draisine was also known as a "<strong><em>_</em></strong><strong><em>."
+<strong>10.</strong> Pedals were added in the 1860s via crank mechanisms attached to the </em></strong><strong><em>_</em></strong> wheel.
+<strong>11.</strong> The safety bicycle featured a considerably lower center of <strong><em>_</em></strong><strong><em>.
+<strong>12.</strong> Pneumatic tires significantly improved </em></strong><strong><em>_</em></strong> for riders.
+<strong>13.</strong> Cycling influenced changes in women's <strong><em>_</em></strong>___ during the late 19th century.</p>
+<hr />
+<h1>PASSAGE 2</h1>
+<h2>Coral Reefs and Ocean Acidification</h2>
+<p>Ocean acidification, often described by scientists as "the other carbon dioxide problem," refers to the ongoing decrease in ocean pH levels resulting from the absorption of increasing atmospheric carbon dioxide by seawater. Since the beginning of the industrial era, oceans are estimated to have absorbed roughly a quarter to a third of all human-generated carbon dioxide emissions, playing an important, though increasingly strained, role in moderating atmospheric greenhouse gas concentrations.</p>
+<p>When carbon dioxide dissolves in seawater, it undergoes a chemical reaction forming carbonic acid, which subsequently breaks down into hydrogen ions and other compounds, directly lowering the water's pH and reducing the availability of carbonate ions—a chemical component essential for many marine organisms that build shells or skeletal structures from calcium carbonate, including corals, oysters, mussels, and various planktonic organisms forming the base of many marine food webs.</p>
+<p>Coral reefs are considered particularly vulnerable to ocean acidification, since reduced carbonate ion availability directly impairs corals' ability to build and maintain their calcium carbonate skeletal structures, potentially slowing reef growth rates and, in more severe cases, making existing reef structures more vulnerable to erosion and physical damage. This vulnerability compounds existing threats facing coral reefs, including rising ocean temperatures and associated coral bleaching events, creating what many marine scientists describe as a combination of simultaneous stressors threatening reef ecosystems worldwide.</p>
+<p>The consequences of coral reef decline extend well beyond the reefs themselves. Reef ecosystems support an estimated twenty-five percent of all marine species at some point during their life cycles, despite covering less than one percent of the ocean floor, making them disproportionately important biodiversity hotspots. Additionally, reefs provide critical services to human communities, including coastal protection from storm surges, substantial fishing industry support, and considerable tourism revenue for many coastal and island nations economically dependent on reef-related activities.</p>
+<p>Addressing ocean acidification fundamentally requires reducing global carbon dioxide emissions, since the underlying chemical process is directly driven by atmospheric CO2 concentrations. In the meantime, various localized conservation strategies, including reducing other stressors such as water pollution and unsustainable fishing practices, alongside research into potentially more resilient coral varieties, represent complementary approaches aimed at supporting reef ecosystem resilience while broader emissions reduction efforts continue.</p>
+<h3>Questions 14–18: Matching Headings</h3>
+<p><em>Choose the correct heading for paragraphs A–E from the list below.</em></p>
+<p><strong>List of Headings</strong>
+i. Why coral reefs are especially vulnerable
+ii. The chemical process behind acidification
+iii. The wider importance of reef ecosystems
+iv. Complementary strategies while emissions are addressed
+v. Oceans absorbing rising carbon dioxide levels</p>
+<p><strong>14.</strong> Paragraph 1
+<strong>15.</strong> Paragraph 2
+<strong>16.</strong> Paragraph 3
+<strong>17.</strong> Paragraph 4
+<strong>18.</strong> Paragraph 5</p>
+<h3>Questions 19–22: True / False / Not Given</h3>
+<p><strong>19.</strong> Oceans have absorbed a significant portion of human-generated carbon dioxide emissions.
+<strong>20.</strong> Reduced carbonate ion availability impairs corals' ability to build skeletal structures.
+<strong>21.</strong> Coral reefs cover more than twenty-five percent of the ocean floor.
+<strong>22.</strong> Ocean acidification is the only threat currently facing coral reefs.</p>
+<h3>Questions 23–26: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p><strong>23.</strong> Dissolved carbon dioxide forms <strong><em>_</em></strong><strong><em> acid in seawater.
+<strong>24.</strong> Reduced carbonate ions affect organisms that build structures from calcium </em></strong><strong><em>_</em></strong>.
+<strong>25.</strong> Reefs support an estimated <strong><em>_</em></strong><strong><em> percent of marine species at some life stage.
+<strong>26.</strong> Reefs provide coastal protection from </em></strong><strong><em>_</em></strong> for many coastal communities.</p>
+<hr />
+<h1>PASSAGE 3</h1>
+<h2>The History of the English Language</h2>
+<p>The English language, now spoken as a first or additional language by well over a billion people worldwide, has undergone remarkable transformation over roughly 1,500 years of documented history, shaped by successive waves of migration, conquest, and cultural exchange across the British Isles and, later, throughout much of the world.</p>
+<p>The earliest form of the language, now referred to as Old English, emerged following the migration of Germanic tribes—principally the Angles, Saxons, and Jutes—to Britain beginning around the 5th century CE, gradually displacing or blending with the existing Celtic-speaking populations. Old English, considerably different from modern English in vocabulary, grammar, and pronunciation, would likely be largely unintelligible to modern English speakers encountering it without specialized study.</p>
+<p>A significant transformation occurred following the Norman Conquest of 1066, when William the Conqueror's invasion brought Norman French-speaking rulers to power in England. Over subsequent centuries, extensive contact between English and Norman French led to substantial vocabulary borrowing, particularly in domains associated with law, government, and cuisine, alongside considerable simplification of English grammar, gradually giving rise to what linguists term Middle English.</p>
+<p>The transition to Early Modern English, roughly spanning the 15th through 17th centuries, coincided with several significant developments, including the introduction of the printing press, which contributed to increasing standardization of spelling and grammar, and a major, still not entirely explained phonological shift known as the Great Vowel Shift, which substantially altered English pronunciation patterns over this period. William Shakespeare, writing during the late portion of this period, is often cited for his substantial contributions to English vocabulary, reportedly introducing or popularizing hundreds of new words and phrases still commonly used today.</p>
+<p>The subsequent spread of English as a global language, accelerating particularly from the 17th century onward through British colonial expansion and, later, the international economic and cultural influence of the United States, has resulted in the emergence of numerous distinct regional varieties and dialects worldwide, while simultaneously establishing English as the most widely used language for international business, science, and diplomatic communication in the contemporary world.</p>
+<h3>Questions 27–30: Multiple Choice</h3>
+<p><em>Choose the correct letter, A, B, C, or D.</em></p>
+<p><strong>27. Which Germanic tribes are mentioned as migrating to Britain?</strong>
+A. The Normans and Romans B. The Angles, Saxons, and Jutes C. The Celts and Vikings D. The Franks and Goths</p>
+<p><strong>28. What triggered the transition from Old English to Middle English?</strong>
+A. The invention of the printing press B. The Norman Conquest of 1066 C. The Great Vowel Shift D. Shakespeare's writing</p>
+<p><strong>29. What is the "Great Vowel Shift"?</strong>
+A. A migration of English speakers B. A phonological shift that altered English pronunciation C. A grammatical simplification process D. A change in English spelling rules introduced by Shakespeare</p>
+<p><strong>30. What is Shakespeare credited with, according to the passage?</strong>
+A. Inventing the printing press B. Introducing or popularizing hundreds of new words and phrases C. Causing the Norman Conquest D. Creating the Great Vowel Shift</p>
+<h3>Questions 31–35: Matching Information</h3>
+<p><em>Which paragraph contains the following information? Write the correct paragraph number (1–5).</em></p>
+<p><strong>31.</strong> A mention of vocabulary borrowing related to law, government, and cuisine
+<strong>32.</strong> A reference to the global spread of English through colonial expansion
+<strong>33.</strong> A description of the earliest Germanic tribes who migrated to Britain
+<strong>34.</strong> A mention of the number of people who speak English worldwide today
+<strong>35.</strong> A reference to the printing press contributing to spelling standardization</p>
+<h3>Questions 36–40: Summary Completion</h3>
+<p><em>Complete the summary using NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p>Old English emerged following the migration of Germanic tribes, including the Angles, Saxons, and <strong>(36)</strong> <strong><em>_</em></strong><strong><em>, to Britain. The Norman Conquest of <strong>(37)</strong> </em></strong><strong><em>_</em></strong> led to substantial vocabulary borrowing from Norman French. The transition to Early Modern English coincided with the introduction of the <strong>(38)</strong> <strong><em>_</em></strong><strong><em> and the Great Vowel Shift. <strong>(39)</strong> </em></strong><strong><em>_</em></strong> is credited with introducing many new words still used today. English later spread globally through British <strong>(40)</strong> <strong><em>_</em></strong>___ expansion and American influence.</p>
+<hr />
+<button id="toggleAnswersBtn" onclick="toggleAnswerKey()">Show Answer Key</button>
+
+<div id="answerKeySection">
+<h1>ANSWER KEY</h1>
+<h3>Passage 1</h3>
+<p>1. False 2. True 3. False 4. True 5. B 6. B 7. B 8. B
+9. running machine 10. front 11. gravity 12. comfort 13. clothing (fashion)</p>
+<h3>Passage 2</h3>
+<p>14. v 15. ii 16. i 17. iii 18. iv
+19. True 20. True 21. False 22. False
+23. carbonic 24. carbonate 25. twenty-five (25) 26. storm surges</p>
+<h3>Passage 3</h3>
+<p>27. B 28. B 29. B 30. B
+31. Paragraph 3 32. Paragraph 5 33. Paragraph 2 34. Paragraph 1 35. Paragraph 4
+36. Jutes 37. 1066 38. printing press 39. Shakespeare 40. colonial</p>
+<p><em>Scoring guide: 39–40 = Band 9, 35–38 = Band 8, 30–34 = Band 7, 23–29 = Band 6, 16–22 = Band 5, 13–15 = Band 4 (approximate, for self-practice only).</em></p>
+</div>
+
+<script>
+        function showTime() {
+            const japanTime = new Date().toLocaleString('en-US', {
+                timeZone: 'Asia/Tokyo',
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            });
+            document.getElementById('currentTime').innerHTML = japanTime;
+        }
+        showTime();
+        setInterval(showTime, 1000);
+
+        // DARK MODE
+        function toggleMode() {
+            const body = document.body;
+            const icon = document.getElementById('dark-icon');
+            const text = document.getElementById('dark-text');
+            body.classList.toggle('dark');
+            if (body.classList.contains('dark')) {
+                icon.textContent = '☀️';
+                text.textContent = 'Light Mode';
+            } else {
+                icon.textContent = '🌙';
+                text.textContent = 'Dark Mode';
+            }
+        }
+
+        function showLesson(id) {
+            const lessons = document.querySelectorAll('.lesson');
+            lessons.forEach(l => l.classList.remove('active'));
+            const target = document.getElementById(id);
+            if (target) target.classList.add('active');
+        }
+
+        function getActiveLesson() {
+            const active = document.querySelector('.lesson.active');
+            return active ? active.id : null;
+        }
+
+        function nextLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index < lessonOrder.length - 1) {
+                showLesson(lessonOrder[index + 1]);
+            }
+        }
+
+        function prevLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index > 0) {
+                showLesson(lessonOrder[index - 1]);
+            }
+        }
+
+        // TABLE SCROLL WRAP
+        document.querySelectorAll('table').forEach(function (t) {
+            if (t.parentElement.classList.contains('table-wrap')) return;
+            var wrap = document.createElement('div');
+            wrap.className = 'table-wrap';
+            t.parentNode.insertBefore(wrap, t);
+            wrap.appendChild(t);
+        });
+
+        // ANSWER KEY TOGGLE
+        function toggleAnswerKey() {
+            var section = document.getElementById('answerKeySection');
+            var btn = document.getElementById('toggleAnswersBtn');
+            if (section.style.display === 'none' || section.style.display === '') {
+                section.style.display = 'block';
+                btn.textContent = 'Hide Answer Key';
+            } else {
+                section.style.display = 'none';
+                btn.textContent = 'Show Answer Key';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

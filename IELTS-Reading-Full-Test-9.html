@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Reading - Full Practice Test 9</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            transition: background .3s, color .3s;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f9fbff;
+            border-left: 5px solid #3498db;
+            border-radius: 5px;
+        }
+
+        .toggle-btn {
+            position: fixed;
+            right: 20px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        /* Fixed button position */
+        .dark-btn {
+            top: 20px;
+        }
+
+        body.dark {
+            background: #121212;
+            color: #e0e0e0
+        }
+
+        body.dark .container {
+            background: #1e1e1e
+        }
+
+        body.dark .section {
+            background: #2a2a2a;
+            border-left: 5px solid #bb86fc
+        }
+
+        body.dark h1 {
+            color: #fff
+        }
+
+        body.dark .toggle-btn {
+            background: #bb86fc
+        }
+
+        .nav {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap
+        }
+
+        .nav button {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 6px;
+            background: #3498db;
+            color: #fff;
+            cursor: pointer
+        }
+
+        .lesson {
+            display: none
+        }
+
+        .lesson.active {
+            display: block
+        }
+
+        #currentTime {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 20px;
+            color: #4615b8;
+            margin: 0;
+            padding: 8px 0;
+            
+            
+        }
+
+        body.dark #currentTime {
+            color: #0eca27;
+            
+        }
+
+        /* push page content down so the fixed clock doesn't cover it */
+        .container {
+            margin-top: 40px;
+        }
+
+        #toggleAnswersBtn {
+            display: block;
+            margin: 28px auto 8px;
+            padding: 10px 22px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+            background: #2c3e50;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #toggleAnswersBtn:hover {
+            opacity: 0.9;
+        }
+
+        #answerKeySection {
+            display: none;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- DARK MODE -->
+    <button class="toggle-btn dark-btn" onclick="toggleMode()">
+        <span id="dark-icon">🌙</span>
+        <span id="dark-text">Dark Mode</span>
+    </button>
+
+    <div class="container">
+
+        <p id="currentTime"></p>
+
+        <div class="nav">
+            <a href="IELTS-Reading-Full-Test-1.html" target="_blank"><button>Test 1</button></a>
+            <a href="IELTS-Reading-Full-Test-2.html" target="_blank"><button>Test 2</button></a>
+            <a href="IELTS-Reading-Full-Test-3.html" target="_blank"><button>Test 3</button></a>
+            <a href="IELTS-Reading-Full-Test-4.html" target="_blank"><button>Test 4</button></a>
+            <a href="IELTS-Reading-Full-Test-5.html" target="_blank"><button>Test 5</button></a>
+            <a href="IELTS-Reading-Full-Test-6.html" target="_blank"><button>Test 6</button></a>
+            <a href="IELTS-Reading-Full-Test-7.html" target="_blank"><button>Test 7</button></a>
+            <a href="IELTS-Reading-Full-Test-8.html" target="_blank"><button>Test 8</button></a>
+            <a href="IELTS-Reading-Full-Test-9.html" target="_blank"><button>Test 9</button></a>
+            <a href="IELTS-Reading-Full-Test-10.html" target="_blank"><button>Test 10</button></a>
+            <a href="IELTS-Reading-Full-Test-11.html" target="_blank"><button>Test 11</button></a>
+            <a href="IELTS-Reading-Full-Test-12.html" target="_blank"><button>Test 12</button></a>
+        </div>
+
+        <h1>IELTS Academic Reading — Full Practice Test 9 (Beginner Level)</h1>
+        <h3>3 Passages · 40 Questions · Suggested time: 60 minutes</h3>
+        <hr />
+<h1>PASSAGE 1</h1>
+<h2>The History of Tea</h2>
+<p>Tea, now the second most consumed beverage in the world after water, has a history stretching back nearly 5,000 years to ancient China. According to popular legend, the drink was discovered accidentally around 2737 BCE when leaves from a nearby tea plant blew into a pot of boiling water being prepared for the Chinese emperor Shen Nong, who found the resulting infusion pleasant and refreshing.</p>
+<p>For several centuries, tea remained primarily a medicinal drink, valued by Chinese physicians for its perceived health benefits, before gradually transitioning into a common social beverage during the Tang Dynasty, roughly between the 7th and 10th centuries CE. It was during this period that tea cultivation, preparation, and drinking customs became increasingly formalized, eventually giving rise to elaborate tea ceremonies that remain culturally significant in parts of East Asia today.</p>
+<p>Tea's spread beyond China accelerated considerably from the 16th century onward, as European traders, particularly the Portuguese and later the Dutch, established trade routes that brought tea to Europe. Britain, in particular, developed a deep and lasting cultural attachment to tea, especially following the marriage of King Charles II to Catherine of Braganza, a Portuguese princess credited with popularizing tea-drinking among the English aristocracy in the 1660s.</p>
+<p>As demand for tea grew substantially throughout the 17th and 18th centuries, the British East India Company established a near-monopoly on tea imports into Britain, and tea taxation became a significant source of government revenue—a policy that, notably, contributed to growing tensions in Britain's American colonies, culminating in the Boston Tea Party of 1773, a protest against British taxation policy that is widely regarded as an important precursor to the American Revolution.</p>
+<p>By the 19th century, the British had begun cultivating tea directly within their colonial territories, particularly in India and Ceylon (present-day Sri Lanka), reducing dependence on Chinese tea imports and establishing these regions as major global tea-producing areas that remain significant to this day, alongside China, which continues to be among the world's largest tea producers.</p>
+<h3>Questions 1–4: True / False / Not Given</h3>
+<p><strong>1.</strong> Tea was discovered, according to legend, completely by accident.
+<strong>2.</strong> Tea was initially valued mainly as a medicinal drink in China.
+<strong>3.</strong> Catherine of Braganza was English by birth.
+<strong>4.</strong> The Boston Tea Party occurred before Britain began cultivating tea in India.</p>
+<h3>Questions 5–8: Multiple Choice</h3>
+<p><em>Choose the correct letter, A, B, C, or D.</em></p>
+<p><strong>5. According to legend, how was tea discovered?</strong>
+A. A physician deliberately brewed it B. Leaves blew into boiling water being prepared for an emperor C. Traders brought it from Europe D. It was discovered by British colonists</p>
+<p><strong>6. When did tea become a common social beverage in China?</strong>
+A. Immediately after its discovery B. During the Tang Dynasty C. In the 16th century D. During the Boston Tea Party</p>
+<p><strong>7. What contributed to tensions in Britain's American colonies?</strong>
+A. A shortage of tea B. Tea taxation policy C. The marriage of Charles II D. Chinese trade restrictions</p>
+<p><strong>8. Where did the British establish major tea cultivation in the 19th century?</strong>
+A. Only in Britain itself B. India and Ceylon C. Portugal and the Netherlands D. China exclusively</p>
+<h3>Questions 9–13: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p><strong>9.</strong> Tea is now the second most consumed beverage in the world after <strong><em>_</em></strong><strong><em>.
+<strong>10.</strong> Tea ceremonies became formalized during the </em></strong><strong><em>_</em></strong> Dynasty.
+<strong>11.</strong> Catherine of Braganza helped popularize tea among the English <strong><em>_</em></strong><strong><em>.
+<strong>12.</strong> The </em></strong><strong><em>_</em></strong> Company established a near-monopoly on tea imports into Britain.
+<strong>13.</strong> Ceylon is known today as <strong><em>_</em></strong>___.</p>
+<hr />
+<h1>PASSAGE 2</h1>
+<h2>The Science of Sleep</h2>
+<p>Sleep occupies roughly one-third of human life, yet for much of scientific history, its precise biological purpose remained poorly understood, often dismissed as simply a passive state of rest. Modern sleep research, however, has revealed that sleep is an active and highly regulated biological process, essential for a wide range of physical and cognitive functions.</p>
+<p>Human sleep is generally divided into several distinct stages, broadly categorized into non-rapid eye movement (NREM) sleep and rapid eye movement (REM) sleep, which alternate in cycles throughout the night, typically lasting around 90 minutes each. NREM sleep, particularly its deeper stages, is associated with physical restoration processes, including tissue repair, immune system strengthening, and the release of growth hormone. REM sleep, by contrast, is closely associated with vivid dreaming and appears to play a particularly important role in memory consolidation and emotional processing.</p>
+<p>Researchers have identified numerous consequences associated with chronic sleep deprivation, extending well beyond simple daytime tiredness. Insufficient sleep has been linked to impaired cognitive performance, including reduced attention, slower reaction times, and impaired decision-making abilities. Longer-term sleep deprivation has additionally been associated with increased risk of several serious health conditions, including obesity, cardiovascular disease, and weakened immune function, as well as heightened risk of mental health difficulties, including anxiety and depression.</p>
+<p>Sleep needs vary somewhat across individuals and change considerably across the lifespan, with infants requiring considerably more sleep than adults, and sleep patterns often shifting again during adolescence and later in life. Most health organizations recommend that adults obtain between seven and nine hours of sleep per night, though a meaningful portion of the population in many industrialized countries regularly falls short of this recommendation, often due to work schedules, technology use, and broader lifestyle factors.</p>
+<p>Given the growing body of evidence linking adequate sleep to overall health and cognitive function, sleep researchers increasingly advocate for greater public health attention to sleep, alongside more established priorities such as diet and physical exercise, as an essential, though frequently overlooked, pillar of overall wellbeing.</p>
+<h3>Questions 14–18: Matching Headings</h3>
+<p><em>Choose the correct heading for paragraphs A–E from the list below.</em></p>
+<p><strong>List of Headings</strong>
+i. Sleep needs across different life stages
+ii. The stages and cycles of sleep
+iii. Sleep as an active, essential process
+iv. Consequences of insufficient sleep
+v. A call for greater public health attention</p>
+<p><strong>14.</strong> Paragraph 1
+<strong>15.</strong> Paragraph 2
+<strong>16.</strong> Paragraph 3
+<strong>17.</strong> Paragraph 4
+<strong>18.</strong> Paragraph 5</p>
+<h3>Questions 19–22: True / False / Not Given</h3>
+<p><strong>19.</strong> Sleep was historically often dismissed as simply a passive state of rest.
+<strong>20.</strong> REM sleep is closely associated with memory consolidation and dreaming.
+<strong>21.</strong> Sleep deprivation has no effect on cognitive performance.
+<strong>22.</strong> Most adults in industrialized countries currently get sufficient sleep.</p>
+<h3>Questions 23–26: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p><strong>23.</strong> NREM sleep is associated with physical <strong><em>_</em></strong><strong><em> processes, including tissue repair.
+<strong>24.</strong> Sleep deprivation increases risk of obesity and </em></strong><strong><em>_</em></strong> disease.
+<strong>25.</strong> Most health organizations recommend <strong><em>_</em></strong><strong><em> to nine hours of sleep for adults.
+<strong>26.</strong> Sleep researchers advocate for sleep to be treated as a pillar of overall </em></strong><strong><em>_</em></strong>.</p>
+<hr />
+<h1>PASSAGE 3</h1>
+<h2>The Development of Modern Banking</h2>
+<p>The origins of modern banking can be traced back to medieval and early modern Europe, where merchants and moneylenders gradually developed increasingly sophisticated financial practices to support expanding trade networks across the continent. Early Italian city-states, particularly Florence, Venice, and Genoa, are widely regarded as pioneers of early banking practices, developing innovations such as double-entry bookkeeping and early forms of credit and currency exchange that facilitated increasingly complex commercial transactions.</p>
+<p>The term "bank" itself is believed to derive from the Italian word <em>banco</em>, referring to the bench or table at which medieval moneylenders conducted their business in public marketplaces. As trade expanded considerably during the Renaissance period, prominent banking families, most notably the Medici family of Florence, developed extensive networks of banking operations across multiple European cities, providing crucial financial services to merchants, governments, and the Catholic Church alike.</p>
+<p>The establishment of central banks marked a further significant development in the evolution of modern banking systems. The Sveriges Riksbank, founded in Sweden in 1668, is generally recognized as the world's oldest central bank still in continuous operation, followed shortly afterward by the Bank of England, established in 1694, initially created to help finance government military expenditures during wartime.</p>
+<p>Throughout the 19th and 20th centuries, banking systems became increasingly regulated and standardized, particularly following periods of significant financial instability, including major banking crises that prompted governments to establish stronger regulatory frameworks aimed at protecting depositors and maintaining broader financial stability. The Great Depression of the 1930s, in particular, prompted substantial banking reforms in the United States and elsewhere, including the introduction of deposit insurance schemes designed to protect ordinary depositors' savings in the event of future bank failures.</p>
+<p>More recently, the banking sector has undergone substantial transformation driven by digital technology, with online banking, mobile payment systems, and more recently, the emergence of cryptocurrency and blockchain-based financial technologies, prompting ongoing debate among economists, regulators, and industry participants regarding how traditional banking systems should adapt to this rapidly evolving financial technology landscape.</p>
+<h3>Questions 27–30: Multiple Choice</h3>
+<p><em>Choose the correct letter, A, B, C, or D.</em></p>
+<p><strong>27. Which city-states are described as pioneers of early banking practices?</strong>
+A. London, Paris, and Berlin B. Florence, Venice, and Genoa C. Amsterdam and Stockholm D. Rome and Athens</p>
+<p><strong>28. What does the term "bank" derive from?</strong>
+A. An English word for currency B. The Italian word for bench or table C. A Latin term for merchant D. A French word for trade</p>
+<p><strong>29. Why was the Bank of England initially established?</strong>
+A. To regulate international trade B. To help finance government military expenditures C. To provide loans to ordinary citizens D. To replace the Medici family's banking network</p>
+<p><strong>30. What prompted substantial banking reforms in the 1930s?</strong>
+A. The invention of online banking B. The Great Depression C. The founding of the Sveriges Riksbank D. The rise of cryptocurrency</p>
+<h3>Questions 31–35: Matching Information</h3>
+<p><em>Which paragraph contains the following information? Write the correct paragraph number (1–5).</em></p>
+<p><strong>31.</strong> A mention of deposit insurance schemes introduced to protect depositors
+<strong>32.</strong> An explanation of the origin of the word "bank"
+<strong>33.</strong> A reference to the emergence of cryptocurrency and blockchain technology
+<strong>34.</strong> A description of the Medici family's banking operations
+<strong>35.</strong> A mention of the world's oldest central bank still in continuous operation</p>
+<h3>Questions 36–40: Summary Completion</h3>
+<p><em>Complete the summary using NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<p>Early banking practices developed in Italian city-states such as Florence, Venice, and <strong>(36)</strong> <strong><em>_</em></strong><strong><em>. The word "bank" derives from the Italian word for <strong>(37)</strong> </em></strong><strong><em>_</em></strong>. The Medici family developed extensive banking networks serving merchants, governments, and the <strong>(38)</strong> <strong><em>_</em></strong><strong><em>. The Sveriges Riksbank, founded in <strong>(39)</strong> </em></strong><strong><em>_</em></strong>, is considered the oldest central bank still operating. The Great Depression prompted the introduction of <strong>(40)</strong> <strong><em>_</em></strong>___ insurance schemes in the 1930s.</p>
+<hr />
+<button id="toggleAnswersBtn" onclick="toggleAnswerKey()">Show Answer Key</button>
+
+<div id="answerKeySection">
+<h1>ANSWER KEY</h1>
+<h3>Passage 1</h3>
+<p>1. True 2. True 3. False 4. True 5. B 6. B 7. B 8. B
+9. water 10. Tang 11. aristocracy 12. British East India 13. Sri Lanka</p>
+<h3>Passage 2</h3>
+<p>14. iii 15. ii 16. iv 17. i 18. v
+19. True 20. True 21. False 22. False
+23. restoration 24. cardiovascular 25. seven 26. wellbeing</p>
+<h3>Passage 3</h3>
+<p>27. B 28. B 29. B 30. B
+31. Paragraph 4 32. Paragraph 2 33. Paragraph 5 34. Paragraph 2 35. Paragraph 3
+36. Genoa 37. bench (table) 38. Catholic Church 39. 1668 40. deposit</p>
+<p><em>Scoring guide: 39–40 = Band 9, 35–38 = Band 8, 30–34 = Band 7, 23–29 = Band 6, 16–22 = Band 5, 13–15 = Band 4 (approximate, for self-practice only).</em></p>
+</div>
+
+<script>
+        function showTime() {
+            const japanTime = new Date().toLocaleString('en-US', {
+                timeZone: 'Asia/Tokyo',
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            });
+            document.getElementById('currentTime').innerHTML = japanTime;
+        }
+        showTime();
+        setInterval(showTime, 1000);
+
+        // DARK MODE
+        function toggleMode() {
+            const body = document.body;
+            const icon = document.getElementById('dark-icon');
+            const text = document.getElementById('dark-text');
+            body.classList.toggle('dark');
+            if (body.classList.contains('dark')) {
+                icon.textContent = '☀️';
+                text.textContent = 'Light Mode';
+            } else {
+                icon.textContent = '🌙';
+                text.textContent = 'Dark Mode';
+            }
+        }
+
+        // LESSON NAVIGATION (kept as-is; has no effect until elements with
+        // id="lesson1"..."lesson25" and class="lesson" exist on the page)
+        const lessonOrder = [
+            'lesson1', 'lesson2', 'lesson3', 'lesson4', 'lesson5', 'lesson6', 'lesson7', 'lesson8', 'lesson9', 'lesson10',
+            'lesson11', 'lesson12', 'lesson13', 'lesson14', 'lesson15', 'lesson16', 'lesson17', 'lesson18', 'lesson19', 'lesson20',
+            'lesson21', 'lesson22', 'lesson23', 'lesson24', 'lesson25'
+        ];
+
+        function showLesson(id) {
+            const lessons = document.querySelectorAll('.lesson');
+            lessons.forEach(l => l.classList.remove('active'));
+            const target = document.getElementById(id);
+            if (target) target.classList.add('active');
+        }
+
+        function getActiveLesson() {
+            const active = document.querySelector('.lesson.active');
+            return active ? active.id : null;
+        }
+
+        function nextLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index < lessonOrder.length - 1) {
+                showLesson(lessonOrder[index + 1]);
+            }
+        }
+
+        function prevLesson() {
+            const current = getActiveLesson();
+            const index = lessonOrder.indexOf(current);
+            if (index > 0) {
+                showLesson(lessonOrder[index - 1]);
+            }
+        }
+
+        // TABLE SCROLL WRAP
+        document.querySelectorAll('table').forEach(function (t) {
+            if (t.parentElement.classList.contains('table-wrap')) return;
+            var wrap = document.createElement('div');
+            wrap.className = 'table-wrap';
+            t.parentNode.insertBefore(wrap, t);
+            wrap.appendChild(t);
+        });
+
+        // ANSWER KEY TOGGLE
+        function toggleAnswerKey() {
+            var section = document.getElementById('answerKeySection');
+            var btn = document.getElementById('toggleAnswersBtn');
+            if (section.style.display === 'none' || section.style.display === '') {
+                section.style.display = 'block';
+                btn.textContent = 'Hide Answer Key';
+            } else {
+                section.style.display = 'none';
+                btn.textContent = 'Show Answer Key';
+            }
+        }
+    </script>
+
+</body>
+
+</html>
