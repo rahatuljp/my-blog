@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Reading - Full Practice Test 2</title>
+
+<style>
+  :root {
+    --bg: #ffffff; --text: #1a1a1a; --muted: #555;
+    --border: #ddd; --accent: #2c3e50; --accent-text: #ffffff;
+    --row-alt: #f7f8f9; --correct: #1e8449; --wrong: #c0392b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+    transition: background .3s, color .3s;
+    color: var(--text);
+  }
+  .container {
+    max-width: 850px;
+    margin: 40px auto 0;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  h1 { text-align: center; color: #2c3e50; margin-bottom: 4px; font-size: 24px; }
+  .subtitle { text-align: center; color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+  h2 { font-size: 19px; margin-top: 32px; margin-bottom: 8px; border-bottom: 2px solid var(--accent); padding-bottom: 6px; }
+  h3 { font-size: 16px; margin-top: 20px; }
+  p { font-size: 15.5px; }
+  em { color: var(--muted); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+  /* Dark mode toggle button */
+  .toggle-btn {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: #3498db;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s, transform 0.3s;
+    z-index: 1000;
+  }
+  body.dark { background: #121212; color: #e0e0e0; }
+  body.dark .container { background: #1e1e1e; }
+  body.dark h1 { color: #fff; }
+  body.dark .toggle-btn { background: #bb86fc; }
+  body.dark .q-block { background: #2a2a2a; border-color: #444; }
+  body.dark th { background: #3a3a5a; }
+  body.dark td { background: #242424; border-color: #444; }
+
+  /* Nav bar */
+  .nav { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+  .nav button { padding: 8px 14px; border: none; border-radius: 6px; background: #3498db; color: #fff; cursor: pointer; }
+  .nav button:hover { opacity: 0.9; }
+
+  /* Clock */
+  #currentTime {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    text-align: center;
+    font-size: 15px;
+    color: #4615b8;
+    margin: 0;
+    padding: 8px 0;
+    background: rgba(244,246,249,0.95);
+    z-index: 999;
+  }
+  body.dark #currentTime { color: #7ee07e; background: rgba(18,18,18,0.95); }
+
+  /* Countdown timer badge */
+  #timer {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--accent);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 999;
+  }
+  @media (max-width: 600px) {
+    #timer { position: static; display: inline-block; margin-bottom: 14px; }
+  }
+
+  /* Question blocks */
+  .q-block {
+    margin: 14px 0;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--row-alt);
+  }
+  .q-block label { display: block; font-weight: 600; margin-bottom: 6px; }
+  .q-options { font-weight: normal; margin-bottom: 8px; color: #333; }
+  body.dark .q-options { color: #ccc; }
+  .q-block input[type="text"], .q-block select {
+    width: 100%; max-width: 320px; padding: 7px 10px;
+    font-size: 14.5px; border: 1px solid var(--border); border-radius: 4px;
+  }
+  .q-block.correct { border-color: var(--correct); background: #eafaf0; }
+  .q-block.wrong { border-color: var(--wrong); background: #fdecea; }
+  body.dark .q-block.correct { background: #1c3a28; }
+  body.dark .q-block.wrong { background: #3a2020; }
+  .feedback-tag { display: inline-block; margin-left: 10px; font-weight: 600; font-size: 13.5px; }
+  .feedback-tag.correct-tag { color: var(--correct); }
+  .feedback-tag.wrong-tag { color: var(--wrong); }
+  .correct-answer-note { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* Submit / Reset / Results */
+  #submitBtn, #resetBtn {
+    display: inline-block; margin: 20px 8px 20px 0; padding: 12px 26px;
+    font-size: 16px; font-weight: 600; color: #ffffff;
+    background: var(--accent); border: none; border-radius: 6px; cursor: pointer;
+  }
+  #resetBtn { background: #7f8c8d; }
+  #submitBtn:hover, #resetBtn:hover { opacity: 0.9; }
+  #resultsBox {
+    display: none; margin-top: 10px; padding: 20px; border-radius: 8px;
+    background: #eef6ff; border: 1px solid #b7d8f5; text-align: center;
+  }
+  body.dark #resultsBox { background: #1a2b3a; border-color: #2d4a66; }
+  #resultsBox .score-number { font-size: 36px; font-weight: 700; color: var(--accent); }
+  #resultsBox .band-number { font-size: 22px; font-weight: 700; color: #1e6f5c; margin-top: 4px; }
+
+  .table-wrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 400px; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; font-size: 14px; }
+  th { background: var(--accent); color: var(--accent-text); }
+
+  /* Placeholder markers — remove/style away once real content is filled in */
+  .placeholder { color: #b03a2e; font-style: italic; }
+</style>
+</head>
+
+<body>
+
+  <!-- DARK MODE BUTTON -->
+  <button class="toggle-btn dark-btn" onclick="toggleMode()">
+    <span id="dark-icon">🌙</span>
+    <span id="dark-text">Dark Mode</span>
+  </button>
+
+  <!-- CLOCK (fixed at top, stays visible while scrolling) -->
+  <p id="currentTime"></p>
+
+  <!-- TIMER (visual 60-minute countdown) -->
+  <div id="timer">⏱ 60:00</div>
+
+  <div class="container">
+
+    <!-- NAV BAR — edit hrefs/labels to match your actual file names -->
+    <div class="nav">
+      <a href="Mock_Test_1.html" target="_blank"><button>Test 1</button></a>
+      <a href="Mock_Test_2.html" target="_blank"><button>Test 2</button></a>
+      <a href="Mock_Test_3.html" target="_blank"><button>Test 3</button></a>
+      <a href="Mock_Test_4.html" target="_blank"><button>Test 4</button></a>
+      <a href="Mock_Test_5.html" target="_blank"><button>Test 5</button></a>
+      <a href="Mock_Test_6.html" target="_blank"><button>Test 6</button></a>
+      <a href="Mock_Test_7.html" target="_blank"><button>Test 7</button></a>
+      <a href="Mock_Test_8.html" target="_blank"><button>Test 8</button></a>
+      <a href="Mock_Test_9.html" target="_blank"><button>Test 9</button></a>
+      <a href="Mock_Test_10.html" target="_blank"><button>Test 10</button></a>
+      <a href="Mock_Test_11.html" target="_blank"><button>Test 11</button></a>
+      <a href="Mock_Test_12.html" target="_blank"><button>Test 12</button></a>
+    </div>
+
+    <h1>IELTS Academic Reading — Self-Graded Mock Test 2</h1>
+    <div class="subtitle">3 Passages · 40 Questions · Fill in your answers below, then click Submit for your score and band estimate.</div>
+    <hr>
+
+   <h2>PASSAGE 1</h2>
+<h3>The History of Chocolate</h3>
+<p>Chocolate has a history that stretches back over 3,000 years. It was first used by the ancient Maya and Aztec civilizations in Central America, long before it became the sweet treat we know today. These early cultures did not eat chocolate as a solid bar; instead, they made it into a bitter drink by mixing crushed cacao beans with water, spices, and sometimes chili peppers.</p>
+<p>The Aztecs valued cacao beans so highly that they used them as a form of currency. A rabbit, for example, might cost four cacao beans, while a slave could be purchased for around 100 beans. Cacao was also linked to religious rituals, and the Aztec emperor Montezuma reportedly drank large quantities of chocolate daily, believing it gave him energy and strength.</p>
+<p>Chocolate arrived in Europe in the 16th century, brought back by Spanish explorers. At first, it remained a drink enjoyed mainly by the wealthy, as cacao beans were expensive and difficult to transport. Europeans changed the original recipe significantly, removing the chili peppers and adding sugar and honey to suit European tastes. By the 17th century, chocolate houses—similar to modern cafes—had become popular gathering places in cities like London and Paris.</p>
+<p>The transformation of chocolate into a solid, edible form did not happen until the 19th century. In 1847, a British company called Fry's created the first chocolate bar by combining cocoa powder, sugar, and cocoa butter into a paste that could be pressed into a mold. Later, in 1875, a Swiss chocolatier named Daniel Peter invented milk chocolate by adding powdered milk to the mixture, creating a smoother and sweeter product.</p>
+<p>Today, chocolate is produced and consumed worldwide, with countries like Switzerland, Belgium, and Germany particularly famous for their chocolate-making traditions. Despite its long and complex history, one thing has remained constant: people's love for this rich, flavorful treat.</p>
+
+
+<h3>Questions 1–4: True / False / Not Given</h3>
+<div class="q-block" data-q="1">
+  <label>1. The ancient Maya and Aztecs drank chocolate rather than eating it as a solid bar.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="2">
+  <label>2. Only wealthy Aztecs were allowed to drink chocolate.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="3">
+  <label>3. Chocolate became popular in Europe immediately after it arrived.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="4">
+  <label>4. Fry's chocolate bar was invented before milk chocolate.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+
+
+<h3>Questions 5–8: Multiple Choice</h3>
+<div class="q-block" data-q="5">
+  <label>5. Why did the Aztecs value cacao beans?</label>
+  <div class="q-options">A. They were rare and beautiful B. They could be used as money and in religious rituals C. They were used only for medicine D. They were given as gifts to visitors</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="6">
+  <label>6. What did Europeans change about the original recipe?</label>
+  <div class="q-options">A. They added chili peppers B. They removed sugar C. They removed chili peppers and added sugar D. They made it solid immediately</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="7">
+  <label>7. What were 17th-century chocolate houses similar to?</label>
+  <div class="q-options">A. Chocolate factories B. Modern cafes C. Supermarkets D. Restaurants</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="8">
+  <label>8. Who invented milk chocolate?</label>
+  <div class="q-options">A. Fry's company B. Montezuma C. Daniel Peter D. Spanish explorers</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+
+
+<h3>Questions 9–13: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<div class="q-block" data-q="9">
+  <label>9. The Aztecs mixed crushed cacao beans with water and __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="10">
+  <label>10. A slave could reportedly be bought for around __________ cacao beans.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="11">
+  <label>11. Spanish explorers brought chocolate to __________ in the 16th century.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="12">
+  <label>12. Fry's company created the first chocolate bar in __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="13">
+  <label>13. Switzerland, Belgium, and __________ are famous for chocolate-making today.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+
+
+    <hr>
+
+   <h2>PASSAGE 2</h2>
+<h3>Urban Green Spaces</h3>
+<p>As cities around the world continue to grow, urban planners are paying increasing attention to the role of green spaces—parks, gardens, and tree-lined streets—in maintaining the wellbeing of city residents. Far from being simply decorative, these spaces serve a range of practical purposes that affect health, environment, and community life.</p>
+<p>One of the most well-documented benefits of green space is its impact on physical health. Numerous studies have found that people living near parks tend to exercise more frequently, since accessible green areas encourage walking, jogging, and outdoor sports. In addition, trees and plants help filter air pollutants, which can reduce the incidence of respiratory illnesses in densely populated areas.</p>
+<p>Green spaces also play a significant role in mental health. Spending time in natural surroundings has been shown to lower levels of stress hormones and improve mood. Some hospitals have even begun incorporating garden areas into their design, recognizing that patients with a view of greenery often recover more quickly than those without one.</p>
+<p>Beyond individual health, parks and gardens contribute to the environmental balance of a city. Trees absorb carbon dioxide and produce oxygen, while also providing shade that can lower surrounding temperatures during hot months—a phenomenon particularly valuable in combating the "urban heat island" effect, where cities become significantly warmer than surrounding rural areas due to concrete and asphalt absorbing heat.</p>
+<p>Finally, green spaces function as social hubs. Parks provide a free, shared space where people from different backgrounds can gather, exercise, and interact, which can strengthen community bonds. Community gardens, in particular, have become popular in many cities, allowing residents to grow their own food while building relationships with neighbors.</p>
+<p>Despite these benefits, access to green space remains unequal in many cities, with wealthier neighborhoods often having significantly more parks and tree cover than poorer ones. Addressing this imbalance has become a priority for many urban planning departments in recent years.</p>
+
+
+<h3>Questions 14–18: Matching Headings</h3>
+<p><em>Choose the correct heading for paragraphs 1–5.</em></p>
+<p><strong>List of Headings</strong><br>
+i. An unequal distribution of benefits<br>
+ii. Green spaces bring people together<br>
+iii. The purpose of this passage<br>
+iv. Effects on the body<br>
+v. Cooling the city and cleaning the air<br>
+vi. Calming the mind</p>
+<div class="q-block" data-q="14">
+  <label>14. Paragraph 1 (introduction)</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="15">
+  <label>15. Paragraph 2 (physical health)</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="16">
+  <label>16. Paragraph 3 (mental health)</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="17">
+  <label>17. Paragraph 4 (environmental balance)</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="18">
+  <label>18. Paragraph 5 (social hubs)</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+
+
+<h3>Questions 19–22: True / False / Not Given</h3>
+<div class="q-block" data-q="19">
+  <label>19. People who live near parks tend to exercise less than those who don't.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="20">
+  <label>20. Hospital patients with a view of greenery sometimes recover faster.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="21">
+  <label>21. Trees can help reduce temperatures in cities during summer.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="22">
+  <label>22. All cities currently provide equal access to green space for every neighborhood.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+
+
+<h3>Questions 23–26: Sentence Completion</h3>
+<div class="q-block" data-q="23">
+  <label>23. Trees help filter air __________, which can reduce respiratory illness.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="24">
+  <label>24. Spending time in nature can lower __________ hormones.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="25">
+  <label>25. The effect where cities become warmer than surrounding areas is called the "__________" effect.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="26">
+  <label>26. __________ allow residents to grow food and build relationships with neighbors.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+
+    <hr>
+
+   <h2>PASSAGE 3</h2>
+<h3>The Invention of the Telephone</h3>
+<p>The invention of the telephone stands as one of the most transformative moments in the history of communication, fundamentally changing how people across distances could interact. While the device is most commonly associated with Alexander Graham Bell, the story of its invention is more complex than a single moment of discovery.</p>
+<p>Bell, a Scottish-born scientist who had emigrated to Canada and later the United States, was primarily interested in the study of sound and speech, partly due to his work with deaf students—his mother and wife were both deaf, which deeply influenced his career. Alongside his assistant, Thomas Watson, Bell spent years experimenting with ways to transmit sound electrically, building on earlier work related to the telegraph, which could only send simple coded signals rather than actual voice.</p>
+<p>On March 10, 1876, Bell succeeded in transmitting clear speech to Watson in another room, famously saying, "Mr. Watson, come here, I want to see you." This moment is widely regarded as the birth of the telephone, though historians note that Bell filed his patent application just hours before a rival inventor, Elisha Gray, filed a similar claim—a coincidence that led to decades of legal disputes over who truly deserved credit for the invention.</p>
+<p>Despite the controversy, Bell's patent was upheld, and he went on to found the Bell Telephone Company in 1877. Initial public reaction to the telephone was mixed; some considered it a novelty with little practical use, while others immediately recognized its potential for business and personal communication. Early telephones required an operator to manually connect calls through a switchboard, a system that remained standard for decades before automatic switching was introduced.</p>
+<p>By the early 20th century, telephone networks had expanded rapidly across the United States and Europe, transforming business practices and personal relationships alike. What began as an experimental device capable of transmitting a single sentence between two rooms eventually became a foundational piece of global infrastructure, paving the way for the interconnected communication systems that define the modern world.</p>
+
+
+<h3>Questions 27–30: Multiple Choice</h3>
+<div class="q-block" data-q="27">
+  <label>27. What influenced Bell's interest in sound and speech?</label>
+  <div class="q-options">A. His university education B. His work with deaf students, including family members C. His experience with the telegraph D. His rivalry with Elisha Gray</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="28">
+  <label>28. What did Bell say in his first successful telephone call?</label>
+  <div class="q-options">A. "Hello, can you hear me?" B. "This is a great invention." C. "Mr. Watson, come here, I want to see you." D. "Testing, one, two, three."</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="29">
+  <label>29. What caused decades of legal disputes?</label>
+  <div class="q-options">A. Bell refused to pay Watson B. Bell and Gray filed similar patent claims on the same day C. The telephone company went bankrupt D. Watson claimed he invented the telephone</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="30">
+  <label>30. How were early telephone calls connected?</label>
+  <div class="q-options">A. Automatically, by machine B. By manually turning a dial C. Manually, through an operator at a switchboard D. Through the telegraph system</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+
+
+<h3>Questions 31–35: Matching Information</h3>
+<p><em>Which paragraph (1–5) contains the following information?</em></p>
+<div class="q-block" data-q="31">
+  <label>31. A description of the exact words spoken during the first successful call</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="32">
+  <label>32. Information about the founding of a telephone company</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="33">
+  <label>33. Background on Bell's personal motivation for studying sound</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="34">
+  <label>34. A comparison between telephone technology and an earlier communication device</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="35">
+  <label>35. A description of how telephone networks grew in the following decades</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+
+
+<h3>Questions 36–40: Summary Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS for each answer.</em></p>
+<p>Alexander Graham Bell's interest in sound was shaped by his work with (36) __________ students. Working with his assistant Thomas Watson, Bell built on earlier technology related to the (37) __________. His famous first call took place in (38) __________. Although Bell's patent was legally challenged by (39) __________, it was ultimately upheld, and he founded the Bell Telephone Company in (40) __________.</p>
+<div class="q-block" data-q="36">
+  <label>36.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="37">
+  <label>37.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="38">
+  <label>38.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="39">
+  <label>39.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="40">
+  <label>40.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+
+    <hr>
+
+    <button id="submitBtn" onclick="gradeTest()">Submit &amp; Get My Score</button>
+    <button id="resetBtn" onclick="resetTest()">Reset</button>
+
+    <div id="resultsBox">
+      <div>Your Score</div>
+      <div class="score-number" id="scoreDisplay">0 / 40</div>
+      <div class="band-number" id="bandDisplay">Band: —</div>
+      <p style="margin-top:14px; color:#555; font-size:13.5px;">Correct answers are highlighted green, incorrect ones red (with the correct answer shown below each). This is an approximate self-practice estimate only — official IELTS scoring uses its own conversion tables.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table style="margin-top:20px;">
+        <thead><tr><th>Correct answers</th><th>Approximate Band</th></tr></thead>
+        <tbody>
+          <tr><td>39–40</td><td>9</td></tr>
+          <tr><td>35–38</td><td>8</td></tr>
+          <tr><td>30–34</td><td>7</td></tr>
+          <tr><td>23–29</td><td>6</td></tr>
+          <tr><td>16–22</td><td>5</td></tr>
+          <tr><td>13–15</td><td>4</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+<script>
+  // ===================================================================
+  // ANSWER KEY — replace every placeholder value with the real answer.
+  // Each entry is an ARRAY so you can list more than one accepted answer,
+  // e.g. 12: ["1950s", "late 1950s"]
+  // ===================================================================
+  const answerKey = {
+  1: ["True "],2: ["Not Given"], 3: ["False"],
+  4: ["True "],5: ["B "],6: ["C "], 7: ["B "],
+  8: ["C"], 9: ["spices "], 10: ["100 "],11: ["Europe "],
+  12: ["1847 "],13: ["Germany"],14: ["iii "],
+  15: ["iv "],16: ["vi "],17: ["v "],
+  18: ["ii"], 19: ["False "],
+  20: ["True "], 21: ["True "],22: ["False"],
+  23: ["pollutants "],
+  24: ["stress"],25: ["urban heat island "],26: ["Community gardens"],27: ["B "],
+  28: ["C "],29: ["B "],30: ["C"],31: ["Paragraph 3 "],
+  32: ["Paragraph 4 ", ],33: ["Paragraph 2 "],34: ["Paragraph 2 "],
+  35: ["Paragraph 5"],36: ["deaf"],37: ["telegraph"],
+  38: ["1876"],39: ["Elisha Gray"], 40: ["1877"]
+  };
+
+  // ---- Dark mode ----
+  function toggleMode() {
+    const body = document.body;
+    const icon = document.getElementById('dark-icon');
+    const text = document.getElementById('dark-text');
+    body.classList.toggle('dark');
+    if (body.classList.contains('dark')) {
+      icon.textContent = '☀️';
+      text.textContent = 'Light Mode';
+    } else {
+      icon.textContent = '🌙';
+      text.textContent = 'Dark Mode';
+    }
+  }
+
+  // ---- Live clock (Asia/Tokyo — change timeZone as needed) ----
+  function showTime() {
+    const now = new Date().toLocaleString('en-US', {
+      timeZone: 'Asia/Tokyo',
+      weekday: 'short', month: 'short', day: 'numeric', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true
+    });
+    document.getElementById('currentTime').innerHTML = now;
+  }
+  showTime();
+  setInterval(showTime, 1000);
+
+  // ---- Answer normalization + grading ----
+  function normalize(str) {
+    return str.trim().toLowerCase().replace(/[.,]/g, "");
+  }
+
+  function getBand(score) {
+    if (score >= 39) return 9;
+    if (score >= 35) return 8;
+    if (score >= 30) return 7;
+    if (score >= 23) return 6;
+    if (score >= 16) return 5;
+    if (score >= 13) return 4;
+    return "Below 4";
+  }
+
+  function gradeTest() {
+    let score = 0;
+    for (let i = 1; i <= 40; i++) {
+      const block = document.querySelector('.q-block[data-q="' + i + '"]');
+      if (!block) continue;
+      const field = block.querySelector('input[type="text"], select');
+      const userVal = field ? normalize(field.value || "") : "";
+      const correctAnswers = (answerKey[i] || []).map(normalize);
+      const isCorrect = correctAnswers.includes(userVal);
+
+      block.classList.remove("correct", "wrong");
+      const oldTag = block.querySelector(".feedback-tag");
+      if (oldTag) oldTag.remove();
+      const oldNote = block.querySelector(".correct-answer-note");
+      if (oldNote) oldNote.remove();
+
+      const tag = document.createElement("span");
+      tag.className = "feedback-tag " + (isCorrect ? "correct-tag" : "wrong-tag");
+      tag.textContent = isCorrect ? "✓ Correct" : "✗ Incorrect";
+      block.querySelector("label").appendChild(tag);
+
+      if (isCorrect) {
+        score++;
+        block.classList.add("correct");
+      } else {
+        block.classList.add("wrong");
+        const note = document.createElement("div");
+        note.className = "correct-answer-note";
+        note.textContent = "Correct answer: " + (answerKey[i] ? answerKey[i][0] : "N/A");
+        block.appendChild(note);
+      }
+    }
+
+    document.getElementById("scoreDisplay").textContent = score + " / 40";
+    document.getElementById("bandDisplay").textContent = "Approximate Band: " + getBand(score);
+    const resultsBox = document.getElementById("resultsBox");
+    resultsBox.style.display = "block";
+    resultsBox.scrollIntoView({ behavior: "smooth" });
+  }
+
+  function resetTest() {
+    document.querySelectorAll('.q-block input[type="text"]').forEach(el => el.value = "");
+    document.querySelectorAll('.q-block select').forEach(el => el.value = "");
+    document.querySelectorAll('.q-block').forEach(el => {
+      el.classList.remove("correct", "wrong");
+      const tag = el.querySelector(".feedback-tag");
+      if (tag) tag.remove();
+      const note = el.querySelector(".correct-answer-note");
+      if (note) note.remove();
+    });
+    document.getElementById("resultsBox").style.display = "none";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // ---- Countdown timer (visual only — does not auto-submit) ----
+  let secondsLeft = 60 * 60;
+  function updateTimer() {
+    const m = Math.floor(secondsLeft / 60);
+    const s = secondsLeft % 60;
+    document.getElementById("timer").textContent =
+      "⏱ " + String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+    if (secondsLeft > 0) secondsLeft--;
+  }
+  updateTimer();
+  setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>
