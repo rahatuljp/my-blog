@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Reading - Full Practice Test13</title>
+
+<style>
+  :root {
+    --bg: #ffffff; --text: #1a1a1a; --muted: #555;
+    --border: #ddd; --accent: #2c3e50; --accent-text: #ffffff;
+    --row-alt: #f7f8f9; --correct: #1e8449; --wrong: #c0392b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+    transition: background .3s, color .3s;
+    color: var(--text);
+  }
+  .container {
+    max-width: 850px;
+    margin: 40px auto 0;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  h1 { text-align: center; color: #2c3e50; margin-bottom: 4px; font-size: 24px; }
+  .subtitle { text-align: center; color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+  h2 { font-size: 19px; margin-top: 32px; margin-bottom: 8px; border-bottom: 2px solid var(--accent); padding-bottom: 6px; }
+  h3 { font-size: 16px; margin-top: 20px; }
+  p { font-size: 15.5px; }
+  em { color: var(--muted); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+  /* Dark mode toggle button */
+  .toggle-btn {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: #3498db;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s, transform 0.3s;
+    z-index: 1000;
+  }
+  body.dark { background: #121212; color: #e0e0e0; }
+  body.dark .container { background: #1e1e1e; }
+  body.dark h1 { color: #fff; }
+  body.dark .toggle-btn { background: #bb86fc; }
+  body.dark .q-block { background: #2a2a2a; border-color: #444; }
+  body.dark th { background: #3a3a5a; }
+  body.dark td { background: #242424; border-color: #444; }
+
+  /* Nav bar */
+  .nav { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+  .nav button { padding: 8px 14px; border: none; border-radius: 6px; background: #3498db; color: #fff; cursor: pointer; }
+  .nav button:hover { opacity: 0.9; }
+
+  /* Clock */
+  #currentTime {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    text-align: center;
+    font-size: 15px;
+    color: #4615b8;
+    margin: 0;
+    padding: 8px 0;
+    background: rgba(244,246,249,0.95);
+    z-index: 999;
+  }
+  body.dark #currentTime { color: #7ee07e; background: rgba(18,18,18,0.95); }
+
+  /* Countdown timer badge */
+  #timer {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--accent);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 999;
+  }
+  @media (max-width: 600px) {
+    #timer { position: static; display: inline-block; margin-bottom: 14px; }
+  }
+
+  /* Question blocks */
+  .q-block {
+    margin: 14px 0;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--row-alt);
+  }
+  .q-block label { display: block; font-weight: 600; margin-bottom: 6px; }
+  .q-options { font-weight: normal; margin-bottom: 8px; color: #333; }
+  body.dark .q-options { color: #ccc; }
+  .q-block input[type="text"], .q-block select {
+    width: 100%; max-width: 320px; padding: 7px 10px;
+    font-size: 14.5px; border: 1px solid var(--border); border-radius: 4px;
+  }
+  .q-block.correct { border-color: var(--correct); background: #eafaf0; }
+  .q-block.wrong { border-color: var(--wrong); background: #fdecea; }
+  body.dark .q-block.correct { background: #1c3a28; }
+  body.dark .q-block.wrong { background: #3a2020; }
+  .feedback-tag { display: inline-block; margin-left: 10px; font-weight: 600; font-size: 13.5px; }
+  .feedback-tag.correct-tag { color: var(--correct); }
+  .feedback-tag.wrong-tag { color: var(--wrong); }
+  .correct-answer-note { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* Submit / Reset / Results */
+  #submitBtn, #resetBtn {
+    display: inline-block; margin: 20px 8px 20px 0; padding: 12px 26px;
+    font-size: 16px; font-weight: 600; color: #ffffff;
+    background: var(--accent); border: none; border-radius: 6px; cursor: pointer;
+  }
+  #resetBtn { background: #7f8c8d; }
+  #submitBtn:hover, #resetBtn:hover { opacity: 0.9; }
+  #resultsBox {
+    display: none; margin-top: 10px; padding: 20px; border-radius: 8px;
+    background: #eef6ff; border: 1px solid #b7d8f5; text-align: center;
+  }
+  body.dark #resultsBox { background: #1a2b3a; border-color: #2d4a66; }
+  #resultsBox .score-number { font-size: 36px; font-weight: 700; color: var(--accent); }
+  #resultsBox .band-number { font-size: 22px; font-weight: 700; color: #1e6f5c; margin-top: 4px; }
+
+  .table-wrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 400px; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; font-size: 14px; }
+  th { background: var(--accent); color: var(--accent-text); }
+
+  /* Placeholder markers — remove/style away once real content is filled in */
+  .placeholder { color: #b03a2e; font-style: italic; }
+</style>
+</head>
+
+<body>
+
+  <!-- DARK MODE BUTTON -->
+  <button class="toggle-btn dark-btn" onclick="toggleMode()">
+    <span id="dark-icon">🌙</span>
+    <span id="dark-text">Dark Mode</span>
+  </button>
+
+  <!-- CLOCK (fixed at top, stays visible while scrolling) -->
+  <p id="currentTime"></p>
+
+  <!-- TIMER (visual 60-minute countdown) -->
+  <div id="timer">⏱ 60:00</div>
+
+  <div class="container">
+
+    <!-- NAV BAR — edit hrefs/labels to match your actual file names -->
+    <div class="nav">
+      <a href="Mock_Test_1.html" target="_blank"><button>Test 1</button></a>
+      <a href="Mock_Test_2.html" target="_blank"><button>Test 2</button></a>
+      <a href="Mock_Test_3.html" target="_blank"><button>Test 3</button></a>
+      <a href="Mock_Test_4.html" target="_blank"><button>Test 4</button></a>
+      <a href="Mock_Test_5.html" target="_blank"><button>Test 5</button></a>
+      <a href="Mock_Test_6.html" target="_blank"><button>Test 6</button></a>
+      <a href="Mock_Test_7.html" target="_blank"><button>Test 7</button></a>
+      <a href="Mock_Test_8.html" target="_blank"><button>Test 8</button></a>
+      <a href="Mock_Test_9.html" target="_blank"><button>Test 9</button></a>
+      <a href="Mock_Test_10.html" target="_blank"><button>Test 10</button></a>
+      <a href="Mock_Test_11.html" target="_blank"><button>Test 11</button></a>
+      <a href="Mock_Test_12.html" target="_blank"><button>Test 12</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 13</button></a>
+    </div>
+
+     
+
+<h1>IELTS Academic Reading — Self-Graded Mock Test 13</h1>
+<div class="subtitle">3 Passages · 40 Questions · Fill in your answers below, then click Submit for your score and band estimate.</div>
+        <hr />
+
+<h2>PASSAGE 1</h2>
+<h3>The History of the Bicycle</h3>
+<p>The bicycle, now among the most widely used forms of transportation worldwide, evolved gradually over roughly two centuries through a series of incremental mechanical innovations. The earliest known precursor, called the "draisine" or "running machine," was invented by German baron Karl von Drais in 1817. This early device had no pedals whatsoever; instead, riders propelled themselves forward by pushing against the ground with their feet, essentially walking or running while seated on a wheeled frame.</p>
+<p>Pedals were not added until the 1860s, when French inventors attached crank mechanisms directly to the front wheel, creating what became popularly known as the "boneshaker," named for the notably uncomfortable ride produced by its rigid iron-framed construction and wooden or iron wheels traveling over the uneven cobblestone roads common at the time. Despite the discomfort involved, these early pedal-powered bicycles achieved considerable popularity across parts of Europe and North America.</p>
+<p>The 1870s and 1880s saw the emergence of the distinctive "penny-farthing" design, featuring a dramatically oversized front wheel and a comparatively tiny rear wheel, a configuration that allowed considerably higher speeds but rendered the bicycle notoriously difficult to mount, ride, and dismount safely, frequently resulting in serious falls when riders encountered obstacles or sudden stops.</p>
+<p>A truly transformative breakthrough arrived in 1885 with the introduction of the "safety bicycle" by English inventor John Kemp Starley, featuring two similarly sized wheels, a chain-driven rear wheel, and a considerably lower center of gravity, dramatically improving stability, safety, and ease of use compared to earlier designs. Combined with the subsequent introduction of pneumatic (air-filled) rubber tires by John Boyd Dunlop in 1888, which significantly improved comfort and further increased bicycles' practicality, this design established the fundamental bicycle configuration that remains essentially recognizable in modern bicycles today.</p>
+<p>Beyond its practical transportation function, the bicycle carried significant social implications, particularly regarding women's independence and mobility during the late 19th century, offering many women unprecedented personal freedom of movement and even influencing changes in women's clothing fashion, as more practical clothing designs gradually replaced restrictive garments poorly suited to cycling.</p>
+
+
+<h3>Questions 1–4: True / False / Not Given</h3>
+<div class="q-block" data-q="1">
+  <label>1. The earliest bicycle precursor, the draisine, had pedals from the very beginning.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="2">
+  <label>2. The "boneshaker" name referred to the uncomfortable ride caused by its rigid construction.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="3">
+  <label>3. The penny-farthing design was generally considered safer than earlier bicycle designs.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="4">
+  <label>4. John Boyd Dunlop introduced pneumatic rubber tires in 1888.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+
+
+<h3>Questions 5–8: Multiple Choice</h3>
+<div class="q-block" data-q="5">
+  <label>5. Who invented the earliest bicycle precursor, the draisine?</label>
+  <div class="q-options">A. John Kemp Starley B. Karl von Drais C. John Boyd Dunlop D. French inventors</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="6">
+  <label>6. What distinguished the penny-farthing design?</label>
+  <div class="q-options">A. Two similarly sized wheels B. A dramatically oversized front wheel and tiny rear wheel C. A chain-driven front wheel D. No wheels at all</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="7">
+  <label>7. What did the "safety bicycle" introduce?</label>
+  <div class="q-options">A. Pneumatic tires only B. Two similarly sized wheels and a chain-driven rear wheel C. An oversized front wheel D. Wooden wheels</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="8">
+  <label>8. What social implication does the passage associate with the bicycle?</label>
+  <div class="q-options">A. Increased restrictions on women's mobility B. Greater independence and mobility for women C. A decline in women's fashion innovation D. No notable social effects</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+
+
+<h3>Questions 9–13: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<div class="q-block" data-q="9">
+  <label>9. The draisine was also known as a "__________."</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="10">
+  <label>10. Pedals were added in the 1860s via crank mechanisms attached to the __________ wheel.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="11">
+  <label>11. The safety bicycle featured a considerably lower center of __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="12">
+  <label>12. Pneumatic tires significantly improved __________ for riders.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="13">
+  <label>13. Cycling influenced changes in women's __________ during the late 19th century.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+
+<hr>
+<h2>PASSAGE 2</h2>
+<h3>Coral Reefs and Ocean Acidification</h3>
+<p>Ocean acidification, often described by scientists as "the other carbon dioxide problem," refers to the ongoing decrease in ocean pH levels resulting from the absorption of increasing atmospheric carbon dioxide by seawater. Since the beginning of the industrial era, oceans are estimated to have absorbed roughly a quarter to a third of all human-generated carbon dioxide emissions, playing an important, though increasingly strained, role in moderating atmospheric greenhouse gas concentrations.</p>
+<p>When carbon dioxide dissolves in seawater, it undergoes a chemical reaction forming carbonic acid, which subsequently breaks down into hydrogen ions and other compounds, directly lowering the water's pH and reducing the availability of carbonate ions—a chemical component essential for many marine organisms that build shells or skeletal structures from calcium carbonate, including corals, oysters, mussels, and various planktonic organisms forming the base of many marine food webs.</p>
+<p>Coral reefs are considered particularly vulnerable to ocean acidification, since reduced carbonate ion availability directly impairs corals' ability to build and maintain their calcium carbonate skeletal structures, potentially slowing reef growth rates and, in more severe cases, making existing reef structures more vulnerable to erosion and physical damage. This vulnerability compounds existing threats facing coral reefs, including rising ocean temperatures and associated coral bleaching events, creating what many marine scientists describe as a combination of simultaneous stressors threatening reef ecosystems worldwide.</p>
+<p>The consequences of coral reef decline extend well beyond the reefs themselves. Reef ecosystems support an estimated twenty-five percent of all marine species at some point during their life cycles, despite covering less than one percent of the ocean floor, making them disproportionately important biodiversity hotspots. Additionally, reefs provide critical services to human communities, including coastal protection from storm surges, substantial fishing industry support, and considerable tourism revenue for many coastal and island nations economically dependent on reef-related activities.</p>
+<p>Addressing ocean acidification fundamentally requires reducing global carbon dioxide emissions, since the underlying chemical process is directly driven by atmospheric CO2 concentrations. In the meantime, various localized conservation strategies, including reducing other stressors such as water pollution and unsustainable fishing practices, alongside research into potentially more resilient coral varieties, represent complementary approaches aimed at supporting reef ecosystem resilience while broader emissions reduction efforts continue.</p>
+
+
+<h3>Questions 14–18: Matching Headings</h3>
+<p><em>Choose the correct heading for paragraphs 1–5.</em></p>
+<p><strong>List of Headings</strong><br>
+i. Why coral reefs are especially vulnerable<br>
+ii. The chemical process behind acidification<br>
+iii. The wider importance of reef ecosystems<br>
+iv. Complementary strategies while emissions are addressed<br>
+v. Oceans absorbing rising carbon dioxide levels</p>
+<div class="q-block" data-q="14">
+  <label>14. Paragraph 1</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="15">
+  <label>15. Paragraph 2</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="16">
+  <label>16. Paragraph 3</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="17">
+  <label>17. Paragraph 4</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="18">
+  <label>18. Paragraph 5</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+
+
+<h3>Questions 19–22: True / False / Not Given</h3>
+<div class="q-block" data-q="19">
+  <label>19. Oceans have absorbed a significant portion of human-generated carbon dioxide emissions.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="20">
+  <label>20. Reduced carbonate ion availability impairs corals' ability to build skeletal structures.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="21">
+  <label>21. Coral reefs cover more than twenty-five percent of the ocean floor.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="22">
+  <label>22. Ocean acidification is the only threat currently facing coral reefs.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+
+
+<h3>Questions 23–26: Sentence Completion</h3>
+<div class="q-block" data-q="23">
+  <label>23. Dissolved carbon dioxide forms __________ acid in seawater.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="24">
+  <label>24. Reduced carbonate ions affect organisms that build structures from calcium __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="25">
+  <label>25. Reefs support an estimated __________ percent of marine species at some life stage.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="26">
+  <label>26. Reefs provide coastal protection from __________ for many coastal communities.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+
+<hr>
+<h2>PASSAGE 3</h2>
+<h3>The History of the English Language</h3>
+<p>The English language, now spoken as a first or additional language by well over a billion people worldwide, has undergone remarkable transformation over roughly 1,500 years of documented history, shaped by successive waves of migration, conquest, and cultural exchange across the British Isles and, later, throughout much of the world.</p>
+<p>The earliest form of the language, now referred to as Old English, emerged following the migration of Germanic tribes—principally the Angles, Saxons, and Jutes—to Britain beginning around the 5th century CE, gradually displacing or blending with the existing Celtic-speaking populations. Old English, considerably different from modern English in vocabulary, grammar, and pronunciation, would likely be largely unintelligible to modern English speakers encountering it without specialized study.</p>
+<p>A significant transformation occurred following the Norman Conquest of 1066, when William the Conqueror's invasion brought Norman French-speaking rulers to power in England. Over subsequent centuries, extensive contact between English and Norman French led to substantial vocabulary borrowing, particularly in domains associated with law, government, and cuisine, alongside considerable simplification of English grammar, gradually giving rise to what linguists term Middle English.</p>
+<p>The transition to Early Modern English, roughly spanning the 15th through 17th centuries, coincided with several significant developments, including the introduction of the printing press, which contributed to increasing standardization of spelling and grammar, and a major, still not entirely explained phonological shift known as the Great Vowel Shift, which substantially altered English pronunciation patterns over this period. William Shakespeare, writing during the late portion of this period, is often cited for his substantial contributions to English vocabulary, reportedly introducing or popularizing hundreds of new words and phrases still commonly used today.</p>
+<p>The subsequent spread of English as a global language, accelerating particularly from the 17th century onward through British colonial expansion and, later, the international economic and cultural influence of the United States, has resulted in the emergence of numerous distinct regional varieties and dialects worldwide, while simultaneously establishing English as the most widely used language for international business, science, and diplomatic communication in the contemporary world.</p>
+
+
+<h3>Questions 27–30: Multiple Choice</h3>
+<div class="q-block" data-q="27">
+  <label>27. Which Germanic tribes are mentioned as migrating to Britain?</label>
+  <div class="q-options">A. The Normans and Romans B. The Angles, Saxons, and Jutes C. The Celts and Vikings D. The Franks and Goths</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="28">
+  <label>28. What triggered the transition from Old English to Middle English?</label>
+  <div class="q-options">A. The invention of the printing press B. The Norman Conquest of 1066 C. The Great Vowel Shift D. Shakespeare's writing</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="29">
+  <label>29. What is the "Great Vowel Shift"?</label>
+  <div class="q-options">A. A migration of English speakers B. A phonological shift that altered English pronunciation C. A grammatical simplification process D. A change in English spelling rules introduced by Shakespeare</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="30">
+  <label>30. What is Shakespeare credited with, according to the passage?</label>
+  <div class="q-options">A. Inventing the printing press B. Introducing or popularizing hundreds of new words and phrases C. Causing the Norman Conquest D. Creating the Great Vowel Shift</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+
+
+<h3>Questions 31–35: Matching Information</h3>
+<p><em>Which paragraph (1–5) contains the following information?</em></p>
+<div class="q-block" data-q="31">
+  <label>31. A mention of vocabulary borrowing related to law, government, and cuisine</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="32">
+  <label>32. A reference to the global spread of English through colonial expansion</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="33">
+  <label>33. A description of the earliest Germanic tribes who migrated to Britain</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="34">
+  <label>34. A mention of the number of people who speak English worldwide today</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="35">
+  <label>35. A reference to the printing press contributing to spelling standardization</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+
+
+<h3>Questions 36–40: Summary Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS for each answer.</em></p>
+<p>Old English emerged following the migration of Germanic tribes, including the Angles, Saxons, and (36) __________, to Britain. The Norman Conquest of (37) __________ led to substantial vocabulary borrowing from Norman French. The transition to Early Modern English coincided with the introduction of the (38) __________ and the Great Vowel Shift. (39) __________ is credited with introducing many new words still used today. English later spread globally through British (40) __________ expansion and American influence.</p>
+<div class="q-block" data-q="36">
+  <label>36.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="37">
+  <label>37.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="38">
+  <label>38.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="39">
+  <label>39.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="40">
+  <label>40.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+
+<hr>
+<button id="submitBtn" onclick="gradeTest()">Submit &amp; Get My Score</button>
+<button id="resetBtn" onclick="resetTest()">Reset</button>
+
+<div id="resultsBox">
+  <div>Your Score</div>
+  <div class="score-number" id="scoreDisplay">0 / 40</div>
+  <div class="band-number" id="bandDisplay">Band: —</div>
+  <p id="resultsNote" style="margin-top:14px; color:#555; font-size:13.5px;">Correct answers are highlighted green, incorrect ones red (with the correct answer shown below each). This is an approximate self-practice estimate only — official IELTS scoring uses its own conversion tables.</p>
+</div>
+
+<div class="table-wrap">
+<table style="margin-top:20px;">
+<thead><tr><th>Correct answers</th><th>Approximate Band</th></tr></thead>
+<tbody>
+<tr><td>39–40</td><td>9</td></tr>
+<tr><td>35–38</td><td>8</td></tr>
+<tr><td>30–34</td><td>7</td></tr>
+<tr><td>23–29</td><td>6</td></tr>
+<tr><td>16–22</td><td>5</td></tr>
+<tr><td>13–15</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+
+<script>
+const answerKey = {
+  1: ["False"],
+  2: ["True"],
+  3: ["False"],
+  4: ["True"],
+  5: ["B"],
+  6: ["B"],
+  7: ["B"],
+  8: ["B"],
+  9: ["running machine"],
+  10: ["front"],
+  11: ["gravity"],
+  12: ["comfort"],
+  13: ["clothing (fashion)"],
+  14: ["v"],
+  15: ["ii"],
+  16: ["i"],
+  17: ["iii"],
+  18: ["iv"],
+  19: ["True"],
+  20: ["True"],
+  21: ["False"],
+  22: ["False"],
+  23: ["carbonic"],
+  24: ["carbonate"],
+  25: ["twenty-five (25)"],
+  26: ["storm surges"],
+  27: ["B"],
+  28: ["B"],
+  29: ["B"],
+  30: ["B"],
+  31: ["Paragraph 3", "3"],
+  32: ["Paragraph 5", "5"],
+  33: ["Paragraph 2", "2"],
+  34: ["Paragraph 1", "1"],
+  35: ["Paragraph 4", "4"],
+  36: ["Jutes"],
+  37: ["1066"],
+  38: ["printing press"],
+  39: ["Shakespeare"],
+  40: ["colonial"]
+};
+
+// ---- Dark mode ----
+  function toggleMode() {
+    const body = document.body;
+    const icon = document.getElementById('dark-icon');
+    const text = document.getElementById('dark-text');
+    body.classList.toggle('dark');
+    if (body.classList.contains('dark')) {
+      icon.textContent = '☀️';
+      text.textContent = 'Light Mode';
+    } else {
+      icon.textContent = '🌙';
+      text.textContent = 'Dark Mode';
+    }
+  }
+
+  // ---- Live clock (Asia/Tokyo — change timeZone as needed) ----
+  function showTime() {
+    const now = new Date().toLocaleString('en-US', {
+      timeZone: 'Asia/Tokyo',
+      weekday: 'short', month: 'short', day: 'numeric', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true
+    });
+    document.getElementById('currentTime').innerHTML = now;
+  }
+  showTime();
+  setInterval(showTime, 1000);
+
+  // ---- Answer normalization + grading ----
+  function normalize(str) {
+    return str.trim().toLowerCase().replace(/[.,]/g, "");
+  }
+
+  function getBand(score) {
+    if (score >= 39) return 9;
+    if (score >= 35) return 8;
+    if (score >= 30) return 7;
+    if (score >= 23) return 6;
+    if (score >= 16) return 5;
+    if (score >= 13) return 4;
+    return "Below 4";
+  }
+
+  function gradeTest() {
+    let score = 0;
+    for (let i = 1; i <= 40; i++) {
+      const block = document.querySelector('.q-block[data-q="' + i + '"]');
+      if (!block) continue;
+      const field = block.querySelector('input[type="text"], select');
+      const userVal = field ? normalize(field.value || "") : "";
+      const correctAnswers = (answerKey[i] || []).map(normalize);
+      const isCorrect = correctAnswers.includes(userVal);
+
+      block.classList.remove("correct", "wrong");
+      const oldTag = block.querySelector(".feedback-tag");
+      if (oldTag) oldTag.remove();
+      const oldNote = block.querySelector(".correct-answer-note");
+      if (oldNote) oldNote.remove();
+
+      const tag = document.createElement("span");
+      tag.className = "feedback-tag " + (isCorrect ? "correct-tag" : "wrong-tag");
+      tag.textContent = isCorrect ? "✓ Correct" : "✗ Incorrect";
+      block.querySelector("label").appendChild(tag);
+
+      if (isCorrect) {
+        score++;
+        block.classList.add("correct");
+      } else {
+        block.classList.add("wrong");
+        const note = document.createElement("div");
+        note.className = "correct-answer-note";
+        note.textContent = "Correct answer: " + (answerKey[i] ? answerKey[i][0] : "N/A");
+        block.appendChild(note);
+      }
+    }
+
+    document.getElementById("scoreDisplay").textContent = score + " / 40";
+    document.getElementById("bandDisplay").textContent = "Approximate Band: " + getBand(score);
+    const resultsBox = document.getElementById("resultsBox");
+    resultsBox.style.display = "block";
+    resultsBox.scrollIntoView({ behavior: "smooth" });
+  }
+
+  function resetTest() {
+    document.querySelectorAll('.q-block input[type="text"]').forEach(el => el.value = "");
+    document.querySelectorAll('.q-block select').forEach(el => el.value = "");
+    document.querySelectorAll('.q-block').forEach(el => {
+      el.classList.remove("correct", "wrong");
+      const tag = el.querySelector(".feedback-tag");
+      if (tag) tag.remove();
+      const note = el.querySelector(".correct-answer-note");
+      if (note) note.remove();
+    });
+    document.getElementById("resultsBox").style.display = "none";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // ---- Countdown timer (visual only — does not auto-submit) ----
+  let secondsLeft = 60 * 60;
+  function updateTimer() {
+    const m = Math.floor(secondsLeft / 60);
+    const s = secondsLeft % 60;
+    document.getElementById("timer").textContent =
+      "⏱ " + String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+    if (secondsLeft > 0) secondsLeft--;
+  }
+  updateTimer();
+  setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>
