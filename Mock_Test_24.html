@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Reading - Full Practice Test 24</title>
+
+<style>
+  :root {
+    --bg: #ffffff; --text: #1a1a1a; --muted: #555;
+    --border: #ddd; --accent: #2c3e50; --accent-text: #ffffff;
+    --row-alt: #f7f8f9; --correct: #1e8449; --wrong: #c0392b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+    transition: background .3s, color .3s;
+    color: var(--text);
+  }
+  .container {
+    max-width: 850px;
+    margin: 40px auto 0;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  h1 { text-align: center; color: #2c3e50; margin-bottom: 4px; font-size: 24px; }
+  .subtitle { text-align: center; color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+  h2 { font-size: 19px; margin-top: 32px; margin-bottom: 8px; border-bottom: 2px solid var(--accent); padding-bottom: 6px; }
+  h3 { font-size: 16px; margin-top: 20px; }
+  p { font-size: 15.5px; }
+  em { color: var(--muted); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+  /* Dark mode toggle button */
+  .toggle-btn {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: #3498db;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s, transform 0.3s;
+    z-index: 1000;
+  }
+  body.dark { background: #121212; color: #e0e0e0; }
+  body.dark .container { background: #1e1e1e; }
+  body.dark h1 { color: #fff; }
+  body.dark .toggle-btn { background: #bb86fc; }
+  body.dark .q-block { background: #2a2a2a; border-color: #444; }
+  body.dark th { background: #3a3a5a; }
+  body.dark td { background: #242424; border-color: #444; }
+
+  /* Nav bar */
+  .nav { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+  .nav button { padding: 8px 14px; border: none; border-radius: 6px; background: #3498db; color: #fff; cursor: pointer; }
+  .nav button:hover { opacity: 0.9; }
+
+  /* Clock */
+  #currentTime {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    text-align: center;
+    font-size: 15px;
+    color: #4615b8;
+    margin: 0;
+    padding: 8px 0;
+    background: rgba(244,246,249,0.95);
+    z-index: 999;
+  }
+  body.dark #currentTime { color: #7ee07e; background: rgba(18,18,18,0.95); }
+
+  /* Countdown timer badge */
+  #timer {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--accent);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 999;
+  }
+  @media (max-width: 600px) {
+    #timer { position: static; display: inline-block; margin-bottom: 14px; }
+  }
+
+  /* Question blocks */
+  .q-block {
+    margin: 14px 0;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--row-alt);
+  }
+  .q-block label { display: block; font-weight: 600; margin-bottom: 6px; }
+  .q-options { font-weight: normal; margin-bottom: 8px; color: #333; }
+  body.dark .q-options { color: #ccc; }
+  .q-block input[type="text"], .q-block select {
+    width: 100%; max-width: 320px; padding: 7px 10px;
+    font-size: 14.5px; border: 1px solid var(--border); border-radius: 4px;
+  }
+  .q-block.correct { border-color: var(--correct); background: #eafaf0; }
+  .q-block.wrong { border-color: var(--wrong); background: #fdecea; }
+  body.dark .q-block.correct { background: #1c3a28; }
+  body.dark .q-block.wrong { background: #3a2020; }
+  .feedback-tag { display: inline-block; margin-left: 10px; font-weight: 600; font-size: 13.5px; }
+  .feedback-tag.correct-tag { color: var(--correct); }
+  .feedback-tag.wrong-tag { color: var(--wrong); }
+  .correct-answer-note { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* Submit / Reset / Results */
+  #submitBtn, #resetBtn {
+    display: inline-block; margin: 20px 8px 20px 0; padding: 12px 26px;
+    font-size: 16px; font-weight: 600; color: #ffffff;
+    background: var(--accent); border: none; border-radius: 6px; cursor: pointer;
+  }
+  #resetBtn { background: #7f8c8d; }
+  #submitBtn:hover, #resetBtn:hover { opacity: 0.9; }
+  #resultsBox {
+    display: none; margin-top: 10px; padding: 20px; border-radius: 8px;
+    background: #eef6ff; border: 1px solid #b7d8f5; text-align: center;
+  }
+  body.dark #resultsBox { background: #1a2b3a; border-color: #2d4a66; }
+  #resultsBox .score-number { font-size: 36px; font-weight: 700; color: var(--accent); }
+  #resultsBox .band-number { font-size: 22px; font-weight: 700; color: #1e6f5c; margin-top: 4px; }
+
+  .table-wrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 400px; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; font-size: 14px; }
+  th { background: var(--accent); color: var(--accent-text); }
+
+  /* Placeholder markers — remove/style away once real content is filled in */
+  .placeholder { color: #b03a2e; font-style: italic; }
+</style>
+</head>
+
+<body>
+
+  <!-- DARK MODE BUTTON -->
+  <button class="toggle-btn dark-btn" onclick="toggleMode()">
+    <span id="dark-icon">🌙</span>
+    <span id="dark-text">Dark Mode</span>
+  </button>
+
+  <!-- CLOCK (fixed at top, stays visible while scrolling) -->
+  <p id="currentTime"></p>
+
+  <!-- TIMER (visual 60-minute countdown) -->
+  <div id="timer">⏱ 60:00</div>
+
+  <div class="container">
+
+    <!-- NAV BAR — edit hrefs/labels to match your actual file names -->
+    <div class="nav">
+         <a href="Mock_Test_1.html" target="_blank"><button>Test 1</button></a>
+      <a href="Mock_Test_2.html" target="_blank"><button>Test 2</button></a>
+      <a href="Mock_Test_3.html" target="_blank"><button>Test 3</button></a>
+      <a href="Mock_Test_4.html" target="_blank"><button>Test 4</button></a>
+      <a href="Mock_Test_5.html" target="_blank"><button>Test 5</button></a>
+      <a href="Mock_Test_6.html" target="_blank"><button>Test 6</button></a>
+      <a href="Mock_Test_7.html" target="_blank"><button>Test 7</button></a>
+      <a href="Mock_Test_8.html" target="_blank"><button>Test 8</button></a>
+      <a href="Mock_Test_9.html" target="_blank"><button>Test 9</button></a>
+      <a href="Mock_Test_10.html" target="_blank"><button>Test 10</button></a>
+      <a href="Mock_Test_11.html" target="_blank"><button>Test 11</button></a>
+      <a href="Mock_Test_12.html" target="_blank"><button>Test 12</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 13</button></a>
+      <a href="Mock_Test_14.html" target="_blank"><button>Test 14</button></a>
+      <a href="Mock_Test_15.html" target="_blank"><button>Test 15</button></a>
+      <a href="Mock_Test_16.html" target="_blank"><button>Test 16</button></a>
+      <a href="Mock_Test_17.html" target="_blank"><button>Test 17</button></a>
+      <a href="Mock_Test_18.html" target="_blank"><button>Test 18</button></a>
+      <a href="Mock_Test_19.html" target="_blank"><button>Test 19</button></a>
+      <a href="Mock_Test_20.html" target="_blank"><button>Test 20</button></a>
+      <a href="Mock_Test_21.html" target="_blank"><button>Test 21</button></a>
+      <a href="Mock_Test_22.html" target="_blank"><button>Test 22</button></a>
+      <a href="Mock_Test_23.html" target="_blank"><button>Test 23</button></a>
+      <a href="Mock_Test_24.html" target="_blank"><button>Test 24</button></a>
+      <a href="Mock_Test_25.html" target="_blank"><button>Test 25</button></a>
+    </div>
+
+    <h1>IELTS Academic Reading — Self-Graded Mock Test 24</h1>
+    <div class="subtitle">3 Passages · 40 Questions · Fill in your answers below, then click Submit for your score and band estimate.</div>
+    <hr>
+ 
+<h2>PASSAGE 1</h2>
+<h3>The Discovery of Electricity</h3>
+<p>Electricity powers nearly every aspect of modern life, yet its practical use is barely two centuries old. The ancient Greeks were aware of static electricity as early as 600 BCE, when the philosopher Thales of Miletus observed that amber, when rubbed with fur, could attract light objects such as feathers. The Greek word for amber, elektron, eventually gave rise to the word electricity.</p>
+<p>Serious scientific study began in the 17th and 18th centuries. In 1600, English physician William Gilbert distinguished between magnetic and electrical effects and coined the term electricus. In 1752, the American statesman and scientist Benjamin Franklin conducted his famous kite experiment during a thunderstorm, helping to demonstrate that lightning is a form of electricity, an insight that later led to the invention of the lightning rod.</p>
+<p>A major step toward practical use came in 1800, when Italian physicist Alessandro Volta invented the voltaic pile, the first true battery, which produced a steady flow of electric current. Until then, scientists had only been able to study brief electrical sparks from static charge. Volta's invention gave researchers, for the first time, a reliable and continuous source of electricity to experiment with.</p>
+<p>In the 1830s, English scientist Michael Faraday discovered electromagnetic induction, showing that moving a magnet near a coil of wire generates an electric current. This principle is the foundation of the electric generator and the transformer, and it made large-scale production of electricity possible. Faraday had received little formal education, yet his experimental brilliance made him one of the most influential scientists in history.</p>
+<p>The late 19th century saw electricity move from the laboratory into everyday life. Thomas Edison developed a practical incandescent light bulb in 1879 and built early power stations, while Nikola Tesla championed alternating current, which could be transmitted over long distances more efficiently than direct current. The so-called War of the Currents between the two systems was eventually won by alternating current, which remains the basis of most electrical grids today.</p>
+<h3>Questions 1-4: True / False / Not Given</h3>
+<div class="q-block" data-q="1">
+  <label>1. The ancient Greeks observed static electricity using amber.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="2">
+  <label>2. Benjamin Franklin invented the first battery.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="3">
+  <label>3. Volta's invention provided a continuous source of electric current.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="4">
+  <label>4. Alternating current is no longer used in electrical grids.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<h3>Questions 5-8: Multiple Choice</h3>
+<div class="q-block" data-q="5">
+  <label>5. What does the Greek word elektron mean?</label>
+  <div class="q-options">A. Lightning &amp;nbsp; B. Amber &amp;nbsp; C. Magnet &amp;nbsp; D. Spark</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="6">
+  <label>6. What did Franklin's kite experiment help demonstrate?</label>
+  <div class="q-options">A. Lightning is a form of electricity &amp;nbsp; B. Amber attracts feathers &amp;nbsp; C. Batteries can store current &amp;nbsp; D. Magnets generate power</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="7">
+  <label>7. What did Faraday discover in the 1830s?</label>
+  <div class="q-options">A. The light bulb &amp;nbsp; B. Electromagnetic induction &amp;nbsp; C. The voltaic pile &amp;nbsp; D. Static electricity</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="8">
+  <label>8. Why did alternating current win the War of the Currents?</label>
+  <div class="q-options">A. It was cheaper to make bulbs for &amp;nbsp; B. It could be transmitted over long distances more efficiently &amp;nbsp; C. Edison supported it &amp;nbsp; D. It was invented earlier</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<h3>Questions 9-13: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<div class="q-block" data-q="9">
+  <label>9. Thales of Miletus rubbed amber with __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="10">
+  <label>10. Franklin's insight later led to the invention of the lightning __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="11">
+  <label>11. Volta's first battery was called the voltaic __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="12">
+  <label>12. Faraday received little formal __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="13">
+  <label>13. Edison developed a practical light bulb in __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<hr>
+<h2>PASSAGE 2</h2>
+<h3>Coastal Erosion</h3>
+<p>Coastal erosion, the gradual wearing away of land along shorelines by the action of waves, tides, currents, and storms, is a natural process that has shaped coastlines for millions of years. In recent decades, however, concern has grown that human activity and climate change are accelerating erosion in many parts of the world, threatening homes, infrastructure, and ecosystems.</p>
+<p>Waves erode coasts in several ways. Hydraulic action occurs when waves force air and water into cracks in rock, gradually widening them. Abrasion happens when waves hurl sand and pebbles against cliffs, grinding them down. Over time, these processes can carve out features such as caves, arches, and stacks, and cause cliffs to retreat inland, sometimes by more than a meter in a single year in areas of soft rock.</p>
+<p>Several factors influence how quickly a coast erodes. Rock type is crucial: hard rocks such as granite resist erosion for long periods, while soft materials such as clay and sandstone can crumble rapidly. Wave energy, the shape of the coastline, and the presence of protective features such as beaches, dunes, and coastal vegetation also play important roles, as these absorb wave energy before it reaches the land.</p>
+<p>Human activity can intensify erosion. Dams and river engineering reduce the amount of sediment reaching the coast, starving beaches of the sand that normally replenishes them. Removing mangroves and dunes for development removes natural barriers. Meanwhile, rising sea levels caused by global warming allow waves to attack higher up the shore and make storm surges more damaging.</p>
+<p>Communities use a range of strategies to respond. Hard engineering approaches include sea walls, groynes, and rock barriers, which can protect specific locations but are expensive and sometimes shift erosion to neighboring areas. Soft approaches, such as beach nourishment and restoring dunes or wetlands, work more with natural processes. A growing number of planners also advocate managed retreat, in which buildings are relocated away from the most vulnerable shorelines rather than defended indefinitely.</p>
+<h3>Questions 14-18: Matching Headings</h3>
+<p><strong>List of Headings</strong><br>i. Different ways to respond<br>ii. Why some coastlines erode faster than others<br>iii. A natural process now under pressure<br>iv. How people make the problem worse<br>v. The ways waves wear away rock</p>
+<div class="q-block" data-q="14">
+  <label>14. Paragraph 1</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="15">
+  <label>15. Paragraph 2</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="16">
+  <label>16. Paragraph 3</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="17">
+  <label>17. Paragraph 4</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="18">
+  <label>18. Paragraph 5</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<h3>Questions 19-22: True / False / Not Given</h3>
+<div class="q-block" data-q="19">
+  <label>19. Coastal erosion is entirely caused by human activity.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="20">
+  <label>20. Granite resists erosion better than clay.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="21">
+  <label>21. Dams can reduce the sand reaching beaches.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="22">
+  <label>22. Sea walls are a cheap solution with no side effects.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<h3>Questions 23-26: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<div class="q-block" data-q="23">
+  <label>23. Waves hurling sand and pebbles against cliffs is called __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="24">
+  <label>24. Cliffs in soft rock areas can retreat by more than a __________ in a single year.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="25">
+  <label>25. Beach __________ is a soft approach to coastal protection.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="26">
+  <label>26. Moving buildings away from vulnerable shorelines is called managed __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<hr>
+<h2>PASSAGE 3</h2>
+<h3>The Science of Dreams</h3>
+<p>Dreams have fascinated humans throughout history, interpreted variously as messages from gods, glimpses of the future, or windows into the hidden desires of the mind. Modern science, while still far from a complete explanation, has uncovered much about when and how dreams occur and what functions they might serve.</p>
+<p>Most vivid dreaming takes place during rapid eye movement, or REM, sleep, a stage identified in the 1950s in which the brain becomes highly active while most of the body's muscles are temporarily paralyzed. This paralysis prevents people from physically acting out their dreams. Adults typically pass through four to six sleep cycles per night, with REM periods growing longer toward morning, which is why people often wake from dreams.</p>
+<p>Several theories attempt to explain why we dream. The activation-synthesis hypothesis proposes that dreams result from the brain's attempt to make sense of random neural activity during REM sleep. Other researchers emphasize memory consolidation, suggesting that dreaming helps sort and store the day's experiences. A further view holds that dreams serve an emotional function, helping people process difficult feelings in a safe setting.</p>
+<p>Dream content tends to reflect waking life. Studies of thousands of dream reports show that people commonly dream about familiar people, places, and concerns, and that emotions such as anxiety are more common than joy. Certain themes, including being chased, falling, or arriving unprepared for an exam, appear across many cultures, though their meanings are debated and are unlikely to be as fixed as popular dream dictionaries suggest.</p>
+<p>A fascinating phenomenon is lucid dreaming, in which the dreamer becomes aware that they are dreaming and can sometimes influence the dream's course. Laboratory studies have confirmed lucid dreaming by asking trained sleepers to signal with pre-agreed eye movements. Researchers are exploring whether lucid dreaming techniques might help treat conditions such as recurring nightmares, although more evidence is needed.</p>
+<h3>Questions 27-30: Multiple Choice</h3>
+<div class="q-block" data-q="27">
+  <label>27. What happens to most of the body's muscles during REM sleep?</label>
+  <div class="q-options">A. They become more active &amp;nbsp; B. They are temporarily paralyzed &amp;nbsp; C. They are permanently relaxed &amp;nbsp; D. They twitch constantly</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="28">
+  <label>28. What does the activation-synthesis hypothesis propose?</label>
+  <div class="q-options">A. Dreams are messages from gods &amp;nbsp; B. Dreams result from the brain making sense of random neural activity &amp;nbsp; C. Dreams predict the future &amp;nbsp; D. Dreams are only about emotions</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="29">
+  <label>29. What does research suggest about dream content?</label>
+  <div class="q-options">A. It is unrelated to waking life &amp;nbsp; B. It tends to reflect familiar people, places, and concerns &amp;nbsp; C. Joy is more common than anxiety &amp;nbsp; D. Dream dictionaries are fully accurate</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="30">
+  <label>30. How have researchers confirmed lucid dreaming in the laboratory?</label>
+  <div class="q-options">A. By waking sleepers repeatedly &amp;nbsp; B. By asking sleepers to signal with pre-agreed eye movements &amp;nbsp; C. By using medication &amp;nbsp; D. By recording sleepers' speech</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<h3>Questions 31-35: Matching Information</h3>
+<p><em>Which paragraph (1-5) contains the following information?</em></p>
+<div class="q-block" data-q="31">
+  <label>31. A possible therapeutic use for awareness during dreams</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="32">
+  <label>32. A description of the sleep stage during which vivid dreaming occurs</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="33">
+  <label>33. Three competing theories about why we dream</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="34">
+  <label>34. Historical beliefs about the meaning of dreams</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="35">
+  <label>35. Common dream themes found across cultures</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<h3>Questions 36-40: Summary Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS for each answer.</em></p>
+<p>Vivid dreaming mostly occurs during (36) __________ sleep, when muscles are temporarily paralyzed. One theory links dreaming to (37) __________ consolidation, while another suggests it helps process (38) __________ feelings. Dream content often reflects waking life, with (39) __________ being more common than joy. In (40) __________ dreaming, the dreamer is aware they are dreaming.</p>
+<div class="q-block" data-q="36">
+  <label>36. </label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="37">
+  <label>37. </label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="38">
+  <label>38. </label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="39">
+  <label>39. </label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="40">
+  <label>40. </label>
+  <input type="text" placeholder="Your answer">
+</div>
+ 
+<hr>
+ 
+<button id="submitBtn" onclick="gradeTest()">Submit &amp; Get My Score</button>
+<button id="resetBtn" onclick="resetTest()">Reset</button>
+ 
+<div id="resultsBox">
+  <div>Your Score</div>
+  <div class="score-number" id="scoreDisplay">0 / 40</div>
+  <div class="band-number" id="bandDisplay">Band: —</div>
+  <p id="resultsNote" style="margin-top:14px; color:#555; font-size:13.5px;">Correct answers are highlighted green, incorrect ones red (with the correct answer shown below each). This is an approximate self-practice estimate only.</p>
+</div>
+ 
+<div class="table-wrap">
+<table style="margin-top:20px;">
+<thead><tr><th>Correct answers</th><th>Approximate Band</th></tr></thead>
+<tbody>
+<tr><td>39-40</td><td>9</td></tr>
+<tr><td>35-38</td><td>8</td></tr>
+<tr><td>30-34</td><td>7</td></tr>
+<tr><td>23-29</td><td>6</td></tr>
+<tr><td>16-22</td><td>5</td></tr>
+<tr><td>13-15</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+ 
+<script>
+const answerKey = {
+  1: ['true'],
+  2: ['false'],
+  3: ['true'],
+  4: ['false'],
+  5: ['b'],
+  6: ['a'],
+  7: ['b'],
+  8: ['b'],
+  9: ['fur'],
+  10: ['rod'],
+  11: ['pile'],
+  12: ['education'],
+  13: ['1879'],
+  14: ['iii'],
+  15: ['v'],
+  16: ['ii'],
+  17: ['iv'],
+  18: ['i'],
+  19: ['false'],
+  20: ['true'],
+  21: ['true'],
+  22: ['false'],
+  23: ['abrasion'],
+  24: ['meter', 'metre'],
+  25: ['nourishment'],
+  26: ['retreat'],
+  27: ['b'],
+  28: ['b'],
+  29: ['b'],
+  30: ['b'],
+  31: ['5', 'paragraph 5'],
+  32: ['2', 'paragraph 2'],
+  33: ['3', 'paragraph 3'],
+  34: ['1', 'paragraph 1'],
+  35: ['4', 'paragraph 4'],
+  36: ['rem'],
+  37: ['memory'],
+  38: ['difficult'],
+  39: ['anxiety'],
+  40: ['lucid']
+};
+  // ---- Dark mode ----
+  function toggleMode() {
+    const body = document.body;
+    const icon = document.getElementById('dark-icon');
+    const text = document.getElementById('dark-text');
+    body.classList.toggle('dark');
+    if (body.classList.contains('dark')) {
+      icon.textContent = '☀️';
+      text.textContent = 'Light Mode';
+    } else {
+      icon.textContent = '🌙';
+      text.textContent = 'Dark Mode';
+    }
+  }
+
+  // ---- Live clock (Asia/Tokyo — change timeZone as needed) ----
+  function showTime() {
+    const now = new Date().toLocaleString('en-US', {
+      timeZone: 'Asia/Tokyo',
+      weekday: 'short', month: 'short', day: 'numeric', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true
+    });
+    document.getElementById('currentTime').innerHTML = now;
+  }
+  showTime();
+  setInterval(showTime, 1000);
+
+  // ---- Answer normalization + grading ----
+  function normalize(str) {
+    return str.trim().toLowerCase().replace(/[.,]/g, "");
+  }
+
+  function getBand(score) {
+    if (score >= 39) return 9;
+    if (score >= 35) return 8;
+    if (score >= 30) return 7;
+    if (score >= 23) return 6;
+    if (score >= 16) return 5;
+    if (score >= 13) return 4;
+    return "Below 4";
+  }
+
+  function gradeTest() {
+    let score = 0;
+    for (let i = 1; i <= 40; i++) {
+      const block = document.querySelector('.q-block[data-q="' + i + '"]');
+      if (!block) continue;
+      const field = block.querySelector('input[type="text"], select');
+      const userVal = field ? normalize(field.value || "") : "";
+      const correctAnswers = (answerKey[i] || []).map(normalize);
+      const isCorrect = correctAnswers.includes(userVal);
+
+      block.classList.remove("correct", "wrong");
+      const oldTag = block.querySelector(".feedback-tag");
+      if (oldTag) oldTag.remove();
+      const oldNote = block.querySelector(".correct-answer-note");
+      if (oldNote) oldNote.remove();
+
+      const tag = document.createElement("span");
+      tag.className = "feedback-tag " + (isCorrect ? "correct-tag" : "wrong-tag");
+      tag.textContent = isCorrect ? "✓ Correct" : "✗ Incorrect";
+      block.querySelector("label").appendChild(tag);
+
+      if (isCorrect) {
+        score++;
+        block.classList.add("correct");
+      } else {
+        block.classList.add("wrong");
+        const note = document.createElement("div");
+        note.className = "correct-answer-note";
+        note.textContent = "Correct answer: " + (answerKey[i] ? answerKey[i][0] : "N/A");
+        block.appendChild(note);
+      }
+    }
+
+    document.getElementById("scoreDisplay").textContent = score + " / 40";
+    document.getElementById("bandDisplay").textContent = "Approximate Band: " + getBand(score);
+    const resultsBox = document.getElementById("resultsBox");
+    resultsBox.style.display = "block";
+    resultsBox.scrollIntoView({ behavior: "smooth" });
+  }
+
+  function resetTest() {
+    document.querySelectorAll('.q-block input[type="text"]').forEach(el => el.value = "");
+    document.querySelectorAll('.q-block select').forEach(el => el.value = "");
+    document.querySelectorAll('.q-block').forEach(el => {
+      el.classList.remove("correct", "wrong");
+      const tag = el.querySelector(".feedback-tag");
+      if (tag) tag.remove();
+      const note = el.querySelector(".correct-answer-note");
+      if (note) note.remove();
+    });
+    document.getElementById("resultsBox").style.display = "none";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // ---- Countdown timer (visual only — does not auto-submit) ----
+  let secondsLeft = 60 * 60;
+  function updateTimer() {
+    const m = Math.floor(secondsLeft / 60);
+    const s = secondsLeft % 60;
+    document.getElementById("timer").textContent =
+      "⏱ " + String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+    if (secondsLeft > 0) secondsLeft--;
+  }
+  updateTimer();
+  setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>
