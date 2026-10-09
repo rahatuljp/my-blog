@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Reading - Full Practice Test 14</title>
+
+<style>
+  :root {
+    --bg: #ffffff; --text: #1a1a1a; --muted: #555;
+    --border: #ddd; --accent: #2c3e50; --accent-text: #ffffff;
+    --row-alt: #f7f8f9; --correct: #1e8449; --wrong: #c0392b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+    transition: background .3s, color .3s;
+    color: var(--text);
+  }
+  .container {
+    max-width: 850px;
+    margin: 40px auto 0;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  h1 { text-align: center; color: #2c3e50; margin-bottom: 4px; font-size: 24px; }
+  .subtitle { text-align: center; color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+  h2 { font-size: 19px; margin-top: 32px; margin-bottom: 8px; border-bottom: 2px solid var(--accent); padding-bottom: 6px; }
+  h3 { font-size: 16px; margin-top: 20px; }
+  p { font-size: 15.5px; }
+  em { color: var(--muted); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+  /* Dark mode toggle button */
+  .toggle-btn {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: #3498db;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s, transform 0.3s;
+    z-index: 1000;
+  }
+  body.dark { background: #121212; color: #e0e0e0; }
+  body.dark .container { background: #1e1e1e; }
+  body.dark h1 { color: #fff; }
+  body.dark .toggle-btn { background: #bb86fc; }
+  body.dark .q-block { background: #2a2a2a; border-color: #444; }
+  body.dark th { background: #3a3a5a; }
+  body.dark td { background: #242424; border-color: #444; }
+
+  /* Nav bar */
+  .nav { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+  .nav button { padding: 8px 14px; border: none; border-radius: 6px; background: #3498db; color: #fff; cursor: pointer; }
+  .nav button:hover { opacity: 0.9; }
+
+  /* Clock */
+  #currentTime {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    text-align: center;
+    font-size: 15px;
+    color: #4615b8;
+    margin: 0;
+    padding: 8px 0;
+    background: rgba(244,246,249,0.95);
+    z-index: 999;
+  }
+  body.dark #currentTime { color: #7ee07e; background: rgba(18,18,18,0.95); }
+
+  /* Countdown timer badge */
+  #timer {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--accent);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 999;
+  }
+  @media (max-width: 600px) {
+    #timer { position: static; display: inline-block; margin-bottom: 14px; }
+  }
+
+  /* Question blocks */
+  .q-block {
+    margin: 14px 0;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--row-alt);
+  }
+  .q-block label { display: block; font-weight: 600; margin-bottom: 6px; }
+  .q-options { font-weight: normal; margin-bottom: 8px; color: #333; }
+  body.dark .q-options { color: #ccc; }
+  .q-block input[type="text"], .q-block select {
+    width: 100%; max-width: 320px; padding: 7px 10px;
+    font-size: 14.5px; border: 1px solid var(--border); border-radius: 4px;
+  }
+  .q-block.correct { border-color: var(--correct); background: #eafaf0; }
+  .q-block.wrong { border-color: var(--wrong); background: #fdecea; }
+  body.dark .q-block.correct { background: #1c3a28; }
+  body.dark .q-block.wrong { background: #3a2020; }
+  .feedback-tag { display: inline-block; margin-left: 10px; font-weight: 600; font-size: 13.5px; }
+  .feedback-tag.correct-tag { color: var(--correct); }
+  .feedback-tag.wrong-tag { color: var(--wrong); }
+  .correct-answer-note { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* Submit / Reset / Results */
+  #submitBtn, #resetBtn {
+    display: inline-block; margin: 20px 8px 20px 0; padding: 12px 26px;
+    font-size: 16px; font-weight: 600; color: #ffffff;
+    background: var(--accent); border: none; border-radius: 6px; cursor: pointer;
+  }
+  #resetBtn { background: #7f8c8d; }
+  #submitBtn:hover, #resetBtn:hover { opacity: 0.9; }
+  #resultsBox {
+    display: none; margin-top: 10px; padding: 20px; border-radius: 8px;
+    background: #eef6ff; border: 1px solid #b7d8f5; text-align: center;
+  }
+  body.dark #resultsBox { background: #1a2b3a; border-color: #2d4a66; }
+  #resultsBox .score-number { font-size: 36px; font-weight: 700; color: var(--accent); }
+  #resultsBox .band-number { font-size: 22px; font-weight: 700; color: #1e6f5c; margin-top: 4px; }
+
+  .table-wrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 400px; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; font-size: 14px; }
+  th { background: var(--accent); color: var(--accent-text); }
+
+  /* Placeholder markers — remove/style away once real content is filled in */
+  .placeholder { color: #b03a2e; font-style: italic; }
+</style>
+</head>
+
+<body>
+
+  <!-- DARK MODE BUTTON -->
+  <button class="toggle-btn dark-btn" onclick="toggleMode()">
+    <span id="dark-icon">🌙</span>
+    <span id="dark-text">Dark Mode</span>
+  </button>
+
+  <!-- CLOCK (fixed at top, stays visible while scrolling) -->
+  <p id="currentTime"></p>
+
+  <!-- TIMER (visual 60-minute countdown) -->
+  <div id="timer">⏱ 60:00</div>
+
+  <div class="container">
+
+    <!-- NAV BAR — edit hrefs/labels to match your actual file names -->
+    <div class="nav">
+      <a href="Mock_Test_1.html" target="_blank"><button>Test 1</button></a>
+      <a href="Mock_Test_2.html" target="_blank"><button>Test 2</button></a>
+      <a href="Mock_Test_3.html" target="_blank"><button>Test 3</button></a>
+      <a href="Mock_Test_4.html" target="_blank"><button>Test 4</button></a>
+      <a href="Mock_Test_5.html" target="_blank"><button>Test 5</button></a>
+      <a href="Mock_Test_6.html" target="_blank"><button>Test 6</button></a>
+      <a href="Mock_Test_7.html" target="_blank"><button>Test 7</button></a>
+      <a href="Mock_Test_8.html" target="_blank"><button>Test 8</button></a>
+      <a href="Mock_Test_9.html" target="_blank"><button>Test 9</button></a>
+      <a href="Mock_Test_10.html" target="_blank"><button>Test 10</button></a>
+      <a href="Mock_Test_11.html" target="_blank"><button>Test 11</button></a>
+      <a href="Mock_Test_12.html" target="_blank"><button>Test 12</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 13</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 14</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 15</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 16</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 17</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 18</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 19</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 20</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 21</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 22</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 23</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 24</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 25</button></a>
+    </div>
+
+    <h1>IELTS Academic Reading — Self-Graded Mock Test 14</h1>
+    <div class="subtitle">3 Passages · 40 Questions · Fill in your answers below, then click Submit for your score and band estimate.</div>
+
+<hr>
+
+<h2>PASSAGE 1</h2>
+<h3>The History of Photography</h3>
+<p>The desire to permanently capture a visual image predates photography by centuries, with devices such as the camera obscura—a darkened box or room that projects an inverted image of its surroundings through a small opening—used by artists as a drawing aid as early as the Renaissance. However, no method existed to permanently fix such an image until the early 19th century.</p>
+<p>The first permanent photograph is generally credited to French inventor Joseph Nicephore Niepce, who in 1826 or 1827 produced an image using a process requiring an exposure time of several hours, captured on a pewter plate coated with a light-sensitive substance. Niepce later collaborated with Louis Daguerre, who, following Niepce's death, developed an improved process known as the daguerreotype, announced publicly in 1839 and widely regarded as the first commercially practical photographic method.</p>
+<p>Throughout the remainder of the 19th century, photographic technology advanced rapidly. The introduction of the wet collodion process in the 1850s reduced exposure times considerably and lowered costs, while the later development of dry plates and, eventually, flexible film by George Eastman's Kodak company in the late 1880s made photography dramatically more accessible to amateur users, moving it beyond the domain of trained professionals.</p>
+<p>The 20th century brought further transformation, particularly with the introduction of color photography for mass use in the 1930s, and later, the shift toward digital photography beginning in the late 20th century, which eliminated the need for chemical film processing entirely. Digital sensors, capable of converting light directly into electronic data, enabled instant image review and effectively unlimited image capacity, fundamentally changing how photographs are taken, stored, and shared.</p>
+<p>Today, photography occupies an unusual position in modern life: it is simultaneously a specialized professional field and an activity performed casually by billions of people daily through smartphone cameras, a level of ubiquity that would have been entirely unimaginable to photography's early pioneers, for whom producing even a single image required considerable time, skill, and expense.</p>
+<h3>Questions 1-4: True / False / Not Given</h3>
+<div class="q-block" data-q="1">
+  <label>1. The camera obscura was capable of permanently fixing an image.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="2">
+  <label>2. Niepce's first photograph required an exposure time of several hours.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="3">
+  <label>3. The daguerreotype was developed before Niepce's death.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="4">
+  <label>4. Kodak's flexible film made photography more accessible to amateurs.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<h3>Questions 5-8: Multiple Choice</h3>
+<div class="q-block" data-q="5">
+  <label>5. What was the camera obscura originally used for?</label>
+  <div class="q-options">A. Permanently storing photographs &amp;nbsp; B. A drawing aid for artists &amp;nbsp; C. Developing color film &amp;nbsp; D. Producing daguerreotypes</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="6">
+  <label>6. Who is generally credited with the first permanent photograph?</label>
+  <div class="q-options">A. Louis Daguerre &amp;nbsp; B. George Eastman &amp;nbsp; C. Joseph Nicephore Niepce &amp;nbsp; D. An unnamed Renaissance artist</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="7">
+  <label>7. What effect did the wet collodion process have?</label>
+  <div class="q-options">A. It increased exposure times &amp;nbsp; B. It reduced exposure times and costs &amp;nbsp; C. It eliminated the need for cameras &amp;nbsp; D. It introduced color photography</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="8">
+  <label>8. What did digital photography eliminate the need for?</label>
+  <div class="q-options">A. Cameras entirely &amp;nbsp; B. Chemical film processing &amp;nbsp; C. Professional photographers &amp;nbsp; D. Visual images</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<h3>Questions 9-13: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<div class="q-block" data-q="9">
+  <label>9. Niepce's early photograph was captured on a __________ plate.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="10">
+  <label>10. The daguerreotype was announced publicly in __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="11">
+  <label>11. Dry plates and flexible film were developed by __________ company.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="12">
+  <label>12. Color photography became available for mass use in the __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="13">
+  <label>13. Digital sensors convert light directly into electronic __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<hr>
+<h2>PASSAGE 2</h2>
+<h3>Urban Noise Pollution</h3>
+<p>As cities around the world continue to grow in both population and density, noise pollution has emerged as an increasingly significant public health concern, one that receives considerably less public attention than issues such as air pollution, despite mounting evidence of its harmful effects on human health and wellbeing.</p>
+<p>Urban noise originates from numerous overlapping sources, including road traffic, aircraft, construction activity, and industrial operations, often combining to produce near-constant background noise levels in densely populated areas that frequently exceed thresholds recommended by health organizations for sustained human exposure, particularly during nighttime hours when restorative sleep is especially important.</p>
+<p>Research has linked chronic noise exposure to a range of adverse health outcomes extending well beyond simple annoyance or hearing damage. Studies have found associations between long-term noise exposure and elevated risks of cardiovascular disease, likely connected to noise-induced stress responses that, over extended periods, can contribute to increased blood pressure and related cardiovascular strain. Sleep disruption caused by nighttime noise has similarly been linked to broader negative health consequences, including impaired cognitive function and weakened immune response.</p>
+<p>Beyond direct physical health effects, research has also examined noise pollution's impact on cognitive development in children, with several studies suggesting that chronic exposure to high noise levels, particularly near airports or busy roads, may be associated with impaired reading comprehension and memory performance among affected children, potentially due to noise's disruptive effect on concentration and classroom learning environments.</p>
+<p>In response to growing awareness of these impacts, many cities have implemented noise mitigation strategies, including stricter noise regulations for construction and traffic, sound barriers along major roadways, and urban planning approaches that incorporate green spaces and vegetation, which can help absorb and reduce ambient noise levels, alongside efforts to promote quieter vehicle technologies, including the gradual transition toward electric vehicles.</p>
+<h3>Questions 14-18: Matching Headings</h3>
+<p><strong>List of Headings</strong><br>i. Strategies cities are adopting in response<br>ii. An overlooked but serious concern<br>iii. Where urban noise comes from<br>iv. Effects on children's learning<br>v. Links to cardiovascular and sleep problems</p>
+<div class="q-block" data-q="14">
+  <label>14. Paragraph 1</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="15">
+  <label>15. Paragraph 2</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="16">
+  <label>16. Paragraph 3</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="17">
+  <label>17. Paragraph 4</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="18">
+  <label>18. Paragraph 5</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<h3>Questions 19-22: True / False / Not Given</h3>
+<div class="q-block" data-q="19">
+  <label>19. Noise pollution receives more public attention than air pollution.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="20">
+  <label>20. Nighttime noise can disrupt restorative sleep.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="21">
+  <label>21. Chronic noise exposure has been linked to cardiovascular disease.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="22">
+  <label>22. All cities have successfully eliminated noise pollution.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<h3>Questions 23-26: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<div class="q-block" data-q="23">
+  <label>23. Noise-induced stress responses can increase blood __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="24">
+  <label>24. Noise exposure near airports may impair reading __________ in children.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="25">
+  <label>25. __________ along major roadways can help reduce noise.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="26">
+  <label>26. Green spaces and __________ can help absorb ambient noise.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<hr>
+<h2>PASSAGE 3</h2>
+<h3>The Science of Taste</h3>
+<p>Human taste perception, though often described casually as a single sense, is understood by scientists to result from a complex interaction between specialized taste receptors on the tongue and a much broader sensory contribution from smell, texture, and even sound, meaning that what people colloquially call 'flavor' is, in scientific terms, a multisensory experience rather than taste alone.</p>
+<p>Taste receptors, clustered within structures called taste buds distributed across the tongue and, to a lesser extent, other areas of the mouth, are traditionally understood to detect five basic taste qualities: sweet, sour, salty, bitter, and umami, a savory taste associated with certain amino acids and first scientifically described by Japanese researcher Kikunae Ikeda in the early 20th century. Contrary to a once-popular but now discredited idea of a 'tongue map' assigning each taste to a specific tongue region, current research indicates that all taste bud types are distributed throughout most areas of the tongue capable of detecting any of the five basic tastes.</p>
+<p>Smell contributes substantially more to perceived flavor than taste alone, a fact readily demonstrated by the significantly diminished ability to distinguish flavors when the nose is blocked, such as during a cold. Aromatic compounds released from food travel through the back of the throat to olfactory receptors in the nasal cavity, a pathway known as retronasal smell, which combines with taste signals in the brain to produce the rich, complex flavor perceptions associated with eating.</p>
+<p>Beyond taste and smell, texture plays a significant and often underappreciated role in food perception, with research demonstrating that factors such as crunchiness, creaminess, or temperature can substantially influence enjoyment and even perceived taste intensity, independent of a food's actual chemical composition. Some researchers have even found that sound—such as the audible crunch of a potato chip—can measurably affect perceived freshness and enjoyment.</p>
+<p>Individual variation in taste perception is considerably greater than commonly assumed, with genetic differences affecting the density and sensitivity of taste receptors between individuals, explaining why certain foods, such as cilantro or bitter vegetables, are perceived dramatically differently from person to person. Understanding this variation has practical applications extending into food science, nutrition research, and efforts to develop foods that remain palatable across a wider range of individual taste preferences.</p>
+<h3>Questions 27-30: Multiple Choice</h3>
+<div class="q-block" data-q="27">
+  <label>27. What does the passage say about the 'tongue map' idea?</label>
+  <div class="q-options">A. It is scientifically accurate &amp;nbsp; B. It has been discredited by current research &amp;nbsp; C. It was discovered by Kikunae Ikeda &amp;nbsp; D. It only applies to umami taste</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="28">
+  <label>28. Who first scientifically described umami?</label>
+  <div class="q-options">A. An unnamed European scientist &amp;nbsp; B. Kikunae Ikeda &amp;nbsp; C. A researcher studying retronasal smell &amp;nbsp; D. A food texture researcher</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="29">
+  <label>29. What is retronasal smell?</label>
+  <div class="q-options">A. Smelling through the front of the nose only &amp;nbsp; B. The pathway through which food aromas reach nasal receptors via the throat &amp;nbsp; C. A type of taste bud &amp;nbsp; D. A texture-related sensation</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="30">
+  <label>30. What can affect perceived freshness, according to the passage?</label>
+  <div class="q-options">A. Only chemical composition &amp;nbsp; B. Sound, such as an audible crunch &amp;nbsp; C. Taste buds alone &amp;nbsp; D. The tongue map</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<h3>Questions 31-35: Matching Information</h3>
+<p><em>Which paragraph (1-5) contains the following information?</em></p>
+<div class="q-block" data-q="31">
+  <label>31. An explanation of genetic variation in taste perception between individuals</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="32">
+  <label>32. A description of the five basic taste qualities</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="33">
+  <label>33. A statement that flavor is a multisensory experience, not taste alone</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="34">
+  <label>34. An explanation of how smell contributes to flavor via the throat</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="35">
+  <label>35. A discussion of how texture and sound influence food perception</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<h3>Questions 36-40: Summary Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS for each answer.</em></p>
+<p>Flavor perception results from an interaction between taste, smell, and texture. Taste receptors detect five basic qualities, including a savory taste called (36) __________. Smell reaches the brain partly through a pathway called (37) __________ smell. Texture factors such as crunchiness and (38) __________ can influence perceived taste intensity. Even (39) __________ can affect perceived freshness. Taste perception varies due to (40) __________ differences between individuals.</p>
+<div class="q-block" data-q="36">
+  <label>36. </label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="37">
+  <label>37. </label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="38">
+  <label>38. </label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="39">
+  <label>39. </label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="40">
+  <label>40. </label>
+  <input type="text" placeholder="Your answer">
+</div>
+
+<hr>
+
+<button id="submitBtn" onclick="gradeTest()">Submit &amp; Get My Score</button>
+<button id="resetBtn" onclick="resetTest()">Reset</button>
+
+<div id="resultsBox">
+  <div>Your Score</div>
+  <div class="score-number" id="scoreDisplay">0 / 40</div>
+  <div class="band-number" id="bandDisplay">Band: —</div>
+  <p id="resultsNote" style="margin-top:14px; color:#555; font-size:13.5px;">Correct answers are highlighted green, incorrect ones red (with the correct answer shown below each). This is an approximate self-practice estimate only.</p>
+</div>
+
+<div class="table-wrap">
+<table style="margin-top:20px;">
+<thead><tr><th>Correct answers</th><th>Approximate Band</th></tr></thead>
+<tbody>
+<tr><td>39-40</td><td>9</td></tr>
+<tr><td>35-38</td><td>8</td></tr>
+<tr><td>30-34</td><td>7</td></tr>
+<tr><td>23-29</td><td>6</td></tr>
+<tr><td>16-22</td><td>5</td></tr>
+<tr><td>13-15</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+
+<script>
+const answerKey = {
+  1: ['false'],
+  2: ['true'],
+  3: ['false'],
+  4: ['true'],
+  5: ['b'],
+  6: ['c'],
+  7: ['b'],
+  8: ['b'],
+  9: ['pewter'],
+  10: ['1839'],
+  11: ['kodak'],
+  12: ['1930s'],
+  13: ['data'],
+  14: ['ii'],
+  15: ['iii'],
+  16: ['v'],
+  17: ['iv'],
+  18: ['i'],
+  19: ['false'],
+  20: ['true'],
+  21: ['true'],
+  22: ['false'],
+  23: ['pressure'],
+  24: ['comprehension'],
+  25: ['sound barriers', 'barriers'],
+  26: ['vegetation'],
+  27: ['b'],
+  28: ['b'],
+  29: ['b'],
+  30: ['b'],
+  31: ['5', 'paragraph 5'],
+  32: ['2', 'paragraph 2'],
+  33: ['1', 'paragraph 1'],
+  34: ['3', 'paragraph 3'],
+  35: ['4', 'paragraph 4'],
+  36: ['umami'],
+  37: ['retronasal'],
+  38: ['creaminess'],
+  39: ['sound'],
+  40: ['genetic']
+};
+
+  // ---- Dark mode ----
+  function toggleMode() {
+    const body = document.body;
+    const icon = document.getElementById('dark-icon');
+    const text = document.getElementById('dark-text');
+    body.classList.toggle('dark');
+    if (body.classList.contains('dark')) {
+      icon.textContent = '☀️';
+      text.textContent = 'Light Mode';
+    } else {
+      icon.textContent = '🌙';
+      text.textContent = 'Dark Mode';
+    }
+  }
+
+  // ---- Live clock (Asia/Tokyo — change timeZone as needed) ----
+  function showTime() {
+    const now = new Date().toLocaleString('en-US', {
+      timeZone: 'Asia/Tokyo',
+      weekday: 'short', month: 'short', day: 'numeric', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true
+    });
+    document.getElementById('currentTime').innerHTML = now;
+  }
+  showTime();
+  setInterval(showTime, 1000);
+
+  // ---- Answer normalization + grading ----
+  function normalize(str) {
+    return str.trim().toLowerCase().replace(/[.,]/g, "");
+  }
+
+  function getBand(score) {
+    if (score >= 39) return 9;
+    if (score >= 35) return 8;
+    if (score >= 30) return 7;
+    if (score >= 23) return 6;
+    if (score >= 16) return 5;
+    if (score >= 13) return 4;
+    return "Below 4";
+  }
+
+  function gradeTest() {
+    let score = 0;
+    for (let i = 1; i <= 40; i++) {
+      const block = document.querySelector('.q-block[data-q="' + i + '"]');
+      if (!block) continue;
+      const field = block.querySelector('input[type="text"], select');
+      const userVal = field ? normalize(field.value || "") : "";
+      const correctAnswers = (answerKey[i] || []).map(normalize);
+      const isCorrect = correctAnswers.includes(userVal);
+
+      block.classList.remove("correct", "wrong");
+      const oldTag = block.querySelector(".feedback-tag");
+      if (oldTag) oldTag.remove();
+      const oldNote = block.querySelector(".correct-answer-note");
+      if (oldNote) oldNote.remove();
+
+      const tag = document.createElement("span");
+      tag.className = "feedback-tag " + (isCorrect ? "correct-tag" : "wrong-tag");
+      tag.textContent = isCorrect ? "✓ Correct" : "✗ Incorrect";
+      block.querySelector("label").appendChild(tag);
+
+      if (isCorrect) {
+        score++;
+        block.classList.add("correct");
+      } else {
+        block.classList.add("wrong");
+        const note = document.createElement("div");
+        note.className = "correct-answer-note";
+        note.textContent = "Correct answer: " + (answerKey[i] ? answerKey[i][0] : "N/A");
+        block.appendChild(note);
+      }
+    }
+
+    document.getElementById("scoreDisplay").textContent = score + " / 40";
+    document.getElementById("bandDisplay").textContent = "Approximate Band: " + getBand(score);
+    const resultsBox = document.getElementById("resultsBox");
+    resultsBox.style.display = "block";
+    resultsBox.scrollIntoView({ behavior: "smooth" });
+  }
+
+  function resetTest() {
+    document.querySelectorAll('.q-block input[type="text"]').forEach(el => el.value = "");
+    document.querySelectorAll('.q-block select').forEach(el => el.value = "");
+    document.querySelectorAll('.q-block').forEach(el => {
+      el.classList.remove("correct", "wrong");
+      const tag = el.querySelector(".feedback-tag");
+      if (tag) tag.remove();
+      const note = el.querySelector(".correct-answer-note");
+      if (note) note.remove();
+    });
+    document.getElementById("resultsBox").style.display = "none";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // ---- Countdown timer (visual only — does not auto-submit) ----
+  let secondsLeft = 60 * 60;
+  function updateTimer() {
+    const m = Math.floor(secondsLeft / 60);
+    const s = secondsLeft % 60;
+    document.getElementById("timer").textContent =
+      "⏱ " + String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+    if (secondsLeft > 0) secondsLeft--;
+  }
+  updateTimer();
+  setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>

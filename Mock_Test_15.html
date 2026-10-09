@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Reading - Full Practice Test 15</title>
+
+<style>
+  :root {
+    --bg: #ffffff; --text: #1a1a1a; --muted: #555;
+    --border: #ddd; --accent: #2c3e50; --accent-text: #ffffff;
+    --row-alt: #f7f8f9; --correct: #1e8449; --wrong: #c0392b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+    transition: background .3s, color .3s;
+    color: var(--text);
+  }
+  .container {
+    max-width: 850px;
+    margin: 40px auto 0;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  h1 { text-align: center; color: #2c3e50; margin-bottom: 4px; font-size: 24px; }
+  .subtitle { text-align: center; color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+  h2 { font-size: 19px; margin-top: 32px; margin-bottom: 8px; border-bottom: 2px solid var(--accent); padding-bottom: 6px; }
+  h3 { font-size: 16px; margin-top: 20px; }
+  p { font-size: 15.5px; }
+  em { color: var(--muted); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+  /* Dark mode toggle button */
+  .toggle-btn {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: #3498db;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s, transform 0.3s;
+    z-index: 1000;
+  }
+  body.dark { background: #121212; color: #e0e0e0; }
+  body.dark .container { background: #1e1e1e; }
+  body.dark h1 { color: #fff; }
+  body.dark .toggle-btn { background: #bb86fc; }
+  body.dark .q-block { background: #2a2a2a; border-color: #444; }
+  body.dark th { background: #3a3a5a; }
+  body.dark td { background: #242424; border-color: #444; }
+
+  /* Nav bar */
+  .nav { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+  .nav button { padding: 8px 14px; border: none; border-radius: 6px; background: #3498db; color: #fff; cursor: pointer; }
+  .nav button:hover { opacity: 0.9; }
+
+  /* Clock */
+  #currentTime {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    text-align: center;
+    font-size: 15px;
+    color: #4615b8;
+    margin: 0;
+    padding: 8px 0;
+    background: rgba(244,246,249,0.95);
+    z-index: 999;
+  }
+  body.dark #currentTime { color: #7ee07e; background: rgba(18,18,18,0.95); }
+
+  /* Countdown timer badge */
+  #timer {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--accent);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 999;
+  }
+  @media (max-width: 600px) {
+    #timer { position: static; display: inline-block; margin-bottom: 14px; }
+  }
+
+  /* Question blocks */
+  .q-block {
+    margin: 14px 0;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--row-alt);
+  }
+  .q-block label { display: block; font-weight: 600; margin-bottom: 6px; }
+  .q-options { font-weight: normal; margin-bottom: 8px; color: #333; }
+  body.dark .q-options { color: #ccc; }
+  .q-block input[type="text"], .q-block select {
+    width: 100%; max-width: 320px; padding: 7px 10px;
+    font-size: 14.5px; border: 1px solid var(--border); border-radius: 4px;
+  }
+  .q-block.correct { border-color: var(--correct); background: #eafaf0; }
+  .q-block.wrong { border-color: var(--wrong); background: #fdecea; }
+  body.dark .q-block.correct { background: #1c3a28; }
+  body.dark .q-block.wrong { background: #3a2020; }
+  .feedback-tag { display: inline-block; margin-left: 10px; font-weight: 600; font-size: 13.5px; }
+  .feedback-tag.correct-tag { color: var(--correct); }
+  .feedback-tag.wrong-tag { color: var(--wrong); }
+  .correct-answer-note { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* Submit / Reset / Results */
+  #submitBtn, #resetBtn {
+    display: inline-block; margin: 20px 8px 20px 0; padding: 12px 26px;
+    font-size: 16px; font-weight: 600; color: #ffffff;
+    background: var(--accent); border: none; border-radius: 6px; cursor: pointer;
+  }
+  #resetBtn { background: #7f8c8d; }
+  #submitBtn:hover, #resetBtn:hover { opacity: 0.9; }
+  #resultsBox {
+    display: none; margin-top: 10px; padding: 20px; border-radius: 8px;
+    background: #eef6ff; border: 1px solid #b7d8f5; text-align: center;
+  }
+  body.dark #resultsBox { background: #1a2b3a; border-color: #2d4a66; }
+  #resultsBox .score-number { font-size: 36px; font-weight: 700; color: var(--accent); }
+  #resultsBox .band-number { font-size: 22px; font-weight: 700; color: #1e6f5c; margin-top: 4px; }
+
+  .table-wrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 400px; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; font-size: 14px; }
+  th { background: var(--accent); color: var(--accent-text); }
+
+  /* Placeholder markers — remove/style away once real content is filled in */
+  .placeholder { color: #b03a2e; font-style: italic; }
+</style>
+</head>
+
+<body>
+
+  <!-- DARK MODE BUTTON -->
+  <button class="toggle-btn dark-btn" onclick="toggleMode()">
+    <span id="dark-icon">🌙</span>
+    <span id="dark-text">Dark Mode</span>
+  </button>
+
+  <!-- CLOCK (fixed at top, stays visible while scrolling) -->
+  <p id="currentTime"></p>
+
+  <!-- TIMER (visual 60-minute countdown) -->
+  <div id="timer">⏱ 60:00</div>
+
+  <div class="container">
+
+    <!-- NAV BAR — edit hrefs/labels to match your actual file names -->
+    <div class="nav">
+            <a href="Mock_Test_1.html" target="_blank"><button>Test 1</button></a>
+      <a href="Mock_Test_2.html" target="_blank"><button>Test 2</button></a>
+      <a href="Mock_Test_3.html" target="_blank"><button>Test 3</button></a>
+      <a href="Mock_Test_4.html" target="_blank"><button>Test 4</button></a>
+      <a href="Mock_Test_5.html" target="_blank"><button>Test 5</button></a>
+      <a href="Mock_Test_6.html" target="_blank"><button>Test 6</button></a>
+      <a href="Mock_Test_7.html" target="_blank"><button>Test 7</button></a>
+      <a href="Mock_Test_8.html" target="_blank"><button>Test 8</button></a>
+      <a href="Mock_Test_9.html" target="_blank"><button>Test 9</button></a>
+      <a href="Mock_Test_10.html" target="_blank"><button>Test 10</button></a>
+      <a href="Mock_Test_11.html" target="_blank"><button>Test 11</button></a>
+      <a href="Mock_Test_12.html" target="_blank"><button>Test 12</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 13</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 14</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 15</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 16</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 17</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 18</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 19</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 20</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 21</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 22</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 23</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 24</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 25</button></a>
+    </div>
+
+    <h1>IELTS Academic Reading — Self-Graded Mock Test 15</h1>
+    <div class="subtitle">3 Passages · 40 Questions · Fill in your answers below, then click Submit for your score and band estimate.</div>
+
+<hr>
+
+<h2>PASSAGE 1</h2>
+<h3>The Discovery of Insulin</h3>
+<p>Before the early 1920s, a diagnosis of type 1 diabetes was effectively a death sentence, with patients, particularly children, typically surviving only a short time after onset, often managed solely through extremely restrictive low-carbohydrate diets that could delay but not prevent the disease's fatal progression.</p>
+<p>The breakthrough came in 1921 at the University of Toronto, where surgeon Frederick Banting, working alongside medical student Charles Best under the supervision of physiologist John Macleod, successfully isolated insulin from the pancreas of dogs, demonstrating that injections of this extracted substance could effectively lower blood sugar levels in diabetic animals.</p>
+<p>The team's first human trial occurred in January 1922, when 14-year-old Leonard Thompson, critically ill with diabetes, received an insulin injection. Although the initial injection caused an allergic reaction due to impurities in the extract, a purified version developed shortly afterward with the help of biochemist James Collip produced dramatic improvement, and Thompson went on to live for over a decade afterward, a previously unimaginable outcome for someone with his condition.</p>
+<p>Recognizing the discovery's enormous humanitarian significance, Banting and Macleod were awarded the Nobel Prize in Physiology or Medicine in 1923, though the decision proved controversial, as Best and Collip, who had both made substantial contributions, were initially excluded from the award—a decision Banting publicly protested by sharing his prize money with Best.</p>
+<p>In a decision now widely regarded as remarkably significant, the discoverers sold the patent for insulin to the University of Toronto for a symbolic sum of one dollar, explicitly intending to ensure the treatment would remain affordable and widely accessible rather than becoming a source of personal profit. Insulin has since transformed diabetes from a swiftly fatal condition into a manageable chronic illness, though access and affordability challenges persist in various parts of the world today.</p>
+<h3>Questions 1-4: True / False / Not Given</h3>
+<div class="q-block" data-q="1">
+  <label>1. Before insulin, type 1 diabetes was typically fatal within a short time.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="2">
+  <label>2. Banting worked alone to isolate insulin.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="3">
+  <label>3. Leonard Thompson's first injection caused no complications.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="4">
+  <label>4. Best and Collip were initially excluded from the Nobel Prize.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<h3>Questions 5-8: Multiple Choice</h3>
+<div class="q-block" data-q="5">
+  <label>5. Where was insulin first isolated?</label>
+  <div class="q-options">A. Harvard University &amp;nbsp; B. University of Toronto &amp;nbsp; C. A hospital in London &amp;nbsp; D. A pharmaceutical company</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="6">
+  <label>6. Who developed the purified insulin extract?</label>
+  <div class="q-options">A. Frederick Banting &amp;nbsp; B. Charles Best &amp;nbsp; C. James Collip &amp;nbsp; D. John Macleod</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="7">
+  <label>7. How did Banting respond to Best's exclusion from the Nobel Prize?</label>
+  <div class="q-options">A. He refused the prize entirely &amp;nbsp; B. He shared his prize money with Best &amp;nbsp; C. He ignored the controversy &amp;nbsp; D. He nominated Best the following year</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="8">
+  <label>8. Why was the insulin patent sold for one dollar?</label>
+  <div class="q-options">A. To maximize profit &amp;nbsp; B. To keep the treatment affordable and accessible &amp;nbsp; C. Because no other buyer was interested &amp;nbsp; D. Due to a legal requirement</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<h3>Questions 9-13: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<div class="q-block" data-q="9">
+  <label>9. Before insulin, diabetes was managed through restrictive __________ diets.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="10">
+  <label>10. Insulin was first isolated from the pancreas of __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="11">
+  <label>11. The first human trial occurred in __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="12">
+  <label>12. Banting and Macleod won the Nobel Prize in __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="13">
+  <label>13. The patent was sold to the university for a symbolic __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<hr>
+<h2>PASSAGE 2</h2>
+<h3>Ocean Currents and Climate</h3>
+<p>The world's oceans are crisscrossed by an extensive system of currents that move vast quantities of water across the globe, driven by a combination of wind patterns, differences in water density caused by temperature and salinity variation, and the Earth's rotation, which deflects moving water through a phenomenon known as the Coriolis effect.</p>
+<p>Among the most significant of these systems is thermohaline circulation, sometimes referred to as the global 'conveyor belt,' a deep-ocean circulation pattern driven primarily by differences in water density. In this system, cold, salty, and therefore dense water sinks in polar regions, particularly the North Atlantic, before slowly flowing along the ocean floor and eventually resurfacing elsewhere through a process that can take centuries to complete a full circuit.</p>
+<p>One particularly well-known surface current, the Gulf Stream, transports warm water from the Gulf of Mexico along the eastern coast of North America before crossing the Atlantic toward Western Europe, significantly moderating the climate of regions such as the United Kingdom and northern Europe, which experience considerably milder winters than other locations at similar latitudes lacking comparable warm current influence.</p>
+<p>Ocean currents play a role extending well beyond simply redistributing heat; they also influence weather patterns, support marine ecosystems by transporting nutrients, and affect fishing industries that depend on predictable current-driven patterns of marine life distribution. Disruptions to these systems can therefore carry consequences extending considerably beyond ocean temperatures alone.</p>
+<p>Scientists have expressed growing concern regarding the potential effects of climate change on ocean circulation patterns, particularly thermohaline circulation. Increased freshwater input from melting polar ice could, according to some climate models, reduce water density in critical sinking regions, potentially weakening or disrupting this circulation system—a change that could paradoxically contribute to regional cooling in parts of Europe even as global average temperatures continue to rise, representing one of several complex and sometimes counterintuitive ways climate change may manifest regionally.</p>
+<h3>Questions 14-18: Matching Headings</h3>
+<p><strong>List of Headings</strong><br>i. Wider effects beyond temperature<br>ii. A deep-ocean conveyor belt<br>iii. What drives ocean currents<br>iv. Climate change's potential disruption<br>v. A current that warms Europe</p>
+<div class="q-block" data-q="14">
+  <label>14. Paragraph 1</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="15">
+  <label>15. Paragraph 2</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="16">
+  <label>16. Paragraph 3</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="17">
+  <label>17. Paragraph 4</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="18">
+  <label>18. Paragraph 5</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<h3>Questions 19-22: True / False / Not Given</h3>
+<div class="q-block" data-q="19">
+  <label>19. Ocean currents are partly driven by the Coriolis effect.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="20">
+  <label>20. Thermohaline circulation completes a full circuit within a few days.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="21">
+  <label>21. The Gulf Stream moderates winter temperatures in the UK and northern Europe.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="22">
+  <label>22. Climate change could potentially weaken thermohaline circulation.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<h3>Questions 23-26: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<div class="q-block" data-q="23">
+  <label>23. Cold, salty water sinks mainly in __________ regions.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="24">
+  <label>24. The Gulf Stream transports warm water from the Gulf of __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="25">
+  <label>25. Ocean currents help transport __________ supporting marine ecosystems.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="26">
+  <label>26. Melting polar ice increases __________ input into the ocean.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<hr>
+<h2>PASSAGE 3</h2>
+<h3>The History of Writing Systems</h3>
+<p>Writing stands among humanity's most transformative inventions, enabling the recording and transmission of information across time and distance in ways that spoken language alone cannot achieve. The earliest known writing systems emerged independently in several regions, with Sumerian cuneiform in Mesopotamia, developed around 3400 BCE, generally regarded as among the oldest, alongside Egyptian hieroglyphics, which emerged at a broadly similar period.</p>
+<p>Early cuneiform began not as a system for recording language directly, but rather as a practical accounting tool, using simple pictographic symbols pressed into clay tablets to track agricultural goods, trade transactions, and administrative records. Over several centuries, these symbols gradually evolved from direct pictorial representations into more abstract wedge-shaped marks, eventually developing the capacity to represent spoken language more fully, including grammatical elements and abstract concepts.</p>
+<p>A particularly significant development in writing's history was the emergence of alphabetic systems, in which a relatively small number of symbols represent individual sounds rather than entire words or syllables. The earliest alphabetic systems are generally traced to the Phoenician civilization, around 1200 BCE, whose relatively simple 22-symbol alphabet proved remarkably adaptable and influential, eventually giving rise, through various adaptations, to the Greek, Latin, and numerous other alphabets used widely around the world today.</p>
+<p>Not all writing systems adopted purely alphabetic principles. Chinese writing, for instance, developed along a different trajectory, relying on logographic characters that represent whole words or meaningful units rather than individual sounds, a system that has remained in continuous use, with significant evolution, for over three thousand years, representing one of the world's oldest continuously used writing systems.</p>
+<p>The invention of writing carried implications extending far beyond simple record-keeping, fundamentally transforming how societies could organize administratively, preserve and transmit accumulated knowledge across generations, and develop complex legal, religious, and literary traditions. Many historians consider the emergence of writing a defining marker separating prehistoric societies from historical ones, given writing's unique capacity to preserve detailed records of past events for future study.</p>
+<h3>Questions 27-30: Multiple Choice</h3>
+<div class="q-block" data-q="27">
+  <label>27. What was early cuneiform originally used for?</label>
+  <div class="q-options">A. Religious ceremonies &amp;nbsp; B. A practical accounting tool &amp;nbsp; C. Literary storytelling &amp;nbsp; D. Legal contracts exclusively</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="28">
+  <label>28. What distinguishes alphabetic systems from earlier writing systems?</label>
+  <div class="q-options">A. They use pictorial symbols only &amp;nbsp; B. A small number of symbols represent individual sounds &amp;nbsp; C. They cannot represent abstract concepts &amp;nbsp; D. They were developed in China</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="29">
+  <label>29. Which civilization is credited with an early influential alphabetic system?</label>
+  <div class="q-options">A. Sumerian &amp;nbsp; B. Egyptian &amp;nbsp; C. Phoenician &amp;nbsp; D. Chinese</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="30">
+  <label>30. How does Chinese writing primarily function?</label>
+  <div class="q-options">A. Through purely alphabetic symbols &amp;nbsp; B. Through logographic characters representing whole words &amp;nbsp; C. Through wedge-shaped marks only &amp;nbsp; D. It has no connection to spoken language</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<h3>Questions 31-35: Matching Information</h3>
+<p><em>Which paragraph (1-5) contains the following information?</em></p>
+<div class="q-block" data-q="31">
+  <label>31. A statement about writing's role in separating prehistoric from historical societies</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="32">
+  <label>32. A description of how cuneiform symbols evolved from pictures to abstract marks</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="33">
+  <label>33. A mention of two of the oldest known writing systems emerging independently</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="34">
+  <label>34. A description of the Phoenician alphabet's influence on later alphabets</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="35">
+  <label>35. An explanation of how Chinese writing differs from alphabetic systems</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<h3>Questions 36-40: Summary Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS for each answer.</em></p>
+<p>The earliest writing systems included Sumerian cuneiform and Egyptian (36) __________. Cuneiform began as a tool for tracking agricultural and trade (37) __________. The Phoenician alphabet, with just 22 symbols, influenced the Greek and (38) __________ alphabets. Chinese writing instead uses (39) __________ characters representing whole words. Writing allowed societies to preserve accumulated (40) __________ across generations.</p>
+<div class="q-block" data-q="36">
+  <label>36. </label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="37">
+  <label>37. </label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="38">
+  <label>38. </label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="39">
+  <label>39. </label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="40">
+  <label>40. </label>
+  <input type="text" placeholder="Your answer">
+</div>
+
+<hr>
+
+<button id="submitBtn" onclick="gradeTest()">Submit &amp; Get My Score</button>
+<button id="resetBtn" onclick="resetTest()">Reset</button>
+
+<div id="resultsBox">
+  <div>Your Score</div>
+  <div class="score-number" id="scoreDisplay">0 / 40</div>
+  <div class="band-number" id="bandDisplay">Band: —</div>
+  <p id="resultsNote" style="margin-top:14px; color:#555; font-size:13.5px;">Correct answers are highlighted green, incorrect ones red (with the correct answer shown below each). This is an approximate self-practice estimate only.</p>
+</div>
+
+<div class="table-wrap">
+<table style="margin-top:20px;">
+<thead><tr><th>Correct answers</th><th>Approximate Band</th></tr></thead>
+<tbody>
+<tr><td>39-40</td><td>9</td></tr>
+<tr><td>35-38</td><td>8</td></tr>
+<tr><td>30-34</td><td>7</td></tr>
+<tr><td>23-29</td><td>6</td></tr>
+<tr><td>16-22</td><td>5</td></tr>
+<tr><td>13-15</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+
+<script>
+const answerKey = {
+  1: ['true'],
+  2: ['false'],
+  3: ['false'],
+  4: ['true'],
+  5: ['b'],
+  6: ['c'],
+  7: ['b'],
+  8: ['b'],
+  9: ['low-carbohydrate', 'low carbohydrate'],
+  10: ['dogs'],
+  11: ['1922'],
+  12: ['1923'],
+  13: ['dollar', 'one dollar'],
+  14: ['iii'],
+  15: ['ii'],
+  16: ['v'],
+  17: ['i'],
+  18: ['iv'],
+  19: ['true'],
+  20: ['false'],
+  21: ['true'],
+  22: ['true'],
+  23: ['polar'],
+  24: ['mexico'],
+  25: ['nutrients'],
+  26: ['freshwater'],
+  27: ['b'],
+  28: ['b'],
+  29: ['c'],
+  30: ['b'],
+  31: ['5', 'paragraph 5'],
+  32: ['2', 'paragraph 2'],
+  33: ['1', 'paragraph 1'],
+  34: ['3', 'paragraph 3'],
+  35: ['4', 'paragraph 4'],
+  36: ['hieroglyphics'],
+  37: ['transactions', 'trade transactions'],
+  38: ['latin'],
+  39: ['logographic'],
+  40: ['knowledge']
+};
+
+ // ---- Dark mode ----
+  function toggleMode() {
+    const body = document.body;
+    const icon = document.getElementById('dark-icon');
+    const text = document.getElementById('dark-text');
+    body.classList.toggle('dark');
+    if (body.classList.contains('dark')) {
+      icon.textContent = '☀️';
+      text.textContent = 'Light Mode';
+    } else {
+      icon.textContent = '🌙';
+      text.textContent = 'Dark Mode';
+    }
+  }
+
+  // ---- Live clock (Asia/Tokyo — change timeZone as needed) ----
+  function showTime() {
+    const now = new Date().toLocaleString('en-US', {
+      timeZone: 'Asia/Tokyo',
+      weekday: 'short', month: 'short', day: 'numeric', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true
+    });
+    document.getElementById('currentTime').innerHTML = now;
+  }
+  showTime();
+  setInterval(showTime, 1000);
+
+  // ---- Answer normalization + grading ----
+  function normalize(str) {
+    return str.trim().toLowerCase().replace(/[.,]/g, "");
+  }
+
+  function getBand(score) {
+    if (score >= 39) return 9;
+    if (score >= 35) return 8;
+    if (score >= 30) return 7;
+    if (score >= 23) return 6;
+    if (score >= 16) return 5;
+    if (score >= 13) return 4;
+    return "Below 4";
+  }
+
+  function gradeTest() {
+    let score = 0;
+    for (let i = 1; i <= 40; i++) {
+      const block = document.querySelector('.q-block[data-q="' + i + '"]');
+      if (!block) continue;
+      const field = block.querySelector('input[type="text"], select');
+      const userVal = field ? normalize(field.value || "") : "";
+      const correctAnswers = (answerKey[i] || []).map(normalize);
+      const isCorrect = correctAnswers.includes(userVal);
+
+      block.classList.remove("correct", "wrong");
+      const oldTag = block.querySelector(".feedback-tag");
+      if (oldTag) oldTag.remove();
+      const oldNote = block.querySelector(".correct-answer-note");
+      if (oldNote) oldNote.remove();
+
+      const tag = document.createElement("span");
+      tag.className = "feedback-tag " + (isCorrect ? "correct-tag" : "wrong-tag");
+      tag.textContent = isCorrect ? "✓ Correct" : "✗ Incorrect";
+      block.querySelector("label").appendChild(tag);
+
+      if (isCorrect) {
+        score++;
+        block.classList.add("correct");
+      } else {
+        block.classList.add("wrong");
+        const note = document.createElement("div");
+        note.className = "correct-answer-note";
+        note.textContent = "Correct answer: " + (answerKey[i] ? answerKey[i][0] : "N/A");
+        block.appendChild(note);
+      }
+    }
+
+    document.getElementById("scoreDisplay").textContent = score + " / 40";
+    document.getElementById("bandDisplay").textContent = "Approximate Band: " + getBand(score);
+    const resultsBox = document.getElementById("resultsBox");
+    resultsBox.style.display = "block";
+    resultsBox.scrollIntoView({ behavior: "smooth" });
+  }
+
+  function resetTest() {
+    document.querySelectorAll('.q-block input[type="text"]').forEach(el => el.value = "");
+    document.querySelectorAll('.q-block select').forEach(el => el.value = "");
+    document.querySelectorAll('.q-block').forEach(el => {
+      el.classList.remove("correct", "wrong");
+      const tag = el.querySelector(".feedback-tag");
+      if (tag) tag.remove();
+      const note = el.querySelector(".correct-answer-note");
+      if (note) note.remove();
+    });
+    document.getElementById("resultsBox").style.display = "none";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // ---- Countdown timer (visual only — does not auto-submit) ----
+  let secondsLeft = 60 * 60;
+  function updateTimer() {
+    const m = Math.floor(secondsLeft / 60);
+    const s = secondsLeft % 60;
+    document.getElementById("timer").textContent =
+      "⏱ " + String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+    if (secondsLeft > 0) secondsLeft--;
+  }
+  updateTimer();
+  setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>

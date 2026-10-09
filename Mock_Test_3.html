@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Reading - Full Practice Test 3</title>
+
+<style>
+  :root {
+    --bg: #ffffff; --text: #1a1a1a; --muted: #555;
+    --border: #ddd; --accent: #2c3e50; --accent-text: #ffffff;
+    --row-alt: #f7f8f9; --correct: #1e8449; --wrong: #c0392b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+    transition: background .3s, color .3s;
+    color: var(--text);
+  }
+  .container {
+    max-width: 850px;
+    margin: 40px auto 0;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  h1 { text-align: center; color: #2c3e50; margin-bottom: 4px; font-size: 24px; }
+  .subtitle { text-align: center; color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+  h2 { font-size: 19px; margin-top: 32px; margin-bottom: 8px; border-bottom: 2px solid var(--accent); padding-bottom: 6px; }
+  h3 { font-size: 16px; margin-top: 20px; }
+  p { font-size: 15.5px; }
+  em { color: var(--muted); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+  /* Dark mode toggle button */
+  .toggle-btn {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: #3498db;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s, transform 0.3s;
+    z-index: 1000;
+  }
+  body.dark { background: #121212; color: #e0e0e0; }
+  body.dark .container { background: #1e1e1e; }
+  body.dark h1 { color: #fff; }
+  body.dark .toggle-btn { background: #bb86fc; }
+  body.dark .q-block { background: #2a2a2a; border-color: #444; }
+  body.dark th { background: #3a3a5a; }
+  body.dark td { background: #242424; border-color: #444; }
+
+  /* Nav bar */
+  .nav { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+  .nav button { padding: 8px 14px; border: none; border-radius: 6px; background: #3498db; color: #fff; cursor: pointer; }
+  .nav button:hover { opacity: 0.9; }
+
+  /* Clock */
+  #currentTime {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    text-align: center;
+    font-size: 15px;
+    color: #4615b8;
+    margin: 0;
+    padding: 8px 0;
+    background: rgba(244,246,249,0.95);
+    z-index: 999;
+  }
+  body.dark #currentTime { color: #7ee07e; background: rgba(18,18,18,0.95); }
+
+  /* Countdown timer badge */
+  #timer {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--accent);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 999;
+  }
+  @media (max-width: 600px) {
+    #timer { position: static; display: inline-block; margin-bottom: 14px; }
+  }
+
+  /* Question blocks */
+  .q-block {
+    margin: 14px 0;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--row-alt);
+  }
+  .q-block label { display: block; font-weight: 600; margin-bottom: 6px; }
+  .q-options { font-weight: normal; margin-bottom: 8px; color: #333; }
+  body.dark .q-options { color: #ccc; }
+  .q-block input[type="text"], .q-block select {
+    width: 100%; max-width: 320px; padding: 7px 10px;
+    font-size: 14.5px; border: 1px solid var(--border); border-radius: 4px;
+  }
+  .q-block.correct { border-color: var(--correct); background: #eafaf0; }
+  .q-block.wrong { border-color: var(--wrong); background: #fdecea; }
+  body.dark .q-block.correct { background: #1c3a28; }
+  body.dark .q-block.wrong { background: #3a2020; }
+  .feedback-tag { display: inline-block; margin-left: 10px; font-weight: 600; font-size: 13.5px; }
+  .feedback-tag.correct-tag { color: var(--correct); }
+  .feedback-tag.wrong-tag { color: var(--wrong); }
+  .correct-answer-note { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* Submit / Reset / Results */
+  #submitBtn, #resetBtn {
+    display: inline-block; margin: 20px 8px 20px 0; padding: 12px 26px;
+    font-size: 16px; font-weight: 600; color: #ffffff;
+    background: var(--accent); border: none; border-radius: 6px; cursor: pointer;
+  }
+  #resetBtn { background: #7f8c8d; }
+  #submitBtn:hover, #resetBtn:hover { opacity: 0.9; }
+  #resultsBox {
+    display: none; margin-top: 10px; padding: 20px; border-radius: 8px;
+    background: #eef6ff; border: 1px solid #b7d8f5; text-align: center;
+  }
+  body.dark #resultsBox { background: #1a2b3a; border-color: #2d4a66; }
+  #resultsBox .score-number { font-size: 36px; font-weight: 700; color: var(--accent); }
+  #resultsBox .band-number { font-size: 22px; font-weight: 700; color: #1e6f5c; margin-top: 4px; }
+
+  .table-wrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 400px; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; font-size: 14px; }
+  th { background: var(--accent); color: var(--accent-text); }
+
+  /* Placeholder markers — remove/style away once real content is filled in */
+  .placeholder { color: #b03a2e; font-style: italic; }
+</style>
+</head>
+
+<body>
+
+  <!-- DARK MODE BUTTON -->
+  <button class="toggle-btn dark-btn" onclick="toggleMode()">
+    <span id="dark-icon">🌙</span>
+    <span id="dark-text">Dark Mode</span>
+  </button>
+
+  <!-- CLOCK (fixed at top, stays visible while scrolling) -->
+  <p id="currentTime"></p>
+
+  <!-- TIMER (visual 60-minute countdown) -->
+  <div id="timer">⏱ 60:00</div>
+
+  <div class="container">
+
+    <!-- NAV BAR — edit hrefs/labels to match your actual file names -->
+    <div class="nav">
+            <a href="Mock_Test_1.html" target="_blank"><button>Test 1</button></a>
+      <a href="Mock_Test_2.html" target="_blank"><button>Test 2</button></a>
+      <a href="Mock_Test_3.html" target="_blank"><button>Test 3</button></a>
+      <a href="Mock_Test_4.html" target="_blank"><button>Test 4</button></a>
+      <a href="Mock_Test_5.html" target="_blank"><button>Test 5</button></a>
+      <a href="Mock_Test_6.html" target="_blank"><button>Test 6</button></a>
+      <a href="Mock_Test_7.html" target="_blank"><button>Test 7</button></a>
+      <a href="Mock_Test_8.html" target="_blank"><button>Test 8</button></a>
+      <a href="Mock_Test_9.html" target="_blank"><button>Test 9</button></a>
+      <a href="Mock_Test_10.html" target="_blank"><button>Test 10</button></a>
+      <a href="Mock_Test_11.html" target="_blank"><button>Test 11</button></a>
+      <a href="Mock_Test_12.html" target="_blank"><button>Test 12</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 13</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 14</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 15</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 16</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 17</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 18</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 19</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 20</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 21</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 22</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 23</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 24</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 25</button></a>
+    </div>
+
+     
+
+<h1>IELTS Academic Reading — Self-Graded Mock Test 3</h1>
+<div class="subtitle">3 Passages · 40 Questions · Fill in your answers below, then click Submit for your score and band estimate.</div>
+        <hr />
+        
+<h2>PASSAGE 1</h2>
+<h3>The Discovery of Penicillin</h3>
+<p>In 1928, Scottish scientist Alexander Fleming made one of the most important medical discoveries in history—almost by accident. Fleming was researching bacteria at St. Mary's Hospital in London when he left for a two-week holiday, leaving several bacterial cultures uncovered in his laboratory. Upon his return, he noticed that one of the dishes had been contaminated by a blue-green mold, and strangely, the bacteria surrounding the mold had been destroyed.</p>
+<p>Rather than simply discarding the contaminated dish, Fleming decided to investigate further. He identified the mold as belonging to the genus *Penicillium* and discovered that it produced a substance capable of killing a wide range of harmful bacteria. He named this substance penicillin. Fleming published his findings in 1929, but at the time, the scientific community showed relatively little interest, partly because producing penicillin in large enough quantities for medical use seemed extremely difficult.</p>
+<p>It was not until a decade later that penicillin's true potential began to be realized. In the late 1930s, a team of scientists at Oxford University—led by Howard Florey and Ernst Chain—took up the challenge of purifying and mass-producing the drug. Their work was accelerated by the urgent medical needs of the Second World War, during which infections from battlefield wounds killed enormous numbers of soldiers. By 1941, the Oxford team had successfully tested penicillin on human patients, with remarkable results.</p>
+<p>Mass production posed a significant challenge, as European factories were focused on wartime manufacturing. The task of scaling up production shifted largely to the United States, where pharmaceutical companies developed new fermentation techniques that dramatically increased penicillin yields. By 1944, enough penicillin was being produced to treat all Allied soldiers wounded during the D-Day invasion.</p>
+<p>Fleming, Florey, and Chain jointly received the Nobel Prize in Physiology or Medicine in 1945 for their contributions. Penicillin is widely regarded as the beginning of the modern antibiotic era, and it is estimated to have saved hundreds of millions of lives since its introduction. However, Fleming himself warned early on that overusing the drug could lead to bacteria developing resistance—a concern that has become an increasingly serious global health issue today.</p>
+
+
+<h3>Questions 1–4: True / False / Not Given</h3>
+<div class="q-block" data-q="1">
+  <label>1. Fleming discovered penicillin while deliberately searching for a new antibiotic.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="2">
+  <label>2. Fleming was the first person to successfully mass-produce penicillin.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="3">
+  <label>3. The Second World War increased the urgency of penicillin research.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="4">
+  <label>4. Fleming predicted that bacteria could become resistant to penicillin.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+
+
+<h3>Questions 5–8: Multiple Choice</h3>
+<div class="q-block" data-q="5">
+  <label>5. How did Fleming first notice penicillin's effect?</label>
+  <div class="q-options">A. He tested it on animals B. He saw mold had killed nearby bacteria in a dish C. He read about it in a scientific journal D. A colleague showed him the discovery</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="6">
+  <label>6. Why did the scientific community show little interest in 1929?</label>
+  <div class="q-options">A. Fleming refused to share his findings B. Producing penicillin in large quantities seemed too difficult C. Penicillin did not work on humans D. Another scientist had already discovered it</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="7">
+  <label>7. Who led the Oxford team that developed penicillin further?</label>
+  <div class="q-options">A. Alexander Fleming alone B. Howard Florey and Ernst Chain C. American pharmaceutical companies D. Doctors during the D-Day invasion</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="8">
+  <label>8. Where did large-scale penicillin production mainly take place?</label>
+  <div class="q-options">A. In London B. In Oxford C. In the United States D. In Germany</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+
+
+<h3>Questions 9–13: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<div class="q-block" data-q="9">
+  <label>9. Fleming noticed that a __________ had contaminated one of his bacterial dishes.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="10">
+  <label>10. Fleming identified the mold as belonging to the genus __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="11">
+  <label>11. By 1941, the Oxford team had tested penicillin successfully on __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="12">
+  <label>12. New __________ techniques in the U.S. increased penicillin production.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="13">
+  <label>13. Fleming, Florey, and Chain received the __________ in 1945.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+
+
+<hr>
+
+<h2>PASSAGE 2</h2>
+<h3>Solar Power and the Renewable Energy Shift</h3>
+<p>As concerns about climate change and fossil fuel dependency continue to grow, solar power has emerged as one of the fastest-growing sources of renewable energy worldwide. Unlike coal or natural gas, solar energy is generated by converting sunlight directly into electricity, producing no direct emissions during operation.</p>
+<p>The basic technology behind solar power, the photovoltaic (PV) cell, was first developed in the 1950s, but for decades it remained too expensive for widespread use, limited mainly to specialized applications such as powering satellites. Over the past two decades, however, the cost of manufacturing solar panels has fallen dramatically, driven by improvements in materials, manufacturing efficiency, and economies of scale as production increased globally.</p>
+<p>Large-scale solar installations, often called solar farms or mega solar plants, now generate electricity for entire regions. These facilities consist of thousands, sometimes millions, of individual panels arranged across large areas of land, carefully engineered to maximize exposure to sunlight throughout the day. Engineers and technicians play a crucial role in designing the electrical layouts and wiring systems that connect these panels safely and efficiently to the power grid.</p>
+<p>Despite its advantages, solar power faces certain challenges. Because it only generates electricity when the sun is shining, solar plants must be paired with energy storage systems, such as large batteries, or connected to a broader grid that includes other energy sources, to ensure a consistent power supply. Additionally, large solar farms require significant amounts of land, which can sometimes create conflicts with agricultural use or natural habitats.</p>
+<p>Nevertheless, many countries have set ambitious targets for expanding solar capacity as part of broader efforts to reduce carbon emissions. Falling costs, combined with improving battery technology, suggest that solar power's share of global electricity generation will likely continue to grow substantially in the coming decades.</p>
+
+
+<h3>Questions 14–18: Matching Headings</h3>
+<p><em>Choose the correct heading for paragraphs 1–5.</em></p>
+<p><strong>List of Headings</strong><br>
+i. Land use and consistency challenges<br>
+ii. A promising outlook for the future<br>
+iii. How solar electricity is generated<br>
+iv. Falling costs over recent decades<br>
+v. Building and connecting large-scale plants</p>
+<div class="q-block" data-q="14">
+  <label>14. Paragraph 1</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="15">
+  <label>15. Paragraph 2</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="16">
+  <label>16. Paragraph 3</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="17">
+  <label>17. Paragraph 4</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="18">
+  <label>18. Paragraph 5</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+
+
+<h3>Questions 19–22: True / False / Not Given</h3>
+<div class="q-block" data-q="19">
+  <label>19. Solar power produces direct emissions while generating electricity.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="20">
+  <label>20. Photovoltaic cell technology was invented in the 21st century.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="21">
+  <label>21. Solar farms can consist of millions of individual panels.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="22">
+  <label>22. Every country has now reached its solar energy targets.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+
+
+<h3>Questions 23–26: Sentence Completion</h3>
+<div class="q-block" data-q="23">
+  <label>23. Solar panels were originally mainly used to power __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="24">
+  <label>24. Solar plants are often paired with __________ systems to ensure a steady power supply.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="25">
+  <label>25. Large solar farms can sometimes conflict with __________ use or natural habitats.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="26">
+  <label>26. Falling costs and improving __________ technology support solar power's future growth.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+
+
+<hr>
+
+<h2>PASSAGE 3</h2>
+<h3>Ocean Plastic Pollution</h3>
+<p>Plastic pollution in the world's oceans has become one of the most visible and widely discussed environmental issues of the 21st century. It is estimated that around eight million tonnes of plastic waste enter the ocean every year, originating from sources ranging from littered packaging to fishing equipment lost or abandoned at sea.</p>
+<p>Unlike organic waste, most plastics do not biodegrade in any meaningful timeframe; instead, they break down into increasingly small fragments known as microplastics, which can persist in the environment for hundreds of years. These microplastics have been found virtually everywhere scientists have looked—from the deepest ocean trenches to Arctic sea ice, and even within the tissues of fish and other marine animals.</p>
+<p>The impact on marine life is significant and well-documented. Larger pieces of plastic debris can entangle animals such as seals, turtles, and seabirds, sometimes causing injury or death. Smaller fragments are frequently mistaken for food, and when ingested, they can cause internal blockages or a false sense of fullness that leads to malnutrition, particularly in seabirds.</p>
+<p>One especially concerning phenomenon is the accumulation of floating plastic debris in ocean gyres—large systems of rotating ocean currents that draw in and concentrate floating waste. The best-known example, the Great Pacific Garbage Patch, located between Hawaii and California, is estimated to cover an area several times the size of France, though it consists not of a solid mass but rather a diffuse concentration of plastic fragments spread across a vast area of ocean.</p>
+<p>Addressing ocean plastic pollution requires action at multiple levels. Some countries have introduced bans or taxes on single-use plastic items such as bags and straws, while others have invested in improved waste management infrastructure to prevent plastic from entering waterways in the first place. Meanwhile, scientists and engineers continue developing new technologies aimed at removing existing plastic from the ocean, as well as biodegradable alternatives to conventional plastic materials.</p>
+
+
+<h3>Questions 27–30: Multiple Choice</h3>
+<div class="q-block" data-q="27">
+  <label>27. Approximately how much plastic enters the ocean each year?</label>
+  <div class="q-options">A. Eight thousand tonnes B. Eight million tonnes C. Eight billion tonnes D. Eighty million tonnes</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="28">
+  <label>28. What happens to most plastic instead of biodegrading?</label>
+  <div class="q-options">A. It sinks permanently to the ocean floor B. It breaks into small fragments called microplastics C. It dissolves completely within a few years D. It is absorbed by seawater</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="29">
+  <label>29. Why can smaller plastic fragments harm seabirds?</label>
+  <div class="q-options">A. The fragments are toxic on contact B. Birds avoid areas with plastic, losing habitat C. Fragments are mistaken for food and can cause malnutrition D. Fragments damage birds' feathers</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="30">
+  <label>30. What is the Great Pacific Garbage Patch?</label>
+  <div class="q-options">A. A solid island of plastic waste B. A diffuse concentration of plastic in a rotating ocean current system C. A government recycling facility D. A type of biodegradable plastic</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+
+
+<h3>Questions 31–35: Matching Information</h3>
+<p><em>Which paragraph (1–5) contains the following information?</em></p>
+<div class="q-block" data-q="31">
+  <label>31. A description of where microplastics have been found in the environment</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="32">
+  <label>32. An explanation of how ocean currents concentrate floating waste</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="33">
+  <label>33. Examples of policy responses such as bans or taxes on plastic items</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="34">
+  <label>34. A statistic on the total amount of plastic entering the ocean annually</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="35">
+  <label>35. Examples of animals directly harmed by entanglement in plastic debris</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+
+
+<h3>Questions 36–40: Summary Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS for each answer.</em></p>
+<p>Each year, roughly eight million tonnes of plastic enters the ocean, much of it breaking down into small particles called (36) __________. These particles have been discovered in locations ranging from ocean trenches to (37) __________ sea ice. Marine animals are affected in two main ways: larger debris can cause (38) __________, while smaller fragments are often mistaken for (39) __________. Floating waste frequently accumulates in rotating current systems known as ocean (40) __________.</p>
+<div class="q-block" data-q="36">
+  <label>36.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="37">
+  <label>37.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="38">
+  <label>38.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="39">
+  <label>39.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="40">
+  <label>40.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+
+
+<hr>
+
+<button id="submitBtn" onclick="gradeTest()">Submit &amp; Get My Score</button>
+<button id="resetBtn" onclick="resetTest()">Reset</button>
+
+<div id="resultsBox">
+  <div>Your Score</div>
+  <div class="score-number" id="scoreDisplay">0 / 40</div>
+  <div class="band-number" id="bandDisplay">Band: —</div>
+  <p id="resultsNote" style="margin-top:14px; color:#555; font-size:13.5px;">Correct answers are highlighted green, incorrect ones red (with the correct answer shown below each). This is an approximate self-practice estimate only — official IELTS scoring uses its own conversion tables.</p>
+</div>
+
+<div class="table-wrap">
+<table style="margin-top:20px;">
+<thead><tr><th>Correct answers</th><th>Approximate Band</th></tr></thead>
+<tbody>
+<tr><td>39–40</td><td>9</td></tr>
+<tr><td>35–38</td><td>8</td></tr>
+<tr><td>30–34</td><td>7</td></tr>
+<tr><td>23–29</td><td>6</td></tr>
+<tr><td>16–22</td><td>5</td></tr>
+<tr><td>13–15</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+
+<script>
+const answerKey = {
+ 1: ["False "],2: ["Not Given "],3: ["True "],4: ["True "],
+ 5: ["B "],6: ["B "],7: ["B "],8: ["C"],9: ["mold &nbsp;"],
+ 10: ["Penicillium "],11: ["human patients "],12: ["fermentation "],
+ 13: ["Nobel Prize"],14: ["iii "],15: ["iv"],16: ["v "],17: ["i "], 18: ["ii"],
+ 19: ["False "],20: ["False "],21: ["True "],22: ["Not Given"],23: ["satellites "],
+ 24: ["energy storage (battery) "], 25: ["agricultural "],26: ["battery"],27: ["B "],
+ 28: ["B "],29: ["C "],30: ["B"], 31: ["Paragraph 2 "],32: ["Paragraph 4 "],
+ 33: ["Paragraph 5 "],34: ["Paragraph 1 "],35: ["Paragraph 3"],36: ["microplastics "],
+ 37: ["Arctic "],38: ["entanglement (injury) "],39: ["food "], 40: ["gyres"]
+};
+
+// ---- Dark mode ----
+  function toggleMode() {
+    const body = document.body;
+    const icon = document.getElementById('dark-icon');
+    const text = document.getElementById('dark-text');
+    body.classList.toggle('dark');
+    if (body.classList.contains('dark')) {
+      icon.textContent = '☀️';
+      text.textContent = 'Light Mode';
+    } else {
+      icon.textContent = '🌙';
+      text.textContent = 'Dark Mode';
+    }
+  }
+
+  // ---- Live clock (Asia/Tokyo — change timeZone as needed) ----
+  function showTime() {
+    const now = new Date().toLocaleString('en-US', {
+      timeZone: 'Asia/Tokyo',
+      weekday: 'short', month: 'short', day: 'numeric', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true
+    });
+    document.getElementById('currentTime').innerHTML = now;
+  }
+  showTime();
+  setInterval(showTime, 1000);
+
+  // ---- Answer normalization + grading ----
+  function normalize(str) {
+    return str.trim().toLowerCase().replace(/[.,]/g, "");
+  }
+
+  function getBand(score) {
+    if (score >= 39) return 9;
+    if (score >= 35) return 8;
+    if (score >= 30) return 7;
+    if (score >= 23) return 6;
+    if (score >= 16) return 5;
+    if (score >= 13) return 4;
+    return "Below 4";
+  }
+
+  function gradeTest() {
+    let score = 0;
+    for (let i = 1; i <= 40; i++) {
+      const block = document.querySelector('.q-block[data-q="' + i + '"]');
+      if (!block) continue;
+      const field = block.querySelector('input[type="text"], select');
+      const userVal = field ? normalize(field.value || "") : "";
+      const correctAnswers = (answerKey[i] || []).map(normalize);
+      const isCorrect = correctAnswers.includes(userVal);
+
+      block.classList.remove("correct", "wrong");
+      const oldTag = block.querySelector(".feedback-tag");
+      if (oldTag) oldTag.remove();
+      const oldNote = block.querySelector(".correct-answer-note");
+      if (oldNote) oldNote.remove();
+
+      const tag = document.createElement("span");
+      tag.className = "feedback-tag " + (isCorrect ? "correct-tag" : "wrong-tag");
+      tag.textContent = isCorrect ? "✓ Correct" : "✗ Incorrect";
+      block.querySelector("label").appendChild(tag);
+
+      if (isCorrect) {
+        score++;
+        block.classList.add("correct");
+      } else {
+        block.classList.add("wrong");
+        const note = document.createElement("div");
+        note.className = "correct-answer-note";
+        note.textContent = "Correct answer: " + (answerKey[i] ? answerKey[i][0] : "N/A");
+        block.appendChild(note);
+      }
+    }
+
+    document.getElementById("scoreDisplay").textContent = score + " / 40";
+    document.getElementById("bandDisplay").textContent = "Approximate Band: " + getBand(score);
+    const resultsBox = document.getElementById("resultsBox");
+    resultsBox.style.display = "block";
+    resultsBox.scrollIntoView({ behavior: "smooth" });
+  }
+
+  function resetTest() {
+    document.querySelectorAll('.q-block input[type="text"]').forEach(el => el.value = "");
+    document.querySelectorAll('.q-block select').forEach(el => el.value = "");
+    document.querySelectorAll('.q-block').forEach(el => {
+      el.classList.remove("correct", "wrong");
+      const tag = el.querySelector(".feedback-tag");
+      if (tag) tag.remove();
+      const note = el.querySelector(".correct-answer-note");
+      if (note) note.remove();
+    });
+    document.getElementById("resultsBox").style.display = "none";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // ---- Countdown timer (visual only — does not auto-submit) ----
+  let secondsLeft = 60 * 60;
+  function updateTimer() {
+    const m = Math.floor(secondsLeft / 60);
+    const s = secondsLeft % 60;
+    document.getElementById("timer").textContent =
+      "⏱ " + String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+    if (secondsLeft > 0) secondsLeft--;
+  }
+  updateTimer();
+  setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>

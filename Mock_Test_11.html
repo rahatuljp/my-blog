@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Reading - Full Practice Test11</title>
+
+<style>
+  :root {
+    --bg: #ffffff; --text: #1a1a1a; --muted: #555;
+    --border: #ddd; --accent: #2c3e50; --accent-text: #ffffff;
+    --row-alt: #f7f8f9; --correct: #1e8449; --wrong: #c0392b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+    transition: background .3s, color .3s;
+    color: var(--text);
+  }
+  .container {
+    max-width: 850px;
+    margin: 40px auto 0;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  h1 { text-align: center; color: #2c3e50; margin-bottom: 4px; font-size: 24px; }
+  .subtitle { text-align: center; color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+  h2 { font-size: 19px; margin-top: 32px; margin-bottom: 8px; border-bottom: 2px solid var(--accent); padding-bottom: 6px; }
+  h3 { font-size: 16px; margin-top: 20px; }
+  p { font-size: 15.5px; }
+  em { color: var(--muted); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+  /* Dark mode toggle button */
+  .toggle-btn {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: #3498db;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s, transform 0.3s;
+    z-index: 1000;
+  }
+  body.dark { background: #121212; color: #e0e0e0; }
+  body.dark .container { background: #1e1e1e; }
+  body.dark h1 { color: #fff; }
+  body.dark .toggle-btn { background: #bb86fc; }
+  body.dark .q-block { background: #2a2a2a; border-color: #444; }
+  body.dark th { background: #3a3a5a; }
+  body.dark td { background: #242424; border-color: #444; }
+
+  /* Nav bar */
+  .nav { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+  .nav button { padding: 8px 14px; border: none; border-radius: 6px; background: #3498db; color: #fff; cursor: pointer; }
+  .nav button:hover { opacity: 0.9; }
+
+  /* Clock */
+  #currentTime {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    text-align: center;
+    font-size: 15px;
+    color: #4615b8;
+    margin: 0;
+    padding: 8px 0;
+    background: rgba(244,246,249,0.95);
+    z-index: 999;
+  }
+  body.dark #currentTime { color: #7ee07e; background: rgba(18,18,18,0.95); }
+
+  /* Countdown timer badge */
+  #timer {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--accent);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 999;
+  }
+  @media (max-width: 600px) {
+    #timer { position: static; display: inline-block; margin-bottom: 14px; }
+  }
+
+  /* Question blocks */
+  .q-block {
+    margin: 14px 0;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--row-alt);
+  }
+  .q-block label { display: block; font-weight: 600; margin-bottom: 6px; }
+  .q-options { font-weight: normal; margin-bottom: 8px; color: #333; }
+  body.dark .q-options { color: #ccc; }
+  .q-block input[type="text"], .q-block select {
+    width: 100%; max-width: 320px; padding: 7px 10px;
+    font-size: 14.5px; border: 1px solid var(--border); border-radius: 4px;
+  }
+  .q-block.correct { border-color: var(--correct); background: #eafaf0; }
+  .q-block.wrong { border-color: var(--wrong); background: #fdecea; }
+  body.dark .q-block.correct { background: #1c3a28; }
+  body.dark .q-block.wrong { background: #3a2020; }
+  .feedback-tag { display: inline-block; margin-left: 10px; font-weight: 600; font-size: 13.5px; }
+  .feedback-tag.correct-tag { color: var(--correct); }
+  .feedback-tag.wrong-tag { color: var(--wrong); }
+  .correct-answer-note { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* Submit / Reset / Results */
+  #submitBtn, #resetBtn {
+    display: inline-block; margin: 20px 8px 20px 0; padding: 12px 26px;
+    font-size: 16px; font-weight: 600; color: #ffffff;
+    background: var(--accent); border: none; border-radius: 6px; cursor: pointer;
+  }
+  #resetBtn { background: #7f8c8d; }
+  #submitBtn:hover, #resetBtn:hover { opacity: 0.9; }
+  #resultsBox {
+    display: none; margin-top: 10px; padding: 20px; border-radius: 8px;
+    background: #eef6ff; border: 1px solid #b7d8f5; text-align: center;
+  }
+  body.dark #resultsBox { background: #1a2b3a; border-color: #2d4a66; }
+  #resultsBox .score-number { font-size: 36px; font-weight: 700; color: var(--accent); }
+  #resultsBox .band-number { font-size: 22px; font-weight: 700; color: #1e6f5c; margin-top: 4px; }
+
+  .table-wrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 400px; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; font-size: 14px; }
+  th { background: var(--accent); color: var(--accent-text); }
+
+  /* Placeholder markers — remove/style away once real content is filled in */
+  .placeholder { color: #b03a2e; font-style: italic; }
+</style>
+</head>
+
+<body>
+
+  <!-- DARK MODE BUTTON -->
+  <button class="toggle-btn dark-btn" onclick="toggleMode()">
+    <span id="dark-icon">🌙</span>
+    <span id="dark-text">Dark Mode</span>
+  </button>
+
+  <!-- CLOCK (fixed at top, stays visible while scrolling) -->
+  <p id="currentTime"></p>
+
+  <!-- TIMER (visual 60-minute countdown) -->
+  <div id="timer">⏱ 60:00</div>
+
+  <div class="container">
+
+    <!-- NAV BAR — edit hrefs/labels to match your actual file names -->
+    <div class="nav">
+            <a href="Mock_Test_1.html" target="_blank"><button>Test 1</button></a>
+      <a href="Mock_Test_2.html" target="_blank"><button>Test 2</button></a>
+      <a href="Mock_Test_3.html" target="_blank"><button>Test 3</button></a>
+      <a href="Mock_Test_4.html" target="_blank"><button>Test 4</button></a>
+      <a href="Mock_Test_5.html" target="_blank"><button>Test 5</button></a>
+      <a href="Mock_Test_6.html" target="_blank"><button>Test 6</button></a>
+      <a href="Mock_Test_7.html" target="_blank"><button>Test 7</button></a>
+      <a href="Mock_Test_8.html" target="_blank"><button>Test 8</button></a>
+      <a href="Mock_Test_9.html" target="_blank"><button>Test 9</button></a>
+      <a href="Mock_Test_10.html" target="_blank"><button>Test 10</button></a>
+      <a href="Mock_Test_11.html" target="_blank"><button>Test 11</button></a>
+      <a href="Mock_Test_12.html" target="_blank"><button>Test 12</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 13</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 14</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 15</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 16</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 17</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 18</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 19</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 20</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 21</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 22</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 23</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 24</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 25</button></a>
+    </div>
+
+     
+
+<h1>IELTS Academic Reading — Self-Graded Mock Test 11</h1>
+<div class="subtitle">3 Passages · 40 Questions · Fill in your answers below, then click Submit for your score and band estimate.</div>
+        <hr />
+        
+
+<h2>PASSAGE 1</h2>
+<h3>The Domestication of the Dog</h3>
+<p>Dogs hold the distinction of being the first animal species domesticated by humans, a process that most genetic and archaeological evidence suggests began somewhere between 15,000 and 40,000 years ago, considerably predating the domestication of any other animal, including livestock species such as goats, sheep, and cattle. The precise timeline and location of dog domestication, however, remain subjects of ongoing scientific debate.</p>
+<p>Most researchers agree that dogs descended from a now-extinct population of gray wolves, though the exact process by which this transformation occurred is not entirely settled. One widely supported theory suggests that certain wolves, particularly those less fearful of humans, began scavenging near human settlements, drawn by discarded food waste. Over successive generations, wolves that tolerated human proximity most successfully would have gained a survival advantage, gradually leading to a self-domestication process rather than one driven by deliberate human intervention from the outset.</p>
+<p>As this relationship deepened over thousands of years, humans began actively selecting and breeding dogs for specific traits and purposes, including hunting assistance, guarding, herding livestock, and companionship. This selective breeding process, particularly intensified over the past few centuries, eventually gave rise to the remarkable diversity of modern dog breeds, which vary dramatically in size, appearance, and temperament despite belonging to a single species.</p>
+<p>Beyond their practical utility, dogs have developed a uniquely close social and emotional bond with humans, a relationship extensively studied by researchers across multiple scientific disciplines. Studies have shown that interactions between dogs and their owners can trigger the release of oxytocin, a hormone associated with bonding and attachment, in both species—a phenomenon rarely observed in human relationships with other domesticated animals to a comparable degree.</p>
+<p>Today, dogs serve in an extraordinarily wide range of roles beyond companionship, including search and rescue operations, assistance for individuals with disabilities, detection work in security and medical contexts, and therapeutic support in various clinical settings, reflecting the deep and multifaceted nature of the relationship that has developed between humans and dogs over tens of thousands of years of shared history.</p>
+
+
+<h3>Questions 1–4: True / False / Not Given</h3>
+<div class="q-block" data-q="1">
+  <label>1. Dogs were the first animal species domesticated by humans.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="2">
+  <label>2. Scientists agree completely on the exact timeline of dog domestication.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="3">
+  <label>3. Dogs are believed to have descended from a now-extinct population of gray wolves.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="4">
+  <label>4. Oxytocin release during dog-human interaction has been observed in both species.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+
+
+<h3>Questions 5–8: Multiple Choice</h3>
+<div class="q-block" data-q="5">
+  <label>5. What does the passage suggest about early dog domestication?</label>
+  <div class="q-options">A. It was entirely planned by early humans from the start B. It may have begun as a self-domestication process C. It occurred after livestock domestication D. It happened within a single generation</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="6">
+  <label>6. What theory is described regarding wolves and human settlements?</label>
+  <div class="q-options">A. Wolves were captured and forced into captivity B. Less fearful wolves scavenged near settlements, gaining a survival advantage C. Wolves were bred exclusively for hunting from the beginning D. Humans actively hunted all nearby wolf populations</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="7">
+  <label>7. What gave rise to the diversity of modern dog breeds?</label>
+  <div class="q-options">A. Random genetic mutation alone B. Selective breeding for specific traits over time C. Environmental factors alone D. Cross-breeding with other wild animals</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="8">
+  <label>8. What roles do dogs serve today, according to the passage?</label>
+  <div class="q-options">A. Only companionship B. Search and rescue, disability assistance, detection work, and therapy C. Exclusively guarding livestock D. Only hunting assistance</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+
+
+<h3>Questions 9–13: Sentence Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS from the passage for each answer.</em></p>
+<div class="q-block" data-q="9">
+  <label>9. Dog domestication considerably predates the domestication of __________ species.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="10">
+  <label>10. Wolves less fearful of humans may have gained a __________ advantage.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="11">
+  <label>11. Humans began breeding dogs for hunting, guarding, herding, and __________.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="12">
+  <label>12. Dog-human interaction can trigger release of __________, a bonding hormone.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="13">
+  <label>13. Dogs assist individuals with __________ in various roles today.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+
+<hr>
+
+<h2>PASSAGE 2</h2>
+<h3>The Rise of Electric Vehicles</h3>
+<p>Electric vehicles, though frequently discussed as a relatively recent development, actually have a history stretching back to the late 19th century, when early electric cars briefly competed alongside steam and gasoline-powered vehicles for dominance in the emerging automobile market. Electric vehicles of this early period offered notable advantages, including quiet operation and ease of use, but ultimately lost out to gasoline-powered cars during the early 20th century, largely due to the latter's greater range and the widespread development of petroleum-based fuel infrastructure.</p>
+<p>Interest in electric vehicles resurfaced periodically throughout the 20th century, often coinciding with periods of concern over oil prices or air pollution, though these earlier revivals generally failed to achieve lasting commercial success, primarily due to persistent limitations in battery technology, including high cost, limited driving range, and lengthy charging times compared to the convenience offered by conventional gasoline vehicles.</p>
+<p>The modern resurgence of electric vehicles, beginning notably in the early 21st century, has been driven substantially by significant advances in lithium-ion battery technology, which has dramatically improved energy density while simultaneously reducing costs, alongside growing governmental and consumer interest in reducing greenhouse gas emissions associated with conventional transportation. Several manufacturers, including established automakers alongside newer companies founded specifically around electric vehicle production, have played prominent roles in accelerating this modern transition.</p>
+<p>Despite considerable progress, electric vehicles continue to face certain adoption barriers. Charging infrastructure, while expanding rapidly in many regions, remains considerably less widespread and convenient than traditional refueling infrastructure in numerous areas, particularly in rural or less economically developed regions. Additionally, electric vehicles generally carry higher upfront purchase costs compared to comparable conventional vehicles, though this gap has been narrowing considerably as battery costs continue to decline, and many governments have introduced financial incentives aimed at further reducing this cost difference for consumers.</p>
+<p>Looking toward the future, many automotive industry analysts anticipate that electric vehicles will continue capturing an increasing share of the global automobile market in the coming decades, driven by continued technological improvement, expanding charging infrastructure, and increasingly ambitious government policies aimed at reducing transportation-related emissions as part of broader climate change mitigation strategies.</p>
+
+
+<h3>Questions 14–18: Matching Headings</h3>
+<p><em>Choose the correct heading for paragraphs 1–5.</em></p>
+<p><strong>List of Headings</strong><br>
+i. Remaining barriers to widespread adoption<br>
+ii. A more optimistic outlook for future growth<br>
+iii. Early competition among vehicle types<br>
+iv. Factors driving the modern resurgence<br>
+v. Failed revivals during the 20th century</p>
+<div class="q-block" data-q="14">
+  <label>14. Paragraph 1</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="15">
+  <label>15. Paragraph 2</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="16">
+  <label>16. Paragraph 3</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="17">
+  <label>17. Paragraph 4</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+<div class="q-block" data-q="18">
+  <label>18. Paragraph 5</label>
+  <input type="text" placeholder="i, ii, iii, iv, or v">
+</div>
+
+
+<h3>Questions 19–22: True / False / Not Given</h3>
+<div class="q-block" data-q="19">
+  <label>19. Early electric vehicles competed with steam and gasoline-powered vehicles in the 19th century.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="20">
+  <label>20. Earlier 20th-century revivals of electric vehicles generally achieved lasting commercial success.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="21">
+  <label>21. Lithium-ion battery advances have improved energy density and reduced costs.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+<div class="q-block" data-q="22">
+  <label>22. Charging infrastructure is equally widespread in all regions of the world.</label>
+  <select><option value="">-- Select --</option><option>True</option><option>False</option><option>Not Given</option></select>
+</div>
+
+
+<h3>Questions 23–26: Sentence Completion</h3>
+<div class="q-block" data-q="23">
+  <label>23. Early gasoline cars had greater __________ than early electric vehicles.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="24">
+  <label>24. Earlier EV revivals failed largely due to limitations in __________ technology.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="25">
+  <label>25. Electric vehicles generally carry higher __________ purchase costs than conventional vehicles.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="26">
+  <label>26. Many governments offer financial __________ to reduce EV cost differences for consumers.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+
+
+<hr>
+
+
+<h2>PASSAGE 3</h2>
+<h3>The Psychology of Habit Formation</h3>
+<p>Habits—automatic behaviors triggered by contextual cues rather than conscious deliberation—account for a substantial portion of daily human behavior, with some researchers estimating that a significant majority of everyday actions are performed habitually rather than as the result of active, deliberate decision-making in the moment.</p>
+<p>Psychologists studying habit formation generally describe a three-part process often referred to as the "habit loop," consisting of a cue, which triggers the behavior; a routine, the behavior itself; and a reward, which reinforces the association between the cue and the routine, making the behavior progressively more automatic with repetition. Over time, as this loop is repeated consistently within a stable context, the behavior becomes increasingly automatic, requiring progressively less conscious effort or motivation to perform.</p>
+<p>Research examining how long habit formation typically takes has produced somewhat varied findings, with one frequently cited study suggesting an average of around 66 days for a new behavior to become reasonably automatic, though the researchers found considerable individual variation, with some participants forming habits considerably faster and others requiring substantially longer periods, depending on the complexity of the behavior and individual differences between participants.</p>
+<p>Understanding habit formation carries considerable practical significance, particularly regarding efforts to establish beneficial habits, such as regular exercise or healthy eating patterns, or to break unwanted ones, such as smoking or excessive screen time. Behavioral scientists frequently emphasize the importance of consistent contextual cues in supporting habit formation, suggesting that anchoring new desired behaviors to existing stable routines—a strategy sometimes referred to as "habit stacking"—can substantially improve the likelihood of successfully establishing lasting behavioral change.</p>
+<p>Conversely, breaking unwanted habits often proves more challenging than establishing new ones, since existing neural pathways associated with well-established habitual behaviors do not simply disappear, even after a person consciously decides to stop performing the associated behavior. Instead, effective habit-breaking strategies frequently focus on modifying or removing the environmental cues that trigger unwanted behaviors, or deliberately substituting alternative, more desirable routines in response to the same triggering cues, rather than relying on willpower and conscious effort alone.</p>
+
+
+<h3>Questions 27–30: Multiple Choice</h3>
+<div class="q-block" data-q="27">
+  <label>27. What is a "habit loop," as described in the passage?</label>
+  <div class="q-options">A. A type of exercise routine B. A three-part process of cue, routine, and reward C. A medical treatment for addiction D. A type of memory test</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="28">
+  <label>28. According to the cited study, how long did habit formation take on average?</label>
+  <div class="q-options">A. 7 days B. 30 days C. 66 days D. One year</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="29">
+  <label>29. What is "habit stacking"?</label>
+  <div class="q-options">A. Performing multiple unrelated habits simultaneously B. Anchoring new behaviors to existing stable routines C. A method for measuring habit strength D. A type of psychological therapy</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+<div class="q-block" data-q="30">
+  <label>30. Why is breaking unwanted habits often more challenging than forming new ones?</label>
+  <div class="q-options">A. New habits require no neural pathways B. Existing neural pathways do not simply disappear after a decision to stop C. Unwanted habits are always more complex D. Breaking habits requires no environmental change</div>
+  <select><option value="">-- Select --</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+</div>
+
+
+<h3>Questions 31–35: Matching Information</h3>
+<p><em>Which paragraph (1–5) contains the following information?</em></p>
+<div class="q-block" data-q="31">
+  <label>31. A description of the three components of the habit loop</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="32">
+  <label>32. An explanation of strategies for breaking unwanted habits</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="33">
+  <label>33. A mention of the practical significance of understanding habit formation</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="34">
+  <label>34. A statement about the proportion of daily behavior that is habitual</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+<div class="q-block" data-q="35">
+  <label>35. A reference to individual variation in how long habit formation takes</label>
+  <input type="text" placeholder="Paragraph number">
+</div>
+
+
+<h3>Questions 36–40: Summary Completion</h3>
+<p><em>Use NO MORE THAN TWO WORDS for each answer.</em></p>
+<p>Habits are automatic behaviors triggered by contextual (36) __________ rather than conscious thought. The habit loop consists of a cue, a (37) __________, and a reward. One study found habit formation takes an average of around (38) __________ days, though this varies between individuals. A strategy called habit (39) __________ involves anchoring new behaviors to existing routines. Breaking unwanted habits often involves modifying environmental (40) __________ rather than relying on willpower alone.</p>
+<div class="q-block" data-q="36">
+  <label>36.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="37">
+  <label>37.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="38">
+  <label>38.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="39">
+  <label>39.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+<div class="q-block" data-q="40">
+  <label>40.</label>
+  <input type="text" placeholder="Your answer">
+</div>
+
+
+<hr>
+
+<button id="submitBtn" onclick="gradeTest()">Submit &amp; Get My Score</button>
+<button id="resetBtn" onclick="resetTest()">Reset</button>
+
+<div id="resultsBox">
+  <div>Your Score</div>
+  <div class="score-number" id="scoreDisplay">0 / 40</div>
+  <div class="band-number" id="bandDisplay">Band: —</div>
+  <p id="resultsNote" style="margin-top:14px; color:#555; font-size:13.5px;">Correct answers are highlighted green, incorrect ones red (with the correct answer shown below each). This is an approximate self-practice estimate only — official IELTS scoring uses its own conversion tables.</p>
+</div>
+
+<div class="table-wrap">
+<table style="margin-top:20px;">
+<thead><tr><th>Correct answers</th><th>Approximate Band</th></tr></thead>
+<tbody>
+<tr><td>39–40</td><td>9</td></tr>
+<tr><td>35–38</td><td>8</td></tr>
+<tr><td>30–34</td><td>7</td></tr>
+<tr><td>23–29</td><td>6</td></tr>
+<tr><td>16–22</td><td>5</td></tr>
+<tr><td>13–15</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+
+<script>
+const answerKey = {
+  1: ["True"],
+  2: ["False"],
+  3: ["True"],
+  4: ["True"],
+  5: ["B"],
+  6: ["B"],
+  7: ["B"],
+  8: ["B"],
+  9: ["livestock"],
+  10: ["survival"],
+  11: ["companionship"],
+  12: ["oxytocin"],
+  13: ["disabilities"],
+  14: ["iii"],
+  15: ["v"],
+  16: ["iv"],
+  17: ["i"],
+  18: ["ii"],
+  19: ["True"],
+  20: ["False"],
+  21: ["True"],
+  22: ["False"],
+  23: ["range"],
+  24: ["battery"],
+  25: ["upfront"],
+  26: ["incentives"],
+  27: ["B"],
+  28: ["C"],
+  29: ["B"],
+  30: ["B"],
+  31: ["Paragraph 2", "2"],
+  32: ["Paragraph 5", "5"],
+  33: ["Paragraph 4", "4"],
+  34: ["Paragraph 1", "1"],
+  35: ["Paragraph 3", "3"],
+  36: ["cues"],
+  37: ["routine"],
+  38: ["66"],
+  39: ["stacking"],
+  40: ["cues"]
+};
+
+// ---- Dark mode ----
+  function toggleMode() {
+    const body = document.body;
+    const icon = document.getElementById('dark-icon');
+    const text = document.getElementById('dark-text');
+    body.classList.toggle('dark');
+    if (body.classList.contains('dark')) {
+      icon.textContent = '☀️';
+      text.textContent = 'Light Mode';
+    } else {
+      icon.textContent = '🌙';
+      text.textContent = 'Dark Mode';
+    }
+  }
+
+  // ---- Live clock (Asia/Tokyo — change timeZone as needed) ----
+  function showTime() {
+    const now = new Date().toLocaleString('en-US', {
+      timeZone: 'Asia/Tokyo',
+      weekday: 'short', month: 'short', day: 'numeric', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true
+    });
+    document.getElementById('currentTime').innerHTML = now;
+  }
+  showTime();
+  setInterval(showTime, 1000);
+
+  // ---- Answer normalization + grading ----
+  function normalize(str) {
+    return str.trim().toLowerCase().replace(/[.,]/g, "");
+  }
+
+  function getBand(score) {
+    if (score >= 39) return 9;
+    if (score >= 35) return 8;
+    if (score >= 30) return 7;
+    if (score >= 23) return 6;
+    if (score >= 16) return 5;
+    if (score >= 13) return 4;
+    return "Below 4";
+  }
+
+  function gradeTest() {
+    let score = 0;
+    for (let i = 1; i <= 40; i++) {
+      const block = document.querySelector('.q-block[data-q="' + i + '"]');
+      if (!block) continue;
+      const field = block.querySelector('input[type="text"], select');
+      const userVal = field ? normalize(field.value || "") : "";
+      const correctAnswers = (answerKey[i] || []).map(normalize);
+      const isCorrect = correctAnswers.includes(userVal);
+
+      block.classList.remove("correct", "wrong");
+      const oldTag = block.querySelector(".feedback-tag");
+      if (oldTag) oldTag.remove();
+      const oldNote = block.querySelector(".correct-answer-note");
+      if (oldNote) oldNote.remove();
+
+      const tag = document.createElement("span");
+      tag.className = "feedback-tag " + (isCorrect ? "correct-tag" : "wrong-tag");
+      tag.textContent = isCorrect ? "✓ Correct" : "✗ Incorrect";
+      block.querySelector("label").appendChild(tag);
+
+      if (isCorrect) {
+        score++;
+        block.classList.add("correct");
+      } else {
+        block.classList.add("wrong");
+        const note = document.createElement("div");
+        note.className = "correct-answer-note";
+        note.textContent = "Correct answer: " + (answerKey[i] ? answerKey[i][0] : "N/A");
+        block.appendChild(note);
+      }
+    }
+
+    document.getElementById("scoreDisplay").textContent = score + " / 40";
+    document.getElementById("bandDisplay").textContent = "Approximate Band: " + getBand(score);
+    const resultsBox = document.getElementById("resultsBox");
+    resultsBox.style.display = "block";
+    resultsBox.scrollIntoView({ behavior: "smooth" });
+  }
+
+  function resetTest() {
+    document.querySelectorAll('.q-block input[type="text"]').forEach(el => el.value = "");
+    document.querySelectorAll('.q-block select').forEach(el => el.value = "");
+    document.querySelectorAll('.q-block').forEach(el => {
+      el.classList.remove("correct", "wrong");
+      const tag = el.querySelector(".feedback-tag");
+      if (tag) tag.remove();
+      const note = el.querySelector(".correct-answer-note");
+      if (note) note.remove();
+    });
+    document.getElementById("resultsBox").style.display = "none";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // ---- Countdown timer (visual only — does not auto-submit) ----
+  let secondsLeft = 60 * 60;
+  function updateTimer() {
+    const m = Math.floor(secondsLeft / 60);
+    const s = secondsLeft % 60;
+    document.getElementById("timer").textContent =
+      "⏱ " + String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+    if (secondsLeft > 0) secondsLeft--;
+  }
+  updateTimer();
+  setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>
