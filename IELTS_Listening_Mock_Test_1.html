@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IELTS Listening Mock Test 1 — With Audio, Self-Graded</title>
+<style>
+  :root {
+    --bg: #ffffff; --text: #1a1a1a; --muted: #555;
+    --border: #ddd; --accent: #2c3e50; --row-alt: #f7f8f9;
+    --correct: #1e8449; --wrong: #c0392b; --play: #1e6f5c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    background: var(--bg); color: var(--text);
+    max-width: 850px; margin: 0 auto; padding: 24px 18px 80px;
+    line-height: 1.6; font-size: 15.5px;
+  }
+  h1 { font-size: 24px; margin: 0 0 4px; }
+  .subtitle { color: var(--muted); font-size: 14px; margin-bottom: 16px; }
+  h2 { font-size: 20px; margin: 0 0 4px; }
+  h3 { font-size: 16px; margin: 20px 0 6px; }
+  em { color: var(--muted); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+  .warn { background: #fff4e5; border: 1px solid #f0c27a; padding: 10px 14px; border-radius: 6px; margin: 12px 0; font-size: 14px; }
+  .settings {
+    border: 1px solid var(--border); background: var(--row-alt);
+    border-radius: 8px; padding: 12px 16px; margin: 14px 0;
+  }
+  .settings .row { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; margin: 6px 0; }
+  .settings label { font-size: 14px; font-weight: 600; }
+  .settings select, .settings input[type="range"] { margin-left: 6px; max-width: 220px; }
+  .settings select { padding: 5px 8px; font-size: 14px; border: 1px solid var(--border); border-radius: 4px; }
+  .small { font-size: 13px; color: var(--muted); }
+
+  button { font-family: inherit; cursor: pointer; }
+  .btn {
+    padding: 8px 16px; font-size: 14.5px; font-weight: 600; color: #fff;
+    background: var(--accent); border: none; border-radius: 6px;
+  }
+  .btn:hover { opacity: .9; }
+  .btn.play { background: var(--play); }
+  .btn.grey { background: #7f8c8d; }
+  .btn:disabled { opacity: .45; cursor: not-allowed; }
+
+  .section {
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 16px 18px; margin: 22px 0; background: #fff;
+  }
+  .player {
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    margin: 10px 0 4px; padding: 10px 12px; background: #eef6ff;
+    border: 1px solid #b7d8f5; border-radius: 8px;
+  }
+  .status { font-size: 13.5px; color: var(--muted); margin-left: 6px; }
+
+  .q-block {
+    margin: 10px 0; padding: 9px 12px; border: 1px solid var(--border);
+    border-radius: 6px; background: var(--row-alt);
+  }
+  .q-block label { display: block; font-weight: 600; margin-bottom: 6px; }
+  .q-block input[type="text"], .q-block select {
+    width: 100%; max-width: 380px; padding: 7px 10px; font-size: 14.5px;
+    border: 1px solid var(--border); border-radius: 4px;
+  }
+  .q-block.correct { border-color: var(--correct); background: #eafaf0; }
+  .q-block.wrong { border-color: var(--wrong); background: #fdecea; }
+  .tag { margin-left: 10px; font-size: 13.5px; font-weight: 700; }
+  .tag.ok { color: var(--correct); } .tag.no { color: var(--wrong); }
+  .ans-note { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  .transcript { display: none; margin-top: 14px; }
+  .transcript summary { cursor: pointer; font-weight: 600; }
+  .transcript p { margin: 6px 0; font-size: 14.5px; }
+  .transcript b { color: var(--accent); }
+
+  #resultsBox {
+    display: none; margin-top: 12px; padding: 20px; border-radius: 8px;
+    background: #eef6ff; border: 1px solid #b7d8f5; text-align: center;
+  }
+  #resultsBox .score { font-size: 36px; font-weight: 700; color: var(--accent); }
+  #resultsBox .band { font-size: 22px; font-weight: 700; color: var(--play); }
+  .table-wrap { overflow-x: auto; margin-top: 18px; }
+  table { border-collapse: collapse; width: 100%; min-width: 360px; }
+  th, td { border: 1px solid var(--border); padding: 7px 10px; text-align: left; font-size: 14px; }
+  th { background: var(--accent); color: #fff; }
+  /* Dark mode toggle button */
+  .toggle-btn {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: #3498db;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s, transform 0.3s;
+    z-index: 1000;
+  }
+  body.dark { background: #121212; color: #e0e0e0; }
+  body.dark .container { background: #1e1e1e; }
+  body.dark h1 { color: #fff; }
+  body.dark .toggle-btn { background: #bb86fc; }
+  body.dark .q-block { background: #2a2a2a; border-color: #444; }
+  body.dark th { background: #3a3a5a; }
+  body.dark td { background: #242424; border-color: #444; }
+
+  /* Nav bar */
+  .nav { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+  .nav button { padding: 8px 14px; border: none; border-radius: 6px; background: #3498db; color: #fff; cursor: pointer; }
+  .nav button:hover { opacity: 0.9; }
+
+  /* Clock */
+  #currentTime {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    text-align: center;
+    font-size: 15px;
+    color: #4615b8;
+    margin: 0;
+    padding: 8px 0;
+    background: rgba(244,246,249,0.95);
+    z-index: 999;
+  }
+  body.dark #currentTime { color: #7ee07e; background: rgba(18,18,18,0.95); }
+
+  /* Countdown timer badge */
+  #timer {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: var(--accent);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 999;
+  }
+  @media (max-width: 600px) {
+    #timer { position: static; display: inline-block; margin-bottom: 14px; }
+  }
+
+  /* Question blocks */
+  .q-block {
+    margin: 14px 0;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--row-alt);
+  }
+  .q-block label { display: block; font-weight: 600; margin-bottom: 6px; }
+  .q-options { font-weight: normal; margin-bottom: 8px; color: #333; }
+  body.dark .q-options { color: #ccc; }
+  .q-block input[type="text"], .q-block select {
+    width: 100%; max-width: 320px; padding: 7px 10px;
+    font-size: 14.5px; border: 1px solid var(--border); border-radius: 4px;
+  }
+  .q-block.correct { border-color: var(--correct); background: #eafaf0; }
+  .q-block.wrong { border-color: var(--wrong); background: #fdecea; }
+  body.dark .q-block.correct { background: #1c3a28; }
+  body.dark .q-block.wrong { background: #3a2020; }
+  .feedback-tag { display: inline-block; margin-left: 10px; font-weight: 600; font-size: 13.5px; }
+  .feedback-tag.correct-tag { color: var(--correct); }
+  .feedback-tag.wrong-tag { color: var(--wrong); }
+  .correct-answer-note { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* Submit / Reset / Results */
+  #submitBtn, #resetBtn {
+    display: inline-block; margin: 20px 8px 20px 0; padding: 12px 26px;
+    font-size: 16px; font-weight: 600; color: #ffffff;
+    background: var(--accent); border: none; border-radius: 6px; cursor: pointer;
+  }
+  #resetBtn { background: #7f8c8d; }
+  #submitBtn:hover, #resetBtn:hover { opacity: 0.9; }
+  #resultsBox {
+    display: none; margin-top: 10px; padding: 20px; border-radius: 8px;
+    background: #eef6ff; border: 1px solid #b7d8f5; text-align: center;
+  }
+  body.dark #resultsBox { background: #1a2b3a; border-color: #2d4a66; }
+  #resultsBox .score-number { font-size: 36px; font-weight: 700; color: var(--accent); }
+  #resultsBox .band-number { font-size: 22px; font-weight: 700; color: #1e6f5c; margin-top: 4px; }
+
+  .table-wrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 400px; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; font-size: 14px; }
+  th { background: var(--accent); color: var(--accent-text); }
+
+  /* Placeholder markers — remove/style away once real content is filled in */
+  .placeholder { color: #b03a2e; font-style: italic; }
+</style>
+</head>
+<body>
+  <!-- DARK MODE BUTTON -->
+  <button class="toggle-btn dark-btn" onclick="toggleMode()">
+    <span id="dark-icon">🌙</span>
+    <span id="dark-text">Dark Mode</span>
+  </button>
+
+  <!-- CLOCK (fixed at top, stays visible while scrolling) -->
+  <p id="currentTime"></p>
+
+  <!-- TIMER (visual 30-minute countdown) -->
+  <div id="timer">⏱ 30:00</div>
+
+  <div class="container">
+
+    <!-- NAV BAR — edit hrefs/labels to match your actual file names -->
+    <div class="nav">
+      <a href="Mock_Test_1.html" target="_blank"><button>Test 1</button></a>
+      <a href="Mock_Test_2.html" target="_blank"><button>Test 2</button></a>
+      <a href="Mock_Test_3.html" target="_blank"><button>Test 3</button></a>
+      <a href="Mock_Test_4.html" target="_blank"><button>Test 4</button></a>
+      <a href="Mock_Test_5.html" target="_blank"><button>Test 5</button></a>
+      <a href="Mock_Test_6.html" target="_blank"><button>Test 6</button></a>
+      <a href="Mock_Test_7.html" target="_blank"><button>Test 7</button></a>
+      <a href="Mock_Test_8.html" target="_blank"><button>Test 8</button></a>
+      <a href="Mock_Test_9.html" target="_blank"><button>Test 9</button></a>
+      <a href="Mock_Test_10.html" target="_blank"><button>Test 10</button></a>
+      <a href="Mock_Test_11.html" target="_blank"><button>Test 11</button></a>
+      <a href="Mock_Test_12.html" target="_blank"><button>Test 12</button></a>
+      <a href="Mock_Test_13.html" target="_blank"><button>Test 13</button></a>
+      <a href="Mock_Test_14.html" target="_blank"><button>Test 14</button></a>
+      <a href="Mock_Test_15.html" target="_blank"><button>Test 15</button></a>
+      <a href="Mock_Test_16.html" target="_blank"><button>Test 16</button></a>
+      <a href="Mock_Test_17.html" target="_blank"><button>Test 17</button></a>
+      <a href="Mock_Test_18.html" target="_blank"><button>Test 18</button></a>
+      <a href="Mock_Test_19.html" target="_blank"><button>Test 19</button></a>
+      <a href="Mock_Test_20.html" target="_blank"><button>Test 20</button></a>
+      <a href="Mock_Test_21.html" target="_blank"><button>Test 21</button></a>
+      <a href="Mock_Test_22.html" target="_blank"><button>Test 22</button></a>
+      <a href="Mock_Test_23.html" target="_blank"><button>Test 23</button></a>
+      <a href="Mock_Test_24.html" target="_blank"><button>Test 24</button></a>
+      <a href="Mock_Test_25.html" target="_blank"><button>Test 25</button></a>
+    </div>
+<h1>IELTS Listening — Self-Graded Mock Test 1</h1>
+<div class="subtitle">4 sections · 40 questions · Audio plays through your browser's text-to-speech · Instant score and band estimate</div>
+
+<div id="noTTS" class="warn" style="display:none;">
+  <strong>Audio not supported in this browser.</strong> Try Chrome, Edge, or Safari. As a fallback you can reveal the scripts below and have someone read them aloud to you.
+  <br><button class="btn grey" style="margin-top:8px" onclick="revealTranscripts(true)">Show scripts (no audio)</button>
+</div>
+
+<div class="settings">
+  <div class="row">
+    <label>Voice 1 <select id="voice1"></select></label>
+    <label>Voice 2 <select id="voice2"></select></label>
+    <button class="btn grey" onclick="testVoices()">Test voices</button>
+  </div>
+  <div class="row">
+    <label>Speed <input type="range" id="rate" min="0.6" max="1.2" step="0.05" value="0.9"> <span id="rateVal">0.90×</span></label>
+    <label><input type="checkbox" id="examMode"> Exam mode (each section plays only once)</label>
+  </div>
+  <div class="small">
+    Tips: Read the questions for each section <em>before</em> pressing Play, as in the real test. Voice quality depends on your device. Two-speaker sections use Voice 1 and Voice 2 (a third speaker reuses Voice 1 at a lower pitch). Audio can't be paused mid-sentence — Pause stops at the current line and Resume replays that line.
+  </div>
+</div>
+
+<div id="sectionsRoot"></div>
+
+<hr>
+<button class="btn" id="submitBtn" onclick="gradeTest()">Submit &amp; Get My Score</button>
+<button class="btn grey" onclick="resetTest()">Reset</button>
+
+<div id="resultsBox">
+  <div>Your Score</div>
+  <div class="score" id="scoreDisplay">0 / 40</div>
+  <div class="band" id="bandDisplay">Band: —</div>
+  <p class="small" style="margin-top:12px">Correct answers are shown in green, incorrect in red with the right answer underneath. Scripts are now unlocked under each section so you can review what you missed. Band is an approximate practice estimate only.</p>
+</div>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>Correct answers (out of 40)</th><th>Approx. Listening band</th></tr></thead>
+<tbody>
+<tr><td>39–40</td><td>9</td></tr>
+<tr><td>37–38</td><td>8.5</td></tr>
+<tr><td>35–36</td><td>8</td></tr>
+<tr><td>32–34</td><td>7.5</td></tr>
+<tr><td>30–31</td><td>7</td></tr>
+<tr><td>26–29</td><td>6.5</td></tr>
+<tr><td>23–25</td><td>6</td></tr>
+<tr><td>18–22</td><td>5.5</td></tr>
+<tr><td>16–17</td><td>5</td></tr>
+<tr><td>13–15</td><td>4.5</td></tr>
+<tr><td>10–12</td><td>4</td></tr>
+</tbody>
+</table>
+</div>
+
+<script>
+/* ------------------------------------------------------------------ */
+/* DATA                                                                */
+/* ------------------------------------------------------------------ */
+const SECTIONS = [
+  {
+    id: 1,
+    title: "Section 1",
+    desc: "A telephone conversation between a woman and a receptionist at a leisure centre.",
+    speakers: { A: {label: "Receptionist", voice: 1, pitch: 1.0}, B: {label: "Priya", voice: 2, pitch: 1.0} },
+    lines: [
+      {s:"A", t:`Good morning, Lakeside Leisure Centre. This is Tom speaking. How can I help you?`},
+      {s:"B", t:`Hello. I'd like to join your adult swimming lessons, please. I've never really learned to swim properly.`},
+      {s:"A", t:`Of course, I'd be happy to help. Let me take a few details. Can I have your surname first?`},
+      {s:"B", t:`It's Nair. That's N, A, I, R.`},
+      {s:"A", t:`Thank you, Ms Nair. And a contact number, please?`},
+      {s:"B", t:`My mobile is zero seven seven one, five two three, eight four six nine.`},
+      {s:"A", t:`Zero seven seven one, five two three, eight four six nine. Got it. And your postcode, for our records?`},
+      {s:"B", t:`It's L, K, five, nine, T, R.`},
+      {s:"A", t:`L K five, nine T R. Thank you. Now, we run classes on several evenings. Which would suit you best?`},
+      {s:"B", t:`I finish work at half past five, so Tuesday and Thursday evenings would be ideal.`},
+      {s:"A", t:`Tuesday and Thursday. Let me check... Yes, there are places on both. And what's your current level? We have beginner, improver, and advanced groups.`},
+      {s:"B", t:`Definitely beginner. I can float, but that's about it.`},
+      {s:"A", t:`No problem at all. Beginner it is. Now, lessons come in three lengths: thirty minutes, forty-five minutes, or a full hour.`},
+      {s:"B", t:`Forty-five minutes sounds right. An hour would be too tiring after a day at work.`},
+      {s:"A", t:`Many people find that. May I ask what made you decide to learn now?`},
+      {s:"B", t:`Well, I've just bought a small kayak, and I'm going to be out on the lake most weekends. I want to feel safe if I fall in.`},
+      {s:"A", t:`That's very sensible. Right, the monthly fee for forty-five minute lessons is thirty-eight pounds. There's normally a joining fee of twenty pounds, but we're waiving it for everyone who signs up before the end of this month.`},
+      {s:"B", t:`Oh, that's good news. Then I'll sign up today.`},
+      {s:"A", t:`Wonderful. For your first lesson, you won't need to bring goggles, because we provide them. But do bring a towel, and a one-pound coin for the locker.`},
+      {s:"B", t:`A towel and a one-pound coin. Perfect. Thank you very much.`},
+      {s:"A", t:`You're welcome, Ms Nair. See you next Tuesday.`}
+    ],
+    groups: [
+      { heading: "Questions 1–5: Form Completion", instructions: "Write NO MORE THAN TWO WORDS AND/OR A NUMBER for each answer.",
+        html: `<p><strong>Swimming Lessons — Enquiry Form</strong></p>`,
+        qs: [
+          {n:1, type:"text", text:`Surname: ______`, ans:["Nair"]},
+          {n:2, type:"text", text:`Mobile number: ______`, ans:["07715238469"]},
+          {n:3, type:"text", text:`Postcode: ______`, ans:["LK5 9TR","LK59TR"]},
+          {n:4, type:"text", text:`Preferred evenings: Tuesday and ______`, ans:["Thursday"]},
+          {n:5, type:"text", text:`Level: ______`, ans:["beginner","a beginner"]}
+        ]},
+      { heading: "Questions 6–10: Multiple Choice", instructions: "Choose the correct letter, A, B or C.",
+        qs: [
+          {n:6, type:"select", text:`Which lesson length does Priya choose?`, opts:["30 minutes","45 minutes","60 minutes"], ans:["B"]},
+          {n:7, type:"select", text:`Why does Priya want to learn to swim?`, opts:["She wants to get fitter","She wants to feel safe when kayaking","She has found a job at the lake"], ans:["B"]},
+          {n:8, type:"select", text:`What is the monthly fee for her chosen lessons?`, opts:["£28","£38","£48"], ans:["B"]},
+          {n:9, type:"select", text:`What does the receptionist say about the joining fee?`, opts:["Priya must pay £20","It is waived if she signs up this month","It is half price for students"], ans:["B"]},
+          {n:10, type:"select", text:`What should Priya bring to her first lesson?`, opts:["Goggles and a swimming cap","A towel and a coin for the locker","A medical certificate"], ans:["B"]}
+        ]}
+    ]
+  },
+  {
+    id: 2,
+    title: "Section 2",
+    desc: "A talk by a guide at a farm park, welcoming visitors.",
+    speakers: { A: {label: "Guide", voice: 1, pitch: 1.0} },
+    lines: [
+      {s:"A", t:`Good morning, everyone, and welcome to Hartley Farm Park. My name's Grace, and I'll give you a short orientation before you set off.`},
+      {s:"A", t:`First, some practical information. The park opens at nine thirty every day, and the last entry is at three thirty. If you have a dog with you, please keep it on a lead at all times, as we have young animals around. Our picnic area is right beside the stream, just behind the car park, and it's a lovely spot if the weather's fine.`},
+      {s:"A", t:`Now, let me tell you about the five main areas. They're marked A to E on your map.`},
+      {s:"A", t:`Area A is the Red Barn, just beside the entrance. This is where you'll find our baby animals, and at eleven and two o'clock children can help to feed the lambs.`},
+      {s:"A", t:`Area B is the Apple Orchard, at the far end of the path on your left. Between September and October you can pick your own fruit, and we weigh it for you at the gate.`},
+      {s:"A", t:`Area C, the Pottery Studio, is next to the orchard. Our potters run short sessions where you can try making a clay bowl. Pieces are fired for you and can be collected the following week.`},
+      {s:"A", t:`Area D is the Adventure Trail, which covers the hillside. It has rope bridges and climbing nets, and it's suitable for ages five and over.`},
+      {s:"A", t:`And finally, Area E, the Lakeside Café, is where you can have lunch. The café is famous for its home-made ice cream, which is made with milk from our own cows.`},
+      {s:"A", t:`Tractor rides are available too. They cost three pounds per person, and depart from the Red Barn every hour, with the last ride leaving at four o'clock.`},
+      {s:"A", t:`Have a wonderful day!`}
+    ],
+    groups: [
+      { heading: "Questions 11–13: Sentence Completion", instructions: "Write NO MORE THAN TWO WORDS AND/OR A NUMBER for each answer.",
+        qs: [
+          {n:11, type:"text", text:`The park opens at ______ every day.`, ans:["9:30","9.30","930","9:30am","9.30am","9:30 am","nine thirty","half past nine"]},
+          {n:12, type:"text", text:`Dogs must be kept on a ______ at all times.`, ans:["lead","leash"]},
+          {n:13, type:"text", text:`The picnic area is beside the ______.`, ans:["stream"]}
+        ]},
+      { heading: "Questions 14–18: Matching", instructions: "Which area offers each activity? Choose the correct letter, A–E.",
+        html: `<p><strong>Areas:</strong> A Red Barn &nbsp; B Apple Orchard &nbsp; C Pottery Studio &nbsp; D Adventure Trail &nbsp; E Lakeside Café</p>`,
+        qs: [
+          {n:14, type:"select", text:`Feeding the lambs`, opts:["Red Barn","Apple Orchard","Pottery Studio","Adventure Trail","Lakeside Café"], ans:["A"]},
+          {n:15, type:"select", text:`Picking your own fruit`, opts:["Red Barn","Apple Orchard","Pottery Studio","Adventure Trail","Lakeside Café"], ans:["B"]},
+          {n:16, type:"select", text:`Making a clay bowl`, opts:["Red Barn","Apple Orchard","Pottery Studio","Adventure Trail","Lakeside Café"], ans:["C"]},
+          {n:17, type:"select", text:`Using climbing nets`, opts:["Red Barn","Apple Orchard","Pottery Studio","Adventure Trail","Lakeside Café"], ans:["D"]},
+          {n:18, type:"select", text:`Eating home-made ice cream`, opts:["Red Barn","Apple Orchard","Pottery Studio","Adventure Trail","Lakeside Café"], ans:["E"]}
+        ]},
+      { heading: "Questions 19–20: Sentence Completion", instructions: "Write NO MORE THAN TWO WORDS AND/OR A NUMBER for each answer.",
+        qs: [
+          {n:19, type:"text", text:`A tractor ride costs £______ per person.`, ans:["3","£3","three","3 pounds","three pounds"]},
+          {n:20, type:"text", text:`The last tractor ride leaves at ______.`, ans:["4","4pm","4 pm","4:00","4.00","400","four","4 o'clock","four o'clock","4:00pm"]}
+        ]}
+    ]
+  },
+  {
+    id: 3,
+    title: "Section 3",
+    desc: "A discussion between two university students and their tutor about a group research project.",
+    speakers: { A: {label: "Dr Collins", voice: 1, pitch: 1.0}, B: {label: "Emma", voice: 2, pitch: 1.0}, C: {label: "Ravi", voice: 1, pitch: 0.8} },
+    lines: [
+      {s:"A", t:`Good morning, Emma, Ravi. Come in. Let's go through your proposal for the recycling project.`},
+      {s:"B", t:`Thanks, Dr Collins. As you know, we're looking at how residents respond when a town changes its recycling rules.`},
+      {s:"A", t:`Yes. What made you choose that topic?`},
+      {s:"C", t:`Well, my hometown recently stopped collecting certain types of plastic, and there was a lot of discussion about it locally. We thought it would be interesting to see how people actually reacted.`},
+      {s:"A", t:`That's a good, real-world starting point. Now, tell me about your method.`},
+      {s:"B", t:`We're planning a questionnaire, aiming for about sixty responses, and then two interviews with council staff.`},
+      {s:"A", t:`Sixty is plenty. My only concern is the response rate. If you only send it online, you may get very few replies from older residents. I'd suggest leaving some paper copies at the town library as well.`},
+      {s:"C", t:`That's a great idea. We hadn't thought of that.`},
+      {s:"A", t:`Also, don't forget the ethics form. For an anonymous survey it's short, but it must be submitted by Friday, or you won't be able to start collecting data.`},
+      {s:"B", t:`We'll do it tomorrow. Can I ask about the literature review? Ravi found far too many articles, and we're not sure where to stop.`},
+      {s:"A", t:`I'd focus on studies from the last ten years. Anything older is likely to be out of date, given how quickly recycling technology and policy change.`},
+      {s:"C", t:`That will cut the list down a lot.`},
+      {s:"A", t:`Good. Now, the final presentation. You'll have fifteen minutes to present, followed by five minutes for questions.`},
+      {s:"B", t:`Fifteen minutes. Okay. Shall we divide up the work now?`},
+      {s:"A", t:`Yes, tell me who'll do what.`},
+      {s:"B", t:`I'll write the literature review, since I've already read most of the key papers.`},
+      {s:"C", t:`And I'll interview the council staff. I know someone who works there already, so it should be easy to arrange.`},
+      {s:"B", t:`We'll design the survey together, so that we agree on every question.`},
+      {s:"C", t:`Right. Emma's much better than me with statistics software, so she'll analyze the data.`},
+      {s:"B", t:`And Ravi's good at design, so he'll prepare the slides.`},
+      {s:"A", t:`That sounds like a sensible split. Let's meet again in two weeks to check your progress.`}
+    ],
+    groups: [
+      { heading: "Questions 21–25: Multiple Choice", instructions: "Choose the correct letter, A, B or C.",
+        qs: [
+          {n:21, type:"select", text:`Why did the students choose their topic?`, opts:["Dr Collins suggested it","A nearby town changed its recycling rules","They saw a television documentary"], ans:["B"]},
+          {n:22, type:"select", text:`What does Dr Collins advise about the questionnaire?`, opts:["Increase the target to 100 responses","Leave some paper copies at the library","Make the questionnaire shorter"], ans:["B"]},
+          {n:23, type:"select", text:`What must the students do by Friday?`, opts:["Submit the ethics form","Book interview rooms","Send a draft report"], ans:["A"]},
+          {n:24, type:"select", text:`Dr Collins recommends using sources from…`, opts:["the last five years","the last ten years","any period"], ans:["B"]},
+          {n:25, type:"select", text:`How long is the presentation itself?`, opts:["10 minutes","15 minutes","20 minutes"], ans:["B"]}
+        ]},
+      { heading: "Questions 26–30: Who Will Do Each Task?", instructions: "Choose Emma, Ravi, or Both.",
+        qs: [
+          {n:26, type:"select", text:`Writing the literature review`, opts:["Emma","Ravi","Both"], vals:["Emma","Ravi","Both"], ans:["Emma"]},
+          {n:27, type:"select", text:`Interviewing the council staff`, opts:["Emma","Ravi","Both"], vals:["Emma","Ravi","Both"], ans:["Ravi"]},
+          {n:28, type:"select", text:`Designing the survey`, opts:["Emma","Ravi","Both"], vals:["Emma","Ravi","Both"], ans:["Both"]},
+          {n:29, type:"select", text:`Analyzing the data`, opts:["Emma","Ravi","Both"], vals:["Emma","Ravi","Both"], ans:["Emma"]},
+          {n:30, type:"select", text:`Preparing the slides`, opts:["Emma","Ravi","Both"], vals:["Emma","Ravi","Both"], ans:["Ravi"]}
+        ]}
+    ]
+  },
+  {
+    id: 4,
+    title: "Section 4",
+    desc: "A university lecture on the history of coffee.",
+    speakers: { A: {label: "Lecturer", voice: 1, pitch: 1.0} },
+    lines: [
+      {s:"A", t:`Good afternoon, everyone. Today's lecture traces the history of coffee, one of the most widely traded commodities in the world, from its origins to the global industry we know today.`},
+      {s:"A", t:`Let's start with the legend. According to a popular story, coffee was discovered in Ethiopia by a goat herder called Kaldi, who noticed that his goats became unusually energetic after eating the red berries of a certain bush. Whether or not this is true, we know that coffee was being cultivated in Yemen by the fifteenth century, from where it spread across the Arab world.`},
+      {s:"A", t:`In cities such as Mecca and Cairo, coffee houses became important social centres. People gathered to drink coffee, play chess, and listen to music and storytelling. These places were often described as schools of the wise, because of the educated conversation you could find there.`},
+      {s:"A", t:`Coffee reached Europe in the early seventeenth century, largely through Venetian traders, who brought it to Italy. It quickly spread, and by the middle of the century the first coffee houses had opened in London. They were nicknamed penny universities, because for a penny you could buy a cup of coffee and listen to lively discussion on science, politics and business.`},
+      {s:"A", t:`For a long time, Arab merchants guarded their monopoly, and it was illegal to export fertile coffee seeds. However, in the late seventeenth century, the Dutch managed to obtain seedlings and began growing coffee in their colony on the island of Java. Soon afterwards, in the early eighteenth century, a French naval officer carried a single seedling across the Atlantic to the Caribbean island of Martinique, and from there coffee spread throughout Central and South America.`},
+      {s:"A", t:`This brings us to Brazil, whose warm climate and large areas of land proved ideal for coffee. Today, Brazil produces roughly a third of the world's coffee. Two species dominate global production: Arabica, which has a smoother flavour and is used in most specialty coffee, and Robusta, which is stronger, contains more caffeine, and is often used in instant coffee.`},
+      {s:"A", t:`Finally, let's consider some modern concerns. Many coffee farmers earn very little, as prices fluctuate dramatically. In response, the fair trade movement was established, and fair trade certification aims to guarantee farmers a minimum price for their crop, as well as encouraging more sustainable farming methods. Next week, we'll look at the economics of this in more detail. Thank you.`}
+    ],
+    groups: [
+      { heading: "Questions 31–35: Note Completion", instructions: "Write ONE WORD ONLY for each answer.",
+        html: `<p><strong>The History of Coffee — Notes</strong></p>`,
+        qs: [
+          {n:31, type:"text", text:`Legend: an Ethiopian herder noticed that his ______ became energetic after eating red berries.`, ans:["goats"]},
+          {n:32, type:"text", text:`Coffee was cultivated in Yemen by the ______ century.`, ans:["fifteenth","15th","15"]},
+          {n:33, type:"text", text:`Arab coffee houses were described as "schools of the ______".`, ans:["wise"]},
+          {n:34, type:"text", text:`Coffee reached Italy through ______ traders.`, ans:["Venetian","Venetians"]},
+          {n:35, type:"text", text:`London coffee houses were nicknamed "penny ______".`, ans:["universities"]}
+        ]},
+      { heading: "Questions 36–40: Sentence Completion", instructions: "Write ONE WORD ONLY for each answer.",
+        qs: [
+          {n:36, type:"text", text:`The Dutch began growing coffee on the island of ______.`, ans:["Java"]},
+          {n:37, type:"text", text:`A French naval officer carried a seedling to the Caribbean island of ______.`, ans:["Martinique"]},
+          {n:38, type:"text", text:`Brazil produces roughly a ______ of the world's coffee.`, ans:["third","a third","one third"]},
+          {n:39, type:"text", text:`______ is the species often used in instant coffee.`, ans:["Robusta"]},
+          {n:40, type:"text", text:`Fair trade certification aims to guarantee farmers a minimum ______.`, ans:["price"]}
+        ]}
+    ]
+  }
+];
+
+/* ------------------------------------------------------------------ */
+/* RENDER                                                              */
+/* ------------------------------------------------------------------ */
+const LETTERS = "ABCDEFGH";
+
+function escapeHtml(s) {
+  return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+function renderQuestion(q) {
+  let field;
+  if (q.type === "text") {
+    field = `<input type="text" placeholder="Your answer" autocomplete="off">`;
+  } else {
+    const opts = q.opts.map((o, i) => {
+      const val = q.vals ? q.vals[i] : LETTERS[i];
+      const label = q.vals ? o : `${LETTERS[i]}. ${o}`;
+      return `<option value="${val}">${escapeHtml(label)}</option>`;
+    }).join("");
+    field = `<select><option value="">-- Select --</option>${opts}</select>`;
+  }
+  return `<div class="q-block" data-q="${q.n}"><label>${q.n}. ${escapeHtml(q.text)}</label>${field}</div>`;
+}
+
+function renderSections() {
+  const root = document.getElementById("sectionsRoot");
+  root.innerHTML = SECTIONS.map(sec => {
+    const groups = sec.groups.map(g => `
+      <h3>${g.heading}</h3>
+      <p><em>${g.instructions}</em></p>
+      ${g.html || ""}
+      ${g.qs.map(renderQuestion).join("")}
+    `).join("");
+    const transcript = sec.lines.map(l =>
+      `<p><b>${sec.speakers[l.s].label}:</b> ${escapeHtml(l.t)}</p>`).join("");
+    return `
+    <div class="section" id="sec${sec.id}">
+      <h2>${sec.title}</h2>
+      <div class="small">${sec.desc}</div>
+      <div class="player">
+        <button class="btn play" onclick="playSection(${sec.id})">▶ Play</button>
+        <button class="btn grey" onclick="pauseSection(${sec.id})">⏸ Pause</button>
+        <button class="btn grey" onclick="stopSection(${sec.id})">⏹ Stop</button>
+        <span class="status" id="status${sec.id}">Ready</span>
+      </div>
+      ${groups}
+      <details class="transcript" id="tr${sec.id}">
+        <summary>Show script for ${sec.title}</summary>
+        ${transcript}
+      </details>
+    </div>`;
+  }).join("");
+}
+
+/* ------------------------------------------------------------------ */
+/* AUDIO (Web Speech API)                                              */
+/* ------------------------------------------------------------------ */
+const hasTTS = ("speechSynthesis" in window) && ("SpeechSynthesisUtterance" in window);
+let voices = [];
+const played = {};              // for exam mode
+const session = { token: 0, section: null, idx: 0, state: "idle" };
+
+function loadVoices() {
+  if (!hasTTS) return;
+  const all = speechSynthesis.getVoices();
+  voices = all.filter(v => v.lang && v.lang.toLowerCase().startsWith("en"));
+  if (voices.length === 0) voices = all;
+  const v1 = document.getElementById("voice1");
+  const v2 = document.getElementById("voice2");
+  const keep1 = v1.value, keep2 = v2.value;
+  const optionsHtml = voices.map((v, i) => `<option value="${i}">${escapeHtml(v.name)} (${v.lang})</option>`).join("");
+  v1.innerHTML = optionsHtml; v2.innerHTML = optionsHtml;
+  if (voices.length) {
+    // Prefer an en-GB voice for Voice 1 and a different voice for Voice 2
+    let i1 = voices.findIndex(v => /en[-_]GB/i.test(v.lang));
+    if (i1 < 0) i1 = 0;
+    let i2 = voices.findIndex((v, i) => i !== i1 && /en[-_]US/i.test(v.lang));
+    if (i2 < 0) i2 = voices.findIndex((v, i) => i !== i1);
+    if (i2 < 0) i2 = i1;
+    v1.value = keep1 !== "" && voices[keep1] ? keep1 : i1;
+    v2.value = keep2 !== "" && voices[keep2] ? keep2 : i2;
+  }
+}
+
+function getVoice(n) {
+  const sel = document.getElementById(n === 1 ? "voice1" : "voice2");
+  return voices[parseInt(sel.value, 10)] || null;
+}
+
+function makeUtterance(text, speakerCfg) {
+  const u = new SpeechSynthesisUtterance(text);
+  const v = getVoice(speakerCfg ? speakerCfg.voice : 1);
+  if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = "en-GB"; }
+  u.rate = parseFloat(document.getElementById("rate").value);
+  u.pitch = speakerCfg ? speakerCfg.pitch : 1;
+  return u;
+}
+
+function setStatus(id, msg) {
+  const el = document.getElementById("status" + id);
+  if (el) el.textContent = msg;
+}
+
+function speakNext(token) {
+  if (token !== session.token) return;
+  const sec = SECTIONS.find(s => s.id === session.section);
+  if (!sec) return;
+  if (session.idx >= sec.lines.length) {
+    session.state = "idle"; session.idx = 0;
+    setStatus(sec.id, "Finished");
+    return;
+  }
+  const line = sec.lines[session.idx];
+  const u = makeUtterance(line.t, sec.speakers[line.s]);
+  setStatus(sec.id, `Playing… (${session.idx + 1} / ${sec.lines.length})`);
+  u.onend = () => {
+    if (token !== session.token) return;
+    session.idx++;
+    setTimeout(() => speakNext(token), 450);
+  };
+  u.onerror = (e) => {
+    if (token !== session.token) return;
+    if (e.error === "interrupted" || e.error === "canceled") return;
+    session.idx++;
+    setTimeout(() => speakNext(token), 200);
+  };
+  speechSynthesis.speak(u);
+}
+
+function haltAudio() {
+  session.token++;
+  if (hasTTS) speechSynthesis.cancel();
+}
+
+function playSection(id) {
+  if (!hasTTS) { alert("Your browser does not support text-to-speech audio."); return; }
+  const exam = document.getElementById("examMode").checked;
+  if (session.state === "playing" && session.section === id) return; // already playing: ignore accidental double-click
+  const resuming = session.state === "paused" && session.section === id;
+  if (exam && played[id] && !resuming) {
+    setStatus(id, "Exam mode: this section has already been played.");
+    return;
+  }
+  if (session.section !== null && session.section !== id && session.state !== "idle") {
+    setStatus(session.section, "Stopped");
+  }
+  haltAudio();
+  if (!resuming) { session.idx = 0; }
+  session.section = id;
+  session.state = "playing";
+  if (exam) played[id] = true;
+  const token = session.token;
+  setTimeout(() => speakNext(token), 120);
+}
+
+function pauseSection(id) {
+  if (session.section !== id || session.state !== "playing") return;
+  haltAudio();
+  session.state = "paused";
+  setStatus(id, "Paused — press Play to resume");
+}
+
+function stopSection(id) {
+  if (session.section !== id) return;
+  haltAudio();
+  session.state = "idle"; session.idx = 0;
+  setStatus(id, "Stopped");
+}
+
+function testVoices() {
+  if (!hasTTS) return;
+  haltAudio();
+  session.state = "idle";
+  const a = makeUtterance("This is Voice 1. Can you hear me clearly?", {voice: 1, pitch: 1});
+  const b = makeUtterance("And this is Voice 2. Adjust the speed if you need to.", {voice: 2, pitch: 1});
+  setTimeout(() => { speechSynthesis.speak(a); speechSynthesis.speak(b); }, 120);
+}
+
+function revealTranscripts(open) {
+  document.querySelectorAll(".transcript").forEach(d => { d.style.display = "block"; if (open) d.open = true; });
+}
+
+/* ------------------------------------------------------------------ */
+/* GRADING                                                             */
+/* ------------------------------------------------------------------ */
+function norm(s) { return String(s).trim().toLowerCase().replace(/[.,]/g, "").replace(/\s+/g, " "); }
+function matches(user, accepted) {
+  const u = norm(user);
+  if (!u) return false;
+  const uNoSpace = u.replace(/[\s-]/g, "");
+  return accepted.some(a => {
+    const n = norm(a);
+    return n === u || n.replace(/[\s-]/g, "") === uNoSpace;
+  });
+}
+function getBand(score) {
+  if (score >= 39) return "9";
+  if (score >= 37) return "8.5";
+  if (score >= 35) return "8";
+  if (score >= 32) return "7.5";
+  if (score >= 30) return "7";
+  if (score >= 26) return "6.5";
+  if (score >= 23) return "6";
+  if (score >= 18) return "5.5";
+  if (score >= 16) return "5";
+  if (score >= 13) return "4.5";
+  if (score >= 10) return "4";
+  return "Below 4";
+}
+
+function allQuestions() {
+  const out = [];
+  SECTIONS.forEach(s => s.groups.forEach(g => g.qs.forEach(q => out.push(q))));
+  return out;
+}
+
+function gradeTest() {
+  haltAudio(); session.state = "idle";
+  let score = 0;
+  allQuestions().forEach(q => {
+    const block = document.querySelector(`.q-block[data-q="${q.n}"]`);
+    const field = block.querySelector("input, select");
+    const ok = matches(field.value || "", q.ans);
+    block.classList.remove("correct", "wrong");
+    block.querySelectorAll(".tag, .ans-note").forEach(e => e.remove());
+    const tag = document.createElement("span");
+    tag.className = "tag " + (ok ? "ok" : "no");
+    tag.textContent = ok ? "✓ Correct" : "✗ Incorrect";
+    block.querySelector("label").appendChild(tag);
+    if (ok) { score++; block.classList.add("correct"); }
+    else {
+      block.classList.add("wrong");
+      const note = document.createElement("div");
+      note.className = "ans-note";
+      let shown = q.ans[0];
+      if (q.type === "select" && !q.vals) shown = `${q.ans[0]}. ${q.opts[LETTERS.indexOf(q.ans[0])]}`;
+      note.textContent = "Correct answer: " + shown;
+      block.appendChild(note);
+    }
+  });
+  document.getElementById("scoreDisplay").textContent = score + " / 40";
+  document.getElementById("bandDisplay").textContent = "Approximate Band: " + getBand(score);
+  const box = document.getElementById("resultsBox");
+  box.style.display = "block";
+  revealTranscripts(false);
+  box.scrollIntoView({ behavior: "smooth" });
+}
+
+function resetTest() {
+  haltAudio(); session.state = "idle"; session.idx = 0; session.section = null;
+  Object.keys(played).forEach(k => delete played[k]);
+  document.querySelectorAll(".q-block input").forEach(e => e.value = "");
+  document.querySelectorAll(".q-block select").forEach(e => e.value = "");
+  document.querySelectorAll(".q-block").forEach(b => {
+    b.classList.remove("correct", "wrong");
+    b.querySelectorAll(".tag, .ans-note").forEach(e => e.remove());
+  });
+  document.querySelectorAll(".transcript").forEach(d => { d.style.display = "none"; d.open = false; });
+  SECTIONS.forEach(s => setStatus(s.id, "Ready"));
+  document.getElementById("resultsBox").style.display = "none";
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* ------------------------------------------------------------------ */
+/* INIT                                                                */
+/* ------------------------------------------------------------------ */
+renderSections();
+if (!hasTTS) {
+  document.getElementById("noTTS").style.display = "block";
+} else {
+  loadVoices();
+  if (speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = loadVoices;
+}
+document.getElementById("rate").addEventListener("input", e => {
+  document.getElementById("rateVal").textContent = parseFloat(e.target.value).toFixed(2) + "×";
+});
+window.addEventListener("beforeunload", () => { if (hasTTS) speechSynthesis.cancel(); });
+  // ---- Dark mode ----
+  function toggleMode() {
+    const body = document.body;
+    const icon = document.getElementById('dark-icon');
+    const text = document.getElementById('dark-text');
+    body.classList.toggle('dark');
+    if (body.classList.contains('dark')) {
+      icon.textContent = '☀️';
+      text.textContent = 'Light Mode';
+    } else {
+      icon.textContent = '🌙';
+      text.textContent = 'Dark Mode';
+    }
+  }
+
+  // ---- Live clock (Asia/Tokyo — change timeZone as needed) ----
+  function showTime() {
+    const now = new Date().toLocaleString('en-US', {
+      timeZone: 'Asia/Tokyo',
+      weekday: 'short', month: 'short', day: 'numeric', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true
+    });
+    document.getElementById('currentTime').innerHTML = now;
+  }
+  showTime();
+  setInterval(showTime, 1000);
+
+  // ---- Answer normalization + grading ----
+  function normalize(str) {
+    return str.trim().toLowerCase().replace(/[.,]/g, "");
+  }
+
+  function getBand(score) {
+    if (score >= 39) return 9;
+    if (score >= 35) return 8;
+    if (score >= 30) return 7;
+    if (score >= 23) return 6;
+    if (score >= 16) return 5;
+    if (score >= 13) return 4;
+    return "Below 4";
+  }
+
+  function gradeTest() {
+    let score = 0;
+    for (let i = 1; i <= 40; i++) {
+      const block = document.querySelector('.q-block[data-q="' + i + '"]');
+      if (!block) continue;
+      const field = block.querySelector('input[type="text"], select');
+      const userVal = field ? normalize(field.value || "") : "";
+      const correctAnswers = (answerKey[i] || []).map(normalize);
+      const isCorrect = correctAnswers.includes(userVal);
+
+      block.classList.remove("correct", "wrong");
+      const oldTag = block.querySelector(".feedback-tag");
+      if (oldTag) oldTag.remove();
+      const oldNote = block.querySelector(".correct-answer-note");
+      if (oldNote) oldNote.remove();
+
+      const tag = document.createElement("span");
+      tag.className = "feedback-tag " + (isCorrect ? "correct-tag" : "wrong-tag");
+      tag.textContent = isCorrect ? "✓ Correct" : "✗ Incorrect";
+      block.querySelector("label").appendChild(tag);
+
+      if (isCorrect) {
+        score++;
+        block.classList.add("correct");
+      } else {
+        block.classList.add("wrong");
+        const note = document.createElement("div");
+        note.className = "correct-answer-note";
+        note.textContent = "Correct answer: " + (answerKey[i] ? answerKey[i][0] : "N/A");
+        block.appendChild(note);
+      }
+    }
+
+    document.getElementById("scoreDisplay").textContent = score + " / 40";
+    document.getElementById("bandDisplay").textContent = "Approximate Band: " + getBand(score);
+    const resultsBox = document.getElementById("resultsBox");
+    resultsBox.style.display = "block";
+    resultsBox.scrollIntoView({ behavior: "smooth" });
+  }
+
+  function resetTest() {
+    document.querySelectorAll('.q-block input[type="text"]').forEach(el => el.value = "");
+    document.querySelectorAll('.q-block select').forEach(el => el.value = "");
+    document.querySelectorAll('.q-block').forEach(el => {
+      el.classList.remove("correct", "wrong");
+      const tag = el.querySelector(".feedback-tag");
+      if (tag) tag.remove();
+      const note = el.querySelector(".correct-answer-note");
+      if (note) note.remove();
+    });
+    document.getElementById("resultsBox").style.display = "none";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // ---- Countdown timer (visual only — does not auto-submit) ----
+  let secondsLeft = 30 * 60;
+  function updateTimer() {
+    const m = Math.floor(secondsLeft / 60);
+    const s = secondsLeft % 60;
+    document.getElementById("timer").textContent =
+      "⏱ " + String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+    if (secondsLeft > 0) secondsLeft--;
+  }
+  updateTimer();
+  setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>
