@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IELTS Listening — Mock Test 16</title>
+<style>
+  :root {
+    --bg: #f4f6f9; --card: #ffffff; --text: #1a1a1a; --muted: #555;
+    --border: #ddd; --accent: #2c3e50; --accent-text: #ffffff;
+    --row-alt: #f7f8f9; --correct: #1e8449; --wrong: #c0392b;
+    --btn: #1e6f5c; --btn-grey: #7f8c8d;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6;
+    padding: 16px; padding-top: 48px; transition: background 0.3s, color 0.3s;
+  }
+  body.dark {
+    --bg: #121212; --card: #1e1e1e; --text: #e0e0e0; --muted: #aaa;
+    --border: #444; --row-alt: #242424; --accent: #3a3a5a;
+    background: #121212; color: #e0e0e0;
+  }
+  #currentTime {
+    position: fixed; top: 0; left: 0; width: 100%; text-align: center;
+    font-size: 14px; color: #4615b8; padding: 8px 0;
+    background: rgba(244,246,249,0.95); z-index: 999;
+  }
+  body.dark #currentTime { color: #7ee07e; background: rgba(18,18,18,0.95); }
+  #timer {
+    position: fixed; top: 16px; right: 16px; background: var(--accent);
+    color: white; padding: 8px 16px; border-radius: 20px; font-weight: 600;
+    font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 999;
+    white-space: nowrap;
+  }
+  .toggle-btn {
+    position: fixed; left: 16px; top: 16px; padding: 10px 16px; border: none;
+    border-radius: 30px; cursor: pointer; font-size: 14px; background: #3498db;
+    color: white; display: flex; align-items: center; gap: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 1000;
+  }
+  body.dark .toggle-btn { background: #bb86fc; }
+  .container {
+    max-width: 860px; margin: 40px auto 0; background: var(--card);
+    padding: 28px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+  h1 { text-align: center; color: #2c3e50; font-size: 24px; margin-bottom: 6px; }
+  body.dark h1 { color: #fff; }
+  .subtitle { text-align: center; color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+  .nav { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 24px; }
+  .nav a { text-decoration: none; }
+  .nav button {
+    padding: 8px 14px; border: none; border-radius: 6px; background: #3498db;
+    color: #fff; cursor: pointer; font-size: 13px;
+  }
+  .nav button:hover { opacity: 0.9; }
+  .settings {
+    border: 1px solid var(--border); border-radius: 8px; padding: 16px;
+    margin-bottom: 20px; background: var(--row-alt);
+  }
+  .row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin: 10px 0; }
+  .row label { display: inline-flex; align-items: center; gap: 8px; }
+  .small { font-size: 13.5px; color: var(--muted); margin-top: 8px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    border: 0; border-radius: 6px; padding: 10px 16px; background: var(--btn);
+    color: white; font-size: 14px; cursor: pointer; min-height: 40px;
+  }
+  .btn.grey { background: var(--btn-grey); }
+  .btn:hover { opacity: 0.9; }
+  .section {
+    border: 1px solid var(--border); border-radius: 8px; padding: 18px;
+    margin: 24px 0; background: var(--row-alt);
+  }
+  .section h2 {
+    font-size: 19px; margin-bottom: 6px; border-bottom: 2px solid var(--accent);
+    padding-bottom: 6px;
+  }
+  .section .desc { font-size: 14px; color: var(--muted); margin-bottom: 12px; }
+  .player { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .status { font-size: 13px; color: var(--muted); }
+  h3 { font-size: 16px; margin: 18px 0 6px; }
+  .instructions { font-style: italic; color: var(--muted); margin-bottom: 12px; font-size: 14px; }
+  .q-block {
+    margin: 12px 0; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 6px; background: var(--card);
+  }
+  .q-block label { display: block; font-weight: 600; margin-bottom: 8px; }
+  .q-block input[type="text"], .q-block select {
+    width: 100%; max-width: 340px; padding: 8px 12px; font-size: 15px;
+    border: 1px solid var(--border); border-radius: 4px; background: var(--card); color: var(--text);
+  }
+  .q-block.correct { border-color: var(--correct); background: #eafaf0; }
+  .q-block.wrong { border-color: var(--wrong); background: #fdecea; }
+  body.dark .q-block.correct { background: #1c3a28; }
+  body.dark .q-block.wrong { background: #3a2020; }
+  .tag { display: inline-block; margin-left: 10px; font-size: 13px; font-weight: 700; }
+  .tag.ok { color: var(--correct); }
+  .tag.no { color: var(--wrong); }
+  .ans-note { margin-top: 6px; font-size: 13px; color: var(--muted); }
+  .transcript {
+    margin-top: 16px; padding: 12px; border: 1px solid var(--border);
+    border-radius: 6px; background: var(--card);
+  }
+  .transcript summary { cursor: pointer; font-weight: 600; }
+  .transcript p { margin: 8px 0; font-size: 14.5px; }
+  .warn {
+    margin: 14px 0; padding: 14px; border: 1px solid #e0a13a; border-radius: 8px;
+    background: #fff7e6; color: #5d430e;
+  }
+  body.dark .warn { background: #382d18; color: #f4d99c; border-color: #735a2a; }
+  #submitBtn, #resetBtn { margin: 20px 10px 20px 0; padding: 12px 26px; font-size: 16px; font-weight: 600; }
+  #resultsBox {
+    display: none; margin-top: 16px; padding: 24px; border-radius: 10px;
+    background: #edf5ff; border: 1px solid #c5dcf5; text-align: center;
+  }
+  body.dark #resultsBox { background: #1a2b3a; border-color: #2d4a66; }
+  #resultsBox .score { font-size: 52px; font-weight: 800; color: #2c3e50; margin: 12px 0 4px; }
+  #resultsBox .band { font-size: 28px; font-weight: 800; color: #207765; }
+  body.dark #resultsBox .score { color: #e7eef7; }
+  body.dark #resultsBox .band { color: #66c7ad; }
+  .table-wrap { overflow-x: auto; margin-top: 24px; }
+  table { border-collapse: collapse; width: 100%; min-width: 360px; }
+  th, td { border: 1px solid var(--border); padding: 10px 12px; text-align: left; font-size: 14px; }
+  th { background: var(--accent); color: var(--accent-text); }
+  @media (max-width: 700px) {
+    body { padding: 10px; padding-top: 52px; }
+    .container { margin: 12px auto 0; padding: 16px; }
+    h1 { font-size: 20px; }
+    .toggle-btn { left: 10px; top: 36px; padding: 8px 12px; font-size: 12px; }
+    #timer { position: sticky; top: 36px; display: table; margin: 10px auto 14px; }
+    .nav { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .nav button { width: 100%; padding: 9px 4px; font-size: 12px; }
+    .row { flex-direction: column; align-items: stretch; }
+    .q-block input, .q-block select { max-width: 100%; min-height: 42px; font-size: 16px; }
+    #submitBtn, #resetBtn { width: 100%; margin: 8px 0; }
+    .player .btn { flex: 1 1 30%; }
+  }
+</style>
+</head>
+<body>
+
+  <button class="toggle-btn" onclick="toggleMode()">
+    <span id="dark-icon">🌙</span>
+    <span id="dark-text">Dark Mode</span>
+  </button>
+
+  <p id="currentTime"></p>
+  <div id="timer" role="timer">⏱ 30:00</div>
+
+  <div class="container">
+
+    <div class="nav">
+   <a href="IELTS_Listening_Mock_Test_1.html" target="_blank"><button>Test 1</button></a>
+<a href="IELTS_Listening_Mock_Test_2.html" target="_blank"><button>Test 2</button></a>
+<a href="IELTS_Listening_Mock_Test_3.html" target="_blank"><button>Test 3</button></a>
+<a href="IELTS_Listening_Mock_Test_4.html" target="_blank"><button>Test 4</button></a>
+<a href="IELTS_Listening_Mock_Test_5.html" target="_blank"><button>Test 5</button></a>
+<a href="IELTS_Listening_Mock_Test_6.html" target="_blank"><button>Test 6</button></a>
+<a href="IELTS_Listening_Mock_Test_7.html" target="_blank"><button>Test 7</button></a>
+<a href="IELTS_Listening_Mock_Test_8.html" target="_blank"><button>Test 8</button></a>
+<a href="IELTS_Listening_Mock_Test_9.html" target="_blank"><button>Test 9</button></a>
+<a href="IELTS_Listening_Mock_Test_10.html" target="_blank"><button>Test 10</button></a>
+<a href="IELTS_Listening_Mock_Test_11.html" target="_blank"><button>Test 11</button></a>
+<a href="IELTS_Listening_Mock_Test_12.html" target="_blank"><button>Test 12</button></a>
+<a href="IELTS_Listening_Mock_Test_13.html" target="_blank"><button>Test 13</button></a>
+<a href="IELTS_Listening_Mock_Test_14.html" target="_blank"><button>Test 14</button></a>
+<a href="IELTS_Listening_Mock_Test_15.html" target="_blank"><button>Test 15</button></a>
+<a href="IELTS_Listening_Mock_Test_16.html" target="_blank"><button>Test 16</button></a>
+<a href="IELTS_Listening_Mock_Test_17.html" target="_blank"><button>Test 17</button></a>
+<a href="IELTS_Listening_Mock_Test_18.html" target="_blank"><button>Test 18</button></a>
+<a href="IELTS_Listening_Mock_Test_19.html" target="_blank"><button>Test 19</button></a>
+<a href="IELTS_Listening_Mock_Test_20.html" target="_blank"><button>Test 20</button></a>
+<a href="IELTS_Listening_Mock_Test_21.html" target="_blank"><button>Test 21</button></a>
+<a href="IELTS_Listening_Mock_Test_22.html" target="_blank"><button>Test 22</button></a>
+<a href="IELTS_Listening_Mock_Test_23.html" target="_blank"><button>Test 23</button></a>
+<a href="IELTS_Listening_Mock_Test_24.html" target="_blank"><button>Test 24</button></a>
+<a href="IELTS_Listening_Mock_Test_25.html" target="_blank"><button>Test 25</button></a>
+    </div>
+
+    <h1>IELTS Academic — Self-Graded Mock Test 16</h1>
+    <div class="subtitle">4 sections · 40 questions · Audio via browser text-to-speech · Instant score & band estimate</div>
+
+    <div id="noTTS" class="warn" style="display:none;">
+      <strong>Audio not supported in this browser.</strong> Please use Chrome, Edge or Safari.
+      <br><button class="btn grey" style="margin-top:10px" onclick="revealAllTranscripts()">Show all scripts</button>
+    </div>
+
+    <div class="settings">
+      <div class="row">
+        <label>Voice 1 <select id="voice1"></select></label>
+        <label>Voice 2 <select id="voice2"></select></label>
+        <button class="btn grey" onclick="testVoices()">Test voices</button>
+      </div>
+      <div class="row">
+        <label>Speed <input type="range" id="rate" min="0.6" max="1.2" step="0.05" value="1.0"> <span id="rateVal">1.00×</span></label>
+        <label><input type="checkbox" id="examMode"> Exam mode (each section plays only once)</label>
+      </div>
+      <div class="small">
+        Tip: Read the questions for each section before pressing Play. Two-speaker sections use Voice 1 and Voice 2.
+      </div>
+    </div>
+
+    <div id="sectionsRoot"></div>
+
+    <hr style="margin:28px 0; border:none; border-top:1px solid var(--border);">
+
+    <button class="btn" id="submitBtn" onclick="gradeTest()">Submit & Get My Score</button>
+    <button class="btn grey" id="resetBtn" onclick="resetTest()">Reset</button>
+
+    <div id="resultsBox">
+      <div>Your Score</div>
+      <div class="score" id="scoreDisplay">0 / 40</div>
+      <div class="band" id="bandDisplay">Band: —</div>
+      <p class="small" style="margin-top:14px">
+        Correct answers are shown in green. Incorrect answers show the right answer below.
+        Band is an approximate practice estimate only.
+      </p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Correct answers (out of 40)</th><th>Approx. Listening band</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>39–40</td><td>9</td></tr>
+          <tr><td>37–38</td><td>8.5</td></tr>
+          <tr><td>35–36</td><td>8</td></tr>
+          <tr><td>32–34</td><td>7.5</td></tr>
+          <tr><td>30–31</td><td>7</td></tr>
+          <tr><td>26–29</td><td>6.5</td></tr>
+          <tr><td>23–25</td><td>6</td></tr>
+          <tr><td>18–22</td><td>5.5</td></tr>
+          <tr><td>16–17</td><td>5</td></tr>
+          <tr><td>13–15</td><td>4.5</td></tr>
+          <tr><td>10–12</td><td>4</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+<script>
+const SECTIONS = [
+  {
+    id: 1,
+    title: "Section 1",
+    desc: "A phone call booking theatre tickets.",
+    speakers: {
+      A: { label: "Box Office", voice: 1, pitch: 1.0 },
+      B: { label: "Ms Nguyen", voice: 2, pitch: 1.0 }
+    },
+    lines: [
+      { s: "A", t: "Grand Theatre box office, good morning." },
+      { s: "B", t: "Hello, I'd like to book tickets for The Lighthouse, please." },
+      { s: "A", t: "Certainly. Your surname?" },
+      { s: "B", t: "Nguyen. N, G, U, Y, E, N." },
+      { s: "A", t: "Which date?" },
+      { s: "B", t: "Saturday the eleventh, please." },
+      { s: "A", t: "How many tickets?" },
+      { s: "B", t: "Four." },
+      { s: "A", t: "Tickets in the circle are twenty-eight pounds each. The stalls are thirty-five." },
+      { s: "B", t: "The circle, please." },
+      { s: "A", t: "The performance starts at seven thirty, and lasts two and a half hours, including an interval. There's a booking fee of two pounds." },
+      { s: "B", t: "That's fine. Where do I collect the tickets?" },
+      { s: "A", t: "At the box office, any time up to thirty minutes before the show." }
+    ],
+    groups: [
+      {
+        heading: "Questions 1–5: Form Completion",
+        instructions: "Write NO MORE THAN TWO WORDS AND/OR A NUMBER.",
+        html: "<p><strong>Ticket Booking</strong></p>",
+        qs: [
+          { n: 1, type: "text", text: "Surname: ______", ans: ["Nguyen"] },
+          { n: 2, type: "text", text: "Show: The ______", ans: ["Lighthouse"] },
+          { n: 3, type: "text", text: "Day: ______", ans: ["Saturday"] },
+          { n: 4, type: "text", text: "Number of tickets: ______", ans: ["4", "four"] },
+          { n: 5, type: "text", text: "Price per ticket: £______", ans: ["28", "£28", "twenty-eight", "twenty eight"] }
+        ]
+      },
+      {
+        heading: "Questions 6–10: Multiple Choice",
+        instructions: "Choose the correct letter, A, B or C.",
+        qs: [
+          { n: 6, type: "select", text: "Where will they sit?", opts: ["The stalls", "The circle", "A box"], ans: ["B"] },
+          { n: 7, type: "select", text: "What time does the show start?", opts: ["7.00", "7.30", "8.00"], ans: ["B"] },
+          { n: 8, type: "select", text: "How long does it last?", opts: ["Two hours", "Two and a half hours", "Three hours"], ans: ["B"] },
+          { n: 9, type: "select", text: "What is the booking fee?", opts: ["£1", "£2", "£5"], ans: ["B"] },
+          { n: 10, type: "select", text: "When can the tickets be collected until?", opts: ["30 minutes before the show", "An hour before", "The day before"], ans: ["A"] }
+        ]
+      }
+    ]
+  },
+  {
+    id: 2,
+    title: "Section 2",
+    desc: "An organiser introducing a weekend farmers' market.",
+    speakers: {
+      A: { label: "Organiser", voice: 1, pitch: 1.0 }
+    },
+    lines: [
+      { s: "A", t: "Welcome to the Greenway Farmers' Market. I'm Peter, the organiser." },
+      { s: "A", t: "The market runs every Saturday and opens at eight. Please bring your own bags, as plastic ones are not provided. Live music begins at eleven." },
+      { s: "A", t: "There are five areas, A to E. A is the Bakery, with fresh bread. B is the Cheese Stall, which offers free samples. C is Fruit and Vegetables, all grown locally. D is the Flower Stall, with seasonal bouquets. And E is Hot Food, which serves soup and pies." },
+      { s: "A", t: "Parking is free for the first two hours. Enjoy your shopping!" }
+    ],
+    groups: [
+      {
+        heading: "Questions 11–13: Sentence Completion",
+        instructions: "Write NO MORE THAN TWO WORDS AND/OR A NUMBER.",
+        qs: [
+          { n: 11, type: "text", text: "The market runs every ______.", ans: ["Saturday"] },
+          { n: 12, type: "text", text: "The market opens at ______.", ans: ["8", "8am", "eight"] },
+          { n: 13, type: "text", text: "Visitors should bring their own ______.", ans: ["bags"] }
+        ]
+      },
+      {
+        heading: "Questions 14–18: Matching",
+        instructions: "Which stall offers each? Choose A–E.",
+        html: "<p><strong>Stalls:</strong> A Bakery &nbsp; B Cheese Stall &nbsp; C Fruit and Vegetables &nbsp; D Flower Stall &nbsp; E Hot Food</p>",
+        qs: [
+          { n: 14, type: "select", text: "Fresh bread", opts: ["Bakery", "Cheese Stall", "Fruit and Vegetables", "Flower Stall", "Hot Food"], ans: ["A"] },
+          { n: 15, type: "select", text: "Free samples", opts: ["Bakery", "Cheese Stall", "Fruit and Vegetables", "Flower Stall", "Hot Food"], ans: ["B"] },
+          { n: 16, type: "select", text: "Locally grown produce", opts: ["Bakery", "Cheese Stall", "Fruit and Vegetables", "Flower Stall", "Hot Food"], ans: ["C"] },
+          { n: 17, type: "select", text: "Seasonal bouquets", opts: ["Bakery", "Cheese Stall", "Fruit and Vegetables", "Flower Stall", "Hot Food"], ans: ["D"] },
+          { n: 18, type: "select", text: "Soup and pies", opts: ["Bakery", "Cheese Stall", "Fruit and Vegetables", "Flower Stall", "Hot Food"], ans: ["E"] }
+        ]
+      },
+      {
+        heading: "Questions 19–20: Sentence Completion",
+        instructions: "Write NO MORE THAN TWO WORDS AND/OR A NUMBER.",
+        qs: [
+          { n: 19, type: "text", text: "Parking is free for the first ______ hours.", ans: ["2", "two"] },
+          { n: 20, type: "text", text: "Live music begins at ______.", ans: ["11", "11am", "eleven"] }
+        ]
+      }
+    ]
+  },
+  {
+    id: 3,
+    title: "Section 3",
+    desc: "Two students and a tutor discuss a business case study.",
+    speakers: {
+      A: { label: "Dr Lane", voice: 1, pitch: 1.0 },
+      B: { label: "Maya", voice: 2, pitch: 1.0 },
+      C: { label: "Jon", voice: 1, pitch: 0.8 }
+    },
+    lines: [
+      { s: "A", t: "Maya, Jon, which company have you chosen for your case study?" },
+      { s: "B", t: "A company that sells fair trade chocolate." },
+      { s: "A", t: "Good. What will be your main source of information?" },
+      { s: "C", t: "Its annual report, which is available online." },
+      { s: "A", t: "Anything else?" },
+      { s: "B", t: "We'll interview a store manager about customer attitudes." },
+      { s: "A", t: "The word limit is twenty-five hundred, and it's due on Monday." },
+      { s: "C", t: "Right. I'll interview the manager." },
+      { s: "B", t: "And I'll summarise the annual report." },
+      { s: "C", t: "We'll compare the competitors together." },
+      { s: "B", t: "Maya will write the recommendations, since she's good at argument." },
+      { s: "C", t: "And Jon will format the references, because he's meticulous." },
+      { s: "A", t: "Perfect. See you on Monday." }
+    ],
+    groups: [
+      {
+        heading: "Questions 21–25: Multiple Choice",
+        instructions: "Choose the correct letter, A, B or C.",
+        qs: [
+          { n: 21, type: "select", text: "What does the company sell?", opts: ["Fair trade chocolate", "Organic tea", "Sports clothing"], ans: ["A"] },
+          { n: 22, type: "select", text: "What is the main source of information?", opts: ["The annual report", "A documentary", "A newspaper"], ans: ["A"] },
+          { n: 23, type: "select", text: "Who will they interview?", opts: ["A customer", "A store manager", "The founder"], ans: ["B"] },
+          { n: 24, type: "select", text: "What is the word limit?", opts: ["1,500", "2,500", "3,500"], ans: ["B"] },
+          { n: 25, type: "select", text: "When is it due?", opts: ["Monday", "Wednesday", "Friday"], ans: ["A"] }
+        ]
+      },
+      {
+        heading: "Questions 26–30: Who Will Do Each Task?",
+        instructions: "Choose Maya, Jon, or Both.",
+        qs: [
+          { n: 26, type: "select", text: "Interviewing the manager", opts: ["Maya", "Jon", "Both"], vals: ["Maya", "Jon", "Both"], ans: ["Jon"] },
+          { n: 27, type: "select", text: "Summarising the annual report", opts: ["Maya", "Jon", "Both"], vals: ["Maya", "Jon", "Both"], ans: ["Maya"] },
+          { n: 28, type: "select", text: "Comparing competitors", opts: ["Maya", "Jon", "Both"], vals: ["Maya", "Jon", "Both"], ans: ["Both"] },
+          { n: 29, type: "select", text: "Writing the recommendations", opts: ["Maya", "Jon", "Both"], vals: ["Maya", "Jon", "Both"], ans: ["Maya"] },
+          { n: 30, type: "select", text: "Formatting the references", opts: ["Maya", "Jon", "Both"], vals: ["Maya", "Jon", "Both"], ans: ["Jon"] }
+        ]
+      }
+    ]
+  },
+  {
+    id: 4,
+    title: "Section 4",
+    desc: "A lecture on the Silk Road.",
+    speakers: {
+      A: { label: "Lecturer", voice: 1, pitch: 1.0 }
+    },
+    lines: [
+      { s: "A", t: "The Silk Road was not a single road but a network of trade routes, linking China with the Mediterranean for over fifteen hundred years. It takes its name from silk, China's most prized export, though traders also carried spices, tea and precious stones." },
+      { s: "A", t: "Merchants rarely travelled the whole route. Instead, goods passed through many hands. Caravans of camels crossed the deserts, and cities such as Samarkand grew rich as trading centres." },
+      { s: "A", t: "Ideas travelled too. Buddhism spread from India to China, and paper-making, invented in China, eventually reached Europe." },
+      { s: "A", t: "Sadly, disease also travelled, and the Black Death is thought to have spread along these routes in the fourteenth century. The routes declined when sea trade became cheaper. Thank you." }
+    ],
+    groups: [
+      {
+        heading: "Questions 31–35: Note Completion",
+        instructions: "Write ONE WORD ONLY for each answer.",
+        html: "<p><strong>The Silk Road — Notes</strong></p>",
+        qs: [
+          { n: 31, type: "text", text: "It was not a single ______ but a network.", ans: ["road"] },
+          { n: 32, type: "text", text: "It linked China with the ______.", ans: ["Mediterranean"] },
+          { n: 33, type: "text", text: "China's most prized export was ______.", ans: ["silk"] },
+          { n: 34, type: "text", text: "Goods passed through many ______.", ans: ["hands"] },
+          { n: 35, type: "text", text: "Cities such as ______ grew rich.", ans: ["Samarkand"] }
+        ]
+      },
+      {
+        heading: "Questions 36–40: Sentence Completion",
+        instructions: "Write ONE WORD ONLY for each answer.",
+        qs: [
+          { n: 36, type: "text", text: "Caravans of ______ crossed the deserts.", ans: ["camels"] },
+          { n: 37, type: "text", text: "Buddhism spread from India to ______.", ans: ["China"] },
+          { n: 38, type: "text", text: "Paper-making eventually reached ______.", ans: ["Europe"] },
+          { n: 39, type: "text", text: "The Black Death spread in the ______ century.", ans: ["fourteenth", "14th"] },
+          { n: 40, type: "text", text: "The routes declined when ______ trade became cheaper.", ans: ["sea"] }
+        ]
+      }
+    ]
+  }
+];
+
+const LETTERS = "ABCDEFGH";
+
+function escapeHtml(s) {
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+function renderQuestion(q) {
+  let field;
+  if (q.type === "text") {
+    field = `<input type="text" placeholder="Your answer" autocomplete="off">`;
+  } else {
+    const opts = q.opts.map((o, i) => {
+      const val = q.vals ? q.vals[i] : LETTERS[i];
+      const label = q.vals ? o : `${LETTERS[i]}. ${o}`;
+      return `<option value="${val}">${escapeHtml(label)}</option>`;
+    }).join("");
+    field = `<select><option value="">-- Select --</option>${opts}</select>`;
+  }
+  return `<div class="q-block" data-q="${q.n}"><label>${q.n}. ${escapeHtml(q.text)}</label>${field}</div>`;
+}
+
+function renderSections() {
+  const root = document.getElementById("sectionsRoot");
+  root.innerHTML = SECTIONS.map(sec => {
+    const groupsHtml = sec.groups.map(g => `
+      <h3>${g.heading}</h3>
+      <p class="instructions">${g.instructions}</p>
+      ${g.html || ""}
+      ${g.qs.map(renderQuestion).join("")}
+    `).join("");
+    const transcriptHtml = sec.lines.map(l =>
+      `<p><b>${sec.speakers[l.s].label}:</b> ${escapeHtml(l.t)}</p>`
+    ).join("");
+    return `
+      <div class="section" id="sec${sec.id}">
+        <h2>${sec.title}</h2>
+        <div class="desc">${sec.desc}</div>
+        <div class="player">
+          <button class="btn" onclick="playSection(${sec.id})">▶ Play</button>
+          <button class="btn grey" onclick="pauseSection(${sec.id})">⏸ Pause</button>
+          <button class="btn grey" onclick="stopSection(${sec.id})">⏹ Stop</button>
+          <span class="status" id="status${sec.id}">Ready</span>
+        </div>
+        ${groupsHtml}
+        <details class="transcript" id="tr${sec.id}">
+          <summary>Show script for ${sec.title}</summary>
+          ${transcriptHtml}
+        </details>
+      </div>`;
+  }).join("");
+}
+
+const hasTTS = ("speechSynthesis" in window) && ("SpeechSynthesisUtterance" in window);
+let voices = [];
+const played = {};
+const session = { token: 0, section: null, idx: 0, state: "idle" };
+
+function loadVoices() {
+  if (!hasTTS) return;
+  const all = speechSynthesis.getVoices();
+  voices = all.filter(v => v.lang && v.lang.toLowerCase().startsWith("en"));
+  if (voices.length === 0) voices = all;
+  const v1 = document.getElementById("voice1");
+  const v2 = document.getElementById("voice2");
+  const keep1 = v1.value, keep2 = v2.value;
+  const optionsHtml = voices.map((v, i) => `<option value="${i}">${escapeHtml(v.name)} (${v.lang})</option>`).join("");
+  v1.innerHTML = optionsHtml; v2.innerHTML = optionsHtml;
+  if (voices.length) {
+    let i1 = voices.findIndex(v => /en[-_]GB/i.test(v.lang));
+    if (i1 < 0) i1 = 0;
+    let i2 = voices.findIndex((v, i) => i !== i1 && /en[-_]US/i.test(v.lang));
+    if (i2 < 0) i2 = voices.findIndex((v, i) => i !== i1);
+    if (i2 < 0) i2 = i1;
+    v1.value = (keep1 !== "" && voices[keep1]) ? keep1 : i1;
+    v2.value = (keep2 !== "" && voices[keep2]) ? keep2 : i2;
+  }
+}
+
+function getVoice(n) {
+  const sel = document.getElementById(n === 1 ? "voice1" : "voice2");
+  return voices[parseInt(sel.value, 10)] || null;
+}
+
+function makeUtterance(text, speakerCfg) {
+  const u = new SpeechSynthesisUtterance(text);
+  const v = getVoice(speakerCfg ? speakerCfg.voice : 1);
+  if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = "en-GB"; }
+  u.rate = parseFloat(document.getElementById("rate").value);
+  u.pitch = speakerCfg ? speakerCfg.pitch : 1;
+  return u;
+}
+
+function setStatus(id, msg) {
+  const el = document.getElementById("status" + id);
+  if (el) el.textContent = msg;
+}
+
+function speakNext(token) {
+  if (token !== session.token) return;
+  const sec = SECTIONS.find(s => s.id === session.section);
+  if (!sec) return;
+  if (session.idx >= sec.lines.length) {
+    session.state = "idle"; session.idx = 0;
+    setStatus(sec.id, "Finished");
+    return;
+  }
+  const line = sec.lines[session.idx];
+  const u = makeUtterance(line.t, sec.speakers[line.s]);
+  setStatus(sec.id, `Playing… (${session.idx + 1} / ${sec.lines.length})`);
+  u.onend = () => {
+    if (token !== session.token) return;
+    session.idx++;
+    setTimeout(() => speakNext(token), 450);
+  };
+  u.onerror = (e) => {
+    if (token !== session.token) return;
+    if (e.error === "interrupted" || e.error === "canceled") return;
+    session.idx++;
+    setTimeout(() => speakNext(token), 200);
+  };
+  speechSynthesis.speak(u);
+}
+
+function haltAudio() {
+  session.token++;
+  if (hasTTS) speechSynthesis.cancel();
+}
+
+function playSection(id) {
+  if (!hasTTS) { alert("Your browser does not support text-to-speech audio."); return; }
+  const exam = document.getElementById("examMode").checked;
+  if (session.state === "playing" && session.section === id) return;
+  const resuming = session.state === "paused" && session.section === id;
+  if (exam && played[id] && !resuming) {
+    setStatus(id, "Exam mode: this section has already been played.");
+    return;
+  }
+  if (session.section !== null && session.section !== id && session.state !== "idle") {
+    setStatus(session.section, "Stopped");
+  }
+  haltAudio();
+  if (!resuming) session.idx = 0;
+  session.section = id;
+  session.state = "playing";
+  if (exam) played[id] = true;
+  const token = session.token;
+  setTimeout(() => speakNext(token), 120);
+}
+
+function pauseSection(id) {
+  if (session.section !== id || session.state !== "playing") return;
+  haltAudio();
+  session.state = "paused";
+  setStatus(id, "Paused — press Play to resume");
+}
+
+function stopSection(id) {
+  if (session.section !== id) return;
+  haltAudio();
+  session.state = "idle"; session.idx = 0;
+  setStatus(id, "Stopped");
+}
+
+function testVoices() {
+  if (!hasTTS) return;
+  haltAudio();
+  session.state = "idle";
+  const a = makeUtterance("This is Voice 1. Can you hear me clearly?", {voice: 1, pitch: 1});
+  const b = makeUtterance("And this is Voice 2. Adjust the speed if you need to.", {voice: 2, pitch: 1});
+  setTimeout(() => { speechSynthesis.speak(a); speechSynthesis.speak(b); }, 120);
+}
+
+function revealAllTranscripts() {
+  document.querySelectorAll(".transcript").forEach(d => { d.style.display = "block"; d.open = true; });
+}
+
+function norm(s) {
+  return String(s).trim().toLowerCase().replace(/[.,']/g, "").replace(/\s+/g, " ");
+}
+
+function matches(user, accepted) {
+  const u = norm(user);
+  if (!u) return false;
+  const uNoSpace = u.replace(/[\s-]/g, "");
+  return accepted.some(a => {
+    const n = norm(a);
+    return n === u || n.replace(/[\s-]/g, "") === uNoSpace;
+  });
+}
+
+function getBand(score) {
+  if (score >= 39) return "9";
+  if (score >= 37) return "8.5";
+  if (score >= 35) return "8";
+  if (score >= 32) return "7.5";
+  if (score >= 30) return "7";
+  if (score >= 26) return "6.5";
+  if (score >= 23) return "6";
+  if (score >= 18) return "5.5";
+  if (score >= 16) return "5";
+  if (score >= 13) return "4.5";
+  if (score >= 10) return "4";
+  return "Below 4";
+}
+
+function allQuestions() {
+  const out = [];
+  SECTIONS.forEach(s => s.groups.forEach(g => g.qs.forEach(q => out.push(q))));
+  return out;
+}
+
+function gradeTest() {
+  haltAudio(); session.state = "idle";
+  let score = 0;
+  allQuestions().forEach(q => {
+    const block = document.querySelector(`.q-block[data-q="${q.n}"]`);
+    const field = block.querySelector("input, select");
+    const ok = matches(field.value || "", q.ans);
+    block.classList.remove("correct", "wrong");
+    block.querySelectorAll(".tag, .ans-note").forEach(e => e.remove());
+    const tag = document.createElement("span");
+    tag.className = "tag " + (ok ? "ok" : "no");
+    tag.textContent = ok ? "✓ Correct" : "✗ Incorrect";
+    block.querySelector("label").appendChild(tag);
+    if (ok) { score++; block.classList.add("correct"); }
+    else {
+      block.classList.add("wrong");
+      const note = document.createElement("div");
+      note.className = "ans-note";
+      let shown = q.ans[0];
+      if (q.type === "select" && !q.vals) shown = `${q.ans[0]}. ${q.opts[LETTERS.indexOf(q.ans[0])]}`;
+      note.textContent = "Correct answer: " + shown;
+      block.appendChild(note);
+    }
+  });
+  document.getElementById("scoreDisplay").textContent = score + " / 40";
+  document.getElementById("bandDisplay").textContent = "Approximate Band: " + getBand(score);
+  const box = document.getElementById("resultsBox");
+  box.style.display = "block";
+  document.querySelectorAll(".transcript").forEach(d => d.style.display = "block");
+  box.scrollIntoView({ behavior: "smooth" });
+}
+
+function resetTest() {
+  haltAudio(); session.state = "idle"; session.idx = 0; session.section = null;
+  Object.keys(played).forEach(k => delete played[k]);
+  document.querySelectorAll(".q-block input").forEach(e => e.value = "");
+  document.querySelectorAll(".q-block select").forEach(e => e.value = "");
+  document.querySelectorAll(".q-block").forEach(b => {
+    b.classList.remove("correct", "wrong");
+    b.querySelectorAll(".tag, .ans-note").forEach(e => e.remove());
+  });
+  document.querySelectorAll(".transcript").forEach(d => { d.style.display = ""; d.open = false; });
+  SECTIONS.forEach(s => setStatus(s.id, "Ready"));
+  document.getElementById("resultsBox").style.display = "none";
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+renderSections();
+if (!hasTTS) {
+  document.getElementById("noTTS").style.display = "block";
+} else {
+  loadVoices();
+  if (speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = loadVoices;
+}
+document.getElementById("rate").addEventListener("input", e => {
+  document.getElementById("rateVal").textContent = parseFloat(e.target.value).toFixed(2) + "×";
+});
+window.addEventListener("beforeunload", () => { if (hasTTS) speechSynthesis.cancel(); });
+
+function toggleMode() {
+  document.body.classList.toggle("dark");
+  const icon = document.getElementById("dark-icon");
+  const text = document.getElementById("dark-text");
+  if (document.body.classList.contains("dark")) {
+    icon.textContent = "☀️"; text.textContent = "Light Mode";
+  } else {
+    icon.textContent = "🌙"; text.textContent = "Dark Mode";
+  }
+}
+
+function showTime() {
+  const now = new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Tokyo",
+    weekday: "short", month: "short", day: "numeric", year: "numeric",
+    hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true
+  });
+  document.getElementById("currentTime").textContent = now;
+}
+showTime();
+setInterval(showTime, 1000);
+
+let secondsLeft = 30 * 60;
+let timerInterval;
+function updateTimer() {
+  const m = Math.floor(secondsLeft / 60);
+  const s = secondsLeft % 60;
+  const timer = document.getElementById("timer");
+  timer.textContent = "⏱ " + String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+  if (secondsLeft <= 0) {
+    clearInterval(timerInterval);
+    timer.textContent = "⏱ 00:00 — Time is up";
+    return;
+  }
+  secondsLeft--;
+}
+updateTimer();
+timerInterval = setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>
